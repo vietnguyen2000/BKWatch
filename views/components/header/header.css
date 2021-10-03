@@ -1,0 +1,46 @@
+.header-bg {
+    background-color: #333333;
+    color: white;
+}
+
+.header-border-bottom-1 {
+    border-bottom: 1px solid #7c7c7c;
+}
+
+.header-border-bottom-2 {
+    border-bottom: 1px solid #585858;
+}
+
+.header-bg a {
+    color: white;
+}
+
+.btn-search {
+    background-color: #c89979;
+    border-color: #c89979;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 100%;
+}
+
+
+.btn-search:hover {
+    background-color: #916c53;
+    border-color: #916c53;
+}
+
+.btn-search:focus {
+    background-color: #916c53;
+    border-color: #916c53;
+}
+
+.nav-item {
+    text-decoration: none;
+}
+
+.nav-item-active {
+    color: #c89979!important;
+    text-decoration: underline;
+}
