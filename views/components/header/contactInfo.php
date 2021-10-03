@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-between px-5 header-bg header-border-bottom">
+<div class="d-flex justify-content-between px-5 header-bg header-border-bottom-1">
   <span class="align-middle my-2">
     <span class="pe-2">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">

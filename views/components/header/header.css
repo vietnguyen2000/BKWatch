@@ -3,8 +3,12 @@
     color: white;
 }
 
-.header-border-bottom {
+.header-border-bottom-1 {
     border-bottom: 1px solid #7c7c7c;
+}
+
+.header-border-bottom-2 {
+    border-bottom: 1px solid #585858;
 }
 
 .header-bg a {
@@ -30,4 +34,13 @@
 .btn-search:focus {
     background-color: #916c53;
     border-color: #916c53;
+}
+
+.nav-item {
+    text-decoration: none;
+}
+
+.nav-item-active {
+    color: #c89979!important;
+    text-decoration: underline;
 }
