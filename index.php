@@ -12,6 +12,7 @@
 
 <body>
   <?php require 'views/components//header/header.php' ?>
+  <?php require 'views/components/footer/footer.php' ?>
 </body>
 
 </html>

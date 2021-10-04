@@ -1,0 +1,45 @@
+footer {
+  background-color: #333333;
+  padding-top: 48px;
+  padding-bottom: 48px;
+  padding-left: 48px;
+  padding-right: 48px;
+}
+h5 {
+  color: white;
+  font-weight: bold;
+}
+p {
+  color: white;
+}
+table,
+tr,
+th,
+td {
+  color: white;
+  vertical-align: top;
+}
+th {
+  width: 24px;
+  height: 24px;
+  padding-top: 10px;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 3px;
+}
+a {
+  text-decoration: none;
+}
+a:link {
+  color: white;
+}
+a:visited {
+  color: #f47d42;
+}
+a:hover {
+  color: #c89979;
+}
+a:active {
+  color: #8a3333;
+}
