@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="vi">
 
 <head>
   <meta charset="utf-8">
@@ -10,7 +11,7 @@
 </head>
 
 <body>
-
+  <?php require 'databases/connection.php' ?>
   <?php require 'views/components/header/header.php' ?>
   <?php
 
