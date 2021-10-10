@@ -10,17 +10,14 @@
   </style>
   <div class=".container-xl">
     <div class="row align-items-start">
-      <div class="col-xl-3">
+      <div class="col-xl-4">
         <?php require 'footerInfo.php' ?>
       </div>
-      <div class="col-xl-3">
+      <div class="col-xl-4">
         <?php require 'footerLink.php' ?>
       </div>
-      <div class="col-xl-3">
+      <div class="col-xl-4">
         <?php require 'footerSupport.php' ?>
-      </div>
-      <div class="col-xl-3">
-        <?php require 'footerDownload.php' ?>
       </div>
     </div>
   </div>

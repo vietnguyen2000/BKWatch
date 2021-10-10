@@ -1,29 +1,29 @@
-<h5>LIÊN KẾT</h5>
-<table>
-    <tr>
-        <td>
-            <a href="https://www.w3schools.com/tags/tag_a.asp">Giới thiệu
+<h5 class="title-footer">LIÊN KẾT</h5>
+<table class="table-footer">
+    <tr class="tr-footer">
+        <td class="td-footer">
+            <a class="alink-footer" class="alink-footer" href="https://www.w3schools.com/tags/tag_a.asp">Giới thiệu
             </a>
         </td>
     </tr>
-    <tr>
-        <td>
-            <a href="link2.html">Đồng hồ nam </a>
+    <tr class="tr-footer">
+        <td class="td-footer">
+            <a class="alink-footer" href="link2.html">Đồng hồ nam </a>
         </td>
     </tr>
-    <tr>
-        <td>
-            <a href="link3.html">Đồng hồ nữ </a>
+    <tr class="tr-footer">
+        <td class="td-footer">
+            <a class="alink-footer" href="link3.html">Đồng hồ nữ </a>
         </td>
     </tr>
-    <tr>
-        <td>
-            <a href="link4.html">Blogs </a>
+    <tr class="tr-footer">
+        <td class="td-footer">
+            <a class="alink-footer" href="link4.html">Blogs </a>
         </td>
     </tr>
-    <tr>
-        <td>
-            <a href="link5.html">Liên hệ </a>
+    <tr class="tr-footer">
+        <td class="td-footer">
+            <a class="alink-footer" href="link5.html">Liên hệ </a>
         </td>
     </tr>
 </table>
