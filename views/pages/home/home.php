@@ -1,4 +1,1 @@
-<?php 
-echo $_GET["url"] . '<br>'; 
-// $myHome = new HomeController();
-?>
+<h1>HOME PAGE</h1>

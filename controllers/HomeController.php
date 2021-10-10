@@ -4,12 +4,13 @@ namespace Controllers;
 
 class HomeController
 {
-    function __construct()
-    {
-        echo "Home page construct";
-    }
     public function index()
     {
-        echo 'Home page';
+        echo file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/views/pages/home/home.php');
+    }
+    public function homepage()
+    {
+        echo '/Home page';
+        echo file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/views/pages/home/home.php');
     }
 }

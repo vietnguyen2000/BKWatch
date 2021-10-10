@@ -143,7 +143,7 @@ class Route
         // Nếu $action là một phương thức của controller. VD: 'HomeController@index'.
         if (is_string($action)) {
             $action = explode('@', $action);
-            $controller_name = 'App\\Controllers\\' . $action[0];
+            $controller_name = 'Controllers\\' . $action[0];
             $controller = new $controller_name();
             call_user_func_array([$controller, $action[1]], $params);
 
