@@ -1,6 +1,6 @@
 
 .NameWrap {
-    font-size: x-large;
+    font-size: large;
 }
 ul.watch-grid-container {
     list-style: none;
@@ -10,11 +10,12 @@ ul.watch-grid-container {
     padding: 20px 100px;
 }
 
+
+
 ul.watch-grid-container li{
     flex-basis: 20%;
     padding-left: 10px;
     padding-right: 10px;
-    /* border-color: black; */
     justify-content: center;
     margin-bottom: 7px;
 }
@@ -78,4 +79,40 @@ ul.watch-grid-container li img{
     border-style: solid;
     border-width: thin;
     border-color: rgb(168, 150, 150);
+}
+
+ul.watch-grid-container-5item {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px 100px;
+}
+
+
+
+ul.watch-grid-container-5item li{
+    flex-basis: 17%;
+    padding-left: 10px;
+    padding-right: 10px;
+    justify-content: center;
+    margin-bottom: 7px;
+}
+@media (max-width: 800px) {
+    ul.watch-grid-container-5item li {
+        flex-basis: 40%;
+    }
+  }
+ul.watch-grid-container-5item li .watch-grid-info{
+    border-left: rgb(255, 255, 255);
+    border-bottom: rgb(255, 255, 255);
+    border-right: rgb(255, 255, 255);
+    padding: 5px;
+    align-items: center;
+}
+
+
+ul.watch-grid-container-5item li img{
+    max-width: 100%;
+    height: auto;
 }
