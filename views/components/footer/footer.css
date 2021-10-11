@@ -1,0 +1,42 @@
+footer {
+  background-color: #333333;
+  padding-top: 48px;
+  padding-bottom: 48px;
+  padding-left: 48px;
+  padding-right: 48px;
+}
+.title-footer {
+  color: white;
+  font-weight: bold;
+}
+.table-footer,
+.tr-footer,
+.th-footer,
+.td-footer {
+    color: white;
+    vertical-align: top;
+}
+.th-footer {
+  width: 24px;
+  height: 24px;
+  padding-top: 10px;
+}
+.table-footer {
+  border-collapse: separate;
+  border-spacing: 3px;
+}
+.alink-footer {
+  text-decoration: none;
+}
+.alink-footer:link {
+  color: white;
+}
+.alink-footer:visited {
+  color: #f47d42;
+}
+.alink-footer:hover {
+  color: #c89979;
+}
+.alink-footer:active {
+  color: #8a3333;
+}
