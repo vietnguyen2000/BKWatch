@@ -1,7 +1,5 @@
 <?php
 
-
-
 // Create connection
 $conn = mysqli_connect(
   $database_server,

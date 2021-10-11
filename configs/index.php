@@ -6,8 +6,6 @@ if (str_contains($_SERVER['HTTP_HOST'], 'localhost')) {
   define('PRODUCTION', true);
 }
 
-echo PRODUCTION;
-
 if (!defined('ENVIRONMENT')) {
   if (PRODUCTION) {
     define('ENVIRONMENT', 'production');
@@ -20,7 +18,7 @@ if (!defined('ENVIRONMENT')) {
 require_once 'config.default.php';
 
 $configLocal = 'config.' . ENVIRONMENT . '.php';
-phpinfo();
 if (file_exists('configs/' . $configLocal)) {
+  echo '<script>console.log("env: ' . ENVIRONMENT . '");</script>';
   require_once $configLocal;
 }
