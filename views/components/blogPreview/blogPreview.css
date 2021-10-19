@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap');
+ul.blog-grid-container {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px 100px;
+}
+
+ul.blog-grid-container li{
+    flex-basis: 30%;
+    padding-left: 5px;
+    padding-right: 5px;
+    justify-content: center;
+    margin-bottom: 7px;
+}
+@media (max-width: 800px) {
+    ul.blog-grid-container li {
+        flex-basis: 80%;
+    }
+  }
+ul.blog-grid-container li .blog-grid-info{
+    padding-top: 13px;
+    padding-left: 0px;
+}
+
+
+ul.blog-grid-container li img{
+    max-width: 100%;
+    height: auto;
+}
+
+.blog-grid-info{
+    /* border: rgb(27, 27, 27); */
+    padding: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+.blogName{
+    color: black;
+    font-weight: bolder;
+    text-decoration: none;
+    font-size: 20px;
+}
+.blogShortContent{
+    color: #000000;
+    font-size: 15px;
+    padding-top: 10px;
+    font-family: 'Playfair Display', serif;
+}
+
