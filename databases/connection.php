@@ -17,3 +17,4 @@ if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 echo "<script>console.log('Connect database successfully');</script>";
+return $conn;
