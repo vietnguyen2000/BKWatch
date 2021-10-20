@@ -2,6 +2,8 @@
 
 namespace Core\Http;
 
+use Views\ErrorView;
+
 /**
  * 
  * Class Route
@@ -123,7 +125,8 @@ class Route
         }
 
         // nếu không khớp với bất kì route nào cả.
-        echo '404 - Not Found';
+        $errorView = new ErrorView();
+        $errorView->render();
         return;
     }
     /**
