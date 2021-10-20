@@ -12,7 +12,6 @@
 
 <body>
   <?php require 'configs/index.php' ?>
-  <?php require 'views/components/header/header.php' ?>
   <?php
 
   // Định nghĩa hằng Path của file index.php
@@ -36,7 +35,6 @@
   // map URL
   $router->map($request_url, $method_url);
   ?>
-  <?php require 'views/components/footer/footer.php' ?>
 </body>
 
 </html>

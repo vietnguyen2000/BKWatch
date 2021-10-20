@@ -72,7 +72,7 @@ class Route
         // kiểm tra xem URL có chứa param không. VD: post/{id}
         if (preg_match_all('/({([a-zA-Z]+)})/', $url, $params)) {
             // thay thế param bằng (.+). VD: post/{id} -> post/(.+)
-            $url = preg_replace('/({([a-zA-Z]+)})/', '([^?]+)', $url);
+            $url = preg_replace('/({([a-zA-Z]+)})/', '([^\?/]+)', $url);
         }
 
         // Thay thế tất cả các kí tự / bằng ký tự \/ (regex) trong URL.

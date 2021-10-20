@@ -4,5 +4,6 @@ namespace Controllers;
 
 abstract class BaseController
 {
-  // any method 
+  // any method with interface 
+  // ($fullUrl, ${urlParam1}, ${urlParam2}, ...)
 }
