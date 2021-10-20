@@ -1,10 +1,12 @@
 <?php
-require_once 'models/BaseModel.php';
+
+namespace Models;
+
 class BlogModel extends BaseModel
 {
-  public function __construct(\mysqli $db)
+  public function __construct()
   {
-    parent::__construct($db);
+    parent::__construct();
     $this->name = 'blog';
   }
 }
