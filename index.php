@@ -20,7 +20,7 @@
 
   // Autoload class trong PHP
   spl_autoload_register(function (string $class_name) {
-    include_once PATH_ROOT . '/' . $class_name . '.php';
+    include_once PATH_ROOT . '/' . lcfirst($class_name) . '.php';
   });
 
   // load class Route

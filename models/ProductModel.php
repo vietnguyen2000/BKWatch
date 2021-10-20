@@ -1,6 +1,6 @@
 <?php
 
-namespace Model;
+namespace Models;
 
 class ProductModel extends BaseModel
 {
