@@ -1,12 +1,17 @@
 <?php
-class BaseModel
+
+namespace Model;
+
+use function Database\getDBConnection;
+
+abstract class BaseModel
 {
   public $db; // db connection
   public $name; // db name table
 
-  public function __construct(\mysqli $db)
+  public function __construct()
   {
-    $this->db = $db;
+    $this->db = getDBConnection();
     $this->name = ' '; // change it in children
   }
 
@@ -16,7 +21,7 @@ class BaseModel
       $sql = "SELECT * FROM $this->name";
       $result = $this->db->query($sql);
       return $result->fetch_all(mode: MYSQLI_ASSOC);
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
       return [];
     }
   }
@@ -29,7 +34,7 @@ class BaseModel
       $sql = "SELECT * FROM $this->name WHERE $conditionSql";
       $result = $this->db->query($sql);
       return $result->fetch_all(mode: MYSQLI_ASSOC);
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
       return [];
     }
   }
@@ -48,7 +53,7 @@ class BaseModel
       $stmt->bind_param($types, ...$valuesList);
       $stmt->execute();
       return $stmt->affected_rows;
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
       return false;
     }
   }
@@ -66,7 +71,7 @@ class BaseModel
       $stmt->bind_param($types, ...$valuesList);
       $stmt->execute();
       return $stmt->affected_rows;
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
       return false;
     }
   }
@@ -80,7 +85,7 @@ class BaseModel
       $stmt->bind_param('i', $id);
       $stmt->execute();
       return $stmt->affected_rows;
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
       return false;
     }
   }

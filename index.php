@@ -11,9 +11,7 @@
 </head>
 
 <body>
-  <!-- <?php phpinfo(); ?> -->
   <?php require 'configs/index.php' ?>
-  <?php require 'databases/connection.php' ?>
   <?php require 'views/components/header/header.php' ?>
   <?php
 
