@@ -9,13 +9,13 @@ class HomeController
     public function index($url)
     {
         $view = new HomeView();
-        $view->render(['url' => $url]);
+        $view->render(['url' => $url, 'nav' => '/']);
     }
 
     // example
     public function homepage($url, $id)
     {
         $view = new HomeView();
-        $view->render(['url' => $url, 'id' => $id]);
+        $view->render(['url' => $url, 'id' => $id, 'nav' => '/']);
     }
 }

@@ -4,11 +4,11 @@ namespace Views;
 
 abstract class BaseView
 {
-  public function render(array $bodyData = [], array $headerData = [], array $footerData = [])
+  public function render(array $data = [])
   {
-    $this->processRenderHeader($headerData);
-    $this->processRenderBody($bodyData);
-    $this->processRenderFooter($footerData);
+    $this->processRenderHeader($data);
+    $this->processRenderBody($data);
+    $this->processRenderFooter($data);
   }
   protected function processRenderHeader(array $data = [])
   {
