@@ -1,6 +1,6 @@
 <?php
 
-namespace Database;
+namespace Databases;
 
 // Create connection
 $conn = mysqli_connect(
@@ -17,10 +17,4 @@ $conn = mysqli_connect(
 if (!$conn) {
   echo "<script>console.error('Cannot connect database, please check your config');</script>";
   die("Connection failed: " . mysqli_connect_error());
-}
-
-function getDBConnection(): \mysqli
-{
-  global $conn;
-  return $conn;
 }

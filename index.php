@@ -14,7 +14,10 @@
 </head>
 
 <body>
-  <?php require 'configs/index.php' ?>
+  <?php
+  require 'configs/index.php';
+  require "databases/connection.php";
+  ?>
   <?php
 
   // Định nghĩa hằng Path của file index.php

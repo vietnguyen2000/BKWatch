@@ -2,7 +2,6 @@
 
 namespace Models;
 
-use function Database\getDBConnection;
 
 abstract class BaseModel
 {
@@ -11,7 +10,8 @@ abstract class BaseModel
 
   public function __construct()
   {
-    $this->db = getDBConnection();
+    global $conn;
+    $this->db = $conn;
     $this->name = ' '; // change it in children
   }
 
@@ -26,13 +26,34 @@ abstract class BaseModel
     }
   }
 
-  public function getByIds(array $ids)
+  public function getByCondition(array ...$conditions)
   {
     try {
-      $condition = array_map(fn ($v) => "`id` = $v", $ids);
-      $conditionSql = join(" OR ", $condition);
+
+      $listSql = [];
+      $types = "";
+      $valuesList = [];
+
+      foreach ($conditions as $condition) {
+        $keysList = array_keys($condition);
+        $v = array_values($condition);
+        $keys = join("`= ? AND `", $keysList);
+        $cTypes = $this->getTypeBindParam($v);
+        $sql = "( $keys = ? )";
+        $listSql[] = $sql;
+        $types = $types . $cTypes;
+        array_push($valuesList, ...$v);
+      };
+
+      $conditionSql = join(" OR ", $listSql);
+
       $sql = "SELECT * FROM $this->name WHERE $conditionSql";
-      $result = $this->db->query($sql);
+      print_r($sql);
+      $stmt = $this->db->prepare($sql);
+      $stmt->bind_param($types, ...$valuesList);
+      print_r($valuesList);
+      $stmt->execute();
+      $result =  $stmt->get_result();
       return $result->fetch_all(mode: MYSQLI_ASSOC);
     } catch (\Exception $e) {
       return [];
