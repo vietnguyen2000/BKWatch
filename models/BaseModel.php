@@ -71,6 +71,7 @@ abstract class BaseModel
 
       $sql = "INSERT INTO `$this->name` (`$keys`) VALUES ($valuesNeed);";
       $stmt = $this->db->prepare($sql);
+      print_r($stmt);
       $stmt->bind_param($types, ...$valuesList);
       $stmt->execute();
       return $stmt->affected_rows;

@@ -1,10 +1,10 @@
 <div class="container-sm my-5" style="max-width: 720px;">
   <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
     <li class="nav-item" role="presentation">
-      <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="#pills-login" role="tab" aria-controls="pills-login" aria-selected="true">Login</a>
+      <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="#pills-login" role="tab" aria-controls="pills-login" aria-selected="true">Đăng nhập</a>
     </li>
     <li class="nav-item" role="presentation">
-      <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="#pills-register" role="tab" aria-controls="pills-register" aria-selected="false">Register</a>
+      <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="#pills-register" role="tab" aria-controls="pills-register" aria-selected="false">Đăng ký</a>
     </li>
   </ul>
   <!-- Pills navs -->
@@ -12,11 +12,10 @@
   <!-- Pills content -->
   <div class="tab-content">
     <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-      <form>
-        <!-- Email input -->
+      <form method="post" action="/login">
         <div class="form-outline mb-4">
-          <input type="email" id="loginName" class="form-control" />
-          <label class="form-label" for="loginName">Email or username</label>
+          <input type="text" id="loginName" class="form-control" />
+          <label class="form-label" for="loginName">Username</label>
         </div>
 
         <!-- Password input -->
@@ -42,44 +41,62 @@
         </div>
 
         <!-- Submit button -->
-        <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+        <button type="submit" class="btn btn-primary btn-block mb-4">Đăng nhập</button>
 
         <!-- Register buttons -->
         <div class="text-center">
-          <p>Not a member? <a href="#!">Register</a></p>
+          <p>Chưa có tài khoản? <a href="#!">Đăng ký tài khoản</a></p>
         </div>
       </form>
     </div>
     <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
-      <form>
+      <form method="post" action="/register">
         <!-- Name input -->
         <div class="form-outline mb-4">
-          <input type="text" id="registerName" class="form-control" />
-          <label class="form-label" for="registerName">Name</label>
+          <input type="text" id="registerName" class="form-control" name="fullname" />
+          <label class="form-label" for="registerName">Họ và tên</label>
         </div>
 
         <!-- Username input -->
         <div class="form-outline mb-4">
-          <input type="text" id="registerUsername" class="form-control" />
-          <label class="form-label" for="registerUsername">Username</label>
+          <input type="text" id="registerUsername" class="form-control" name="username" />
+          <label class="form-label" for="registerUsername">Tên đăng nhập</label>
         </div>
 
         <!-- Email input -->
         <div class="form-outline mb-4">
-          <input type="email" id="registerEmail" class="form-control" />
+          <input type="email" id="registerEmail" class="form-control" name="email" />
           <label class="form-label" for="registerEmail">Email</label>
         </div>
 
         <!-- Password input -->
         <div class="form-outline mb-4">
-          <input type="password" id="registerPassword" class="form-control" />
-          <label class="form-label" for="registerPassword">Password</label>
+          <input type="password" id="registerPassword" class="form-control" name="password" />
+          <label class="form-label" for="registerPassword">Mật khẩu</label>
         </div>
 
-        <!-- Repeat Password input -->
-        <div class="form-outline mb-4">
-          <input type="password" id="registerRepeatPassword" class="form-control" />
-          <label class="form-label" for="registerRepeatPassword">Repeat password</label>
+        <div class="mb-4 row align-items-center">
+          <div class="col-6">
+            <div class="form-outline">
+              <input type="text" id="registerPhoneNumber" class="form-control" name="phoneNumber" />
+              <label class="form-label" for="registerPhoneNumber">Số điện thoại</label>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="row justify-content-center">
+              <div class="w-auto">
+                <input class="form-check-input" type="radio" name="gender" value="1" id="registerGenderMale" checked />
+                <label class="form-check-label" for="registerGenderMale"> Nam </label>
+              </div>
+
+              <!-- Default checked radio -->
+              <div class="w-auto">
+                <input class="form-check-input" type="radio" name="gender" value="0" id="registerGenderFemale" />
+                <label class="form-check-label" for="registerGenderFemale"> Nữ </label>
+              </div>
+            </div>
+
+          </div>
         </div>
 
         <!-- Checkbox -->
@@ -89,7 +106,7 @@
             I have read and agree to the terms
           </label>
         </div>
-        <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
+        <button type="submit" class="btn btn-primary btn-block mb-3">Đăng ký</button>
       </form>
     </div>
   </div>
