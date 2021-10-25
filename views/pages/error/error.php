@@ -19,7 +19,7 @@
 
             <p><?php echo $data['text'] ?></p>
 
-            <a href="/" class="link_404">Go to Home</a>
+            <a href="/" class="btn btn-primary">Trang chủ</a>
           </div>
         </div>
       </div>
