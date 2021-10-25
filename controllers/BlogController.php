@@ -4,7 +4,7 @@ namespace Controllers;
 
 use Views\BlogView;
 
-class BlogController
+class BlogController extends BaseController
 {
     public function index($url)
     {

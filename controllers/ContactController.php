@@ -4,7 +4,7 @@ namespace Controllers;
 
 use Views\ContactView;
 
-class ContactController
+class ContactController extends BaseController
 {
     public function index($url)
     {

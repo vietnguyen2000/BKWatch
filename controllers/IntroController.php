@@ -4,7 +4,7 @@ namespace Controllers;
 
 use Views\IntroView;
 
-class IntroController
+class IntroController extends BaseController
 {
     public function index($url)
     {

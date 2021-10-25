@@ -8,11 +8,11 @@ class ErrorView extends BaseView
   {
     $defaultData = [
       'errorCode' => 404,
-      'title' => "Look like you're lost",
-      'text' => "The page you are looking for not avaible!"
+      'title' => "Có vẻ bạn đã lạc đường",
+      'text' => "Trang bạn đang tìm kiếm không tồn tại!"
     ];
 
-    $data = array_merge($data, $defaultData);
+    $data = array_merge($defaultData, $data);
 
     require 'pages/error/error.php';
   }

@@ -48,10 +48,8 @@ abstract class BaseModel
       $conditionSql = join(" OR ", $listSql);
 
       $sql = "SELECT * FROM $this->name WHERE $conditionSql";
-      print_r($sql);
       $stmt = $this->db->prepare($sql);
       $stmt->bind_param($types, ...$valuesList);
-      print_r($valuesList);
       $stmt->execute();
       $result =  $stmt->get_result();
       return $result->fetch_all(mode: MYSQLI_ASSOC);
