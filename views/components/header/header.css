@@ -15,6 +15,10 @@
   color: white;
 }
 
+.search-bar {
+  background: white !important;
+}
+
 .btn-search {
   background-color: #c89979;
   border-color: #c89979;
@@ -35,12 +39,12 @@
   border-color: #916c53;
 }
 
-.nav-item {
+.header-nav-item {
   text-decoration: none;
 }
 
-.nav-item-active,
-.nav-item:hover {
+.header-nav-item-active,
+.header-nav-item:hover {
   color: #c89979 !important;
   text-decoration: underline;
 }

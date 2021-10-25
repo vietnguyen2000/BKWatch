@@ -4,7 +4,7 @@ namespace Controllers;
 
 use Views\WatchView;
 
-class WatchController
+class WatchController extends BaseController
 {
     public function index($url)
     {
