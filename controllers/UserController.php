@@ -11,7 +11,7 @@ class UserController
   public function index($url)
   {
     $view = new UserView();
-    $view->render(['url' => $url, 'nav' => '/blog']);
+    $view->render(['url' => $url]);
   }
 
   public function register($url)
@@ -41,9 +41,35 @@ class UserController
       'gender' => intval($_POST['gender']),
       'role' => 1,
     ];
-
-
-    print_r($_POST);
     $user->insert($data);
+    print_r("Đăng ký thành công! Xin chào " . $_POST['fullname']);
+  }
+
+  public function login($url)
+  {
+    $userModel = new UserModel();
+    $existUser = $userModel->getByCondition(["username" => $_POST['username']]);
+    if (count($existUser) == 0) {
+      $errorView = new ErrorView();
+      $errorView->render([
+        'errorCode' => '406',
+        'title' => "Tài khoản hoặc mật khẩu không chính xác",
+        'text' => "Tài khoản hoặc mật khẩu của bạn nhập không chính xác. Xin hãy thử lại!"
+      ]);
+      return;
+    }
+
+    $user = $existUser[0];
+    if (!password_verify($_POST['password'], $user['password'])) {
+      $errorView = new ErrorView();
+      $errorView->render([
+        'errorCode' => '406',
+        'title' => "Tài khoản hoặc mật khẩu không chính xác",
+        'text' => "Tài khoản hoặc mật khẩu của bạn nhập không chính xác. Xin hãy thử lại!"
+      ]);
+      return;
+    };
+
+    print_r("Đăng nhập thành công! Xin chào " . $user['fullname']);
   }
 }

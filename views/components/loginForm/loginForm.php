@@ -14,14 +14,14 @@
     <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
       <form method="post" action="/login">
         <div class="form-outline mb-4">
-          <input type="text" id="loginName" class="form-control" />
-          <label class="form-label" for="loginName">Username</label>
+          <input type="text" id="loginName" class="form-control" name="username" />
+          <label class="form-label" for="loginName">Tên đăng nhập</label>
         </div>
 
         <!-- Password input -->
         <div class="form-outline mb-4">
-          <input type="password" id="loginPassword" class="form-control" />
-          <label class="form-label" for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" class="form-control" name="password" />
+          <label class="form-label" for="loginPassword">Mật khẩu</label>
         </div>
 
         <!-- 2 column grid layout -->
@@ -29,24 +29,20 @@
           <div class="col-md-6 d-flex justify-content-center">
             <!-- Checkbox -->
             <div class="form-check mb-3 mb-md-0">
-              <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked />
-              <label class="form-check-label" for="loginCheck"> Remember me </label>
+              <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked name="rememberMe" />
+              <label class="form-check-label" for="loginCheck"> Tự động đăng nhập </label>
             </div>
           </div>
 
           <div class="col-md-6 d-flex justify-content-center">
             <!-- Simple link -->
-            <a href="#!">Forgot password?</a>
+            <a href="#!">Quên mật khẩu?</a>
           </div>
         </div>
 
         <!-- Submit button -->
         <button type="submit" class="btn btn-primary btn-block mb-4">Đăng nhập</button>
 
-        <!-- Register buttons -->
-        <div class="text-center">
-          <p>Chưa có tài khoản? <a href="#!">Đăng ký tài khoản</a></p>
-        </div>
       </form>
     </div>
     <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">

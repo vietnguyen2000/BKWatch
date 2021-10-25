@@ -10,3 +10,4 @@ $router->get('/blog', 'BlogController@index');
 $router->get('/contact', 'ContactController@index');
 $router->get('/me', 'UserController@index');
 $router->post('/register', 'UserController@register');
+$router->post('/login', 'UserController@login');
