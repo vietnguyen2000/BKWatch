@@ -1,4 +1,10 @@
-<?php 
+<?php
 
-$router->get('/','HomeController@index');
-$router->get('/Home', 'HomeController@homepage');
+//testing 
+$router->get('/Home/X/{id}', 'HomeController@homepage');
+
+$router->get('/', 'HomeController@index');
+$router->get('/intro', 'IntroController@index');
+$router->get('/watch', 'WatchController@index');
+$router->get('/blog', 'BlogController@index');
+$router->get('/contact', 'ContactController@index');

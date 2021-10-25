@@ -1,0 +1,10 @@
+.link {
+  text-decoration: none;
+  color: white;
+}
+
+.link-active,
+.link:hover {
+  color: #c89979 !important;
+  text-decoration: underline;
+}

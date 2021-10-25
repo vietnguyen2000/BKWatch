@@ -2,3 +2,4 @@
 .env
 configs/config.development.php
 configs/config.production.php
+/**/**.test.**

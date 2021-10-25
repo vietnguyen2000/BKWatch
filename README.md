@@ -8,7 +8,7 @@ To start development:
 ```
 php -S localhost:5501
 ```
-To start production: (running on your server not on localhost, example is 192.168.0.100) 
+To start production: (running on your server not on localhost, example is 0.0.0.0) 
 ```
-php -S 192.168.0.100:80
+php -S 0.0.0.0:80
 ```

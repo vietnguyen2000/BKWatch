@@ -2,15 +2,20 @@
 
 namespace Controllers;
 
+use Views\HomeView;
+
 class HomeController
 {
-    public function index()
+    public function index($url)
     {
-        echo file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/views/pages/home/home.php');
+        $view = new HomeView();
+        $view->render(['url' => $url, 'nav' => '/']);
     }
-    public function homepage()
+
+    // example
+    public function homepage($url, $id)
     {
-        echo '/Home page';
-        echo file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/views/pages/home/home.php');
+        $view = new HomeView();
+        $view->render(['url' => $url, 'id' => $id, 'nav' => '/']);
     }
 }
