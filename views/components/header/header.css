@@ -15,6 +15,10 @@
   color: white;
 }
 
+.search-bar {
+  background: white !important;
+}
+
 .btn-search {
   background-color: #c89979;
   border-color: #c89979;

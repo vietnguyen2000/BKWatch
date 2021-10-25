@@ -1,6 +1,9 @@
 <div class="col-6">
   <div class="input-group">
-    <input type="text" class="form-control" placeholder="Tìm kiếm..." aria-label="search" aria-describedby="Search">
+    <div class="form-outline col-11">
+      <input type="text" id="searchBar" class="form-control search-bar" placeholder="Tìm kiếm..." />
+      <!-- <label class="form-label" for="searchBar">Tìm kiếm ... </label> -->
+    </div>
     <div class="input-group-append">
       <button class="btn btn-primary" type="button">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">

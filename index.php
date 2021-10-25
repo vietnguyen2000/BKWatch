@@ -16,7 +16,6 @@
     include 'styles.css'
     ?>
   </style>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
 
   <title>BK Watch</title>
 </head>
@@ -49,6 +48,8 @@
   // map URL
   $router->map($request_url, $method_url);
   ?>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
 </body>
 
 </html>
