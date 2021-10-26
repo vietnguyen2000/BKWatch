@@ -20,9 +20,9 @@ abstract class BaseController
   {
     $errorView = new ErrorView();
     $errorView->render([
-      'errorCode' => '406',
-      'title' => "Tài khoản hoặc mật khẩu không chính xác",
-      'text' => "Tài khoản hoặc mật khẩu của bạn nhập không chính xác. Xin hãy thử lại!"
+      'errorCode' => $errorCode,
+      'title' => $title,
+      'text' => $text
     ]);
   }
 }

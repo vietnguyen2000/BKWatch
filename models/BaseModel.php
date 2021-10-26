@@ -39,7 +39,7 @@ abstract class BaseModel
         $v = array_values($condition);
         $keys = join("`= ? AND `", $keysList);
         $cTypes = $this->getTypeBindParam($v);
-        $sql = "( $keys = ? )";
+        $sql = "( `$keys` = ? )";
         $listSql[] = $sql;
         $types = $types . $cTypes;
         array_push($valuesList, ...$v);
@@ -77,7 +77,7 @@ abstract class BaseModel
     }
   }
 
-  public function update(string $id, array $payload)
+  public function updateById(string $id, array $payload)
   {
     try {
       $keysList = array_keys($payload);
@@ -86,6 +86,40 @@ abstract class BaseModel
       $types = $this->getTypeBindParam($valuesList);
 
       $sql = "UPDATE $this->name set `$keys` = ? WHERE `id` = $id";
+      $stmt = $this->db->prepare($sql);
+      $stmt->bind_param($types, ...$valuesList);
+      $stmt->execute();
+      return $stmt->affected_rows;
+    } catch (\Exception $e) {
+      return false;
+    }
+  }
+
+  public function update(array $payload, ...$conditions)
+  {
+    try {
+      $keysList = array_keys($payload);
+      $valuesList = array_values($payload);
+      $keys = join("`= ?, `", $keysList);
+      $types = $this->getTypeBindParam($valuesList);
+
+      $listSql = [];
+
+      foreach ($conditions as $condition) {
+        $keysList = array_keys($condition);
+        $v = array_values($condition);
+        $keysCondition = join("`= ? AND `", $keysList);
+        $cTypes = $this->getTypeBindParam($v);
+        $sql = "( $keysCondition = ? )";
+        $listSql[] = $sql;
+        $types = $types . $cTypes;
+        array_push($valuesList, ...$v);
+      };
+
+      $conditionSql = join(" OR ", $listSql);
+
+      $sql = "UPDATE $this->name set `$keys` = ? WHERE $conditionSql";
+      // print_r($sql);
       $stmt = $this->db->prepare($sql);
       $stmt->bind_param($types, ...$valuesList);
       $stmt->execute();
