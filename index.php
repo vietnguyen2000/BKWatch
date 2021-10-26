@@ -63,7 +63,7 @@ require 'utils/validate.php';
       alert('Your session is out of time! Please login again!')
       $.get('session-destroy')
       location.reload()
-    }, <?= ini_get("session.gc_maxlifetime") * 1000 ?>)
+    }, <?= $session_time * 1000 ?>)
   </script>
 </body>
 

@@ -2,6 +2,15 @@
 
 use Models\UserModel;
 
+if (isset($_SESSION['lastTimeStartSession'])) {
+  $_SESSION['lastTimeStartSession'] = time();
+}
+
+if (time() - $_SESSION['lastTimeStartSession'] > $session_time) {
+  session_destroy();
+  $_SESSION = [];
+}
+
 if (isset($_COOKIE['username']) && isset($_COOKIE['userRememberToken'])) {
   $userModel = new UserModel();
   $existUser = $userModel->getByCondition(["username" => $_COOKIE['username'], "rememberToken" => $_COOKIE['userRememberToken']]);
