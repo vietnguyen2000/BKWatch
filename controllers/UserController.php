@@ -17,7 +17,17 @@ class UserController extends BaseController
   // get
   public function profile($url)
   {
-    print_r($_SESSION);
+    $userView = new UserView();
+    $userView->renderProfile(['url' => $url]);
+  }
+
+  // get
+  public function logout($url)
+  {
+    unset($_SESSION['user']);
+    setcookie('username', "");
+    setcookie('userRememberToken', "");
+    $this->redirect("/");
   }
 
   // post
@@ -78,6 +88,6 @@ class UserController extends BaseController
       setcookie('username', $user['username']);
     }
 
-    // $this->redirect('/', true);
+    $this->redirect('/', true);
   }
 }
