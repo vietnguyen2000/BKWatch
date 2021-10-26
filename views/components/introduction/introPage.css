@@ -48,18 +48,7 @@
 .card {
     border: 0;
 }
-.card-view {
-    padding: 15px 40px;
-    margin: 0;
-}
 .img-card-view {
     display: flex;
     align-items: center;
-}
-
-.card-body {
-    padding: 0;
-}
-.card-text {
-    text-align: justify;
 }
