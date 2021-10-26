@@ -14,6 +14,13 @@ class UserController extends BaseController
     $view->render(['url' => $url]);
   }
 
+  // get
+  public function profile($url)
+  {
+    print_r($_SESSION);
+  }
+
+  // post
   public function register($url)
   {
     $user = new UserModel();
@@ -46,6 +53,7 @@ class UserController extends BaseController
     $this->redirect('/', true);
   }
 
+  // post
   public function login($url)
   {
     $userModel = new UserModel();
@@ -70,7 +78,16 @@ class UserController extends BaseController
     };
 
     print_r("Đăng nhập thành công! Xin chào " . $user['fullname']);
+    $_SESSION['user'] = $user;
+    unset($_SESSION['user']['password']);
+    print_r($_POST);
+    if ($_POST['rememberMe']) {
+      $_SESSION['isRemembered'] = true;
+      $rememberToken = $userModel->refreshRememberToken($user['username']);
+      setcookie('userRememberToken', $rememberToken);
+      setcookie('username', $user['username']);
+    }
 
-    $this->redirect('/', true);
+    // $this->redirect('/', true);
   }
 }

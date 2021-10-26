@@ -1,5 +1,20 @@
 <?php
+
+// Định nghĩa hằng Path của file index.php
+define('PATH_ROOT', __DIR__);
+
+// Autoload class trong PHP
+spl_autoload_register(function (string $class_name) {
+  include_once PATH_ROOT . '/' . lcfirst($class_name) . '.php';
+});
+
+require 'configs/index.php';
+require "databases/connection.php";
+
+session_start();
 ob_start();
+
+require 'utils/validate.php';
 ?>
 <!DOCTYPE html>
 <html lang="vi">
@@ -26,18 +41,6 @@ ob_start();
 
 <body>
   <?php
-  require 'configs/index.php';
-  require "databases/connection.php";
-  ?>
-  <?php
-
-  // Định nghĩa hằng Path của file index.php
-  define('PATH_ROOT', __DIR__);
-
-  // Autoload class trong PHP
-  spl_autoload_register(function (string $class_name) {
-    include_once PATH_ROOT . '/' . lcfirst($class_name) . '.php';
-  });
 
   // load class Route
   $router = new Core\Http\Route();
@@ -54,6 +57,14 @@ ob_start();
   ?>
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
+
+  <script>
+    setTimeout(() => {
+      alert('Your session is out of time! Please login again!')
+      $.get('session-destroy')
+      location.reload()
+    }, <?= ini_get("session.gc_maxlifetime") * 1000 ?>)
+  </script>
 </body>
 
 </html>
