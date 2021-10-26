@@ -48,3 +48,7 @@
   color: #c89979 !important;
   text-decoration: underline;
 }
+
+.header-navbar {
+  box-shadow: none;
+}

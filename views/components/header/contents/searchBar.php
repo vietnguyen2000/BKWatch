@@ -1,4 +1,4 @@
-<div class="col-6">
+<div class="col-3 col-md-4 col-lg-6 d-none d-sm-block">
   <div class="input-group">
     <div class="form-outline col-11">
       <input type="text" id="searchBar" class="form-control search-bar" placeholder="Tìm kiếm..." />
