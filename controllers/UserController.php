@@ -30,11 +30,8 @@ class UserController extends BaseController
     ];
     $existUser = $user->getByCondition(...$conditions);
     if (count($existUser)) {
-      $this->showError(
-        '406',
-        "Tồn tại email hoặc tên đăng nhập",
-        "Email hoặc tên đăng nhập của bạn đã tồn tại. Xin hãy thử lại!"
-      );
+      $userView = new UserView();
+      $userView->render(['url' => $url, 'alert' => ['title' => 'Lỗi!', 'text' => 'Email hoặc tên đăng nhập của bạn đã tồn tại. Xin hãy thử lại!', 'type' => 'danger']]);
       return;
     };
 
@@ -56,24 +53,17 @@ class UserController extends BaseController
   // post
   public function login($url)
   {
+    $userView = new UserView();
     $userModel = new UserModel();
     $existUser = $userModel->getByCondition(["username" => $_POST['username']]);
     if (count($existUser) == 0) {
-      $this->showError(
-        '406',
-        "Tài khoản hoặc mật khẩu không chính xác",
-        "Tài khoản hoặc mật khẩu của bạn nhập không chính xác. Xin hãy thử lại!"
-      );
+      $userView->render(['url' => $url, 'alert' => ['title' => 'Lỗi!', 'text' => 'Tài khoản hoặc mật khẩu không chính xác', 'type' => 'danger']]);
       return;
     }
 
     $user = $existUser[0];
     if (!password_verify($_POST['password'], $user['password'])) {
-      $this->showError(
-        '406',
-        "Tài khoản hoặc mật khẩu không chính xác",
-        "Tài khoản hoặc mật khẩu của bạn nhập không chính xác. Xin hãy thử lại!"
-      );
+      $userView->render(['url' => $url, 'alert' => ['title' => 'Lỗi!', 'text' => 'Tài khoản hoặc mật khẩu không chính xác', 'type' => 'danger']]);
       return;
     };
 
