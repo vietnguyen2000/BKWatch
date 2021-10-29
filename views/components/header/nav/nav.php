@@ -1,5 +1,5 @@
-<div class="px-5 header-bg py-2 row justify-content-center">
-  <div class="navbar col-8">
+<div class="header-bg py-2 row justify-content-center d-none d-sm-flex">
+  <div class="navbar col-sm-11 col-md-10 col-lg-8 header-navbar">
     <?php
     $navItems = [
       [

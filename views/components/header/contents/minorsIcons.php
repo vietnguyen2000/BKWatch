@@ -1,4 +1,4 @@
-<div>
+<div class="d-none d-sm-block">
   <?php
   $isLogged = isset($_SESSION['user']);
   if (!$isLogged) {

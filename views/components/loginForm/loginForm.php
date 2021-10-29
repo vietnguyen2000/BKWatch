@@ -1,4 +1,4 @@
-<div class="card my-5 mx-auto" style="max-width: 720px;">
+<div class="card my-5 mx-auto col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4 col-xxl-3 col-xxl-2">
   <div class="card-body">
     <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
       <li class="nav-item" role="presentation">
