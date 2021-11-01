@@ -14,6 +14,23 @@ class UserController extends BaseController
     $view->render(['url' => $url]);
   }
 
+  // get
+  public function profile($url)
+  {
+    $userView = new UserView();
+    $userView->renderProfile(['url' => $url]);
+  }
+
+  // get
+  public function logout($url)
+  {
+    unset($_SESSION['user']);
+    setcookie('username', "");
+    setcookie('userRememberToken', "");
+    $this->redirect("/");
+  }
+
+  // post
   public function register($url)
   {
     $user = new UserModel();
@@ -23,11 +40,8 @@ class UserController extends BaseController
     ];
     $existUser = $user->getByCondition(...$conditions);
     if (count($existUser)) {
-      $this->showError(
-        '406',
-        "Tồn tại email hoặc tên đăng nhập",
-        "Email hoặc tên đăng nhập của bạn đã tồn tại. Xin hãy thử lại!"
-      );
+      $userView = new UserView();
+      $userView->render(['url' => $url, 'alert' => ['title' => 'Lỗi!', 'text' => 'Email hoặc tên đăng nhập của bạn đã tồn tại. Xin hãy thử lại!', 'type' => 'danger']]);
       return;
     };
 
@@ -46,30 +60,33 @@ class UserController extends BaseController
     $this->redirect('/', true);
   }
 
+  // post
   public function login($url)
   {
+    $userView = new UserView();
     $userModel = new UserModel();
     $existUser = $userModel->getByCondition(["username" => $_POST['username']]);
     if (count($existUser) == 0) {
-      $this->showError(
-        '406',
-        "Tài khoản hoặc mật khẩu không chính xác",
-        "Tài khoản hoặc mật khẩu của bạn nhập không chính xác. Xin hãy thử lại!"
-      );
+      $userView->render(['url' => $url, 'alert' => ['title' => 'Lỗi!', 'text' => 'Tài khoản hoặc mật khẩu không chính xác', 'type' => 'danger']]);
       return;
     }
 
     $user = $existUser[0];
     if (!password_verify($_POST['password'], $user['password'])) {
-      $this->showError(
-        '406',
-        "Tài khoản hoặc mật khẩu không chính xác",
-        "Tài khoản hoặc mật khẩu của bạn nhập không chính xác. Xin hãy thử lại!"
-      );
+      $userView->render(['url' => $url, 'alert' => ['title' => 'Lỗi!', 'text' => 'Tài khoản hoặc mật khẩu không chính xác', 'type' => 'danger']]);
       return;
     };
 
     print_r("Đăng nhập thành công! Xin chào " . $user['fullname']);
+    $_SESSION['user'] = $user;
+    unset($_SESSION['user']['password']);
+    print_r($_POST);
+    if ($_POST['rememberMe']) {
+      $_SESSION['isRemembered'] = true;
+      $rememberToken = $userModel->refreshRememberToken($user['username']);
+      setcookie('userRememberToken', $rememberToken);
+      setcookie('username', $user['username']);
+    }
 
     $this->redirect('/', true);
   }

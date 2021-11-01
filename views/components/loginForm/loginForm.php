@@ -1,4 +1,4 @@
-<div class="card my-5 mx-auto" style="max-width: 720px;">
+<div class="card my-5 mx-auto col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4 col-xxl-3 col-xxl-2">
   <div class="card-body">
     <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
       <li class="nav-item" role="presentation">
@@ -30,7 +30,7 @@
             <div class="col-md-6 d-flex justify-content-center">
               <!-- Checkbox -->
               <div class="form-check mb-3 mb-md-0">
-                <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked name="rememberMe" />
+                <input class="form-check-input" type="checkbox" value="1" id="loginCheck" checked name="rememberMe" />
                 <label class="form-check-label" for="loginCheck"> Tự động đăng nhập </label>
               </div>
             </div>
@@ -100,7 +100,7 @@
           <div class="form-check d-flex justify-content-center mb-4">
             <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked aria-describedby="registerCheckHelpText" />
             <label class="form-check-label" for="registerCheck">
-              I have read and agree to the terms
+              Tôi đã đọc và đồng ý với điều khoản sử dụng
             </label>
           </div>
           <button type="submit" class="btn btn-primary btn-block mb-3">Đăng ký</button>
