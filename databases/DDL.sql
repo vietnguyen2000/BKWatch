@@ -10,6 +10,7 @@ CREATE TABLE User (
   gender bit(1) NOT NULL,
   avatarURL varchar(255),
   role int(10) NOT NULL,
+  rememberToken varchar(64),
   createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (Id)
