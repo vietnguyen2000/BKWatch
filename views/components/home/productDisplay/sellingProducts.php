@@ -12,13 +12,14 @@
       <?php
       // require(realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/watchPreview/rawPreview.php');
       ?>
-      <div class="row">
+      <div class="row justify-content-around">
         <?php
         for ($x = 0; $x < 4; $x++) {
           $item_in_row = 'col-3';
           require 'cardviewProduct.php';
         }
         ?>
+        <div class="col my-2"> </div>
       </div>
     </div>
   </div>
