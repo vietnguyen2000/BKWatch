@@ -22,18 +22,23 @@ CREATE TABLE Product (
   productCode varchar(255),
   title varchar(255),
   content varchar(255),
-  imageURL varchar(255),
   `tag` varchar(255),
   price int(11) NOT NULL,
-  discount int(11) NOT NULL,
-  currency varchar(255),
-  warranty int(10) NOT NULL,
-  isHot bit(1) NOT NULL,
-  isNew bit(1) NOT NULL,
-  isBestSale bit(1) NOT NULL,
-  rating float NOT NULL,
-  countSale int(10) NOT NULL,
-  quantity int(10) NOT NULL,
+  discount int(11) NOT NULL DEFAULT 0,
+  currency varchar(255) DEFAULT "VND",
+  warranty int(10) NOT NULL DEFAULT "3",
+  isHot bit(1) NOT NULL DEFAULT 1,
+  isNew bit(1) NOT NULL DEFAULT 1,
+  isBestSale bit(1) NOT NULL DEFAULT 1,
+  quantity int(10) NOT NULL DEFAULT 1,
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (id)
+) ENGINE = InnoDB;
+CREATE TABLE ProductImage (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  productId int(10) NOT NULL,
+  imageURL varchar(255) NOT NULL,
   createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
@@ -56,7 +61,7 @@ CREATE TABLE ProductBrand (
 CREATE TABLE ProductComment (
   id int(10) NOT NULL AUTO_INCREMENT,
   content varchar(255),
-  omageURL varchar(255),
+  imageURL varchar(255),
   rating int(10) NOT NULL,
   productId int(10) NOT NULL,
   userId int(10) NOT NULL,
@@ -68,14 +73,20 @@ CREATE TABLE Blog (
   id int(10) NOT NULL AUTO_INCREMENT,
   userId int(10) NOT NULL,
   title varchar(255),
-  shortContent varchar(255),
   content varchar(1000),
-  imageURL varchar(255),
   updateDate date,
   isHot bit(1) NOT NULL,
   countLike int(10) NOT NULL,
   countDislike int(10) NOT NULL,
   countView int(10) NOT NULL,
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (id)
+) ENGINE = InnoDB;
+CREATE TABLE BlogImage (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  blogId int(10) NOT NULL,
+  imageURL varchar(255) NOT NULL,
   createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
@@ -183,3 +194,11 @@ ALTER TABLE
   Cart
 ADD
   CONSTRAINT FKCart195887 FOREIGN KEY (userId) REFERENCES User (id);
+ALTER TABLE
+  ProductImage
+ADD
+  CONSTRAINT FKProductImage FOREIGN KEY (productId) REFERENCES Product (id);
+ALTER TABLE
+  BlogImage
+ADD
+  CONSTRAINT FKBlogImage FOREIGN KEY (blogId) REFERENCES Blog (id);
