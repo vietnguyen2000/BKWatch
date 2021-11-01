@@ -1,0 +1,34 @@
+.trending-fragment {
+    margin: 2% 5% 3% 5%;
+}
+.item-trending-fragment {
+    padding-top: 1%;
+}
+.item-trending {
+    position: relative;
+    padding-bottom: 37.5%;
+}
+.item-img-trending {
+    position: absolute;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.item-zoom-color {
+    background-color: rgba(0, 0, 0, 0.425);
+}
+.item-zoom-color-line-1 {
+    font-size: 1em;
+    color: white;
+    padding: 0;
+    margin: 0;
+}
+.item-zoom-color-line-2 {
+    font-size: 2em;
+    font-weight: bold;
+    color: white;
+    padding: 0;
+    margin: 0;
+}
