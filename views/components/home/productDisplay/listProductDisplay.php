@@ -19,13 +19,34 @@
   <!-- Tabs content -->
   <div class="tab-content" id="ldp-home-content">
     <div class="tab-pane fade show active" id="ldp-home-tabs-1" role="tabpanel" aria-labelledby="ldp-home-tab-1">
-      Tab 1 content
+      <div class="row">
+        <?php
+        for ($x = 0; $x < 10; $x++) {
+          $item_in_row = 'col-3';
+          require 'cardviewProduct.php';
+        }
+        ?>
+      </div>
     </div>
     <div class="tab-pane fade" id="ldp-home-tabs-2" role="tabpanel" aria-labelledby="ldp-home-tab-2">
-      Tab 2 content
+      <div class="row">
+        <?php
+        for ($x = 0; $x < 5; $x++) {
+          $item_in_row = 'col-3';
+          require 'cardviewProduct.php';
+        }
+        ?>
+      </div>
     </div>
     <div class="tab-pane fade" id="ldp-home-tabs-3" role="tabpanel" aria-labelledby="ldp-home-tab-3">
-      Tab 3 content
+      <div class="row">
+        <?php
+        for ($x = 0; $x < 15; $x++) {
+          $item_in_row = 'col-3';
+          require 'cardviewProduct.php';
+        }
+        ?>
+      </div>
     </div>
   </div>
   <!-- Tabs content -->

@@ -9,7 +9,17 @@
   </ul>
   <div class="tab-content" id="sp-home-content">
     <div class="tab-pane fade show active" id="sp-home-tabs-1" role="tabpanel" aria-labelledby="sp-home-tab-1">
-      Tab 1 content
+      <?php
+      // require(realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/watchPreview/rawPreview.php');
+      ?>
+      <div class="row">
+        <?php
+        for ($x = 0; $x < 4; $x++) {
+          $item_in_row = 'col-3';
+          require 'cardviewProduct.php';
+        }
+        ?>
+      </div>
     </div>
   </div>
 </div>
