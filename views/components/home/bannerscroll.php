@@ -8,7 +8,7 @@
     <div class="carousel-item active">
       <?php
       $img_banner = "https://images6.alphacoders.com/394/thumb-1920-394174.jpg";
-      $title = "Đồng hồ Omega";
+      $title = "Đồng hồ OMEGA";
       $content = "Đồng hồ siêu cấp VIP-PRO";
       require 'itembanner.php';
       ?>
@@ -16,7 +16,7 @@
     <div class="carousel-item">
       <?php
       $img_banner = "https://images4.alphacoders.com/561/561686.jpg";
-      $title = "Đồng hồ Omega";
+      $title = "Đồng hồ ROLEX";
       $content = "Đồng hồ siêu cấp VIP-PRO";
       require 'itembanner.php';
       ?>
@@ -24,7 +24,7 @@
     <div class="carousel-item">
       <?php
       $img_banner = "https://images5.alphacoders.com/831/831859.jpg";
-      $title = "Đồng hồ Omega";
+      $title = "Đồng hồ ULYSSE NARDIN";
       $content = "Đồng hồ siêu cấp VIP-PRO";
       require 'itembanner.php';
       ?>
