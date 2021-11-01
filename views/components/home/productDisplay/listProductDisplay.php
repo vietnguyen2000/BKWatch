@@ -3,28 +3,28 @@
 </style>
 <div class="selling-products-fragment">
   <!-- Tabs navs -->
-  <ul class="nav nav-tabs nav-fill mb-3" id="ex1" role="tablist">
+  <ul class="nav nav-tabs nav-fill mb-3" id="ldp-home-tab" role="tablist">
     <li class="nav-item" role="presentation">
-      <a class="nav-link active" id="ex2-tab-1" data-mdb-toggle="tab" href="#ex2-tabs-1" role="tab" aria-controls="ex2-tabs-1" aria-selected="true">Sản phẩm phổ biến</a>
+      <a class="nav-link active" id="ldp-home-tab-1" data-mdb-toggle="tab" href="#ldp-home-tabs-1" role="tab" aria-controls="ldp-home-tabs-1" aria-selected="true">Sản phẩm phổ biến</a>
     </li>
     <li class="nav-item" role="presentation">
-      <a class="nav-link" id="ex2-tab-2" data-mdb-toggle="tab" href="#ex2-tabs-2" role="tab" aria-controls="ex2-tabs-2" aria-selected="false">Sản phẩm khuyến mãi</a>
+      <a class="nav-link" id="ldp-home-tab-2" data-mdb-toggle="tab" href="#ldp-home-tabs-2" role="tab" aria-controls="ldp-home-tabs-2" aria-selected="false">Sản phẩm khuyến mãi</a>
     </li>
     <li class="nav-item" role="presentation">
-      <a class="nav-link" id="ex2-tab-3" data-mdb-toggle="tab" href="#ex2-tabs-3" role="tab" aria-controls="ex2-tabs-3" aria-selected="false">Sản phẩm mới</a>
+      <a class="nav-link" id="ldp-home-tab-3" data-mdb-toggle="tab" href="#ldp-home-tabs-3" role="tab" aria-controls="ldp-home-tabs-3" aria-selected="false">Sản phẩm mới</a>
     </li>
   </ul>
   <!-- Tabs navs -->
 
   <!-- Tabs content -->
-  <div class="tab-content" id="ex2-content">
-    <div class="tab-pane fade show active" id="ex2-tabs-1" role="tabpanel" aria-labelledby="ex2-tab-1">
+  <div class="tab-content" id="ldp-home-content">
+    <div class="tab-pane fade show active" id="ldp-home-tabs-1" role="tabpanel" aria-labelledby="ldp-home-tab-1">
       Tab 1 content
     </div>
-    <div class="tab-pane fade" id="ex2-tabs-2" role="tabpanel" aria-labelledby="ex2-tab-2">
+    <div class="tab-pane fade" id="ldp-home-tabs-2" role="tabpanel" aria-labelledby="ldp-home-tab-2">
       Tab 2 content
     </div>
-    <div class="tab-pane fade" id="ex2-tabs-3" role="tabpanel" aria-labelledby="ex2-tab-3">
+    <div class="tab-pane fade" id="ldp-home-tabs-3" role="tabpanel" aria-labelledby="ldp-home-tab-3">
       Tab 3 content
     </div>
   </div>
