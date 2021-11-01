@@ -2,7 +2,7 @@
 
 use Models\UserModel;
 
-if (isset($_SESSION['lastTimeStartSession'])) {
+if (!isset($_SESSION['lastTimeStartSession'])) {
   $_SESSION['lastTimeStartSession'] = time();
 }
 

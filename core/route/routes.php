@@ -12,6 +12,7 @@ $router->get('/contact', 'ContactController@index');
 $router->get('/me', 'UserController@profile');
 $router->get('/login', 'UserController@index');
 $router->get('/logout', 'UserController@logout');
+$router->get('/seed', 'SeedController@index');
 
 $router->post('/register', 'UserController@register');
 $router->post('/login', 'UserController@login');
