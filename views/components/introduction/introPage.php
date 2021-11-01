@@ -11,14 +11,14 @@
 <div class="container">
   <div class="top-body">
     <div class="row justify-content-between">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-5 left-top-body">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 left-top-body">
         <div>
           <div class="image-wrapper">
-            <img src="https://i.ytimg.com/vi/vhXiB8-NxGs/maxresdefault.jpg" class="img-banner" alt="...">
+            <img src="https://images.baoquangnam.vn/Storage/NewsPortal/2021/8/8/115695/Apple-Watch-Series-7.jpeg" class="img-banner" alt="...">
           </div>
         </div>
       </div>
-      <div class="col-12 col-sm-12 col-md-12 col-lg-7 right-top-body">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 right-top-body">
         <div class="intro-content">
           <div>
             <h3>Giới thiệu về BKWATCH</h3>
