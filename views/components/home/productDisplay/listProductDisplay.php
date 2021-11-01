@@ -21,8 +21,8 @@
     <div class="tab-pane fade show active" id="ldp-home-tabs-1" role="tabpanel" aria-labelledby="ldp-home-tab-1">
       <div class="row justify-content-around">
         <?php
-        for ($x = 0; $x < 10; $x++) {
-          $item_in_row = 'col-3';
+        foreach ($data['products'] as $product) {
+          if (!$product['isHot']) continue;
           require 'cardviewProduct.php';
         }
         ?>
@@ -32,8 +32,8 @@
     <div class="tab-pane fade" id="ldp-home-tabs-2" role="tabpanel" aria-labelledby="ldp-home-tab-2">
       <div class="row justify-content-around">
         <?php
-        for ($x = 0; $x < 5; $x++) {
-          $item_in_row = 'col-3';
+        foreach ($data['products'] as $product) {
+          if (!$product['discount']) continue;
           require 'cardviewProduct.php';
         }
         ?>
@@ -43,8 +43,8 @@
     <div class="tab-pane fade" id="ldp-home-tabs-3" role="tabpanel" aria-labelledby="ldp-home-tab-3">
       <div class="row justify-content-around">
         <?php
-        for ($x = 0; $x < 15; $x++) {
-          $item_in_row = 'col-3';
+        foreach ($data['products'] as $product) {
+          if (!$product['isNew']) continue;
           require 'cardviewProduct.php';
         }
         ?>

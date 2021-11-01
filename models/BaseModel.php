@@ -15,10 +15,13 @@ abstract class BaseModel
     $this->name = ' '; // change it in children
   }
 
-  public function getAll()
+  public function getAll(int $limit = null)
   {
     try {
       $sql = "SELECT * FROM $this->name";
+      if ($limit != null) {
+        $sql += 'LIMIT' . $limit;
+      };
       $result = $this->db->query($sql);
       return $result->fetch_all(mode: MYSQLI_ASSOC);
     } catch (\Exception $e) {

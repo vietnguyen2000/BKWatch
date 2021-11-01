@@ -1,17 +1,27 @@
+<?php
+if (!function_exists('currency_format')) {
+  function currency_format($number, $suffix = 'đ')
+  {
+    if (!empty($number)) {
+      return number_format($number, 0, ',', '.') . "{$suffix}";
+    }
+  }
+}
+?>
 <div class="col-6 col-md-4 col-lg-3 col-xl-2 my-2">
   <div class="card cardview-product-watch">
     <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-      <img src="https://purepng.com/public/uploads/large/wrist-watch-ogx.png" class="img-fluid" />
-      <a href="#!">
+      <img src="<?= $product['imageURLs'][0] ?>" class="img-fluid" style="object-fit: contain; aspect-ratio: 7/8" alt="preview item id <?= $product['id'] ?>" />
+      <a href="watch/<?= $product['id'] ?>">
         <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
       </a>
     </div>
-    <div class="card-body cardview-product-content">
+    <div class="card-body cardview-product-content p-2 pb-3">
       <div>
-        <h5 class="card-title">Rolex</h5>
+        <h6 class="card-title text-center" style="min-height: 60px;"><?= $product['title'] ?></h6>
       </div>
       <div>
-        <p>Price: 700$</p>
+        <p class="text-primary"><?= currency_format($product['price']) ?></p>
       </div>
       <div>
         <a href="#" class="btn btn-primary">Thêm vào giỏ</a>

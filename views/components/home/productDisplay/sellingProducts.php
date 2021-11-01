@@ -14,8 +14,8 @@
       ?>
       <div class="row justify-content-around">
         <?php
-        for ($x = 0; $x < 4; $x++) {
-          $item_in_row = 'col-3';
+        foreach ($data['products'] as $product) {
+          if (!$product['isBestSale']) continue;
           require 'cardviewProduct.php';
         }
         ?>

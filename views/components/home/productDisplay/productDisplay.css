@@ -1,12 +1,12 @@
 .selling-products-fragment {
-    margin: 2% 5% 3% 5%;
+  margin: 2% 5% 3% 5%;
 }
-.cardview-product-watch div img{
-    width: auto;
-    height: auto;
+.cardview-product-watch div img {
+  width: auto;
+  height: auto;
 }
-.cardview-product-content div{
-    width: 100%;
-    display: flex;
-    justify-content: center;
+.cardview-product-content div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
