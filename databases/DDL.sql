@@ -210,3 +210,12 @@ ALTER TABLE
   BlogImage
 ADD
   CONSTRAINT FKBlogImage FOREIGN KEY (blogId) REFERENCES Blog (id);
+CREATE View ProductPreview AS
+SELECT
+  p.*,
+  GROUP_CONCAT(pi.imageURL SEPARATOR '||') as imageURL
+FROM
+  product as p
+  LEFT JOIN productimage as pi on p.id = pi.productId
+GROUP BY
+  p.id;
