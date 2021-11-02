@@ -30,4 +30,35 @@ class ProductModel extends BaseModel
       return [];
     }
   }
+
+  public function getById(int $id)
+  {
+    try {
+      $sql = "SELECT * FROM ProductPreview WHERE id = ?";
+      $stmt = $this->db->prepare($sql);
+      $stmt->bind_param('i', $id);
+      $stmt->execute();
+      $result =  $stmt->get_result();
+      $product = $result->fetch_all(mode: MYSQLI_ASSOC)[0];
+      $product['comments'] = $this->getComments($id);
+      $product['imageURLs'] = explode('||', $product['imageURL']);
+      return $product;
+    } catch (\Exception $e) {
+      return [];
+    }
+  }
+
+  public function getComments(int $id)
+  {
+    try {
+      $sql = "SELECT * FROM ProductCommentView WHERE productId = ?";
+      $stmt = $this->db->prepare($sql);
+      $stmt->bind_param('i', $id);
+      $stmt->execute();
+      $result =  $stmt->get_result();
+      return $result->fetch_all(mode: MYSQLI_ASSOC);
+    } catch (\Exception $e) {
+      return [];
+    }
+  }
 }

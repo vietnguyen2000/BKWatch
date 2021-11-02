@@ -8,4 +8,17 @@ class WatchView extends BaseView
   {
     //
   }
+
+  public function renderDetails(array $data = [])
+  {
+    $this->processRenderHeader($data);
+    $this->processRenderDetails($data);
+    $this->processRenderFooter($data);
+  }
+
+  protected function processRenderDetails($data)
+  {
+    $product = $data['product'];
+    require('pages/watchDetails/watchDetails.php');
+  }
 }

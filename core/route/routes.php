@@ -1,5 +1,8 @@
 <?php
 
+// run seeder
+$router->get('/seed', 'SeedController@index');
+
 //testing 
 $router->get('/Home/X/{id}', 'HomeController@homepage');
 
@@ -12,7 +15,7 @@ $router->get('/contact', 'ContactController@index');
 $router->get('/me', 'UserController@profile');
 $router->get('/login', 'UserController@index');
 $router->get('/logout', 'UserController@logout');
-$router->get('/seed', 'SeedController@index');
+$router->get('/watch/{id}', 'WatchController@detail');
 
 $router->post('/register', 'UserController@register');
 $router->post('/login', 'UserController@login');

@@ -1,3 +1,6 @@
+body {
+  overflow-x: hidden;
+}
 .link {
   text-decoration: none;
   color: white;
