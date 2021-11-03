@@ -42,6 +42,7 @@ class ProductModel extends BaseModel
       $product = $result->fetch_all(mode: MYSQLI_ASSOC)[0];
       $product['comments'] = $this->getComments($id);
       $product['imageURLs'] = explode('||', $product['imageURL']);
+      $product['rate'] = $this->getAvgRate($id);
       return $product;
     } catch (\Exception $e) {
       return [];
@@ -59,6 +60,22 @@ class ProductModel extends BaseModel
       return $result->fetch_all(mode: MYSQLI_ASSOC);
     } catch (\Exception $e) {
       return [];
+    }
+  }
+
+  public function getAvgRate(int $id)
+  {
+    try {
+      $sql = "SELECT AVG(rating) as avgRate FROM ProductCommentView WHERE productId = ?";
+      $stmt = $this->db->prepare($sql);
+      $stmt->bind_param('i', $id);
+      $stmt->execute();
+      $result =  $stmt->get_result();
+
+      $res = $result->fetch_all(mode: MYSQLI_ASSOC);
+      return $res[0]['avgRate'];
+    } catch (\Exception $e) {
+      return 0;
     }
   }
 }
