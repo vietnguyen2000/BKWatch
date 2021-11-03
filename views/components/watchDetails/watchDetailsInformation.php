@@ -145,9 +145,8 @@
           "content" => $c['content'],
         ];
         require realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/comments/commentView.php';
-      };
-      ?>
-      <h5 class="mt-4">Thêm bình luận mới</h5>
+      }; ?>
+
       <?php
       $addCommentAction = "/watch/" . $product['id'] . "/comment";
       require realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/comments/addComment.php'
