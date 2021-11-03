@@ -1,24 +1,33 @@
-<div id="bannerIntro" class="carousel slide" data-mdb-ride="carousel">
+<style>
+  #watchIntro:hover .hover-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #222222;
+    opacity: 0.5;
+  }
+</style>
+<div id="watchIntro" class="carousel slide carousel-dark" data-mdb-ride="carousel">
   <div class="carousel-indicators">
-    <button type="button" data-mdb-target="#bannerIntro" data-mdb-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-mdb-target="#bannerIntro" data-mdb-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-mdb-target="#bannerIntro" data-mdb-slide-to="2" aria-label="Slide 3"></button>
+    <?php for ($i = 0; $i < count($product['imageURLs']); $i++) { ?>
+      <button type="button" data-mdb-target="#watchIntro" data-mdb-slide-to="<?= $i ?>" aria-label="Slide <?= $i + 1  ?>" <?= $i == 0 ? 'class="active" aria-current="true" ' : '' ?>></button>
+    <?php } ?>
   </div>
   <div class="carousel-inner">
-    <?php
-    foreach ($product['imageURLs'] as $imageURL) { ?>
-      <div class="carousel-item active">
-        <div class="item-banner-intro">
-          <img src=<?= $imageURL ?> class="d-block w-100" alt="watch-image" />
+    <?php for ($i = 0; $i < count($product['imageURLs']); $i++) {
+      $imageURL = $product['imageURLs'][$i]; ?>
+      <div class="carousel-item <?= $i == 0 ? 'active' : '' ?>">
+        <div class="item-banner-intro" style="width: 100%; aspect-ratio: 8/6">
+          <img src=<?= $imageURL ?> class="d-block w-100" alt="watch-image" style="width: 100%; height: 100%; object-fit:contain" />
         </div>
       </div>
     <?php } ?>
   </div>
-  <button class="carousel-control-prev" type="button" data-mdb-target="#bannerIntro" data-mdb-slide="prev">
+  <button class="carousel-control-prev" type="button" data-mdb-target="#watchIntro" data-mdb-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
-  <button class="carousel-control-next" type="button" data-mdb-target="#bannerIntro" data-mdb-slide="next">
+  <button class="carousel-control-next" type="button" data-mdb-target="#watchIntro" data-mdb-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>

@@ -11,3 +11,12 @@ body {
   color: #c89979 !important;
   text-decoration: underline;
 }
+.rating {
+  padding: 0;
+  color: #ffa000;
+  list-style-type: none;
+}
+
+.rating li {
+  display: inline-block;
+}

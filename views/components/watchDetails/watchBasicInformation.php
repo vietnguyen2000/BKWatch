@@ -10,7 +10,7 @@ if (!function_exists('currency_format')) {
 ?>
 <div>
   <div class="row">
-    <h3>
+    <h5>
       <?php if ($product['isNew']) { ?>
         <span class="badge bg-primary">NEW</span>
       <?php } ?>
@@ -22,22 +22,19 @@ if (!function_exists('currency_format')) {
       <?php if ($product['isBestSale']) { ?>
         <span class="badge bg-primary">BEST SALE</span>
       <?php } ?>
-    </h3>
+    </h5>
   </div>
 
   <div class="row justify-content-between">
-    <div class="col-xl">
-      <h3><?= $product['title'] ?></h3>
-    </div>
-    <div class="col-xl-auto text-end">
-      <h3><?= currency_format($product['price']) ?></h3>
-    </div>
+    <h3><?= $product['title'] ?></h3>
+    <h6><?php require 'watchRating.php' ?></h6>
+    <h4><?= currency_format($product['price']) ?></h4>
   </div>
   <hr>
 
   <div class="row">
     <div class="col-3">
-      SKU:
+      SKU
     </div>
     <div class="col-9 text-end">
       <?= $product['productCode'] ?>
@@ -47,7 +44,7 @@ if (!function_exists('currency_format')) {
 
   <div class="row">
     <div class="col-3">
-      Brand:
+      Brand
     </div>
     <div class="col-9 text-end">
       <?= $product['brandTitle'] ?>
@@ -57,7 +54,7 @@ if (!function_exists('currency_format')) {
 
   <div class="row">
     <div class="col-3">
-      Category:
+      Category
     </div>
     <div class="col-9 text-end">
       <?= $product['categoryTitle'] ?>
@@ -65,7 +62,7 @@ if (!function_exists('currency_format')) {
   </div>
   <hr>
 
-  <div class="row">
+  <div class="row mt-lg-5">
     <div class="col-lg-6">
       <button class="btn btn-black w-100 me-lg-2 mb-2 mb-lg-0" type="button">
         <h6 class="mb-0"> Add to favorite <i class="far fa-heart"></i></h6>

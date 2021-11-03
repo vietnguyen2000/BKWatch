@@ -16,7 +16,7 @@ class WatchController extends BaseController
     public function detail($url, $id)
     {
         $watchModel = new ProductModel();
-        $watchDetail = $watchModel->getById($id);
+        $watchDetail = $watchModel->getById((int)$id);
         $view = new WatchView();
         $view->renderDetails([
             'url' => $url,
