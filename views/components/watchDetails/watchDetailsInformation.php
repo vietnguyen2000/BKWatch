@@ -134,15 +134,18 @@
       </div>
     </div>
     <div class="tab-pane fade" id="ldp-home-tabs-2" role="tabpanel" aria-labelledby="ldp-home-tab-2">
-      <h5><span>1</span> bình luận cho <span><?= $product['title'] ?></span></h5>
+      <h5><span><?= count($product['comments']) ?></span> bình luận cho <span><?= $product['title'] ?></span></h5>
       <?php
-      $comment = [
-        "userName" => "Nguyễn Thị Tester 2",
-        "rate" => 4,
-        "date" => date_create('now'),
-        "content" => "Quá đẹp, đồng hồ quá đẹp!"
-      ];
-      require realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/comments/commentView.php'
+      foreach ($product['comments'] as $c) {
+        $comment = [
+          "userName" => $c['fullname'],
+          "userAvatarURL" => $c['avatarURL'],
+          "rate" => $c['rating'],
+          "date" => $c['updatedAt'],
+          "content" => $c['content'],
+        ];
+        require realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/comments/commentView.php';
+      };
       ?>
       <h5 class="mt-4">Thêm bình luận mới</h5>
       <?php

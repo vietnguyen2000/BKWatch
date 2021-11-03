@@ -1,6 +1,9 @@
 <div>
   <div class="row">
-    <img class="col-auto" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg" width="62" height="62" alt="User photo">
+    <div class="col-auto pe-0">
+      <img src="<?= $comment['userAvatarURL'] ?>" alt="User photo" style="object-fit:cover; width: 62px; height: 62px">
+    </div>
+
     <div class="col">
       <div class="d-sm-flex justify-content-between">
         <p class="m-0">
@@ -23,7 +26,7 @@
           <?php } ?>
         </ul>
       </div>
-      <span class="small text-muted mb-2"><?php echo $comment['date']->format('d-m-Y \tạ\i H:i:s') ?></span>
+      <span class="small text-muted mb-2"><?= $comment['date'] ?></span>
       <p class="mb-0"><?= $comment['content'] ?></p>
     </div>
   </div>

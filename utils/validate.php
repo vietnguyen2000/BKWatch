@@ -26,6 +26,6 @@ if (isset($_COOKIE['username']) && isset($_COOKIE['userRememberToken'])) {
   unset($_SESSION['user']['password']);
   $_SESSION['isRemembered'] = true;
   $rememberToken = $userModel->refreshRememberToken($user['username']);
-  setcookie('userRememberToken', $rememberToken);
-  setcookie('username', $user['username']);
+  setcookie('userRememberToken', $rememberToken, path: "/");
+  setcookie('username', $user['username'],  path: "/");
 }

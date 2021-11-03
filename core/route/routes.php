@@ -16,6 +16,7 @@ $router->get('/me', 'UserController@profile');
 $router->get('/login', 'UserController@index');
 $router->get('/logout', 'UserController@logout');
 $router->get('/watch/{id}', 'WatchController@detail');
+$router->post('/watch/{id}/comment', 'WatchController@addComment');
 
 $router->post('/register', 'UserController@register');
 $router->post('/login', 'UserController@login');

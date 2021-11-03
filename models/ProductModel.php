@@ -51,7 +51,7 @@ class ProductModel extends BaseModel
   public function getComments(int $id)
   {
     try {
-      $sql = "SELECT * FROM ProductCommentView WHERE productId = ?";
+      $sql = "SELECT * FROM ProductCommentView WHERE productId = ? ORDER BY updatedAt DESC";
       $stmt = $this->db->prepare($sql);
       $stmt->bind_param('i', $id);
       $stmt->execute();
