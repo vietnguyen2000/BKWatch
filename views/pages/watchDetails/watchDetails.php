@@ -7,4 +7,8 @@
       <?php require realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/watchDetails/watchBasicInformation.php' ?>
     </div>
   </div>
+  <div class="mt-5">
+    <?php require realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/watchDetails/watchDetailsInformation.php' ?>
+  </div>
+
 </div>

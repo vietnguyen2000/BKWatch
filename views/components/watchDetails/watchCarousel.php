@@ -1,12 +1,3 @@
-<style>
-  #watchIntro:hover .hover-overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #222222;
-    opacity: 0.5;
-  }
-</style>
 <div id="watchIntro" class="carousel slide carousel-dark" data-mdb-ride="carousel">
   <div class="carousel-indicators">
     <?php for ($i = 0; $i < count($product['imageURLs']); $i++) { ?>
