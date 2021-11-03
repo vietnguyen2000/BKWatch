@@ -210,3 +210,41 @@ ALTER TABLE
   BlogImage
 ADD
   CONSTRAINT FKBlogImage FOREIGN KEY (blogId) REFERENCES Blog (id);
+CREATE VIEW UserPreview AS
+SELECT
+  id,
+  username,
+  fullname,
+  address,
+  email,
+  phoneNumber,
+  gender,
+  avatarURL,
+  role
+FROM
+  user;
+CREATE VIEW ProductPreview AS
+SELECT
+  p.*,
+  pc.title as categoryTitle,
+  pb.title as brandTitle,
+  GROUP_CONCAT(pi.imageURL SEPARATOR '||') as imageURL
+FROM
+  product as p
+  LEFT JOIN productimage as pi on p.id = pi.productId
+  LEFT JOIN productcategory as pc on p.productCategoryId = pc.id
+  LEFT JOIN productbrand as pb on p.productBrandId = pb.id
+GROUP BY
+  p.id;
+CREATE VIEW productCommentView AS
+SELECT
+  pc.*,
+  up.fullname,
+  up.address,
+  up.email,
+  up.phoneNumber,
+  up.gender,
+  up.avatarURL
+FROM
+  productComment as pc
+  LEFT JOIN userPreview as up ON pc.userId = up.id;

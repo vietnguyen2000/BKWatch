@@ -25,8 +25,8 @@ class UserController extends BaseController
   public function logout($url)
   {
     unset($_SESSION['user']);
-    setcookie('username', "");
-    setcookie('userRememberToken', "");
+    setcookie('username', "", path: "/");
+    setcookie('userRememberToken', "", path: "/");
     $this->redirect("/");
   }
 
@@ -84,8 +84,8 @@ class UserController extends BaseController
     if ($_POST['rememberMe']) {
       $_SESSION['isRemembered'] = true;
       $rememberToken = $userModel->refreshRememberToken($user['username']);
-      setcookie('userRememberToken', $rememberToken);
-      setcookie('username', $user['username']);
+      setcookie('userRememberToken', $rememberToken, path: "/");
+      setcookie('username', $user['username'], path: "/");
     }
 
     $this->redirect('/', true);
