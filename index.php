@@ -58,13 +58,15 @@ require 'utils/validate.php';
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
 
-  <script>
-    setTimeout(() => {
-      alert('Your session is out of time! Please login again!')
-      $.get('session-destroy')
-      location.reload()
-    }, <?= $session_time * 1000 ?>)
-  </script>
+  <?php if (isset($_SESSION['user']) && $_SESSION['isRemembered']) { ?>
+    <script>
+      setTimeout(() => {
+        alert('Your session is out of time! Please login again!')
+        $.get('session-destroy')
+        location.reload()
+      }, <?= $session_time * 1000 ?>)
+    </script>
+  <?php } ?>
 </body>
 
 </html>
