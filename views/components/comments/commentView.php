@@ -1,7 +1,7 @@
 <div>
   <div class="row">
     <div class="col-auto pe-0">
-      <img src="<?= $comment['userAvatarURL'] ?>" alt="User photo" style="object-fit:cover; width: 62px; height: 62px">
+      <img src="<?= $comment['userAvatarURL'] ?>" alt="User photo" style="object-fit:cover; width: 62px; height: 62px; border-radius: 50%;">
     </div>
 
     <div class="col">
