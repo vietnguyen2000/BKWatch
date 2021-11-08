@@ -14,7 +14,7 @@ class BlogView extends BaseView
     $this->processRenderBody($data);
     $this->processRenderFooter($data);
   }
-  public function renderDetails($data)
+  public function renderDetails(array $data = [])
   {
     $this->processRenderHeader($data);
     $this->processRenderDetails($data);
@@ -22,5 +22,6 @@ class BlogView extends BaseView
   }
   public function processRenderDetails(array $data = [])
   {
+    require("pages/blog/blogDetailsPage.php");
   }
 }

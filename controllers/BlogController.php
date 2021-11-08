@@ -47,13 +47,11 @@ class BlogController extends BaseController
     public function index($url)
     {
         $view = new BlogView();
-        // $view->render(['url' => $url, 'nav' => '/blog', 'data' => $data]);
         $view->renderBody(['url' => $url, 'nav' => '/blog', 'data' => $this->data]);
     }
-    public function detail($url)
+    public function detail($url, $id)
     {
-        $id = $_POST['id'];
         $view = new BlogView();
-        $view->renderDetails(['url' => $url, 'nav' => '/blog', 'data' => $this->data, $id]);
+        $view->renderDetails(['url' => $url, 'nav' => '/blog', 'data' => $this->data, 'id' => $id]);
     }
 }

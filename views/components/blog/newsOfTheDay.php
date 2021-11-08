@@ -3,7 +3,7 @@
     <div class="col-md-6 mb-4">
       <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
         <img src=<?php echo $blog_block_img ?> class="img-fluid" />
-        <a href=<?php echo $blog_block_id ?>>
+        <a href=<?php echo "/blog/" . $blog_block_id ?>>
           <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
         </a>
       </div>
