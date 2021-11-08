@@ -24,7 +24,7 @@
         <div class="intro-content">
           <div>
             <h3>Giới thiệu về BKWATCH</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ultrices sit amet ipsum vel luctus. Suspendisse eu libero felis. Sed eu malesuada odio. Sed facilisis sagittis mi et ornare. Vivamus finibus mollis nunc quis vestibulum. Pellentesque tempus blandit dictum. Nulla sem nibh, pretium in urna a, tristique ultrices felis. Morbi vel justo mi. Sed vel lobortis tortor. Nulla interdum nibh vel urna vulputate, sit amet viverra nunc tincidunt.</p>
+            <p>Ra mắt năm 2021, nền tảng thương mại điện tử BKWATCH được xây dựng nhằm cung cấp cho người sử dùng những trải nghiệm dễ dàng, an toàn và nhanh chóng khi mua sắm trực tuyến thông qua hệ thống hỗ trợ thanh toán và vận hành vững mạnh. </br>Chúng tôi có niềm tin mạnh mẽ rằng trải nghiệm mua sắm trực tuyến phải đơn giản, dễ dàng và mang đến cảm xúc vui thích. Niềm tin này truyền cảm hứng và thúc đẩy chúng tôi mỗi ngày tại BKWATCH.</p>
           </div>
         </div>
       </div>
