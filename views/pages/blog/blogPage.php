@@ -17,11 +17,23 @@
     <!--Section: News of the day-->
     <?php
     $blog_url = '/blog';
-    $id = 0;
+    $id = 1;
     $blog_block_id = $id;
-    $blog_block_img = $data['data'][$id]['img'];;
-    $blog_block_title = $data['data'][$id]['title'];;
-    $blog_block_content = $data['data'][$id]['content'];;
+    $list_banner = [];
+    foreach ($data['data']['banner'] as $key => $value) {
+      if ($value['blogId'] == $id) {
+        array_push($list_banner, $value['imageURL']);
+      }
+    }
+    $data_blog = [];
+    foreach ($data['data']['blog'] as $key => $value) {
+      if ($value['id'] == $id) {
+        $data_blog = $value;
+      }
+    }
+    $blog_block_img = $list_banner[0];
+    $blog_block_title = $data_blog['title'];;
+    $blog_block_content = $data_blog['content'];;
     require(realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/blog/newsOfTheDay.php');
     ?>
     <!--Section: News of the day-->
@@ -36,20 +48,39 @@
         $len = $data['length'];
         $start = $len * $page - $len;
         $end = $len * $page;
-        $keys = array_keys($data['data']);
-        if ($end > count($data['data'])) {
-          $end = count($data['data']);
+        if ($end > count($data['data']['blog'])) {
+          $end = count($data['data']['blog']);
+        }
+        $dataBlog = $data['data']['blog'];
+        $keys = [];
+        foreach ($dataBlog as $key => $value) {
+          array_push($keys, $value['id']);
         }
         for ($i = $start; $i < $end; $i++) {
           $id = $keys[$i];
           $blog_url = '/blog';
           $blog_block_id = $id;
-          $blog_block_img = $data['data'][$id]['img'];
-          $blog_block_title = $data['data'][$id]['title'];
-          $blog_block_date = $data['data'][$id]['date'];
-          $blog_block_content = $data['data'][$id]['content'];
-          $blog_block_author = $data['data'][$id]['author'];
-          $blog_block_commentCount = $data['data'][$id]['cmtCount'];
+          $list_banner = [];
+          foreach ($data['data']['banner'] as $key => $value) {
+            if ($value['blogId'] == $id) {
+              array_push($list_banner, $value['imageURL']);
+            }
+          }
+          $list_comment = [];
+          foreach ($data['data']['cmt'] as $key => $value) {
+            if ($value['blogId'] == $id) {
+              array_push($list_comment, $value);
+            }
+          }
+          print_r($list_comment);
+          if ($id == $dataBlog[$i]['id']) {
+            $blog_block_img = $list_banner[0];
+            $blog_block_title = $dataBlog[$i]['title'];
+            $blog_block_date = $dataBlog[$i]['updatedAt'];
+            $blog_block_content = $dataBlog[$i]['content'];
+            $blog_block_author = $dataBlog[$i]['fullname'];
+            $blog_block_commentCount = count($list_comment);
+          }
           require(realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/blog/newsBlock.php');
         }
         ?>
@@ -69,7 +100,7 @@
         </li>
         <?php
         $len = $data['length'];
-        $total = count($data['data']);
+        $total = count($dataBlog);
         $page = ceil(1.0 * $total / $len);
         $curPage = $data['page'];
         $i = 0;
@@ -90,7 +121,7 @@
         }
         ?>
         <li class="page-item">
-          <a class="page-link" href=<?php if ($data['page'] < ceil(1.0 * count($data['data']) / $data['length'])) {
+          <a class="page-link" href=<?php if ($data['page'] < ceil(1.0 * count($dataBlog) / $data['length'])) {
                                       echo "/blog?page=" . $data['page'] + 1;
                                     } else {
                                       echo "#!";

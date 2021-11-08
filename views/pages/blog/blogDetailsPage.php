@@ -22,16 +22,16 @@
     </p>
     <div>
       <?php
-      $comment = [
-        "userAvatarURL" => "https://static.wikia.nocookie.net/fairytail/images/c/ce/Natsu%27s_image.png",
-        "userName" => "Natsu Dragneel",
-        "rate" => 5,
-        "date" => "2021-11-08 20:30:00",
-        "content" => "blog này hay vcl!",
-      ];
       $addCommentAction = "/blog" . "/" . $id;
-      require realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/comments/commentView.php';
+      $cmts = $data['data'][$id]['cmt'];
+      echo "<hr />";
+      echo "<h5>Có " . count($cmts) . " bình luận cho bài viết của " . $data['data'][$id]['author'] . "</h5>";
+      $i = 0;
+      foreach ($cmts as $comment) {
+        require realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/comments/commentView.php';
+      }
       require realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/comments/addComment.php';
+
       ?>
     </div>
   </div>
