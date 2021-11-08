@@ -8,53 +8,55 @@ class BlogController extends BaseController
 {
     var $ItemPerPage = 3;
     var $data = [
-        [
-            'id' => 1,
-            'title' => "Title 1",
+        0 => [
+            'title' => "Title 0",
             'content' => "Content 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis consequatur eligendi quisquam doloremque vero ex debitis veritatis placeat unde animi laborum sapiente illo possimus, commodi dignissimos obcaecati illum maiores corporis.",
             'author' => "Linh",
             'date' => "17:40 08/11/2021",
             'cmtCount' => 10,
             'img' => "https://mdbootstrap.com/img/new/slides/080.jpg"
         ],
-        [
-            'id' => 2,
-            'title' => "Title 2",
+        11 => [
+            'title' => "Title 11",
             'content' => "Content 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis consequatur eligendi quisquam doloremque vero ex debitis veritatis placeat unde animi laborum sapiente illo possimus, commodi dignissimos obcaecati illum maiores corporis.",
             'author' => "Linh",
             'date' => "17:40 08/11/2021",
             'cmtCount' => 10,
             'img' => "https://mdbootstrap.com/img/new/slides/080.jpg"
         ],
-        [
-            'id' => 3,
-            'title' => "Title 3",
+        21 => [
+            'title' => "Title 21",
             'content' => "Content 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis consequatur eligendi quisquam doloremque vero ex debitis veritatis placeat unde animi laborum sapiente illo possimus, commodi dignissimos obcaecati illum maiores corporis.",
             'author' => "Linh",
             'date' => "17:40 08/11/2021",
             'cmtCount' => 10,
             'img' => "https://mdbootstrap.com/img/new/slides/080.jpg"
         ],
-        [
-            'id' => 4,
-            'title' => "Title 4",
+        32 => [
+            'title' => "Title 32",
             'content' => "Content 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis consequatur eligendi quisquam doloremque vero ex debitis veritatis placeat unde animi laborum sapiente illo possimus, commodi dignissimos obcaecati illum maiores corporis.",
             'author' => "Linh",
             'date' => "17:40 08/11/2021",
             'cmtCount' => 10,
             'img' => "https://mdbootstrap.com/img/new/slides/080.jpg"
         ],
-        [
-            'id' => 5,
-            'title' => "Title 5",
+        14 => [
+            'title' => "Title 14",
             'content' => "Content 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis consequatur eligendi quisquam doloremque vero ex debitis veritatis placeat unde animi laborum sapiente illo possimus, commodi dignissimos obcaecati illum maiores corporis.",
             'author' => "Linh",
             'date' => "17:40 08/11/2021",
             'cmtCount' => 10,
             'img' => "https://mdbootstrap.com/img/new/slides/080.jpg"
         ],
-        [
-            'id' => 6,
+        15 => [
+            'title' => "Title 15",
+            'content' => "Content 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis consequatur eligendi quisquam doloremque vero ex debitis veritatis placeat unde animi laborum sapiente illo possimus, commodi dignissimos obcaecati illum maiores corporis.",
+            'author' => "Linh",
+            'date' => "17:40 08/11/2021",
+            'cmtCount' => 10,
+            'img' => "https://mdbootstrap.com/img/new/slides/080.jpg"
+        ],
+        6 => [
             'title' => "Title 6",
             'content' => "Content 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis consequatur eligendi quisquam doloremque vero ex debitis veritatis placeat unde animi laborum sapiente illo possimus, commodi dignissimos obcaecati illum maiores corporis.",
             'author' => "Linh",
@@ -62,8 +64,7 @@ class BlogController extends BaseController
             'cmtCount' => 10,
             'img' => "https://mdbootstrap.com/img/new/slides/080.jpg"
         ],
-        [
-            'id' => 7,
+        7 => [
             'title' => "Title 7",
             'content' => "Content 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis consequatur eligendi quisquam doloremque vero ex debitis veritatis placeat unde animi laborum sapiente illo possimus, commodi dignissimos obcaecati illum maiores corporis.",
             'author' => "Linh",
@@ -71,24 +72,21 @@ class BlogController extends BaseController
             'cmtCount' => 10,
             'img' => "https://mdbootstrap.com/img/new/slides/080.jpg"
         ],
-        [
-            'id' => 8,
+        8 => [
             'title' => "Title 8",
             'content' => "Content 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis consequatur eligendi quisquam doloremque vero ex debitis veritatis placeat unde animi laborum sapiente illo possimus, commodi dignissimos obcaecati illum maiores corporis.",
             'author' => "Linh",
             'date' => "17:40 08/11/2021",
             'cmtCount' => 10,
             'img' => "https://mdbootstrap.com/img/new/slides/080.jpg"
-        ]
+        ],
     ];
     public function index($url)
     {
         $page = 1;
-        $view = new BlogView();
-        $view->renderBody(['url' => $url, 'nav' => '/blog', 'data' => $this->data, 'page' => $page, 'length' => $this->ItemPerPage]);
-    }
-    public function page($url, $page)
-    {
+        if (!empty($_GET)) {
+            $page = (int)$_GET['page'];
+        }
         $view = new BlogView();
         $view->renderBody(['url' => $url, 'nav' => '/blog', 'data' => $this->data, 'page' => $page, 'length' => $this->ItemPerPage]);
     }
