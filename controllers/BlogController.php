@@ -6,6 +6,7 @@ use Views\BlogView;
 
 class BlogController extends BaseController
 {
+    var $ItemPerPage = 3;
     var $data = [
         [
             'id' => 1,
@@ -46,12 +47,18 @@ class BlogController extends BaseController
     ];
     public function index($url)
     {
+        $page = 1;
         $view = new BlogView();
-        $view->renderBody(['url' => $url, 'nav' => '/blog', 'data' => $this->data]);
+        $view->renderBody(['url' => $url, 'nav' => '/blog', 'data' => $this->data, 'page' => $page, 'length' => $this->ItemPerPage]);
+    }
+    public function page($url, $page)
+    {
+        $view = new BlogView();
+        $view->renderBody(['url' => $url, 'nav' => '/blog/page=' . $page, 'data' => $this->data, 'page' => $page, 'length' => $this->ItemPerPage]);
     }
     public function detail($url, $id)
     {
         $view = new BlogView();
-        $view->renderDetails(['url' => $url, 'nav' => '/blog', 'data' => $this->data, 'id' => $id]);
+        $view->renderDetails(['url' => $url, 'nav' => '/blog/blogID=' . $id, 'data' => $this->data, 'id' => $id]);
     }
 }
