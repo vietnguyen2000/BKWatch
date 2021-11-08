@@ -56,7 +56,7 @@ class CartController extends BaseController
     };
 
     $userId = $_SESSION['user']['id'];
-    $productId = $_POST['productId'];
+    $cartItemId = $_POST['cartItemId'];
     $quantity = $_POST['quantity'];
     if ($quantity > 10) {
       $quantity = 10;
@@ -66,20 +66,46 @@ class CartController extends BaseController
 
     $cartItemModel = new CartItemModel();
     $cartItemInstances = $cartItemModel->getByCondition([
-      'userId' => $userId,
-      'productId' => $productId,
+      'id' => $cartItemId
     ]);
     if (count($cartItemInstances)) {
       $cartItemInstance = $cartItemInstances[0];
-      $cartItemModel->updateById($cartItemInstance['id'], [
-        "quantity" => $quantity
-      ]);
+      if ($cartItemInstance['userId'] == $userId) {
+        $cartItemModel->updateById($cartItemId, [
+          "quantity" => $quantity
+        ]);
+      }
     } else {
-      $cartItemModel->insert([
-        'userId' => $userId,
-        'productId' => $productId,
-        "quantity" => $quantity
-      ]);
+    }
+  }
+
+  public function delete($url)
+  {
+    if (!isset($_SESSION['user'])) {
+      $this->redirect('/login');
+      return;
+    };
+
+    $userId = $_SESSION['user']['id'];
+    $cartItemId = $_POST['cartItemId'];
+    $quantity = $_POST['quantity'];
+    if ($quantity > 10) {
+      $quantity = 10;
+    } else if ($quantity <= 0) {
+      $quantity = 1;
+    }
+
+    $cartItemModel = new CartItemModel();
+    $cartItemInstances = $cartItemModel->getByCondition([
+      'id' => $cartItemId
+    ]);
+    if (count($cartItemInstances)) {
+      $cartItemInstance = $cartItemInstances[0];
+      if ($cartItemInstance['userId'] == $userId) {
+        $cartItemModel->delete($cartItemId);
+      }
+      $this->redirect('/cart');
+    } else {
     }
   }
 }
