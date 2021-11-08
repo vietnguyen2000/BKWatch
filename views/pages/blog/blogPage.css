@@ -1,0 +1,22 @@
+.blog-banner-div {
+    position: relative;
+    padding-bottom: 25.25%;
+}
+.blog-banner-div-child {
+    position: absolute;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.blog-banner-mask-text {
+    background-color: rgba(0, 0, 0, 0.329);
+}
+.blog-banner-title {
+    font-size: 5em;
+}
+.blog-banner-img {
+    width: 100%;
+    height: 100%;
+}
