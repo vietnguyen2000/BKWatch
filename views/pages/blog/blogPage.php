@@ -5,6 +5,8 @@
 </style>
 <div class=".container">
   <?php
+  $blog_banner = "https://mdbootstrap.com/img/new/slides/017.jpg";
+  $blog_banner_title = "BKWATCH BLOG";
   require(realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/blog/banner.php');
   ?>
 </div>

@@ -43,6 +43,42 @@ class BlogController extends BaseController
             'date' => "17:40 08/11/2021",
             'cmtCount' => 10,
             'img' => "https://mdbootstrap.com/img/new/slides/080.jpg"
+        ],
+        [
+            'id' => 5,
+            'title' => "Title 5",
+            'content' => "Content 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis consequatur eligendi quisquam doloremque vero ex debitis veritatis placeat unde animi laborum sapiente illo possimus, commodi dignissimos obcaecati illum maiores corporis.",
+            'author' => "Linh",
+            'date' => "17:40 08/11/2021",
+            'cmtCount' => 10,
+            'img' => "https://mdbootstrap.com/img/new/slides/080.jpg"
+        ],
+        [
+            'id' => 6,
+            'title' => "Title 6",
+            'content' => "Content 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis consequatur eligendi quisquam doloremque vero ex debitis veritatis placeat unde animi laborum sapiente illo possimus, commodi dignissimos obcaecati illum maiores corporis.",
+            'author' => "Linh",
+            'date' => "17:40 08/11/2021",
+            'cmtCount' => 10,
+            'img' => "https://mdbootstrap.com/img/new/slides/080.jpg"
+        ],
+        [
+            'id' => 7,
+            'title' => "Title 7",
+            'content' => "Content 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis consequatur eligendi quisquam doloremque vero ex debitis veritatis placeat unde animi laborum sapiente illo possimus, commodi dignissimos obcaecati illum maiores corporis.",
+            'author' => "Linh",
+            'date' => "17:40 08/11/2021",
+            'cmtCount' => 10,
+            'img' => "https://mdbootstrap.com/img/new/slides/080.jpg"
+        ],
+        [
+            'id' => 8,
+            'title' => "Title 8",
+            'content' => "Content 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis consequatur eligendi quisquam doloremque vero ex debitis veritatis placeat unde animi laborum sapiente illo possimus, commodi dignissimos obcaecati illum maiores corporis.",
+            'author' => "Linh",
+            'date' => "17:40 08/11/2021",
+            'cmtCount' => 10,
+            'img' => "https://mdbootstrap.com/img/new/slides/080.jpg"
         ]
     ];
     public function index($url)
@@ -54,11 +90,11 @@ class BlogController extends BaseController
     public function page($url, $page)
     {
         $view = new BlogView();
-        $view->renderBody(['url' => $url, 'nav' => '/blog/page=' . $page, 'data' => $this->data, 'page' => $page, 'length' => $this->ItemPerPage]);
+        $view->renderBody(['url' => $url, 'nav' => '/blog', 'data' => $this->data, 'page' => $page, 'length' => $this->ItemPerPage]);
     }
     public function detail($url, $id)
     {
         $view = new BlogView();
-        $view->renderDetails(['url' => $url, 'nav' => '/blog/blogID=' . $id, 'data' => $this->data, 'id' => $id]);
+        $view->renderDetails(['url' => $url, 'nav' => '/blog', 'data' => $this->data, 'id' => $id]);
     }
 }

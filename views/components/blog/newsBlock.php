@@ -8,7 +8,7 @@
       </a>
     </div>
     <!-- Article title and description -->
-    <a href="" class="text-dark">
+    <a href=<?php echo  $blog_url . "/blogID=" . $blog_block_id ?> class="text-dark">
       <h5><?php echo $blog_block_title ?></h5>
       <p>
         <small class="text-muted">Tác giả: <?php echo  $blog_block_author ?></small>
