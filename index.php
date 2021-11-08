@@ -70,7 +70,7 @@ require 'utils/validate.php';
 
   <script>
     function addToCart(productId) {
-      $.post('/addToCart', {
+      $.post('/cart/add', {
         productId
       })
     }

@@ -22,7 +22,7 @@ CREATE TABLE Product (
   productCode varchar(255),
   title varchar(255),
   content LONGTEXT,
-  `tag` varchar(255),
+  tag varchar(255),
   price DECIMAL(14, 2) NOT NULL,
   discount int(11) NOT NULL DEFAULT 0,
   currency varchar(255) DEFAULT "VND",
@@ -110,7 +110,7 @@ CREATE TABLE BlogComment (
   updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
 ) ENGINE = InnoDB;
-CREATE TABLE `Order` (
+CREATE TABLE Order (
   id varchar(255) NOT NULL,
   userId int(10) NOT NULL,
   address varchar(255),
@@ -164,7 +164,7 @@ ALTER TABLE
 ADD
   CONSTRAINT FKProduct138202 FOREIGN KEY (productBrandId) REFERENCES ProductBrand (id);
 ALTER TABLE
-  `Order`
+  Order
 ADD
   CONSTRAINT FKOrder556775 FOREIGN KEY (userId) REFERENCES User (id);
 ALTER TABLE
@@ -182,7 +182,7 @@ ADD
 ALTER TABLE
   OrderDetail
 ADD
-  CONSTRAINT FKOrderDetai762072 FOREIGN KEY (orderId) REFERENCES `Order` (id);
+  CONSTRAINT FKOrderDetai762072 FOREIGN KEY (orderId) REFERENCES Order (id);
 ALTER TABLE
   CartItem
 ADD
@@ -237,3 +237,34 @@ SELECT
 FROM
   productComment as pc
   LEFT JOIN userPreview as up ON pc.userId = up.id;
+CREATE VIEW cartView AS
+SELECT
+  c.*,
+  p.productBrandId AS productBrandId,
+  p.productCategoryId AS productCategoryId,
+  p.productCode AS productCode,
+  p.title AS title,
+  p.content AS content,
+  p.tag AS tag,
+  p.price AS price,
+  p.discount AS discount,
+  p.currency AS currency,
+  p.warranty AS warranty,
+  p.isHot AS isHot,
+  p.isNew AS isNew,
+  p.isBestSale AS isBestSale,
+  p.quantity AS quantityLeft,
+  p.material AS material,
+  p.glass AS glass,
+  p.back AS back,
+  p.shape AS shape,
+  p.diameter AS diameter,
+  p.height AS height,
+  p.lugWidth AS lugWidth,
+  p.color AS color,
+  p.categoryTitle AS categoryTitle,
+  p.brandTitle AS brandTitle,
+  p.imageURL AS imageURL
+FROM
+  cartItem as c
+  left join productPreview as p on c.productId = p.id
