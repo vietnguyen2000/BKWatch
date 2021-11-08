@@ -2,11 +2,11 @@
 
 namespace Models;
 
-class CartModel extends BaseModel
+class CartItemModel extends BaseModel
 {
   public function __construct()
   {
     parent::__construct();
-    $this->name = 'cart';
+    $this->name = 'cartItem';
   }
 }

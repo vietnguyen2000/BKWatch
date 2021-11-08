@@ -21,3 +21,4 @@ $router->post('/watch/{id}/comment', 'WatchController@addComment');
 
 $router->post('/register', 'UserController@register');
 $router->post('/login', 'UserController@login');
+$router->post('/addToCart', 'CartController@addToCart');

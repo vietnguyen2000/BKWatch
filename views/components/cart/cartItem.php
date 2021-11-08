@@ -5,7 +5,7 @@
     </a>
     <img src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg" alt="..." class="img-fluid" style="width: 100%; height: 100%; object-fit:contain" />
   </div>
-  <div class="col-8 d-flex justify-content-between flex-column" style="aspect-ratio: 8/3">
+  <div class="col-8 d-flex justify-content-between flex-column px-2" style="aspect-ratio: 8/3">
     <div class="d-flex justify-content-between">
       <div>
         <h5 class="card-title">Card title</h5>
