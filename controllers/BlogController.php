@@ -49,6 +49,16 @@ class BlogController extends BaseController
             'data' => $data,
             'id' => $id
         ]);
+        $getData = $this->blogModel->getByCondition([
+            "id" => $id
+        ]);
+        $countView = (int)$getData[0]["countView"];
+        $this->blogModel->updateById(
+            $id,
+            [
+                "countView" => $countView + 1
+            ]
+        );
     }
     public function addComment($url, $id)
     {
@@ -60,5 +70,19 @@ class BlogController extends BaseController
             "content" => $_POST['content'],
         ]);
         $this->redirect("/blog/$id");
+    }
+    public function addLike($url, $id)
+    {
+        $getData = $this->blogModel->getByCondition([
+            "id" => $id
+        ]);
+        $like = (int)$getData[0]["countLike"];
+        $this->blogModel->updateById(
+            $id,
+            [
+                "countLike" => $like + 1
+            ]
+        );
+        $this->redirect("/blog");
     }
 }

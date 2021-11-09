@@ -57,6 +57,9 @@
           $blog_block_content = $record['content'];
           $blog_block_date = $record['updatedAt'];
           $blog_block_author = $record['userFullname'];
+          $blog_block_isHot = $record['isHot'];
+          $blog_block_countLike = $record['countLike'];
+          $blog_block_countView = $record['countView'];
           $blog_block_commentCount = count($record['cmt']);
           require(realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/blog/newsBlock.php');
           $count += 1;

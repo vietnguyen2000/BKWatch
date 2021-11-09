@@ -22,11 +22,33 @@
       </p>
     </a>
     <!-- Article data -->
-    <div class="row mb-3">
-      <div class="col-12 text-end">
-        <a href="#">
-          <i class="far fa-comment-dots"></i>
-          <?php echo $blog_block_commentCount ?> bình luận
+    <div class="row md-3 d-flex justify-content-center">
+      <?php
+      if ($blog_block_isHot == 1) {
+        echo '<div class="col-3 text-center">
+                <a href=' . $blog_url . "/" . $blog_block_id . '>
+                  <i class="fab fa-hotjar"></i>
+                  <p>Hot</p>
+                </a>
+              </div>';
+      }
+      ?>
+      <div class="col-3 text-center">
+        <a href=<?php echo  $blog_url . "/" . $blog_block_id . "/liked" ?>>
+          <i class="fas fa-heart"></i><br />
+          <p><?php echo $blog_block_countLike ?></p>
+        </a>
+      </div>
+      <div class="col-3 text-center">
+        <a href=<?php echo  $blog_url . "/" . $blog_block_id ?>>
+          <i class="fas fa-eye"></i><br />
+          <p><?php echo $blog_block_countView ?></p>
+        </a>
+      </div>
+      <div class="col-3 text-center">
+        <a href=<?php echo  $blog_url . "/" . $blog_block_id ?>>
+          <i class="fas fa-comment-dots"></i><br />
+          <p><?php echo $blog_block_commentCount ?></p>
         </a>
       </div>
       <hr />
