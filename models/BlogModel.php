@@ -9,41 +9,114 @@ class BlogModel extends BaseModel
     parent::__construct();
     $this->name = 'blog';
   }
-  public function getAll(int $limit = null)
+  public function getBlogDefault()
   {
-    $data = [
-      'blog' => [],
-      'banner' => [],
-      'cmt' => [],
-    ];
     try {
-      $data_temp = $this->getAllBlog(null);
-      foreach ($data_temp as $key1 => $blog_value) {
-        foreach ($blog_value as $key2 => $value) {
-          if ($key2 == "userId") {
-            $userModel = new UserModel();
-            $fullname = $userModel->getFullnameById($value);
-            $data_temp[$key1]['fullname'] = $fullname;
-          }
-        }
+      $sql = "SELECT 
+      bkwatch.blog.id AS blogId,
+      bkwatch.blog.userId AS userId,
+      bkwatch.user.fullname AS userFullname,
+      bkwatch.blog.title AS title,
+      bkwatch.blog.content AS content,
+      bkwatch.blog.isHot AS isHot,
+      bkwatch.blog.countLike AS countLike,
+      bkwatch.blog.countView AS countView,
+      bkwatch.blog.createdAt AS createdAt,
+      bkwatch.blog.updatedAt AS updatedAt,
+      bkwatch.blogimage.imageURL AS blogImgURL,
+      bkwatch.blogcomment.userId AS userCmtId,
+      bkwatch.blogcomment.content AS userCmtContent,
+      bkwatch.blogcomment.rating AS userCmtRating,
+      bkwatch.blogcomment.updatedAt AS userCmtTime
+      FROM bkwatch.blog
+      LEFT JOIN bkwatch.user ON bkwatch.blog.userId = bkwatch.user.id
+      LEFT JOIN bkwatch.blogimage ON bkwatch.blog.id = bkwatch.blogimage.blogId
+      LEFT JOIN bkwatch.blogcomment ON bkwatch.blog.id = bkwatch.blogcomment.blogId
+      ";
+      $result = $this->db->query($sql);
+      $data = $result->fetch_all(mode: MYSQLI_ASSOC);
+      return $data;
+    } catch (\Exception $e) {
+      return [];
+    }
+  }
+  public function getAllBlog()
+  {
+    try {
+      $sql = "SELECT 
+      bkwatch.blog.id AS blogId,
+      bkwatch.blog.userId AS userId,
+      bkwatch.user.fullname AS userFullname,
+      bkwatch.blog.title AS title,
+      bkwatch.blog.content AS content,
+      bkwatch.blog.isHot AS isHot,
+      bkwatch.blog.countLike AS countLike,
+      bkwatch.blog.countView AS countView,
+      bkwatch.blog.createdAt AS createdAt,
+      bkwatch.blog.updatedAt AS updatedAt
+      FROM bkwatch.blog
+      LEFT JOIN bkwatch.user ON bkwatch.blog.userId = bkwatch.user.id
+      WHERE bkwatch.blog.id > 1
+      ";
+      $result = $this->db->query($sql);
+      $data = $result->fetch_all(mode: MYSQLI_ASSOC);
+      $ret = [];
+      $ret['blog'] = $data;
+      $count = 0;
+      foreach ($data as $record) {
+        $temp = $this->getCmtsByBlogId($record['blogId']);
+        $ret['blog'][$count]['cmt'] = $temp;
+        $count += 1;
       }
-      $data['blog'] = $data_temp;
-      $data_temp = $this->getAllBlogBanner(null);
-      $data['banner'] = $data_temp;
-      $data_temp = $this->getAllBlogComment(null);
-      $data['cmt'] = $data_temp;
-      return $data;
+      $count = 0;
+      foreach ($data as $record) {
+        $temp = $this->getImgsByBlogId($record['blogId']);
+        $ret['blog'][$count]['img'] = $temp;
+        $count += 1;
+      }
+      return $ret;
     } catch (\Exception $e) {
       return [];
     }
   }
-  private function getAllBlog(int $limit = null)
+  public function getBlogById(int $id)
   {
     try {
-      $sql = "SELECT * FROM blog";
-      if ($limit != null) {
-        $sql += 'LIMIT' . $limit;
-      };
+      $sql = "SELECT 
+      bkwatch.blog.id AS blogId,
+      bkwatch.blog.userId AS userId,
+      bkwatch.user.fullname AS userFullname,
+      bkwatch.blog.title AS title,
+      bkwatch.blog.content AS content,
+      bkwatch.blog.isHot AS isHot,
+      bkwatch.blog.countLike AS countLike,
+      bkwatch.blog.countView AS countView,
+      bkwatch.blog.createdAt AS createdAt,
+      bkwatch.blog.updatedAt AS updatedAt
+      FROM bkwatch.blog
+      LEFT JOIN bkwatch.user ON bkwatch.blog.userId = bkwatch.user.id
+      WHERE bkwatch.blog.id = $id
+      ";
+      $result = $this->db->query($sql);
+      $data = $result->fetch_all(mode: MYSQLI_ASSOC);
+      return $data[0];
+    } catch (\Exception $e) {
+      return [];
+    }
+  }
+  public function getCmtsByBlogId(int $id)
+  {
+    try {
+      $sql = "SELECT 
+      bkwatch.blog.id AS blogId,
+      bkwatch.blogcomment.userId AS userCmtId,
+      bkwatch.blogcomment.content AS userCmtContent,
+      bkwatch.blogcomment.rating AS userCmtRating,
+      bkwatch.blogcomment.updatedAt AS userCmtTime
+      FROM bkwatch.blog
+      LEFT JOIN bkwatch.blogcomment ON bkwatch.blog.id = bkwatch.blogcomment.blogId
+      WHERE bkwatch.blog.id = $id
+      ";
       $result = $this->db->query($sql);
       $data = $result->fetch_all(mode: MYSQLI_ASSOC);
       return $data;
@@ -51,27 +124,16 @@ class BlogModel extends BaseModel
       return [];
     }
   }
-  private function getAllBlogBanner(int $limit = null)
+  public function getImgsByBlogId(int $id)
   {
     try {
-      $sql = "SELECT * FROM blogimage";
-      if ($limit != null) {
-        $sql += 'LIMIT' . $limit;
-      };
-      $result = $this->db->query($sql);
-      $data = $result->fetch_all(mode: MYSQLI_ASSOC);
-      return $data;
-    } catch (\Exception $e) {
-      return [];
-    }
-  }
-  private function getAllBlogComment(int $limit = null)
-  {
-    try {
-      $sql = "SELECT * FROM blogcomment";
-      if ($limit != null) {
-        $sql += 'LIMIT' . $limit;
-      };
+      $sql = "SELECT 
+      bkwatch.blog.id AS blogId,
+      bkwatch.blogimage.imageURL AS blogImgURL
+      FROM bkwatch.blog
+      LEFT JOIN bkwatch.blogimage ON bkwatch.blog.id = bkwatch.blogimage.blogId
+      WHERE bkwatch.blog.id = $id
+      ";
       $result = $this->db->query($sql);
       $data = $result->fetch_all(mode: MYSQLI_ASSOC);
       return $data;
@@ -82,10 +144,42 @@ class BlogModel extends BaseModel
   public function getHotBlog()
   {
     try {
-      $sql = "SELECT * FROM blogcomment";
+      $sql = "SELECT 
+      bkwatch.blog.id AS blogId,
+      bkwatch.blog.userId AS userId,
+      bkwatch.user.fullname AS userFullname,
+      bkwatch.blog.title AS title,
+      bkwatch.blog.content AS content,
+      bkwatch.blog.isHot AS isHot,
+      bkwatch.blog.countLike AS countLike,
+      bkwatch.blog.countView AS countView,
+      bkwatch.blog.createdAt AS createdAt,
+      bkwatch.blog.updatedAt AS updatedAt
+      FROM bkwatch.blog
+      LEFT JOIN bkwatch.user ON bkwatch.blog.userId = bkwatch.user.id
+      WHERE bkwatch.blog.updatedAt > date_sub(now(), interval 1 week) 
+      AND bkwatch.blog.isHot = 1 
+      AND bkwatch.blog.id > 1
+      AND bkwatch.blog.countLike = (SELECT MAX(bkwatch.blog.countLike) FROM bkwatch.blog)
+      ";
       $result = $this->db->query($sql);
       $data = $result->fetch_all(mode: MYSQLI_ASSOC);
-      return $data;
+      $ret = [];
+      $ret['blog'] = $data;
+      $count = 0;
+      foreach ($data as $record) {
+        $temp = $this->getCmtsByBlogId($record['blogId']);
+        $ret['blog'][$count]['cmt'] = $temp;
+        $count += 1;
+      }
+      $count = 0;
+      foreach ($data as $record) {
+        $temp = $this->getImgsByBlogId($record['blogId']);
+        $ret['blog'][$count]['img'] = $temp;
+        $count += 1;
+      }
+      // print_r($ret);
+      return $ret;
     } catch (\Exception $e) {
       return [];
     }

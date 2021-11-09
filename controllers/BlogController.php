@@ -7,8 +7,9 @@ use Views\BlogView;
 
 class BlogController extends BaseController
 {
-    var $ItemPerPage = 5;
-    var $data = [];
+    var $ItemPerPage;
+    var $dataHeader;
+    var $blogModel;
     // var $data = [
     //     0 => [
     //         'title' => "Title 0",
@@ -236,11 +237,17 @@ class BlogController extends BaseController
     //         'img' => "https://mdbootstrap.com/img/new/slides/080.jpg"
     //     ],
     // ];
+    public function __construct()
+    {
+        $this->blogModel = new BlogModel();
+        $this->dataHeader = $this->blogModel->getBlogHeader();
+        $this->ItemPerPage = 3;
+        $this->data = [];
+    }
     public function index($url)
     {
-        $blogModel = new BlogModel();
-        $this->data = $blogModel->getAll();
-        $dataHeader = $blogModel->getBlogHeader();
+        $data = $this->blogModel->getAllBlog();
+        $hotBlog = $this->blogModel->getHotBlog();
         $page = 1;
         if (!empty($_GET)) {
             $page = (int)$_GET['page'];
@@ -249,8 +256,9 @@ class BlogController extends BaseController
         $view->renderBody([
             'url' => $url,
             'nav' => '/blog',
-            'header' => $dataHeader,
-            'data' => $this->data,
+            'header' => $this->dataHeader,
+            'hotBlog' => $hotBlog,
+            'data' => $data,
             'page' => $page,
             'length' => $this->ItemPerPage
         ]);
@@ -258,13 +266,12 @@ class BlogController extends BaseController
     public function detail($url, $id)
     {
         $view = new BlogView();
-        $blogModel = new BlogModel();
-        $dataHeader = $blogModel->getBlogHeader();
+        $data = [];
         $view->renderDetails([
             'url' => $url,
             'nav' => '/blog',
-            'header' => $dataHeader,
-            'data' => $this->data,
+            'header' => $this->dataHeader,
+            'data' => $data,
             'id' => $id
         ]);
     }

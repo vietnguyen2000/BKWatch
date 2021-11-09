@@ -22,23 +22,28 @@
     <!--Section: News of the day-->
     <?php
     $blog_url = '/blog';
-    $id = 1;
-    $blog_block_id = $id;
-    $list_banner = [];
-    foreach ($data['data']['banner'] as $key => $value) {
-      if ($value['blogId'] == $id) {
-        array_push($list_banner, $value['imageURL']);
-      }
-    }
-    $data_blog = [];
-    foreach ($data['data']['blog'] as $key => $value) {
-      if ($value['id'] == $id) {
-        $data_blog = $value;
-      }
-    }
-    $blog_block_img = $list_banner[0];
-    $blog_block_title = $data_blog['title'];;
-    $blog_block_content = $data_blog['content'];;
+    $record = $data['hotBlog'];
+    $blog_block_id = $record['blog'][0]['blogId'];
+    $blog_block_img = $record['blog'][0]['img'][0]['blogImgURL'];
+    $blog_block_title = $record['blog'][0]['title'];
+    $blog_block_content = $record['blog'][0]['content'];
+    // $id = 1;
+    // $blog_block_id = $id;
+    // $list_banner = [];
+    // foreach ($data['data']['banner'] as $key => $value) {
+    //   if ($value['blogId'] == $id) {
+    //     array_push($list_banner, $value['imageURL']);
+    //   }
+    // }
+    // $data_blog = [];
+    // foreach ($data['data']['blog'] as $key => $value) {
+    //   if ($value['id'] == $id) {
+    //     $data_blog = $value;
+    //   }
+    // }
+    // $blog_block_img = $list_banner[0];
+    // $blog_block_title = $data_blog['title'];;
+    // $blog_block_content = $data_blog['content'];;
     require(realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/blog/newsOfTheDay.php');
     ?>
     <!--Section: News of the day-->
