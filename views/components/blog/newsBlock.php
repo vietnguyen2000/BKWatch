@@ -2,7 +2,7 @@
   <div>
     <!-- Featured image -->
     <div class="bg-image hover-overlay shadow-1-strong ripple rounded-5 mb-4" data-mdb-ripple-color="light">
-      <img src=<?php echo $blog_block_img ?> class="img-fluid" />
+      <img src=<?php echo $blog_block_img ?> class="img-fluid" style="width: 100%; height: 26.5vh; object-fit: cover;" />
       <a href=<?php echo  $blog_url . "/" . $blog_block_id ?>>
         <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
       </a>
@@ -34,7 +34,7 @@
       }
       ?>
       <div class="col-3 text-center">
-        <a href=<?php echo  $blog_url . "/" . $blog_block_id . "/liked" ?>>
+        <a href=<?php echo  $blog_url . "/" . $blog_block_id . "/like" ?>>
           <i class="fas fa-heart"></i><br />
           <p><?php echo $blog_block_countLike ?></p>
         </a>

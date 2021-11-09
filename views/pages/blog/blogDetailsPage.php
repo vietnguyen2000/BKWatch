@@ -6,7 +6,7 @@
 <div class=".container">
   <?php
   $record = $data['data'];
-  $blog_title_item = $record['title'];
+  $blog_title = $record['title'];
   $blog_img_banner = [];
   foreach ($record['img'] as $key => $value) {
     // print_r($value);

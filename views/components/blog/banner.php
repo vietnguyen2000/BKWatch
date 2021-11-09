@@ -22,7 +22,7 @@
     <?php
     for ($i = 1; $i < count($blog_img_banner); $i++) {
       echo '<div class="carousel-item">';
-      $blog_img_banner_item = $blog_img_banner[1];
+      $blog_img_banner_item = $blog_img_banner[$i];
       $blog_title_item = $blog_title;
       require 'bannerItem.php';
       echo '</div>';
