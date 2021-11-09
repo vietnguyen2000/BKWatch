@@ -99,7 +99,21 @@ class BlogModel extends BaseModel
       ";
       $result = $this->db->query($sql);
       $data = $result->fetch_all(mode: MYSQLI_ASSOC);
-      return $data[0];
+      $ret = [];
+      $ret = $data;
+      $count = 0;
+      foreach ($data as $record) {
+        $temp = $this->getCmtsByBlogId($record['blogId']);
+        $ret[$count]['cmt'] = $temp;
+        $count += 1;
+      }
+      $count = 0;
+      foreach ($data as $record) {
+        $temp = $this->getImgsByBlogId($record['blogId']);
+        $ret[$count]['img'] = $temp;
+        $count += 1;
+      }
+      return $ret[0];
     } catch (\Exception $e) {
       return [];
     }
@@ -110,11 +124,14 @@ class BlogModel extends BaseModel
       $sql = "SELECT 
       bkwatch.blog.id AS blogId,
       bkwatch.blogcomment.userId AS userCmtId,
+      bkwatch.user.fullname AS userCmtFullname,
+      bkwatch.user.avatarURL AS userCmtAvt,
       bkwatch.blogcomment.content AS userCmtContent,
       bkwatch.blogcomment.rating AS userCmtRating,
       bkwatch.blogcomment.updatedAt AS userCmtTime
-      FROM bkwatch.blog
-      LEFT JOIN bkwatch.blogcomment ON bkwatch.blog.id = bkwatch.blogcomment.blogId
+      FROM bkwatch.blogcomment
+      LEFT JOIN bkwatch.blog ON bkwatch.blog.id = bkwatch.blogcomment.blogId
+      LEFT JOIN bkwatch.user ON bkwatch.user.id = bkwatch.blogcomment.userId
       WHERE bkwatch.blog.id = $id
       ";
       $result = $this->db->query($sql);

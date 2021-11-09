@@ -18,15 +18,4 @@ class UserModel extends BaseModel
     $this->update(['rememberToken' => $randomString], ["username" => $username]);
     return $randomString;
   }
-  public function getFullnameById(int $id)
-  {
-    try {
-      $sql = "SELECT fullname FROM user WHERE id = " . $id;
-      $result = $this->db->query($sql);
-      $data = $result->fetch_all(mode: MYSQLI_ASSOC);
-      return $data[0]['fullname'];
-    } catch (\Exception $e) {
-      return [];
-    }
-  }
 }

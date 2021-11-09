@@ -2,11 +2,11 @@
 
 namespace Models;
 
-class BlogModel extends BaseModel
+class BlogCommentModel extends BaseModel
 {
   public function __construct()
   {
     parent::__construct();
-    $this->name = 'blog';
+    $this->name = 'blogcomment';
   }
 }

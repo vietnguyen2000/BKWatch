@@ -3,8 +3,11 @@
   <!-- Indicators -->
   <div class="carousel-indicators">
     <button type="button" data-mdb-target="#bannerBlog" data-mdb-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-mdb-target="#bannerBlog" data-mdb-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-mdb-target="#bannerBlog" data-mdb-slide-to="2" aria-label="Slide 3"></button>
+    <?php
+    for ($i = 1; $i < count($blog_img_banner); $i++) {
+      echo '<button type="button" data-mdb-target="#bannerBlog" data-mdb-slide-to="' . $i . '" aria-label="Slide ' . ($i + 1) . '"></button>';
+    }
+    ?>
   </div>
 
   <!-- Inner -->
@@ -16,20 +19,15 @@
       require 'bannerItem.php';
       ?>
     </div>
-    <div class="carousel-item">
-      <?php
+    <?php
+    for ($i = 1; $i < count($blog_img_banner); $i++) {
+      echo '<div class="carousel-item">';
       $blog_img_banner_item = $blog_img_banner[1];
       $blog_title_item = $blog_title;
       require 'bannerItem.php';
-      ?>
-    </div>
-    <div class="carousel-item">
-      <?php
-      $blog_img_banner_item = $blog_img_banner[2];
-      $blog_title_item = $blog_title;
-      require 'bannerItem.php';
-      ?>
-    </div>
+      echo '</div>';
+    }
+    ?>
   </div>
 
   <!-- Controls -->

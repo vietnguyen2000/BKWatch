@@ -12,6 +12,7 @@ $router->get('/intro', 'IntroController@index');
 $router->get('/watch', 'WatchController@index');
 $router->get('/blog', 'BlogController@index');
 $router->get('/blog/{id}', 'BlogController@detail');
+$router->post('/blog/{id}/comment', 'BlogController@addComment');
 $router->get('/contact', 'ContactController@index');
 $router->get('/me', 'UserController@profile');
 $router->get('/login', 'UserController@index');

@@ -1,5 +1,5 @@
 <style>
-  <?php include 'bannerBlog.css'; ?>
+  <?php include 'blog.css'; ?>
 </style>
 <div class="item-banner-blog">
   <div class="image-dropsize-blog">
