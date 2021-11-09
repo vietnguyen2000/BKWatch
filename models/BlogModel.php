@@ -61,17 +61,17 @@ class BlogModel extends BaseModel
       $result = $this->db->query($sql);
       $data = $result->fetch_all(mode: MYSQLI_ASSOC);
       $ret = [];
-      $ret['blog'] = $data;
+      $ret = $data;
       $count = 0;
       foreach ($data as $record) {
         $temp = $this->getCmtsByBlogId($record['blogId']);
-        $ret['blog'][$count]['cmt'] = $temp;
+        $ret[$count]['cmt'] = $temp;
         $count += 1;
       }
       $count = 0;
       foreach ($data as $record) {
         $temp = $this->getImgsByBlogId($record['blogId']);
-        $ret['blog'][$count]['img'] = $temp;
+        $ret[$count]['img'] = $temp;
         $count += 1;
       }
       return $ret;
@@ -165,17 +165,17 @@ class BlogModel extends BaseModel
       $result = $this->db->query($sql);
       $data = $result->fetch_all(mode: MYSQLI_ASSOC);
       $ret = [];
-      $ret['blog'] = $data;
+      $ret = $data;
       $count = 0;
       foreach ($data as $record) {
         $temp = $this->getCmtsByBlogId($record['blogId']);
-        $ret['blog'][$count]['cmt'] = $temp;
+        $ret[$count]['cmt'] = $temp;
         $count += 1;
       }
       $count = 0;
       foreach ($data as $record) {
         $temp = $this->getImgsByBlogId($record['blogId']);
-        $ret['blog'][$count]['img'] = $temp;
+        $ret[$count]['img'] = $temp;
         $count += 1;
       }
       // print_r($ret);

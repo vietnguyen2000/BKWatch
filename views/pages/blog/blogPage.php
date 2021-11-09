@@ -23,27 +23,10 @@
     <?php
     $blog_url = '/blog';
     $record = $data['hotBlog'];
-    $blog_block_id = $record['blog'][0]['blogId'];
-    $blog_block_img = $record['blog'][0]['img'][0]['blogImgURL'];
-    $blog_block_title = $record['blog'][0]['title'];
-    $blog_block_content = $record['blog'][0]['content'];
-    // $id = 1;
-    // $blog_block_id = $id;
-    // $list_banner = [];
-    // foreach ($data['data']['banner'] as $key => $value) {
-    //   if ($value['blogId'] == $id) {
-    //     array_push($list_banner, $value['imageURL']);
-    //   }
-    // }
-    // $data_blog = [];
-    // foreach ($data['data']['blog'] as $key => $value) {
-    //   if ($value['id'] == $id) {
-    //     $data_blog = $value;
-    //   }
-    // }
-    // $blog_block_img = $list_banner[0];
-    // $blog_block_title = $data_blog['title'];;
-    // $blog_block_content = $data_blog['content'];;
+    $blog_block_id = $record[0]['blogId'];
+    $blog_block_img = $record[0]['img'][0]['blogImgURL'];
+    $blog_block_title = $record[0]['title'];
+    $blog_block_content = $record[0]['content'];
     require(realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/blog/newsOfTheDay.php');
     ?>
     <!--Section: News of the day-->
@@ -53,44 +36,21 @@
       <div class="row gx-lg-5">
         <!-- News block -->
         <?php
-        $i = 0;
-        $page = $data['page'];
-        $len = $data['length'];
-        $start = $len * $page - $len;
-        $end = $len * $page;
-        if ($end > count($data['data']['blog'])) {
-          $end = count($data['data']['blog']);
-        }
-        $dataBlog = $data['data']['blog'];
-        $keys = [];
-        foreach ($dataBlog as $key => $value) {
-          array_push($keys, $value['id']);
-        }
-        for ($i = $start; $i < $end; $i++) {
-          $id = $keys[$i];
-          $blog_url = '/blog';
-          $blog_block_id = $id;
-          $list_banner = [];
-          foreach ($data['data']['banner'] as $key => $value) {
-            if ($value['blogId'] == $id) {
-              array_push($list_banner, $value['imageURL']);
-            }
-          }
-          $list_comment = [];
-          foreach ($data['data']['cmt'] as $key => $value) {
-            if ($value['blogId'] == $id) {
-              array_push($list_comment, $value);
-            }
-          }
-          // print_r($list_comment);
-          if ($id == $dataBlog[$i]['id']) {
-            $blog_block_img = $list_banner[0];
-            $blog_block_title = $dataBlog[$i]['title'];
-            $blog_block_date = $dataBlog[$i]['updatedAt'];
-            $blog_block_content = $dataBlog[$i]['content'];
-            $blog_block_author = $dataBlog[$i]['fullname'];
-            $blog_block_commentCount = count($list_comment);
-          }
+        $blog_url = '/blog';
+        foreach ($data['data'] as $key => $record) {
+          // print_r($record);
+          // echo "<br/>";
+          // echo "<br/>";
+          // echo "<hr/>";
+          // echo "<br/>";
+          // echo "<br/>";
+          $blog_block_id = $record['blogId'];
+          $blog_block_img = $record['img'][0]['blogImgURL'];
+          $blog_block_title = $record['title'];
+          $blog_block_content = $record['content'];
+          $blog_block_date = $record['updatedAt'];
+          $blog_block_author = $record['userFullname'];
+          $blog_block_commentCount = count($record['cmt']);
           require(realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/blog/newsBlock.php');
         }
         ?>
@@ -110,7 +70,7 @@
         </li>
         <?php
         $len = $data['length'];
-        $total = count($dataBlog);
+        $total = count($data['data']);
         $page = ceil(1.0 * $total / $len);
         $curPage = $data['page'];
         $i = 0;
@@ -131,7 +91,7 @@
         }
         ?>
         <li class="page-item">
-          <a class="page-link" href=<?php if ($data['page'] < ceil(1.0 * count($dataBlog) / $data['length'])) {
+          <a class="page-link" href=<?php if ($data['page'] < ceil(1.0 * count($data['data']) / $data['length'])) {
                                       echo "/blog?page=" . $data['page'] + 1;
                                     } else {
                                       echo "#!";
