@@ -240,17 +240,32 @@ class BlogController extends BaseController
     {
         $blogModel = new BlogModel();
         $this->data = $blogModel->getAll();
-        print_r($this->data);
+        $dataHeader = $blogModel->getBlogHeader();
         $page = 1;
         if (!empty($_GET)) {
             $page = (int)$_GET['page'];
         }
         $view = new BlogView();
-        $view->renderBody(['url' => $url, 'nav' => '/blog', 'data' => $this->data, 'page' => $page, 'length' => $this->ItemPerPage]);
+        $view->renderBody([
+            'url' => $url,
+            'nav' => '/blog',
+            'header' => $dataHeader,
+            'data' => $this->data,
+            'page' => $page,
+            'length' => $this->ItemPerPage
+        ]);
     }
     public function detail($url, $id)
     {
         $view = new BlogView();
-        $view->renderDetails(['url' => $url, 'nav' => '/blog', 'data' => $this->data, 'id' => $id]);
+        $blogModel = new BlogModel();
+        $dataHeader = $blogModel->getBlogHeader();
+        $view->renderDetails([
+            'url' => $url,
+            'nav' => '/blog',
+            'header' => $dataHeader,
+            'data' => $this->data,
+            'id' => $id
+        ]);
     }
 }

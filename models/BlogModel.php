@@ -79,4 +79,29 @@ class BlogModel extends BaseModel
       return [];
     }
   }
+  public function getHotBlog()
+  {
+    try {
+      $sql = "SELECT * FROM blogcomment";
+      $result = $this->db->query($sql);
+      $data = $result->fetch_all(mode: MYSQLI_ASSOC);
+      return $data;
+    } catch (\Exception $e) {
+      return [];
+    }
+  }
+  public function getBlogHeader()
+  {
+    try {
+      $sql = "SELECT blog.title AS title, blogimage.imageURl AS img
+      FROM blogimage  
+      INNER JOIN bkwatch.blog ON blogimage.blogId = blog.id
+      WHERE blogimage.blogID = 1";
+      $result = $this->db->query($sql);
+      $data = $result->fetch_all(mode: MYSQLI_ASSOC);
+      return $data;
+    } catch (\Exception $e) {
+      return [];
+    }
+  }
 }

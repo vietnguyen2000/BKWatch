@@ -5,8 +5,13 @@
 </style>
 <div class=".container">
   <?php
-  $blog_banner = "https://mdbootstrap.com/img/new/slides/017.jpg";
-  $blog_banner_title = "BKWATCH BLOG";
+  $dataHeader = $data['header'];
+  $blog_title = "";
+  $blog_img_banner = [];
+  foreach ($dataHeader as $key => $value) {
+    $blog_title = $value['title'];
+    array_push($blog_img_banner, $value['img']);
+  }
   require(realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/blog/banner.php');
   ?>
 </div>
@@ -72,7 +77,7 @@
               array_push($list_comment, $value);
             }
           }
-          print_r($list_comment);
+          // print_r($list_comment);
           if ($id == $dataBlog[$i]['id']) {
             $blog_block_img = $list_banner[0];
             $blog_block_title = $dataBlog[$i]['title'];
