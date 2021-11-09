@@ -16,31 +16,42 @@ if (!function_exists('currency_format')) {
     <img src="<?= $cartItem['imagePreview'] ?>" alt="<?= $cartItem['title'] ?>" class="img-fluid" style="width: 100%; height: 100%; object-fit:contain" />
   </div>
   <div class="col-8 d-flex justify-content-between flex-column px-2" style="aspect-ratio: 8/3">
-    <div class="d-flex justify-content-between">
-      <div>
-        <h5 class="card-title"><?= $cartItem['title'] ?></h5>
-        <p class="card-text m-0">
-          SKU: <?= $cartItem['productCode'] ?>
-        </p>
-        <p class="card-text m-0">
-          Brand: <?= $cartItem['brandTitle'] ?>
-        </p>
-        <p class="card-text">
-          Màu sắc: <?= $cartItem['color'] ?>
-        </p>
-      </div>
-      <div class="col-auto">
-        <div class="def-number-input number-input safari_only mb-0 w-100" style="height:2rem">
-          <button onclick="subtractQuantity(<?= $cartItem['id'] ?>, <?= $cartItem['price'] ?>, <?= $cartItem['discount'] ?>)" class="btn btn-danger h-100 py-0 px-3">-</button>
-          <input min="0" name="quantity" id='cart-item-quantity-<?= $cartItem['id'] ?>' value="<?= $cartItem['quantity'] ?>" type="number" readonly>
-          <button onclick="addMoreQuantity(<?= $cartItem['id'] ?>, <?= $cartItem['price'] ?>, <?= $cartItem['discount'] ?>)" class="btn btn-primary h-100 py-0 px-3">+</button>
+    <div>
+      <div class="row justify-content-between">
+        <div class="col-12 col-sm">
+          <h5 class="card-title"><?= $cartItem['title'] ?></h5>
+        </div>
+        <div class="col-auto right-body">
+          <div class="def-number-input number-input safari_only mb-0 w-100" style="height:2rem">
+            <button onclick="subtractQuantity(<?= $cartItem['id'] ?>, <?= $cartItem['price'] ?>, <?= $cartItem['discount'] ?>)" class="btn btn-danger h-100 py-0 px-3">-</button>
+            <input min="0" name="quantity" id='cart-item-quantity-<?= $cartItem['id'] ?>' value="<?= $cartItem['quantity'] ?>" type="number" readonly>
+            <button onclick="addMoreQuantity(<?= $cartItem['id'] ?>, <?= $cartItem['price'] ?>, <?= $cartItem['discount'] ?>)" class="btn btn-primary h-100 py-0 px-3">+</button>
+          </div>
         </div>
       </div>
+      <small class="card-text m-0">
+        SKU: <?= $cartItem['productCode'] ?>
+      </small>
+      <br>
+      <small class="card-text m-0">
+        Brand: <?= $cartItem['brandTitle'] ?>
+      </small>
+      <br>
+      <small class="card-text">
+        Màu sắc: <?= $cartItem['color'] ?>
+      </small>
     </div>
+
     <div class="d-flex justify-content-between align-items-end">
       <div>
-        <a href="#!" type="button" class="card-link-secondary small text-uppercase me-3" data-mdb-toggle="modal" data-mdb-target="#cart-modal-<?= $cartItem['id'] ?>"><i class="fas fa-trash-alt mr-1"></i> REMOVE </a>
-        <a href="#!" type="button" class="card-link-secondary small text-uppercase"><i class="fas fa-heart mr-1"></i> WISH LIST </a>
+        <a href="#!" type="button" class="card-link-secondary small text-uppercase me-3" data-mdb-toggle="modal" data-mdb-target="#cart-modal-<?= $cartItem['id'] ?>">
+          <i class="fas fa-trash-alt mr-1"></i>
+          <span class="d-none d-sm-inline-block">REMOVE</span>
+        </a>
+        <a href="#!" type="button" class="card-link-secondary small text-uppercase">
+          <i class="fas fa-heart mr-1"></i>
+          <span class="d-none d-sm-inline-block">WISH LIST</span>
+        </a>
       </div>
       <div class="col-auto">
         <input hidden type="number" id='cart-item-default-price-<?= $cartItem['id'] ?>' value="<?= $cartItem['price'] ?>">

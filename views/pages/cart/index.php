@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container-fluid container-md">
   <div class="row">
-    <div class="col-8">
+    <div class="col-lg-8">
       <?php require realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/cart/cartItems.php' ?>
     </div>
-    <div class="col-4">
+    <div class="col-lg-4">
       <?php require realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/cart/total.php' ?>
     </div>
   </div>
