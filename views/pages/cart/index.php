@@ -1,4 +1,4 @@
-<div class="container-fluid container-md">
+<div class="container-fluid container-md mt-4">
   <div class="row">
     <div class="col-lg-8">
       <?php require realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/cart/cartItems.php' ?>
