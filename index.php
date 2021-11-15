@@ -67,6 +67,14 @@ require 'utils/validate.php';
       }, <?= $session_time * 1000 ?>)
     </script>
   <?php } ?>
+
+  <script>
+    function addToCart(productId) {
+      $.post('/cart/add', {
+        productId
+      })
+    }
+  </script>
 </body>
 
 </html>

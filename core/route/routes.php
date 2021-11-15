@@ -19,7 +19,11 @@ $router->get('/me', 'UserController@profile');
 $router->get('/login', 'UserController@index');
 $router->get('/logout', 'UserController@logout');
 $router->get('/watch/{id}', 'WatchController@detail');
+$router->get('/cart', 'CartController@index');
 $router->post('/watch/{id}/comment', 'WatchController@addComment');
 
 $router->post('/register', 'UserController@register');
 $router->post('/login', 'UserController@login');
+$router->post('/cart/add', 'CartController@addToCart');
+$router->post('/cart/set', 'CartController@setQuantity');
+$router->post('/cart/delete', 'CartController@delete');

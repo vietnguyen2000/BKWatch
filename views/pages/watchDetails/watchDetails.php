@@ -10,6 +10,4 @@
   <div class="mt-5">
     <?php require realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/watchDetails/watchDetailsInformation.php' ?>
   </div>
-
-
 </div>
