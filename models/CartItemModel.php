@@ -25,6 +25,21 @@ class CartItemModel extends BaseModel
     }
   }
 
+  public function getCartQuantity($userId)
+  {
+    $name = 'cartView';
+    try {
+      $sql = "SELECT SUM(quantity) FROM $name WHERE (userId = ?)";
+      $stmt = $this->db->prepare($sql);
+      $stmt->bind_param('s', $userId);
+      $stmt->execute();
+      $result =  $stmt->get_result();
+      return $result->fetch_row()[0];
+    } catch (\Exception $e) {
+      return 0;
+    }
+  }
+
   public function getByCondition(array ...$conditions)
   {
     $name = 'cartView';

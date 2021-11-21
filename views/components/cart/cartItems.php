@@ -9,7 +9,7 @@
       <h4>Giỏ hàng bạn đang trống.</h4>
       <a href="/watch">Click vào đây</a> để tìm kiếm sản phẩm.
     <?php } else { ?>
-      <h4>Cart (<?= $__countItem ?> món hàng)</h4>
+      <h4>Giỏ hàng (<?= $__countItem ?> loại đồng hồ)</h4>
     <?php } ?>
     <?php
     for ($i = 0; $i < $__countItem; $i++) {

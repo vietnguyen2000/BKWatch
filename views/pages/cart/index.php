@@ -29,6 +29,10 @@
       cartItemId: id,
       quantity: newQuantity
     })
+
+    $('.cart-badge').each((index, e) => {
+      e.innerHTML = parseInt(e.innerHTML) + 1
+    })
     updateTotalPrice()
   }
 
@@ -44,6 +48,10 @@
     $.post('cart/set', {
       cartItemId: id,
       quantity: newQuantity
+    })
+
+    $('.cart-badge').each((index, e) => {
+      e.innerHTML = parseInt(e.innerHTML) - 1
     })
     updateTotalPrice()
   }

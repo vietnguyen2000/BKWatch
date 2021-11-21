@@ -28,13 +28,12 @@ require 'utils/validate.php';
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+  <script src="/assets/js/bootstrap-show-notification.js"></script>
   <!-- MDB -->
-  <style>
-    <?php
-    include './assets/css/mdb.custom.css';
-    include 'styles.css'
-    ?>
-  </style>
+
+  <link rel="stylesheet" href="/assets/css/mdb.custom.css">
+  <link rel="stylesheet" href="/styles.css">
 
   <title>BK Watch</title>
 </head>
@@ -69,10 +68,24 @@ require 'utils/validate.php';
   <?php } ?>
 
   <script>
-    function addToCart(productId) {
-      $.post('/cart/add', {
-        productId
-      })
+    function addToCart(productId, productTitle) {
+      <?php if (!isset($_SESSION['user'])) { ?>
+        window.location.href = "<?= ROOT_URL . '/login' ?>"
+        return
+      <?php } else { ?>
+        $.post('/cart/add', {
+          productId
+        })
+        $.showNotification({
+          type: "primary",
+          body: "Bạn đã thêm \"" + productTitle + "\" vào giỏ hàng thành công",
+          duration: 3000,
+          direction: 'append'
+        })
+        $('.cart-badge').each((index, e) => {
+          e.innerHTML = parseInt(e.innerHTML) + 1
+        })
+      <?php } ?>
     }
   </script>
 </body>
