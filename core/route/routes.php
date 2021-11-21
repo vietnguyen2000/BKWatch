@@ -32,4 +32,4 @@ $router->post('/payment/VNPay/payment', 'VNPayController@payment');
 $router->get('/payment/VNPay/ipn', 'VNPayController@VNPayIPN');
 $router->get('/payment/VNPay/result', 'VNPayController@VNPayReturn');
 
-$router->get('/payment/history', 'PaymentHistory@index');
+$router->get('/payment/history', 'PaymentHistoryController@index');

@@ -29,11 +29,11 @@ require 'utils/validate.php';
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-  <script src="./assets/js/bootstrap-show-notification.js"></script>
+  <script src="/assets/js/bootstrap-show-notification.js"></script>
   <!-- MDB -->
 
-  <link rel="stylesheet" href="./assets/css/mdb.custom.css">
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="/assets/css/mdb.custom.css">
+  <link rel="stylesheet" href="/styles.css">
 
   <title>BK Watch</title>
 </head>
