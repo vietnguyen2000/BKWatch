@@ -1,5 +1,8 @@
 <nav class="navbar px-2 px-md-3 px-lg-4 justify-content-between header-bg header-border-bottom-2 py-2 py-sm-3">
   <?php
+
+  use Models\CartItemModel;
+
   require 'logo.php';
   require 'searchBar.php';
   require 'minorsIcons.php';
@@ -41,7 +44,7 @@
             <a class="nav-link" href="/favorite">Danh sách yêu thích</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/cart">Giỏ hàng</a>
+            <a class="nav-link" href="/cart">Giỏ hàng <span class="badge bg-danger ms-2 cart-badge"><?= $cartQuantity ?></span></a>
           </li>
 
         <?php } else { ?>
