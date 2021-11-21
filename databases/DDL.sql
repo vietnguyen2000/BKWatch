@@ -108,26 +108,30 @@ CREATE TABLE BlogComment (
   updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
 ) ENGINE = InnoDB;
-CREATE TABLE Order (
-  id varchar(255) NOT NULL,
+CREATE TABLE Orders (
+  id int(10) NOT NULL AUTO_INCREMENT,
   userId int(10) NOT NULL,
   address varchar(255),
-  phone varchar(255),
-  invoice bit(1) NOT NULL,
-  total int(10) NOT NULL,
+  phoneNumber varchar(255),
+  total DECIMAL(14, 2) NOT NULL,
   paymentMethod varchar(255),
-  currency varchar(255),
-  shippingFee int(10) NOT NULL,
+  currency VARCHAR(255) DEFAULT 'VND',
+  shippingFee DECIMAL(14, 2) NOT NULL,
   shippingProvider varchar(255),
   createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
 ) ENGINE = InnoDB;
-CREATE TABLE OrderDetail (
+CREATE TABLE OrderItem (
   id int(10) NOT NULL AUTO_INCREMENT,
   quantity int(10) NOT NULL,
-  productId int(10) NOT NULL,
-  orderId varchar(255) NOT NULL,
+  productTitle VARCHAR(255),
+  productCode VARCHAR(255),
+  productColor VARCHAR(255),
+  amount int(10),
+  price DECIMAL(14, 2),
+  discount int(10),
+  orderId int(10) NOT NULL,
   createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
@@ -178,7 +182,7 @@ ALTER TABLE
 ADD
   CONSTRAINT FKOrderDetai559638 FOREIGN KEY (productId) REFERENCES Product (id);
 ALTER TABLE
-  OrderDetail
+  OrderItem
 ADD
   CONSTRAINT FKOrderDetai762072 FOREIGN KEY (orderId) REFERENCES Order (id);
 ALTER TABLE

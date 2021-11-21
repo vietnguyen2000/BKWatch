@@ -27,3 +27,7 @@ $router->post('/login', 'UserController@login');
 $router->post('/cart/add', 'CartController@addToCart');
 $router->post('/cart/set', 'CartController@setQuantity');
 $router->post('/cart/delete', 'CartController@delete');
+
+$router->post('/payment/VNPay/payment', 'VNPayController@payment');
+$router->get('/payment/VNPay/ipn', 'VNPayController@VNPayIPN');
+$router->get('/payment/VNPay/result', 'VNPayController@VNPayIPN');
