@@ -2,11 +2,11 @@
 
 namespace Models;
 
-class OrderModel extends BaseModel
+class OrdersModel extends BaseModel
 {
   public function __construct()
   {
     parent::__construct();
-    $this->name = 'order';
+    $this->name = 'orders';
   }
 }
