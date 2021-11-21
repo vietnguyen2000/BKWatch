@@ -30,4 +30,4 @@ $router->post('/cart/delete', 'CartController@delete');
 
 $router->post('/payment/VNPay/payment', 'VNPayController@payment');
 $router->get('/payment/VNPay/ipn', 'VNPayController@VNPayIPN');
-$router->get('/payment/VNPay/result', 'VNPayController@VNPayIPN');
+$router->get('/payment/VNPay/result', 'VNPayController@VNPayReturn');

@@ -98,6 +98,7 @@ abstract class BaseModel
       $stmt->execute();
       return $stmt->affected_rows;
     } catch (\Exception $e) {
+      print_r($e);
       return false;
     }
   }

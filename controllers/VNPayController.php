@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use DateTime;
 use Exception;
 use Models\CartItemModel;
 use Models\OrdersModel;
@@ -37,16 +38,6 @@ class VNPayController extends BaseController
 
     $total = $prices + $shipFee;
 
-    print_r([
-      "userId" => $userId,
-      "address" => $address,
-      "phoneNumber" => $phoneNumber,
-      "total" => $total,
-      "paymentMethod" => "VNPay",
-      "shippingFee" => $shipFee,
-      "shippingProvider" => "default"
-    ]);
-
     $orderModel = new OrdersModel();
     $orderId = $orderModel->insert([
       "userId" => $userId,
@@ -55,7 +46,8 @@ class VNPayController extends BaseController
       "total" => $total,
       "paymentMethod" => "VNPay",
       "shippingFee" => $shipFee,
-      "shippingProvider" => "default"
+      "shippingProvider" => "default",
+      "status" => 0
     ]);
 
     $totalFormat = currency_format($total, 'VND');
@@ -89,9 +81,9 @@ class VNPayController extends BaseController
     global $vnp_Url;
     global $vnp_HashSecret;
     global $vnp_ReturnUrl;
-    global $vnp_IPNUrl;
-    if (!isset($vnp_TmnCode) || !isset($vnp_Url)  || !isset($vnp_HashSecret)) {
-      $this->showError('Lỗi thanh toán', 'Ứng dụng hiện chưa hỗ trợ thanh toán!', 'Nếu bạn là admin của ứng dụng, xin hãy kiểm tra lại config của server để có thể mở hỗ trợ thanh toán!');
+    global $vnp_IpnUrl;
+    if (!isset($vnp_TmnCode) || !isset($vnp_Url)  || !isset($vnp_HashSecret) || !isset($vnp_ReturnUrl) || !isset($vnp_IpnUrl)) {
+      $this->showError('503', 'Ứng dụng hiện chưa hỗ trợ thanh toán!', 'Nếu bạn là admin của ứng dụng, xin hãy kiểm tra lại config của server để có thể mở hỗ trợ thanh toán!');
       return;
     }
 
@@ -152,7 +144,7 @@ class VNPayController extends BaseController
       "vnp_Inv_Company" => $vnp_Inv_Company,
       "vnp_Inv_Taxcode" => $vnp_Inv_Taxcode,
       "vnp_Inv_Type" => $vnp_Inv_Type,
-      "vnp_IpnUrl" => $vnp_IPNUrl
+      "vnp_IpnUrl" => $vnp_IpnUrl
     );
 
     if (isset($vnp_BankCode) && $vnp_BankCode != "") {
@@ -186,6 +178,7 @@ class VNPayController extends BaseController
     $returnData = array(
       'code' => '00', 'message' => 'success', 'data' => $vnp_Url_redirect
     );
+
     $this->redirect($vnp_Url_redirect);
   }
 
@@ -299,12 +292,29 @@ class VNPayController extends BaseController
     $secureHash = hash_hmac('sha512', $hashData, $vnp_HashSecret);
     if ($secureHash == $vnp_SecureHash) {
       if ($_GET['vnp_ResponseCode'] == '00') {
-        echo "GD Thanh cong";
+        $ordersModel = new OrdersModel();
+        $ordersModel->updateById($_GET['vnp_TxnRef'], [
+          "status" => 1,
+          "bankTranNo" => strval($_GET['vnp_BankTranNo']),
+          "transactionNo" => strval($_GET['vnp_TransactionNo']),
+          "payDate" => DateTime::createFromFormat('YmdHis', strval($_GET['vnp_PayDate']))->format('Y-m-d H:i:s')
+        ]);
       } else {
-        echo "GD Khong thanh cong";
+        $_reason = 'Không rõ';
+        $_resCode = $_GET['vnp_ResponseCode'];
+        if ($_resCode == '01') {
+          $_reason = 'Không tìm thấy mã order';
+        } else if ($_resCode == '02') {
+          $_reason = 'Đơn hàng đã được xác nhận';
+        } else if ($_resCode == '04') {
+          $_reason = 'Số tiền thanh toán không chính xác';
+        } else if ($_resCode == '97') {
+          $_reason = 'Chữ ký không chính xác';
+        }
+        $this->showError('500', 'Lỗi thanh toán', 'Thanh toán không thành công với lý do: ' . $_reason);
       }
     } else {
-      echo "Chu ky khong hop le";
+      $this->showError('500', 'Lỗi thanh toán', 'Chữ ký thanh toán không hợp lệ!');
     }
   }
 }
