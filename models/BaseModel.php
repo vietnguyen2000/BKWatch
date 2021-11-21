@@ -74,9 +74,11 @@ abstract class BaseModel
       $stmt = $this->db->prepare($sql);
       $stmt->bind_param($types, ...$valuesList);
       $stmt->execute();
-      print_r($stmt);
-      print_r('<br>');
-      return $stmt->affected_rows;
+
+      $stmt = $this->db->query("SELECT LAST_INSERT_ID()");
+      $lastId = $stmt->fetch_row();
+
+      return $lastId[0];
     } catch (\Exception $e) {
       return false;
     }
@@ -96,6 +98,7 @@ abstract class BaseModel
       $stmt->execute();
       return $stmt->affected_rows;
     } catch (\Exception $e) {
+      print_r($e);
       return false;
     }
   }
