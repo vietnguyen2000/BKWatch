@@ -5,6 +5,7 @@ namespace Controllers;
 use DateTime;
 use Exception;
 use Models\CartItemModel;
+use Models\OrderItemsModel;
 use Models\OrdersModel;
 
 if (!function_exists('currency_format')) {
@@ -50,22 +51,26 @@ class VNPayController extends BaseController
       "status" => 0
     ]);
 
+    $orderItemsModel = new OrderItemsModel();
+
+    for ($i = 0; $i < count($listCartItems); $i++) {
+      $item = $listCartItems[$i];
+      $orderItemsModel->insert([
+        "quantity" => $item['quantity'],
+        "productTitle" => $item['title'],
+        "productCode" => $item['productCode'],
+        "productColor" => $item['color'],
+        "price" => $item['price'],
+        "discount" => $item['discount'],
+        "orderId" => $orderId,
+        "productId" => $item['productId']
+      ]);
+    }
+
+    $cartItemModel->clear($userId);
+
+
     $totalFormat = currency_format($total, 'VND');
-
-    global $vnp_TmnCode;
-    global $vnp_Url;
-    global $vnp_HashSecret;
-    global $vnp_ReturnUrl;
-
-    print_r([
-      "orderId" => $orderId,
-      "tmvCode" => $vnp_TmnCode,
-      "vnp_url" => $vnp_Url,
-      "hashsecret" => $vnp_HashSecret,
-      "vnp_ReturnUrl" => $vnp_ReturnUrl,
-      "totalFormat" => $totalFormat
-
-    ]);
 
     $this->VNPayPayment([
       'order_id' => $orderId,
@@ -299,6 +304,7 @@ class VNPayController extends BaseController
           "transactionNo" => strval($_GET['vnp_TransactionNo']),
           "payDate" => DateTime::createFromFormat('YmdHis', strval($_GET['vnp_PayDate']))->format('Y-m-d H:i:s')
         ]);
+        $this->redirect('/');
       } else {
         $_reason = 'Không rõ';
         $_resCode = $_GET['vnp_ResponseCode'];

@@ -2,7 +2,7 @@
 
 namespace Models;
 
-class OrderItemModel extends BaseModel
+class OrderItemsModel extends BaseModel
 {
   public function __construct()
   {

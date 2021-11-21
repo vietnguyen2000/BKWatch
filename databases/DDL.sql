@@ -129,10 +129,10 @@ CREATE TABLE Orders (
 CREATE TABLE OrderItem (
   id int(10) NOT NULL AUTO_INCREMENT,
   quantity int(10) NOT NULL,
+  productId int(10) NOT NULL,
   productTitle VARCHAR(255),
   productCode VARCHAR(255),
   productColor VARCHAR(255),
-  amount int(10),
   price DECIMAL(14, 2),
   discount int(10),
   orderId int(10) NOT NULL,
@@ -182,11 +182,11 @@ ALTER TABLE
 ADD
   CONSTRAINT FKProductCom696003 FOREIGN KEY (userId) REFERENCES User (id);
 ALTER TABLE
-  OrderDetail
+  OrderItems
 ADD
   CONSTRAINT FKOrderDetai559638 FOREIGN KEY (productId) REFERENCES Product (id);
 ALTER TABLE
-  OrderItem
+  OrderItems
 ADD
   CONSTRAINT FKOrderDetai762072 FOREIGN KEY (orderId) REFERENCES Order (id);
 ALTER TABLE
