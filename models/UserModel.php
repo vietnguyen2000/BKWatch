@@ -18,4 +18,16 @@ class UserModel extends BaseModel
     $this->update(['rememberToken' => $randomString], ["username" => $username]);
     return $randomString;
   }
+
+  public function getAllUser()
+  {
+    try {
+      $sql = "SELECT * FROM UserPreview";
+      $result = $this->db->query($sql);
+      $data = $result->fetch_all(mode: MYSQLI_ASSOC);
+      return $data;
+    } catch (\Exception $e) {
+      return [];
+    }
+  }
 }

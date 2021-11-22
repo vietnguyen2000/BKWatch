@@ -16,7 +16,9 @@
         <?php
         foreach ($data['products'] as $product) {
           if (!$product['isBestSale']) continue;
+          echo '<div class="col-6 col-md-4 col-lg-3 col-xl-2 my-2">';
           require 'cardviewProduct.php';
+          echo '</div>';
         }
         ?>
         <div class="col my-2"> </div>

@@ -49,6 +49,28 @@ class ProductModel extends BaseModel
     }
   }
 
+  public function getProductByValue(string $value)
+  {
+    try {
+      $sql = "SELECT * FROM bkwatch.productpreview WHERE 
+      productCode LIKE '%$value%'
+      OR  title LIKE '%$value%'
+      OR content LIKE '%$value%' 
+      OR tag LIKE '%$value%'
+      OR brandTitle LIKE '%$value%'
+      OR categoryTitle LIKE '%$value%'";
+      $result = $this->db->query($sql);
+      $data = $result->fetch_all(mode: MYSQLI_ASSOC);
+      $data = array_map(function ($r) {
+        $r['imageURLs'] = explode('||', $r['imageURL']);
+        return $r;
+      }, $data);
+      return $data;
+    } catch (\Exception $e) {
+      return [];
+    }
+  }
+
   public function getComments(int $id)
   {
     try {

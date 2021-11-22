@@ -14,7 +14,7 @@
       <h4><strong><?php echo $blog_block_title ?></strong></h4>
       <p class="text-muted">
         <?php
-        echo mb_substr($blog_block_content, 0, 300) . "..."
+        echo mb_substr($blog_block_content, 0, 320) . "..."
         ?>
       </p>
       <button type="button" class="btn btn-primary">Read more</button>
