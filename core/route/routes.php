@@ -27,3 +27,7 @@ $router->post('/login', 'UserController@login');
 $router->post('/cart/add', 'CartController@addToCart');
 $router->post('/cart/set', 'CartController@setQuantity');
 $router->post('/cart/delete', 'CartController@delete');
+
+
+$router->get('/cms', 'cmsController@index');
+$router->get('/cmsBlog', 'cmsBlogController@index');

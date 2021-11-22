@@ -263,7 +263,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 <script>
+Array.from(document.getElementsByClassName('mobile-aside-button')).forEach(function (el) {
+  el.addEventListener('click', function (e) {
+    var dropdownIcon = e.currentTarget.getElementsByClassName('icon')[0].getElementsByClassName('mdi')[0];
+    document.documentElement.classList.toggle('aside-mobile-expanded');
+    dropdownIcon.classList.toggle('mdi-forwardburger');
+    dropdownIcon.classList.toggle('mdi-backburger');
+  });
+});
+/* NavBar menu mobile toggle */
 
+Array.from(document.getElementsByClassName('--jb-navbar-menu-toggle')).forEach(function (el) {
+  el.addEventListener('click', function (e) {
+    var dropdownIcon = e.currentTarget.getElementsByClassName('icon')[0].getElementsByClassName('mdi')[0];
+    document.getElementById(e.currentTarget.getAttribute('data-target')).classList.toggle('active');
+    dropdownIcon.classList.toggle('mdi-dots-vertical');
+    dropdownIcon.classList.toggle('mdi-close');
+  });
+});
 </script>
 
 </body>

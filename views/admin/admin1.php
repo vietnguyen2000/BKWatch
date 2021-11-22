@@ -1,47 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Blog</title>
 
+  <link rel="stylesheet" href="main.css">
   <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
   <style>
-    <?php include "main.css" ?>
+    .inRow{
+      float: left;
+      padding-right: 50px;
+    }
   </style>
+</head>
+<body>
 
 <div id="app">
 
-<nav id="navbar-main" class="navbar is-fixed-top">
-  <div class="navbar-brand">
-    <a class="navbar-item mobile-aside-button">
-      <span class="icon"><i class="mdi mdi-forwardburger mdi-24px"></i></span>
-    </a>
-    <div class="navbar-item">
-      <div class="control"><input placeholder="Search everywhere..." class="input"></div>
-    </div>
-  </div>
-  <div class="navbar-brand is-right">
-    <a class="navbar-item --jb-navbar-menu-toggle" data-target="navbar-menu">
-      <span class="icon"><i class="mdi mdi-dots-vertical mdi-24px"></i></span>
-    </a>
-  </div>
-  <div class="navbar-menu" id="navbar-menu" style="padding-top: 0px;">
-    <div class="navbar-end">
-      <div class="navbar-item dropdown has-divider has-user-avatar">
-        <a class="navbar-link">
-          <div class="user-avatar">
-            <img src="https://avatars.dicebear.com/v2/initials/john-doe.svg" alt="Bach Khoa" class="rounded-full">
-          </div>
-          <div class="is-user-name"><span>Bach khoa</span></div>
-          <span class="icon"><i class="mdi mdi-chevron-down"></i></span>
-        </a>
-      </div>
-      <a href="#" class="navbar-item has-divider desktop-icon-only">
-        <span class="icon"><i class="mdi mdi-help-circle-outline"></i></span>
-        <span>About</span>
-      </a>
-      <a href="#" title="Log out" class="navbar-item desktop-icon-only">
-        <span class="icon"><i class="mdi mdi-logout"></i></span>
-        <span>Log out</span>
-      </a>
-    </div>
-  </div>
-</nav>
+<?php
+  require './header.php';
+?>
 
 <aside class="aside is-placed-left is-expanded">
   <div class="aside-tools">
@@ -52,7 +32,7 @@
   <div class="menu is-menu-main">
     <p class="menu-label">General</p>
     <ul class="menu-list">
-      <li class="--set-active-index-html">
+      <li class="active">
         <a href="index.html">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
           <span class="menu-item-label">Dashboard</span>
@@ -67,7 +47,7 @@
           <span class="menu-item-label">Introduction</span>
         </a>
       </li>
-      <li class="active">
+      <li>
         <a href="#">
           <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
           <span class="menu-item-label">Blog</span>
@@ -122,24 +102,81 @@
   </div>
 </aside>
 
+<!-- =========================================================================== -->
+<section class="is-title-bar">
+  <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+    <ul>
+      <li>Admin</li>
+      <li>Dashboard</li>
+    </ul>
+  </div>
+</section>
+
+  <section class="section main-section">
+    <div class="grid gap-6 grid-cols-1 md:grid-cols-3 mb-6">
+      <div class="card">
+        <div class="card-content">
+          <div class="flex items-center justify-between">
+            <div class="widget-label">
+              <h3>
+                Clients
+              </h3>
+              <h1>
+                512
+              </h1>
+            </div>
+            <span class="icon widget-icon text-green-500"><i class="mdi mdi-account-multiple mdi-48px"></i></span>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <div class="flex items-center justify-between">
+            <div class="widget-label">
+              <h3>
+                Sales
+              </h3>
+              <h1>
+                $7,770
+              </h1>
+            </div>
+            <span class="icon widget-icon text-blue-500"><i class="mdi mdi-cart-outline mdi-48px"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-content">
+          <div class="flex items-center justify-between">
+            <div class="widget-label">
+              <h3>
+                Performance
+              </h3>
+              <h1>
+                256%
+              </h1>
+            </div>
+            <span class="icon widget-icon text-red-500"><i class="mdi mdi-finance mdi-48px"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+<?php
+  require './footer.php';
+?>
+
+
+</div>
+
+
 
 <script>
-Array.from(document.getElementsByClassName('mobile-aside-button')).forEach(function (el) {
-  el.addEventListener('click', function (e) {
-    var dropdownIcon = e.currentTarget.getElementsByClassName('icon')[0].getElementsByClassName('mdi')[0];
-    document.documentElement.classList.toggle('aside-mobile-expanded');
-    dropdownIcon.classList.toggle('mdi-forwardburger');
-    dropdownIcon.classList.toggle('mdi-backburger');
-  });
-});
-/* NavBar menu mobile toggle */
 
-Array.from(document.getElementsByClassName('--jb-navbar-menu-toggle')).forEach(function (el) {
-  el.addEventListener('click', function (e) {
-    var dropdownIcon = e.currentTarget.getElementsByClassName('icon')[0].getElementsByClassName('mdi')[0];
-    document.getElementById(e.currentTarget.getAttribute('data-target')).classList.toggle('active');
-    dropdownIcon.classList.toggle('mdi-dots-vertical');
-    dropdownIcon.classList.toggle('mdi-close');
-  });
-});
 </script>
+
+</body>
+</html>
