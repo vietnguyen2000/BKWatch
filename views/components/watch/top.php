@@ -53,6 +53,7 @@
           <?php
           $watchPageURL = '/watch?';
           foreach ($data['searchCondition'] as $key => $value) {
+            if ($key == "sort") continue;
             $watchPageURL .= $key . "=" . $value . "&";
           }
           $sortClear = substr($watchPageURL, 0, -1);

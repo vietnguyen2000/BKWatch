@@ -17,7 +17,6 @@ class WatchController extends BaseController
         $watchAll = $watchModel->getAll();
         $userModel = new UserModel();
         $userAll = $userModel->getAllUser();
-        // $data = $watchModel->getAll();
         $view = new WatchView();
         $page = 1;
         $sort = "";
@@ -43,12 +42,11 @@ class WatchController extends BaseController
             }
             if (isset($_GET['sort'])) {
                 $sort = (int)$_GET['sort'];
+                // $temp = ['sort' => (int)$_GET['sort']];
+                // $searchCond += $temp;
             }
         }
-        // print_r($searchCond);
-        // if (!empty($searchCond)) {
         $data = $watchModel->getProductByCondition($searchCond, $sort);
-        // }
         $view->render([
             'url' => $url,
             'nav' => '/watch',
@@ -58,6 +56,7 @@ class WatchController extends BaseController
             'productAll' => $watchAll,
             'userAll' => $userAll,
             'searchCondition' => $searchCond,
+            'sort' => $sort,
         ]);
     }
 

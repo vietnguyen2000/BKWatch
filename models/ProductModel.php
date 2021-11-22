@@ -67,7 +67,6 @@ class ProductModel extends BaseModel
       if ($sort == 4) {
         $sortQuery = "ORDER BY title DESC";
       }
-      print_r($sort);
       if (empty($cond)) {
         return $this->getAll(null, $sortQuery);
       }

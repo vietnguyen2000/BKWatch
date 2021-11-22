@@ -11,6 +11,9 @@
       foreach ($data['searchCondition'] as $key => $value) {
         $watchPageURL .= $key . "=" . $value . "&";
       }
+      if ($data['sort'] != "") {
+        $watchPageURL = $watchPageURL . "sort=" . $data['sort'] . "&";
+      }
       $watchPageURL = $watchPageURL . "page=";
       foreach ($data['products'] as $product) {
         if ($count < $start) {
