@@ -24,7 +24,7 @@ if (!function_exists('currency_format')) {
       <p class="text-primary"><?= currency_format($product['price']) ?></p>
     </div>
     <div>
-      <button class="btn btn-primary" onclick="addToCart(<?= $product['id'] ?>)">Thêm vào giỏ</button>
+      <button class="btn btn-primary" onclick="addToCart(<?= $product['id'] ?>, '<?= $product['title'] ?>')">Thêm vào giỏ</button>
     </div>
   </div>
 </div>

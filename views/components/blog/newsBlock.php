@@ -17,7 +17,7 @@
       </p>
       <p>
         <?php
-        echo mb_substr($blog_block_content, 0, 100) . "...";
+        echo mb_substr($blog_block_content, 0, 100, 'UTF-8') . "...";
         ?>
       </p>
     </a>
