@@ -11,15 +11,17 @@
     <div class="collapse navbar-collapse" id="navbarExample01">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 mt-3">
         <li class="nav-item active">
-          <div class="input-group">
-            <div class="form-outline col-10 col-xl-11">
-              <input type="text" id="searchBar" class="form-control search-bar" placeholder="Tìm kiếm..." />
-              <!-- <label class="form-label" for="searchBar">Tìm kiếm ... </label> -->
+          <form action="/watch" method="get">
+            <div class="input-group">
+              <div class="form-outline col-10 col-xl-11">
+                <input type="text" id="search" name="search" class="form-control search-bar" placeholder="Tìm kiếm..." />
+                <!-- <label class="form-label" for="searchBar">Tìm kiếm ... </label> -->
+              </div>
+              <button class="btn btn-primary px-0 col-2 col-xl-1" type="submit">
+                <i class="fas fa-search"></i>
+              </button>
             </div>
-            <button class="btn btn-primary px-0 col-2 col-xl-1" type="button">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
+          </form>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/">Trang chủ</a>

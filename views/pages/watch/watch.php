@@ -22,6 +22,7 @@
           </div>
           <div class="filter-normal-watchPage">
             <?php
+            $searchCondition = $data['searchCondition'];
             require(realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/watch/filter/menu.php');
             ?>
           </div>

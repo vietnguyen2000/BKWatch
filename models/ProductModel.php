@@ -12,13 +12,16 @@ class ProductModel extends BaseModel
     $this->name = 'product';
   }
 
-  public function getAll(int $limit = null)
+  public function getAll(int $limit = null, $sort = null)
   {
     try {
-      $sql = "SELECT * FROM ProductPreview";
+      $sql = "SELECT * FROM ProductPreview ";
       if ($limit != null) {
-        $sql += 'LIMIT' . $limit;
+        $sql .= 'LIMIT' . $limit;
       };
+      if ($sort != null) {
+        $sql .= $sort;
+      }
       $result = $this->db->query($sql);
       $data = $result->fetch_all(mode: MYSQLI_ASSOC);
       $data = array_map(function ($r) {
@@ -48,17 +51,48 @@ class ProductModel extends BaseModel
       return [];
     }
   }
-
-  public function getProductByValue(string $value)
+  public function getProductByCondition(array $cond = [], $sort = "")
   {
     try {
-      $sql = "SELECT * FROM bkwatch.productpreview WHERE 
-      productCode LIKE '%$value%'
-      OR  title LIKE '%$value%'
-      OR content LIKE '%$value%' 
-      OR tag LIKE '%$value%'
-      OR brandTitle LIKE '%$value%'
-      OR categoryTitle LIKE '%$value%'";
+      $sortQuery = "";
+      if ($sort == 1) {
+        $sortQuery = "ORDER BY price DESC";
+      }
+      if ($sort == 2) {
+        $sortQuery = "ORDER BY price ASC";
+      }
+      if ($sort == 3) {
+        $sortQuery = "ORDER BY title ASC";
+      }
+      if ($sort == 4) {
+        $sortQuery = "ORDER BY title DESC";
+      }
+      print_r($sort);
+      if (empty($cond)) {
+        return $this->getAll(null, $sortQuery);
+      }
+      $search = "";
+      if (isset($cond['search'])) {
+        $search .= $cond['search'];
+      }
+      if (isset($cond['tag'])) {
+        $search .= "|" . $cond['tag'];
+      }
+      if (isset($cond['brandTitle'])) {
+        $search .= "|" . $cond['brandTitle'];
+      }
+      if (isset($cond['categoryTitle'])) {
+        $search .= "|" . $cond['categoryTitle'];
+      }
+      $sql = "SELECT * FROM bkwatch.productpreview 
+      WHERE CONCAT_WS('', 
+      productCode, 
+      title, 
+      content, 
+      tag, 
+      categoryTitle, 
+      brandTitle) 
+      REGEXP '$search' " . $sortQuery;
       $result = $this->db->query($sql);
       $data = $result->fetch_all(mode: MYSQLI_ASSOC);
       $data = array_map(function ($r) {

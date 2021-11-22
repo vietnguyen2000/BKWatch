@@ -1,4 +1,4 @@
-<main class="my-5">
+<main class="my-2">
   <div class="tab-pane fade show active" id="ldp-home-tabs-1" role="tabpanel" aria-labelledby="ldp-home-tab-1">
     <div class="row justify-content-around">
       <?php
@@ -7,7 +7,11 @@
       $start = $len * $page - $len;
       $end = $len * $page;
       $count = 0;
-      $reverseData = array_reverse($data['products']);
+      $watchPageURL = '/watch?';
+      foreach ($data['searchCondition'] as $key => $value) {
+        $watchPageURL .= $key . "=" . $value . "&";
+      }
+      $watchPageURL = $watchPageURL . "page=";
       foreach ($data['products'] as $product) {
         if ($count < $start) {
           $count += +1;
@@ -25,12 +29,12 @@
       <div class="col my-2"> </div>
     </div>
   </div>
-  <div style="justify-content: center; display: flex; padding: 40 0 0 0">
+  <div style="justify-content: center; display: flex; padding: 30 0 0 0">
     <nav aria-label="...">
       <ul class="pagination pagination-circle">
         <li class="page-item">
           <a class="page-link" href=<?php if ($data['page'] > 1) {
-                                      echo "/watch" . "?page=" . $data['page'] - 1;
+                                      echo $watchPageURL . $data['page'] - 1;
                                     } else {
                                       echo "#";
                                     } ?> tabindex="-1" aria-disabled="true">Previous</a>
@@ -45,13 +49,13 @@
           if ($i == $curPage) {
             echo '
             <li class="page-item active">
-              <a class="page-link" href="' . "/watch" .  '?page=' . $i . '">' . $i . '<span class="sr-only">(current)</span></a>
+              <a class="page-link" href="' . $watchPageURL . $i . '">' . $i . '<span class="sr-only">(current)</span></a>
             </li>
             ';
           } else {
             echo '
             <li class="page-item">
-              <a class="page-link" href="' . "/watch" .  '?page=' . $i . '">' . $i . '</a>
+              <a class="page-link" href="' . $watchPageURL . $i . '">' . $i . '</a>
             </li>
             ';
           }
@@ -59,7 +63,7 @@
         ?>
         <li class="page-item">
           <a class="page-link" href=<?php if ($data['page'] < ceil(1.0 * count($data['products']) / $data['length'])) {
-                                      echo  "/watch" . "?page=" . $data['page'] + 1;
+                                      echo  $watchPageURL . $data['page'] + 1;
                                     } else {
                                       echo "#";
                                     } ?>>Next</a>
