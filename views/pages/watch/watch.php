@@ -13,7 +13,7 @@
       $dataRateTotal = [$data['productAll'], $data['userAll']];
       require(realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/watch/rateTotal.php');
       ?>
-      <div class="row">
+      <div class="row" style="padding: 20 0 0 0;">
         <div class="col-12 col-lg-3 left-watchPage">
           <div class="filter-nav-watchPage">
             <?php
