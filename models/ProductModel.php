@@ -77,11 +77,11 @@ class ProductModel extends BaseModel
       if (isset($cond['tag'])) {
         $search .= "|" . $cond['tag'];
       }
-      if (isset($cond['brandTitle'])) {
-        $search .= "|" . $cond['brandTitle'];
+      if (isset($cond['brand'])) {
+        $search .= "|" . $cond['brand'];
       }
-      if (isset($cond['categoryTitle'])) {
-        $search .= "|" . $cond['categoryTitle'];
+      if (isset($cond['category'])) {
+        $search .= "|" . $cond['category'];
       }
       $sql = "SELECT * FROM bkwatch.productpreview 
       WHERE CONCAT_WS('', 
@@ -131,6 +131,35 @@ class ProductModel extends BaseModel
       return $res[0]['avgRate'];
     } catch (\Exception $e) {
       return 0;
+    }
+  }
+
+  public function getAllCategory()
+  {
+    try {
+      $sql = "SELECT bkwatch.productcategory.id AS id, bkwatch.productcategory.title AS title FROM bkwatch.productcategory";
+      $result = $this->db->query($sql);
+      $data = $result->fetch_all(mode: MYSQLI_ASSOC);
+      foreach ($data as $key_data => $value_data) {
+        $data[$key_data]['title'] = strtolower($value_data['title']);
+      }
+      return $data;
+    } catch (\Exception $e) {
+      return [];
+    }
+  }
+  public function getAllBrand()
+  {
+    try {
+      $sql = "SELECT bkwatch.productbrand.id AS id, bkwatch.productbrand.title AS title FROM bkwatch.productbrand";
+      $result = $this->db->query($sql);
+      $data = $result->fetch_all(mode: MYSQLI_ASSOC);
+      foreach ($data as $key_data => $value_data) {
+        $data[$key_data]['title'] = strtolower($value_data['title']);
+      }
+      return $data;
+    } catch (\Exception $e) {
+      return [];
     }
   }
 }

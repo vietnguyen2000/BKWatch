@@ -72,16 +72,16 @@
     </div>
   </div>
   <div class="col-12" style="padding-top: 20px;">
-    <div style="display: flex;">
+    <div style="display: flex; flex-wrap: wrap;">
       <?php
       if (!empty($searchCondition)) {
         echo 'Tìm kiếm: ';
-        foreach ($searchCondition as $key => $value) {
-          echo '<div style="padding: 0 5 0 5">';
-          echo '<button style="padding: 3 10;" type="button" class="btn btn-outline-primary chips-watchPage" data-mdb-ripple-color="dark">';
-          echo $value;
-          echo '</button>';
-          echo '</div>';
+        foreach ($searchCondition as $value) {
+          $explode_chiptag = explode("@", $value);
+          array_shift($explode_chiptag);
+          foreach ($explode_chiptag as $data_chiptag) {
+            require 'chiptag.php';
+          }
         }
       }
       ?>

@@ -16,7 +16,7 @@ if (!function_exists('currency_format')) {
       <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
     </a>
   </div>
-  <div class="card-body cardview-product-content p-2 pb-3">
+  <div class="card-body cardview-product-content p-2 pb-3" style="text-align:center;justify-content:center;">
     <div>
       <h6 class="card-title text-center" style="min-height: 60px;"><?= $product['title'] ?></h6>
     </div>

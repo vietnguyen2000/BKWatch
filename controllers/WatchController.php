@@ -15,6 +15,8 @@ class WatchController extends BaseController
         $view = new WatchView();
         $watchModel = new ProductModel();
         $watchAll = $watchModel->getAll();
+        $watchCategory = $watchModel->getAllCategory();
+        $watchBrand = $watchModel->getAllBrand();
         $userModel = new UserModel();
         $userAll = $userModel->getAllUser();
         $view = new WatchView();
@@ -32,18 +34,16 @@ class WatchController extends BaseController
                 $temp = ['tag' => $_GET['tag']];
                 $searchCond += $temp;
             }
-            if (isset($_GET['brandTitle'])) {
-                $temp = ['brandTitle' => $_GET['brandTitle']];
+            if (isset($_GET['brand'])) {
+                $temp = ['brand' => $_GET['brand']];
                 $searchCond += $temp;
             }
-            if (isset($_GET['categoryTitle'])) {
-                $temp = ['categoryTitle' => $_GET['categoryTitle']];
+            if (isset($_GET['category'])) {
+                $temp = ['category' => $_GET['category']];
                 $searchCond += $temp;
             }
             if (isset($_GET['sort'])) {
                 $sort = (int)$_GET['sort'];
-                // $temp = ['sort' => (int)$_GET['sort']];
-                // $searchCond += $temp;
             }
         }
         $data = $watchModel->getProductByCondition($searchCond, $sort);
@@ -51,12 +51,14 @@ class WatchController extends BaseController
             'url' => $url,
             'nav' => '/watch',
             'products' => $data,
-            'page' => $page,
-            'length' => 3,
+            'length' => 2,
             'productAll' => $watchAll,
             'userAll' => $userAll,
-            'searchCondition' => $searchCond,
+            'categoryAll' => $watchCategory,
+            'brandAll' => $watchBrand,
+            'page' => $page,
             'sort' => $sort,
+            'searchCondition' => $searchCond,
         ]);
     }
 
