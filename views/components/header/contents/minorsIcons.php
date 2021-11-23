@@ -1,5 +1,8 @@
 <div class="d-none d-sm-block">
   <?php
+
+  use Models\CartItemModel;
+
   $isLogged = isset($_SESSION['user']);
   if (!$isLogged) {
     echo
@@ -21,8 +24,12 @@
 
   <a href="/cart" class="ps-2 text-decoration-none">
     <i class="fas fa-shopping-cart fa-2x"></i>
+    <?php
+    if (isset($_SESSION['user'])) {
+      $cartItemModel = new CartItemModel();
+      $cartQuantity = $cartItemModel->getCartQuantity($_SESSION['user']['id']);
+    ?>
+      <span class="badge rounded-pill badge-notification bg-danger cart-badge"><?= $cartQuantity ?></span>
+    <?php } ?>
   </a>
-
-
-
 </div>

@@ -31,3 +31,8 @@ $router->post('/cart/delete', 'CartController@delete');
 
 $router->get('/cms', 'cmsController@index');
 $router->get('/cmsBlog', 'cmsBlogController@index');
+$router->post('/payment/VNPay/payment', 'VNPayController@payment');
+$router->get('/payment/VNPay/ipn', 'VNPayController@VNPayIPN');
+$router->get('/payment/VNPay/result', 'VNPayController@VNPayReturn');
+
+$router->get('/payment/history', 'PaymentHistoryController@index');

@@ -6,7 +6,7 @@ class WatchView extends BaseView
 {
   protected function processRenderBody(array $data = [])
   {
-    //
+    require('pages/watch/watch.php');
   }
 
   public function renderDetails(array $data = [])

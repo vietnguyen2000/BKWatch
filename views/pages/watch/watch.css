@@ -1,0 +1,22 @@
+.body-watchPage {
+    padding: 20 0;
+}
+.left-watchPage {
+    background-color: transparent;
+}
+.right-watchPage {
+    background-color: transparent;
+}
+@media only screen and (max-width: 900px) {
+    .filter-normal-watchPage {
+        display: none;
+    }
+}
+@media only screen and (min-width: 901px) {
+    .filter-nav-watchPage {
+        display: none;
+    }
+}
+.chips-watchPage {
+    border-radius: 45px;
+}
