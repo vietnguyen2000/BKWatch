@@ -41,11 +41,11 @@ $href_value = "";
 if ($chiptag_checkbox_search != "") {
   $href_value .= "&" . $chiptag_checkbox_search;
 }
-if ($chiptag_checkbox_category != "") {
+if ($chiptag_checkbox_category != []) {
   $temp = http_build_query(array("category" => $chiptag_checkbox_category));
   $href_value .= "&" . $temp;
 }
-if ($chiptag_checkbox_brand != "") {
+if ($chiptag_checkbox_brand != []) {
   $temp = http_build_query(array("brand" => $chiptag_checkbox_brand));
   $href_value .= "&" . $temp;
 }
