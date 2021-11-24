@@ -11,9 +11,11 @@ class WatchView extends BaseView
 
   public function renderDetails(array $data = [])
   {
+    $this->processRenderHeaderHTML();
     $this->processRenderHeader($data);
     $this->processRenderDetails($data);
     $this->processRenderFooter($data);
+    $this->processRenderFooterHTML();
   }
 
   protected function processRenderDetails($data)

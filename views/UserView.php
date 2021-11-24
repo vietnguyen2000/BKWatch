@@ -15,6 +15,7 @@ class UserView extends BaseView
 
   public function renderProfile(array $data = [])
   {
+    $this->processRenderHeaderHTML();
     $this->processRenderHeader($data);
 
     print_r($_SESSION['user']);
@@ -22,5 +23,6 @@ class UserView extends BaseView
     print_r('<a href="/logout" class="btn btn-primary"> Logout</a>');
 
     $this->processRenderFooter($data);
+    $this->processRenderFooterHTML();
   }
 }
