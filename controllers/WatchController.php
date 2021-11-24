@@ -44,7 +44,7 @@ class WatchController extends BaseController
         // print_r($search_brand);
         // print_r("</br>");
         // print_r($search_category);
-        $data = $watchModel->getProductByCondition($search_normal, $sort);
+        $data = $watchModel->getProductByCondition($sort, $search_normal, $search_category, $search_brand);
         $view->render([
             'url' => $url,
             'nav' => '/watch',

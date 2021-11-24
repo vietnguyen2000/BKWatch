@@ -51,10 +51,13 @@ class ProductModel extends BaseModel
       return [];
     }
   }
-  public function getProductByCondition(string $cond = "", string $sort = "")
+  public function getProductByCondition(string $sort = "", string $cond = "", array $category = [], array $brand = [])
   {
     try {
       $sortQuery = "";
+      $searchQuery = "";
+      $categoryQuery = "";
+      $brandQuery = "";
       if ($sort == 1) {
         $sortQuery = "ORDER BY price DESC";
       }
@@ -67,28 +70,40 @@ class ProductModel extends BaseModel
       if ($sort == 4) {
         $sortQuery = "ORDER BY title DESC";
       }
-      if (empty($cond)) {
-        return $this->getAll(null, $sortQuery);
-      }
-      $search_arr = explode(" ", $cond);
-      $search = "";
-      foreach ($search_arr as $value_search_arr) {
-        $search .= "|" . $value_search_arr;
-      }
-      if ($search == "") {
-        $search = " ";
-      } else {
+      // if (empty($cond)) {
+      //   return $this->getAll(null, $sortQuery);
+      // }
+      if ($cond != "") {
+        $search = "";
+        $search_arr = explode(" ", $cond);
+        foreach ($search_arr as $value_search_arr) {
+          $search .= "|" . $value_search_arr;
+        }
         $search = substr($search, 1);
+        $searchQuery = "AND CONCAT_WS('', productCode, title, content, tag, categoryTitle, brandTitle) REGEXP '$search' ";
       }
-      $sql = "SELECT * FROM bkwatch.productpreview 
-      WHERE CONCAT_WS('', 
-      productCode, 
-      title, 
-      content, 
-      tag, 
-      categoryTitle, 
-      brandTitle) 
-      REGEXP '" . $search . "' " . $sortQuery;
+      if (!empty($category)) {
+        foreach ($category as $value) {
+          $categoryQuery .= "|" . $value;
+        }
+        $categoryQuery = substr($categoryQuery, 1);
+        $categoryQuery = "AND CONCAT_WS('', categoryTitle) REGEXP '$categoryQuery' ";
+      }
+      if (!empty($brand)) {
+        foreach ($brand as $value) {
+          $brandQuery .= "|" . $value;
+        }
+        $brandQuery = substr($brandQuery, 1);
+        $brandQuery = "AND CONCAT_WS('', brandTitle) REGEXP '$brandQuery' ";
+      }
+      $queryAll = $searchQuery . $brandQuery . $categoryQuery;
+      $searchAllQuery = "";
+      if (!empty($queryAll)) {
+        $queryAll = substr($queryAll, 3);
+        $searchAllQuery = "WHERE $queryAll";
+      }
+      $sql = "SELECT * FROM bkwatch.productpreview $searchAllQuery $sortQuery";
+      // print_r($sql);
       $result = $this->db->query($sql);
       $data = $result->fetch_all(mode: MYSQLI_ASSOC);
       $data = array_map(function ($r) {
