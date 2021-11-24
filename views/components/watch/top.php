@@ -84,18 +84,22 @@
       <?php
       if (!empty($data['search_normal']) || !empty($data['search_brand']) || !empty($data['search_category'])) {
         echo 'Tìm kiếm: ';
+        require 'chiptagDeleteAll.php';
         if (!empty($data['search_normal'])) {
+          $id_chiptag = "search";
           $data_chiptag = $data['search_normal'];
           require 'chiptag.php';
         }
         if (!empty($data['search_category'])) {
           foreach ($data['search_category'] as $key => $value) {
+            $id_chiptag = "category";
             $data_chiptag = $value;
             require 'chiptag.php';
           }
         }
         if (!empty($data['search_brand'])) {
           foreach ($data['search_brand'] as $key => $value) {
+            $id_chiptag = "brand";
             $data_chiptag = $value;
             require 'chiptag.php';
           }
