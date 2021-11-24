@@ -8,13 +8,19 @@
       $end = $len * $page;
       $count = 0;
       $watchPageURL = '/watch?';
-      foreach ($data['searchCondition'] as $key => $value) {
-        $watchPageURL .= $key . "=" . $value . "&";
+      if (!empty($data['search_normal'])) {
+        $watchPageURL .= "search=" . $data['search_normal'] . "&";
       }
-      if ($data['sort'] != "") {
-        $watchPageURL = $watchPageURL . "sort=" . $data['sort'] . "&";
+      if (!empty($data['search_category'])) {
+        $watchPageURL .=  http_build_query(["category" => $data['search_category']]) . "&";
       }
-      $watchPageURL = $watchPageURL . "page=";
+      if (!empty($data['search_brand'])) {
+        $watchPageURL .=  http_build_query(["brand" => $data['search_brand']]) . "&";
+      }
+      if (!empty($data['sort'])) {
+        $watchPageURL .= "sort=" . $data['sort'] . "&";
+      }
+      $watchPageURL .= "page=";
       foreach ($data['products'] as $product) {
         if ($count < $start) {
           $count += +1;
@@ -23,7 +29,7 @@
         if ($count >= $end) {
           break;
         }
-        echo '<div class="col-6 col-md-4 col-lg-3">';
+        echo '<div class="col-8 col-sm-6 col-md-4 col-lg-4 col-xl-3">';
         require(realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/home/productDisplay/cardviewProduct.php');
         echo '</div>';
         $count += +1;
