@@ -65,7 +65,7 @@ if (!function_exists('currency_format')) {
   <div class="row mt-lg-5">
     <div class="col-lg-6">
       <button class="btn btn-black w-100 me-lg-2 mb-2 mb-lg-0" type="button">
-        <h6 class="mb-0"> Add to favorite <i class="far fa-heart"></i></h6>
+        <a href="#" onClick="addToFavorite(<?= $product['id'] ?>)"><h6 class="mb-0"> Add to favorite <i class="far fa-heart"></i></h6></a>
       </button>
     </div>
 
