@@ -25,17 +25,17 @@
       <div class="navbar-item dropdown has-divider has-user-avatar">
         <a class="navbar-link">
           <div class="user-avatar">
-            <img src="https://avatars.dicebear.com/v2/initials/john-doe.svg" alt="Bach Khoa" class="rounded-full">
+            <img src="<?php echo $data['userImg']; ?>" alt="Bach Khoa" class="rounded-full">
           </div>
-          <div class="is-user-name"><span>Bach khoa</span></div>
+          <div class="is-user-name"><span><?php echo $data['username']; ?></span></div>
           <span class="icon"><i class="mdi mdi-chevron-down"></i></span>
         </a>
       </div>
-      <a href="#" class="navbar-item has-divider desktop-icon-only">
+      <a href="/me" class="navbar-item has-divider desktop-icon-only">
         <span class="icon"><i class="mdi mdi-help-circle-outline"></i></span>
         <span>About</span>
       </a>
-      <a href="#" title="Log out" class="navbar-item desktop-icon-only">
+      <a href="/logout" title="Log out" class="navbar-item desktop-icon-only">
         <span class="icon"><i class="mdi mdi-logout"></i></span>
         <span>Log out</span>
       </a>
@@ -52,8 +52,8 @@
   <div class="menu is-menu-main">
     <p class="menu-label">General</p>
     <ul class="menu-list">
-      <li class="--set-active-index-html">
-        <a href="index.html">
+      <li <?php if ($data['nav'] == 'cms') {echo "class='active'";} ?>>
+        <a href="/cms">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
           <span class="menu-item-label">Dashboard</span>
         </a>
@@ -67,8 +67,8 @@
           <span class="menu-item-label">Introduction</span>
         </a>
       </li>
-      <li class="active">
-        <a href="#">
+      <li <?php if ($data['nav'] == 'cmsBlog') {echo "class='active'";} ?>>
+        <a href="/cmsBlog">
           <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
           <span class="menu-item-label">Blog</span>
         </a>
@@ -76,14 +76,14 @@
     </ul>
     <p class="menu-label">Product</p>
     <ul class="menu-list">
-      <li>
-        <a href="#" class="has-icon">
+      <li <?php if ($data['nav'] == 'cmsProduct') {echo "class='active'";} ?>>
+        <a href="/cmsProduct" class="has-icon">
           <span class="icon"><i class="mdi mdi-credit-card-outline"></i></span>
           <span class="menu-item-label">Product</span>
         </a>
       </li>
-      <li>
-        <a href="#" class="has-icon">
+      <li <?php if ($data['nav'] == 'cmsAddProduct') {echo "class='active'";} ?>>
+        <a href="/cmsAddProduct" class="has-icon">
           <span class="icon"><i class="mdi mdi-help-circle"></i></span>
           <span class="menu-item-label">Add Product</span>
         </a>
@@ -93,13 +93,13 @@
     <ul class="menu-list">
       <li>
         <a href="#" class="has-icon">
-          <span class="icon"><i class="mdi mdi-credit-card-outline"></i></span>
+          <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
           <span class="menu-item-label">Admin</span>
         </a>
       </li>
       <li>
         <a href="#" class="has-icon">
-          <span class="icon"><i class="mdi mdi-help-circle"></i></span>
+          <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
           <span class="menu-item-label">Customer</span>
         </a>
       </li>

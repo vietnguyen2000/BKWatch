@@ -6,9 +6,11 @@ abstract class BaseView
 {
   public function render(array $data = [])
   {
+    $this->processRenderHeaderHTML($data);
     $this->processRenderHeader($data);
     $this->processRenderBody($data);
     $this->processRenderFooter($data);
+    $this->processRenderFooterHTML($data);
   }
 
   public function renderStaticAlert(string $title = "Alert!", string $text = "alert", string $type = "primary")
@@ -33,5 +35,14 @@ abstract class BaseView
   protected function processRenderBody(array $data = [])
   {
     // implement in children
+  }
+  protected function processRenderHeaderHTML(array $data = [])
+  {
+    require 'components/header/headerHTML.php';
+  }
+
+  protected function processRenderFooterHTML(array $data = [])
+  {
+    require 'components/footer/footerHTML.php';
   }
 }

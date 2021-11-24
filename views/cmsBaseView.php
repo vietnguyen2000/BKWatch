@@ -6,9 +6,11 @@ abstract class cmsBaseView
 {
   public function render(array $data = [])
   {
+    $this->processRenderHeaderHTML($data);
     $this->processRenderHeader($data);
     $this->processRenderBody($data);
     $this->processRenderFooter($data);
+    $this->processRenderFooterHTML($data);
   }
 
   public function renderStaticAlert(string $title = "Alert!", string $text = "alert", string $type = "primary")
@@ -33,5 +35,14 @@ abstract class cmsBaseView
   protected function processRenderBody(array $data = [])
   {
     // implement in children
+  }
+  protected function processRenderHeaderHTML(array $data = [])
+  {
+    require 'admin/headerHTML.php';
+  }
+
+  protected function processRenderFooterHTML(array $data = [])
+  {
+    require 'admin/footerHTML.php';
   }
 }

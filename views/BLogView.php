@@ -10,15 +10,19 @@ class BlogView extends BaseView
   }
   public function renderBody(array $data = [])
   {
+    $this->processRenderHeaderHTML($data);
     $this->processRenderHeader($data);
     $this->processRenderBody($data);
     $this->processRenderFooter($data);
+    $this->processRenderFooterHTML($data);
   }
   public function renderDetails(array $data = [])
   {
+    $this->processRenderHeaderHTML($data);
     $this->processRenderHeader($data);
     $this->processRenderDetails($data);
     $this->processRenderFooter($data);
+    $this->processRenderFooterHTML($data);
   }
   public function processRenderDetails(array $data = [])
   {

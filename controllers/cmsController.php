@@ -15,12 +15,14 @@ class cmsController extends BaseController
 {
   public function index($url)
   {
-    if (!isset($_SESSION['user'])) {
+    if (!isset($_SESSION['user']) || $_SESSION['user']['role'] > 0 ) {
       $this->redirect('/login');
       return;
     };
     $view = new cmsAdminView();
     $userId = $_SESSION['user']['id'];
-    $view->render(['url' => $url, 'nav' => 'index', 'userId' => $userId]);
+    $userImg = $_SESSION['user']['avatarURL'];
+    $username = $_SESSION['user']['username'];
+    $view->render(['url' => $url, 'nav' => 'cms', 'userId' => $userId, 'userImg' => $userImg, 'username'=>$username]);
   }
 }
