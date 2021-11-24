@@ -1,6 +1,6 @@
 <div class="row">
-  <div class="col-12 col-sm-6" style="display: flex; align-items: center; justify-content: flex-start;">
-    <i class="fab fa-sistrix" style="color: #33b5e5"></i>
+  <div class="col-6" style="display: flex; align-items: center; justify-content: flex-start;">
+    <i class="fas fa-poll" style="color: #33b5e5"></i>
     <div style="text-align: center; font-size:small;">
       <b><?php
           $page = $data['page'];
@@ -17,7 +17,7 @@
           ?>
     </div>
   </div>
-  <div class="col-12 col-sm-6" style="display: flex; align-items: center; justify-content: flex-end;">
+  <!-- <div class="col-6" style="display: flex; align-items: center; justify-content: flex-end;">
     <div style="display: flex; align-items: center;">
       <div style="padding: 0 10; height: auto;">
         <div>
@@ -52,17 +52,9 @@
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
           <?php
           $watchPageURL = '/watch?';
-          if (!empty($data['search_normal'])) {
-            $watchPageURL .= "search=" . $data['search_normal'] . "&";
-          }
-          if (!empty($data['search_category'])) {
-            $watchPageURL .=  http_build_query(["category" => $data['search_category']]) . "&";
-          }
-          if (!empty($data['search_brand'])) {
-            $watchPageURL .=  http_build_query(["brand" => $data['search_brand']]) . "&";
-          }
-          if (!empty($data['page'])) {
-            $watchPageURL .= "page=" . $data['page'] . "&";
+          foreach ($data['searchCondition'] as $key => $value) {
+            if ($key == "sort") continue;
+            $watchPageURL .= $key . "=" . $value . "&";
           }
           $sortClear = substr($watchPageURL, 0, -1);
           $sortIncrease = $watchPageURL . "sort=1";
@@ -78,34 +70,21 @@
         </ul>
       </div>
     </div>
-  </div>
-  <div class="col-12" style="padding-top: 20px;">
-    <div style="display: flex; flex-wrap: wrap;">
+  </div> -->
+  <!-- <div class="col-12" style="padding-top: 20px;">
+    <div style="display: flex;">
       <?php
-      if (!empty($data['search_normal']) || !empty($data['search_brand']) || !empty($data['search_category'])) {
+      if (!empty($searchCondition)) {
         echo 'Tìm kiếm: ';
-        require 'chiptagDeleteAll.php';
-        if (!empty($data['search_normal'])) {
-          $id_chiptag = "search";
-          $data_chiptag = $data['search_normal'];
-          require 'chiptag.php';
-        }
-        if (!empty($data['search_category'])) {
-          foreach ($data['search_category'] as $key => $value) {
-            $id_chiptag = "category";
-            $data_chiptag = $value;
-            require 'chiptag.php';
-          }
-        }
-        if (!empty($data['search_brand'])) {
-          foreach ($data['search_brand'] as $key => $value) {
-            $id_chiptag = "brand";
-            $data_chiptag = $value;
-            require 'chiptag.php';
-          }
+        foreach ($searchCondition as $key => $value) {
+          echo '<div style="padding: 0 5 0 5">';
+          echo '<button style="padding: 3 10;" type="button" class="btn btn-outline-primary chips-watchPage" data-mdb-ripple-color="dark">';
+          echo $value;
+          echo '</button>';
+          echo '</div>';
         }
       }
       ?>
     </div>
-  </div>
+  </div> -->
 </div>

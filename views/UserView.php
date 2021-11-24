@@ -13,15 +13,36 @@ class UserView extends BaseView
     require 'components/loginForm/loginForm.php';
   }
 
+  protected function processRenderProfile(array $data = [])
+  {
+    if (isset($data['user'])) {
+      $user = $data['user'];
+      require('pages/users/userProfile.php');
+    }
+  }
+
+  protected function processRenderUpdateProfile(array $data = [])
+  {
+    if (isset($data['user'])) {
+      $user = $data['user'];
+      require('pages/users/userUpdateProfile.php');
+    }
+  }
+
   public function renderProfile(array $data = [])
   {
     $this->processRenderHeaderHTML();
     $this->processRenderHeader($data);
+    $this->processRenderProfile($data);
+    $this->processRenderFooter($data);
+    $this->processRenderFooterHTML();
+  }
 
-    print_r($_SESSION['user']);
-
-    print_r('<a href="/logout" class="btn btn-primary"> Logout</a>');
-
+  public function renderUpdateProfile(array $data = [])
+  {
+    $this->processRenderHeaderHTML();
+    $this->processRenderHeader($data);
+    $this->processRenderUpdateProfile($data);
     $this->processRenderFooter($data);
     $this->processRenderFooterHTML();
   }

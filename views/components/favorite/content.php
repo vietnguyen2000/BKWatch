@@ -1,26 +1,17 @@
 <main class="my-2">
   <div class="tab-pane fade show active" id="ldp-home-tabs-1" role="tabpanel" aria-labelledby="ldp-home-tab-1">
-    <div class="row justify-content-around">
+    <ul class="list-group">
       <?php
       $page = $data['page'];
       $len = $data['length'];
       $start = $len * $page - $len;
       $end = $len * $page;
       $count = 0;
-      $watchPageURL = '/watch?';
-      if (!empty($data['search_normal'])) {
-        $watchPageURL .= "search=" . $data['search_normal'] . "&";
+      $watchPageURL = '/favorite?';
+      if ($data['sort'] != "") {
+        $watchPageURL = $watchPageURL . "sort=" . $data['sort'] . "&";
       }
-      if (!empty($data['search_category'])) {
-        $watchPageURL .=  http_build_query(["category" => $data['search_category']]) . "&";
-      }
-      if (!empty($data['search_brand'])) {
-        $watchPageURL .=  http_build_query(["brand" => $data['search_brand']]) . "&";
-      }
-      if (!empty($data['sort'])) {
-        $watchPageURL .= "sort=" . $data['sort'] . "&";
-      }
-      $watchPageURL .= "page=";
+      $watchPageURL = $watchPageURL . "page=";
       foreach ($data['products'] as $product) {
         if ($count < $start) {
           $count += +1;
@@ -28,15 +19,13 @@
         }
         if ($count >= $end) {
           break;
-        }
-        echo '<div class="col-8 col-sm-6 col-md-4 col-lg-4 col-xl-3">';
-        require(realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/home/productDisplay/cardviewProduct.php');
-        echo '</div>';
+        }           
+        require(realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/home/productDisplay/cardviewFavoriteProduct.php');        
         $count += +1;
       }
       ?>
       <div class="col my-2"> </div>
-    </div>
+    </ul>
   </div>
   <div style="justify-content: center; display: flex; padding: 30 0 0 0">
     <nav aria-label="...">

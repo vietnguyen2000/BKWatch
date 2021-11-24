@@ -22,14 +22,14 @@
           </div>
           <div class="filter-normal-watchPage">
             <?php
-            $searchCondition = $data['searchCondition'];
+            $dataCategory = $data['categoryAll'];
+            $dataBrand = $data['brandAll'];
             require(realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/watch/filter/menu.php');
             ?>
           </div>
         </div>
         <div class="col-12 col-lg-9 right-watchPage">
           <?php
-          $dataTop = $data;
           require(realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/watch/top.php');
           ?>
           <?php
