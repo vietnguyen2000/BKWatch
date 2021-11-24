@@ -14,34 +14,36 @@ class UserView extends BaseView
   }
 
   protected function processRenderProfile(array $data = [])
-  {    
+  {
     if (isset($data['user'])) {
       $user = $data['user'];
-      require('pages/users/userProfile.php');   
+      require('pages/users/userProfile.php');
     }
   }
 
   protected function processRenderUpdateProfile(array $data = [])
-  {    
+  {
     if (isset($data['user'])) {
       $user = $data['user'];
-      require('pages/users/userUpdateProfile.php');   
+      require('pages/users/userUpdateProfile.php');
     }
   }
 
   public function renderProfile(array $data = [])
-  {  
+  {
+    $this->processRenderHeaderHTML();
     $this->processRenderHeader($data);
-    $this->processRenderProfile($data);     
+    $this->processRenderProfile($data);
     $this->processRenderFooter($data);
+    $this->processRenderFooterHTML();
   }
 
   public function renderUpdateProfile(array $data = [])
   {
-
+    $this->processRenderHeaderHTML();
     $this->processRenderHeader($data);
     $this->processRenderUpdateProfile($data);
     $this->processRenderFooter($data);
+    $this->processRenderFooterHTML();
   }
-
 }

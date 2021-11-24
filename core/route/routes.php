@@ -33,6 +33,14 @@ $router->post('/cart/delete', 'CartController@delete');
 $router->post('/favorite/add', 'FavoriteController@add');
 $router->post('/image/upload', 'ImageController@upload');
 
+
+$router->get('/cms', 'cmsController@index');
+$router->get('/cmsBlog', 'cmsBlogController@index');
+$router->get('/cmsBlog/add/', 'cmsBlogController@add');
+$router->get('/cmsBlog/update/{id}', 'cmsBlogController@update');
+$router->get('/cmsProduct', 'cmsProductController@index');
+$router->get('/cmsAddProduct', 'cmsProductController@add');
+$router->get('/cmsUpdateProduct/{id}', 'cmsAddProductController@update');
 $router->post('/payment/VNPay/payment', 'VNPayController@payment');
 $router->get('/payment/VNPay/ipn', 'VNPayController@VNPayIPN');
 $router->get('/payment/VNPay/result', 'VNPayController@VNPayReturn');
