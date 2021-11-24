@@ -70,7 +70,16 @@ class ProductModel extends BaseModel
       if (empty($cond)) {
         return $this->getAll(null, $sortQuery);
       }
-      $search = $cond;
+      $search_arr = explode(" ", $cond);
+      $search = "";
+      foreach ($search_arr as $value_search_arr) {
+        $search .= "|" . $value_search_arr;
+      }
+      if ($search == "") {
+        $search = " ";
+      } else {
+        $search = substr($search, 1);
+      }
       $sql = "SELECT * FROM bkwatch.productpreview 
       WHERE CONCAT_WS('', 
       productCode, 
@@ -79,7 +88,7 @@ class ProductModel extends BaseModel
       tag, 
       categoryTitle, 
       brandTitle) 
-      REGEXP '$search' " . $sortQuery;
+      REGEXP '" . $search . "' " . $sortQuery;
       $result = $this->db->query($sql);
       $data = $result->fetch_all(mode: MYSQLI_ASSOC);
       $data = array_map(function ($r) {

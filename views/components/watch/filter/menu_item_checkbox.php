@@ -51,7 +51,7 @@
     ?>
   </label>
   <script>
-    $("#watchPageFlex<?php echo $menu_item_checkbox_id_fix ?>").change(function() {
+    $('input[name="watchPageFlex<?php echo $menu_item_checkbox_id_fix ?>"]').change(function() {
       if (this.checked) {
         <?php
         if ($menu_id == "category") {

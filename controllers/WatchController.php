@@ -49,7 +49,7 @@ class WatchController extends BaseController
             'url' => $url,
             'nav' => '/watch',
             'products' => $data,
-            'length' => 9,
+            'length' => 12,
             'productAll' => $watchAll,
             'userAll' => $userAll,
             'categoryAll' => $watchCategory,
