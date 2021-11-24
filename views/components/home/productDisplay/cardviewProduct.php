@@ -9,7 +9,7 @@ if (!function_exists('currency_format')) {
 }
 ?>
 <!-- <div class="col-6 col-md-4 col-lg-3 col-xl-2 my-2"> -->
-<div class="card cardview-product-watch" style="margin: 0 0 15 0;">
+<div class="card cardview-product-watch" style="margin: 0 0 20 0;">
   <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
     <img src="<?= $product['imageURLs'][0] ?>" class="img-fluid" style="object-fit: contain; aspect-ratio: 7/8" alt="preview item id <?= $product['id'] ?>" />
     <a href="watch/<?= $product['id'] ?>">
@@ -18,7 +18,11 @@ if (!function_exists('currency_format')) {
   </div>
   <div class="card-body cardview-product-content p-2 pb-3" style="text-align:center;justify-content:center;">
     <div>
-      <h6 class="card-title text-center" style="min-height: 60px;"><?= $product['title'] ?></h6>
+      <h6 class="card-title text-center" style="
+      min-height: 60px; 
+      line-height: 1.5em;
+      height: 3em;   
+      overflow: hidden;"><?= $product['title'] ?></h6>
     </div>
     <div>
       <p class="text-primary"><?= currency_format($product['price']) ?></p>

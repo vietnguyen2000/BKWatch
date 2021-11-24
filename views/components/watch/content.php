@@ -29,7 +29,7 @@
         if ($count >= $end) {
           break;
         }
-        echo '<div class="col-6 col-md-4 col-lg-4">';
+        echo '<div class="col-8 col-sm-6 col-md-4 col-lg-4 col-xl-3">';
         require(realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/home/productDisplay/cardviewProduct.php');
         echo '</div>';
         $count += +1;
