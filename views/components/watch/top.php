@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-6" style="display: flex; align-items: center; justify-content: flex-start;">
-    <i class="fas fa-poll" style="color: #33b5e5"></i>
+    <i class="fab fa-sistrix" style="color: #33b5e5"></i>
     <div style="text-align: center; font-size:small;">
       <b><?php
           $page = $data['page'];
@@ -52,9 +52,17 @@
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
           <?php
           $watchPageURL = '/watch?';
-          foreach ($data['searchCondition'] as $key => $value) {
-            if ($key == "sort") continue;
-            $watchPageURL .= $key . "=" . $value . "&";
+          if (!empty($data['search_normal'])) {
+            $watchPageURL .= "search=" . $data['search_normal'] . "&";
+          }
+          if (!empty($data['search_category'])) {
+            $watchPageURL .=  http_build_query(["category" => $data['search_category']]) . "&";
+          }
+          if (!empty($data['search_brand'])) {
+            $watchPageURL .=  http_build_query(["brand" => $data['search_brand']]) . "&";
+          }
+          if (!empty($data['page'])) {
+            $watchPageURL .= "page=" . $data['page'] . "&";
           }
           $sortClear = substr($watchPageURL, 0, -1);
           $sortIncrease = $watchPageURL . "sort=1";
@@ -74,12 +82,21 @@
   <div class="col-12" style="padding-top: 20px;">
     <div style="display: flex; flex-wrap: wrap;">
       <?php
-      if (!empty($searchCondition)) {
+      if (!empty($data['search_normal']) || !empty($data['search_brand']) || !empty($data['search_category'])) {
         echo 'Tìm kiếm: ';
-        foreach ($searchCondition as $value) {
-          $explode_chiptag = explode("@", $value);
-          array_shift($explode_chiptag);
-          foreach ($explode_chiptag as $data_chiptag) {
+        if (!empty($data['search_normal'])) {
+          $data_chiptag = $data['search_normal'];
+          require 'chiptag.php';
+        }
+        if (!empty($data['search_category'])) {
+          foreach ($data['search_category'] as $key => $value) {
+            $data_chiptag = $value;
+            require 'chiptag.php';
+          }
+        }
+        if (!empty($data['search_brand'])) {
+          foreach ($data['search_brand'] as $key => $value) {
+            $data_chiptag = $value;
             require 'chiptag.php';
           }
         }

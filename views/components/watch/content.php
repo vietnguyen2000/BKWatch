@@ -8,13 +8,19 @@
       $end = $len * $page;
       $count = 0;
       $watchPageURL = '/watch?';
-      foreach ($data['searchCondition'] as $key => $value) {
-        $watchPageURL .= $key . "=" . $value . "&";
+      if (!empty($data['search_normal'])) {
+        $watchPageURL .= "search=" . $data['search_normal'] . "&";
       }
-      if ($data['sort'] != "") {
-        $watchPageURL = $watchPageURL . "sort=" . $data['sort'] . "&";
+      if (!empty($data['search_category'])) {
+        $watchPageURL .=  http_build_query(["category" => $data['search_category']]) . "&";
       }
-      $watchPageURL = $watchPageURL . "page=";
+      if (!empty($data['search_brand'])) {
+        $watchPageURL .=  http_build_query(["brand" => $data['search_brand']]) . "&";
+      }
+      if (!empty($data['sort'])) {
+        $watchPageURL .= "sort=" . $data['sort'] . "&";
+      }
+      $watchPageURL .= "page=";
       foreach ($data['products'] as $product) {
         if ($count < $start) {
           $count += +1;

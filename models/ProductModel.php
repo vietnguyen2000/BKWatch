@@ -51,7 +51,7 @@ class ProductModel extends BaseModel
       return [];
     }
   }
-  public function getProductByCondition(array $cond = [], $sort = "")
+  public function getProductByCondition(string $cond = "", string $sort = "")
   {
     try {
       $sortQuery = "";
@@ -70,19 +70,7 @@ class ProductModel extends BaseModel
       if (empty($cond)) {
         return $this->getAll(null, $sortQuery);
       }
-      $search = "";
-      if (isset($cond['search'])) {
-        $search .= $cond['search'];
-      }
-      if (isset($cond['tag'])) {
-        $search .= "|" . $cond['tag'];
-      }
-      if (isset($cond['brand'])) {
-        $search .= "|" . $cond['brand'];
-      }
-      if (isset($cond['category'])) {
-        $search .= "|" . $cond['category'];
-      }
+      $search = $cond;
       $sql = "SELECT * FROM bkwatch.productpreview 
       WHERE CONCAT_WS('', 
       productCode, 
