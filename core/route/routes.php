@@ -48,3 +48,6 @@ $router->get('/payment/VNPay/result', 'VNPayController@VNPayReturn');
 $router->get('/payment/history', 'PaymentHistoryController@index');
 $router->get('/payment/orderDetails', 'PaymentHistoryController@details');
 $router->post('/payment/orderDetails', 'PaymentHistoryController@detailsPost');
+
+$router->get('/changepw','UserController@changepw');
+$router->post('/changepw','UserController@changepwPost');
