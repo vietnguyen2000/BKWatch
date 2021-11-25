@@ -7,9 +7,6 @@
     <li class="nav-item" role="presentation">
       <a class="nav-link" id="ldp-home-tab-2" data-mdb-toggle="tab" href="#ldp-home-tabs-2" role="tab" aria-controls="ldp-home-tabs-2" aria-selected="false">Bình luận</a>
     </li>
-    <li class="nav-item" role="presentation">
-      <a class="nav-link" id="ldp-home-tab-3" data-mdb-toggle="tab" href="#ldp-home-tabs-3" role="tab" aria-controls="ldp-home-tabs-3" aria-selected="false">Blogs</a>
-    </li>
   </ul>
   <!-- Tabs navs -->
 
@@ -151,9 +148,6 @@
       $addCommentAction = "/watch/" . $product['id'] . "/comment";
       require realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/comments/addComment.php'
       ?>
-    </div>
-    <div class="tab-pane fade" id="ldp-home-tabs-3" role="tabpanel" aria-labelledby="ldp-home-tab-3">
-
     </div>
   </div>
   <!-- Tabs content -->

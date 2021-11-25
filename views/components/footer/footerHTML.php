@@ -32,6 +32,12 @@
     <?php } ?>
   }
 </script>
+
+<script>
+  $('.momentFromNow').each((index, e) => {
+    e.innerHTML = moment(e.innerHTML, "YYYY-MM-DD hh:mm:ss").fromNow()
+  })
+</script>
 </body>
 
 </html>
