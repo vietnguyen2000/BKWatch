@@ -17,12 +17,10 @@ if (!function_exists('currency_format')) {
     </a>
   </div>
   <div class="card-body cardview-product-content p-2 pb-3" style="text-align:center;justify-content:center;">
-    <div>
-      <h6 class="card-title text-center" style="
-      min-height: 60px; 
+    <div style="display: table;width: 100%;height: 4.5em; overflow: hidden; min-height: 60px;text-align: center;">
+      <h6 class="card-title text-center" style="display: table-cell; 
       line-height: 1.5em;
-      height: 3em;   
-      overflow: hidden;"><?= $product['title'] ?></h6>
+      vertical-align: middle;"><?= $product['title'] ?></h6>
     </div>
     <div>
       <p class="text-primary"><?= currency_format($product['price']) ?></p>
