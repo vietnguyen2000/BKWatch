@@ -2,12 +2,19 @@
 
 namespace Controllers;
 
+use Error;
+
 function uploadImage($file)
 {
     $message = '';
     $target_dir = "uploads/";
     $uploadOk = 0;
+    // Users file
     $imageFileType = strtolower(pathinfo(basename($file["name"]), PATHINFO_EXTENSION));
+    $avatarUrlArr = explode('/', $_SESSION['user']['avatarURL']);
+    $imageName = $avatarUrlArr[count($avatarUrlArr) - 1];
+    $target_file = $target_dir . $imageName;
+    //$target_file = $target_dir . $_SESSION['user']['avatarURL'];
 
     // Check if image file is a actual image or fake image
     try {
@@ -23,12 +30,6 @@ function uploadImage($file)
     } else {
         $message = "File is not an image.";
         $uploadOk = 0;
-    }
-
-    $target_file = $target_dir . uniqid() . '.' . $imageFileType;
-    // Check if file already exists
-    while (file_exists($target_file)) {
-        $target_file = $target_dir . uniqid() . '.' . $imageFileType;
     }
 
     // Check file size
@@ -59,7 +60,7 @@ function uploadImage($file)
     }
 
     return [
-        "success" => $uploadOk,
+        "status" => $uploadOk == 1 ? "success" : "error",
         "message" => $message,
     ];
 };
@@ -73,7 +74,14 @@ class ImageController
         ob_clean();
         header('Content-Type: application/json; charset=utf-8');        
         $data = uploadImage($_FILES['image']);
-        echo json_encode($data);
+        // Return Object (json_econde) for successful operation
+        if ($data['status'] == "success") {
+            echo json_encode($data);
+        }
+        // and return string for failed operation
+        else {
+            echo $data["message"];
+        }
         flush();
         exit;
     }
