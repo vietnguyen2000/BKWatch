@@ -32,7 +32,7 @@ class OrdersModel extends BaseModel
 
       $conditionSql = join(" OR ", $listSql);
 
-      $sql = "SELECT * FROM $name WHERE $conditionSql";
+      $sql = "SELECT * FROM $name WHERE $conditionSql ORDER BY createdAt DESC";
       $stmt = $this->db->prepare($sql);
       $stmt->bind_param($types, ...$valuesList);
       $stmt->execute();

@@ -33,8 +33,9 @@ class VNPayController extends BaseController
     $prices = 0;
     for ($i = 0; $i < count($listCartItems); $i++) {
       $price = $listCartItems[$i]['price'];
+      $quantity = $listCartItems[$i]['quantity'];
       $discount = $listCartItems[$i]['discount'];
-      $prices += $price * (100 - $discount) / 100;
+      $prices += $price * $quantity * (100 - $discount) / 100;
     };
 
     $total = $prices + $shipFee;

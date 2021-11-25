@@ -96,11 +96,11 @@ function mapStatus($status)
             <div class="col-12 col-sm-auto">
               <div class="row justify-content-between">
                 <span class="fw-bold col-auto">Tổng tiền</span>
-                <span class="col-auto"><?= currency_format(array_reduce($order['listItems'], fn ($c, $i) => intval($c) + intval($i['price']), 0)) ?></span>
+                <span class="col-auto"><?= currency_format(array_reduce($order['listItems'], fn ($c, $i) => intval($c) + intval($i['price']) * $i['quantity'], 0)) ?></span>
               </div>
               <div class="row justify-content-between">
                 <span class="fw-bold col-auto">Giảm giá</span>
-                <span class="col-auto" style="text-decoration: line-through;"><?= currency_format(array_reduce($order['listItems'], fn ($c, $i) => intval($c) + intval($i['price']) * $i['discount'] / 100, 0)) ?></span>
+                <span class="col-auto"><?= currency_format(array_reduce($order['listItems'], fn ($c, $i) => intval($c) + intval($i['price']) * $i['quantity'] * $i['discount'] / 100, 0)) ?></span>
               </div>
               <div class="row justify-content-between">
                 <span class="fw-bold col-auto">Phí ship</span>
@@ -115,10 +115,10 @@ function mapStatus($status)
               <div class="progress-bar" role="progressbar" style="width: <?= ($order['status']) * 100 / 3 ?>%; border-radius: 16px; background-color: #c89979;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
             <div class="d-flex justify-content-between mb-1">
-              <p class="text-muted mt-1 mb-0 small ms-xl-5">Khởi tạo</p>
-              <p class="text-muted mt-1 mb-0 small ms-xl-5">Đã thanh toán</p>
-              <p class="text-muted mt-1 mb-0 small ms-xl-5">Đang giao hàng</p>
-              <p class="text-muted mt-1 mb-0 small ms-xl-5">Hoàn thành</p>
+              <p class="text-muted mt-1 mb-0 small">Khởi tạo</p>
+              <p class="text-muted mt-1 mb-0 small">Đã thanh toán</p>
+              <p class="text-muted mt-1 mb-0 small">Đang giao hàng</p>
+              <p class="text-muted mt-1 mb-0 small">Hoàn thành</p>
             </div>
           </div>
 
