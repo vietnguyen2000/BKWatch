@@ -128,7 +128,8 @@ class BlogModel extends BaseModel
       bkwatch.user.avatarURL AS userCmtAvt,
       bkwatch.blogcomment.content AS userCmtContent,
       bkwatch.blogcomment.rating AS userCmtRating,
-      bkwatch.blogcomment.updatedAt AS userCmtTime
+      bkwatch.blogcomment.updatedAt AS userCmtTime,
+      bkwatch.blogcomment.id AS cmtId
       FROM bkwatch.blogcomment
       LEFT JOIN bkwatch.blog ON bkwatch.blog.id = bkwatch.blogcomment.blogId
       LEFT JOIN bkwatch.user ON bkwatch.user.id = bkwatch.blogcomment.userId

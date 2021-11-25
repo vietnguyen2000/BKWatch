@@ -24,8 +24,12 @@ class cmsBlogController extends BaseController
   }
   public function index($url)
   {
-    if (!isset($_SESSION['user'])) {
+    if (!isset($_SESSION['user']) ) {
       $this->redirect('/login');
+      return;
+    };
+    if ($_SESSION['user']['role'] > 0 ) {
+      $this->redirect('/');
       return;
     };
     $data = $this->blogModel->getAll();
@@ -37,37 +41,42 @@ class cmsBlogController extends BaseController
   }
   public function update($url, $id)
     {
-        $view = new BlogView();
-        $this->dataHeader = $this->blogModel->getBlogById($id);
+      if (!isset($_SESSION['user']) ) {
+        $this->redirect('/login');
+        return;
+      };
+      if ($_SESSION['user']['role'] > 0 ) {
+        $this->redirect('/');
+        return;
+      };
+        $view = new cmsAddBlogView();
         $data = $this->blogModel->getBlogById($id);
-        $view->renderDetails([
+        $comment = $this->blogModel->getCmtsByBlogId($id);
+        $userId = $_SESSION['user']['id'];
+        $userImg = $_SESSION['user']['avatarURL'];
+        $username = $_SESSION['user']['username'];
+        $view->render([
             'url' => $url,
-            'nav' => '/blog',
-            'header' => $this->dataHeader,
+            'nav' => 'cmsBlog',
+            'comment' => $comment,
             'data' => $data,
-            'id' => $id
+            'userId' => $userId, 'userImg' => $userImg, 'username'=>$username
         ]);
-        $getData = $this->blogModel->getByCondition([
-            "id" => $id
-        ]);
-        $countView = (int)$getData[0]["countView"];
-        $this->blogModel->updateById(
-            $id,
-            [
-                "countView" => $countView + 1
-            ]
-        );
     }
   public function add($url)
   {
-    if (!isset($_SESSION['user'])) {
+    if (!isset($_SESSION['user']) ) {
       $this->redirect('/login');
+      return;
+    };
+    if ($_SESSION['user']['role'] > 0 ) {
+      $this->redirect('/');
       return;
     };
     $view = new cmsAddBlogView();
     $userId = $_SESSION['user']['id'];
     $userImg = $_SESSION['user']['avatarURL'];
     $username = $_SESSION['user']['username'];
-    $view->render(['url' => $url, 'nav' => 'cmsBlog', 'userId' => $userId, 'userImg' => $userImg, 'username'=>$username]);
+    $view->render(['url' => $url, 'nav' => 'cmsBlog', 'userId' => $userId, 'userImg' => $userImg, 'username'=>$username, 'comment' => array(), 'data' => '']);
   }
 }

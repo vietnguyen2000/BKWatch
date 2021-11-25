@@ -24,8 +24,12 @@ class cmsProductController extends BaseController
   }
   public function index($url)
   {
-    if (!isset($_SESSION['user'])) {
+    if (!isset($_SESSION['user']) ) {
       $this->redirect('/login');
+      return;
+    };
+    if ($_SESSION['user']['role'] > 0 ) {
+      $this->redirect('/');
       return;
     };
     $data = $this->productModel->getAll();
@@ -37,8 +41,12 @@ class cmsProductController extends BaseController
   }
   public function add($url)
   {
-    if (!isset($_SESSION['user'])) {
+    if (!isset($_SESSION['user']) ) {
       $this->redirect('/login');
+      return;
+    };
+    if ($_SESSION['user']['role'] > 0 ) {
+      $this->redirect('/');
       return;
     };
     $view = new cmsAddProductView();
@@ -49,6 +57,14 @@ class cmsProductController extends BaseController
   }
     public function update($url, $id)
     {
+      if (!isset($_SESSION['user']) ) {
+        $this->redirect('/login');
+        return;
+      };
+      if ($_SESSION['user']['role'] > 0 ) {
+        $this->redirect('/');
+        return;
+      };
         $view = new cmsAddProductView();
         $data = $this->blogModel->getBlogById($id);
         $view->renderDetails([

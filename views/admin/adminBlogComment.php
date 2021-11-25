@@ -2,12 +2,8 @@
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Blogs</li>
+      <li>Comment</li>
     </ul>
-    <a href="/cmsBlog/add/" class="button blue">
-      <span class="icon"><i class="mdi mdi-credit-card-outline"></i></span>
-      <span>Add Blog</span>
-    </a>
   </div>
 </section>
 
@@ -17,7 +13,7 @@
       <header class="card-header">
         <p class="card-header-title">
           <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
-          Blog
+          Blog's Comment
         </p>
         <a href="#" class="card-header-icon">
           <span class="icon"><i class="mdi mdi-reload"></i></span>
@@ -27,13 +23,11 @@
         <table>
           <thead>
           <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Is Hot</th>
-            <th>Count Like</th>
-            <th>Count View</th>
-            <th>User ID</th>
-            <th>Create at</th>
+            <th>Blog Title</th>
+            <th>User's Name</th>
+            <th>Content</th>
+            <th>Rating</th>
+            <th>Update at</th>
             <th></th>
           </tr>
           </thead>
@@ -41,25 +35,18 @@
           <?php  foreach ($data['data'] as $row) {?>
             <tr>
                 
-                <td data-label="ID"><?php echo($row["id"]); ?></td>
-                <td data-label="Title"><?php echo($row["title"]); ?></td>
-                <td data-label="Hot">
-                <input type="checkbox" <?php  echo ($row["isHot"] == 0) ? '' : "checked ='checked';"?> disabled style="height: 20px; width: 20px;">
-                </td>
-                <td data-label="Like"><?php echo($row["countLike"]); ?></td>
-                <td data-label="View"><?php echo($row["countView"]); ?></td>
-                <td data-label="User"><?php echo($row["userId"]); ?></td>                
-                <td data-label="Created">
-                <small class="text-gray-500"><?php echo($row["createdAt"]); ?></small>
+                <td data-label="blogTitle"><?php echo($row["blogTitle"]); ?></td>
+                <td data-label="userCmtFullname"><?php echo($row["userCmtFullname"]); ?></td>
+                <td data-label="userCmtContent"><?php echo($row["userCmtContent"]); ?></td>
+                <td data-label="userCmtRating" class="progress-cell">
+                  <progress max="5" value="<?php echo($row["userCmtRating"]); ?>"><?php echo($row["userCmtRating"]); ?></progress>
+                </td>               
+                <td data-label="userCmtTime">
+                <small class="text-gray-500"><?php echo($row["userCmtTime"]); ?></small>
                 </td>
                 <td class="actions-cell">
                   <form form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                     <div class="buttons right nowrap">
-                      <a href="/cmsBlog/update/<?php echo($row['id']); ?>">
-                        <button class="button small green --jb-modal"  data-target="sample-modal-2" type="button">
-                        <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
-                        </button>
-                      </a>
                         <button class="button small red --jb-modal" data-target="sample-modal" type="button" onclick="deleteID('<?php echo($row["id"]); ?>')">
                         <span class="icon"><i class="mdi mdi-trash-can"></i></span>
                         </button>
