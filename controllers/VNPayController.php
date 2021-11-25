@@ -304,7 +304,7 @@ class VNPayController extends BaseController
           "transactionNo" => strval($_GET['vnp_TransactionNo']),
           "payDate" => DateTime::createFromFormat('YmdHis', strval($_GET['vnp_PayDate']))->format('Y-m-d H:i:s')
         ]);
-        $this->redirect('/');
+        $this->redirect('/payment/orderDetails?orderId=' . $_GET['vnp_TxnRef']);
       } else {
         $_reason = 'Không rõ';
         $_resCode = $_GET['vnp_ResponseCode'];

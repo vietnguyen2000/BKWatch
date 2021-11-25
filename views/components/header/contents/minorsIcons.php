@@ -1,3 +1,13 @@
+<style>
+  .dropdown:hover>.dropdown-menu {
+    display: block;
+  }
+
+  .dropdown>.dropdown-toggle:active {
+    /*Without this, clicking will make it sticky*/
+    pointer-events: none;
+  }
+</style>
 <div class="d-none d-sm-block">
   <?php
 
@@ -11,13 +21,23 @@
       </a>';
   } else {
     echo
-    '<a href="/me" class="ps-2 text-decoration-none">
+    '<div class="dropdown d-inline-block dropstart" style=>
+    <a href="/me" class="ps-2 text-decoration-none" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-user-circle fa-2x"></i>
-      </a>';
+      </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton" data-mdb-popper="none">
+    <li>
+      <a href="/me" class="dropdown-item" style="color: black">Trang cá nhân</a>
+    </li>
+    <li>
+      <a href="/payment/history" class="dropdown-item" style="color: black">Lịch sử mua hàng</a>
+    </li>
+    <li>
+      <a href="/logout" class="dropdown-item" style="color: black">Đăng xuất</a>
+    </li>
+    </ul></div>';
   }
   ?>
-
-  </a>
   <a href="/favorite" class="ps-2 text-decoration-none">
     <i class="fas fa-heart fa-2x"></i>
   </a>
