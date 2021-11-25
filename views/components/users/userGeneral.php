@@ -9,9 +9,12 @@
             <i class="fas fa-camera"></i>
             <span>Change Image</span>
         </label>
-        <input type="text" name="avatarUrl" />
-        <img src="<?php echo $user['avatarURL'] ?>" alt="profile picture " class="card-img-top rounded-circle img-fluid" >    
-    </div>
+        <input type="text" name="avatar" />
+        <img id="avatar" src="<?php 
+            $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+            $url = $protocol . $_SERVER['HTTP_HOST'] ; 
+            echo $url . '/' . $user['avatarURL']?>" alt="profile picture " class="card-img-top rounded-circle img-fluid" >    
+    </div>  
 
     <!-- Card content -->
     <div class="card-body">
@@ -21,19 +24,7 @@
                 <strong>
                     <!-- Fullname -->
                     <?php echo $user['fullname'] ?>
-                </strong>                         
-                <small class="text-muted">
-                    <!-- Username -->
-                    (<?php echo $user['username'] ?>)
-                </small>                
-            </p>
-            <p>
-                <!-- Roles -->
-                <?php if ($user['role'] == 1): ?>
-                    <small class="badge badge-primary">Administrator</small>
-                <?php elseif ($user['role'] == 0): ?>
-                    <small class="badge badge-info">Member</small>
-                <?php endif ?>
+                </strong>                                       
             </p>
         </div>
 
