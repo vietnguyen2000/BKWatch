@@ -53,7 +53,7 @@ class cmsProductController extends BaseController
     $userId = $_SESSION['user']['id'];
     $userImg = $_SESSION['user']['avatarURL'];
     $username = $_SESSION['user']['username'];
-    $view->render(['url' => $url, 'nav' => 'cmsAddProduct', 'userId' => $userId, 'userImg' => $userImg, 'username'=>$username]);
+    $view->render(['url' => $url, 'nav' => 'cmsAddProduct', 'userId' => $userId, 'userImg' => $userImg, 'username'=>$username, 'comment'=>array(), 'data' =>'']);
   }
     public function update($url, $id)
     {
@@ -66,22 +66,10 @@ class cmsProductController extends BaseController
         return;
       };
         $view = new cmsAddProductView();
-        $data = $this->blogModel->getBlogById($id);
-        $view->renderDetails([
-            'url' => $url,
-            'nav' => '/cmsAddProduct',
-            'data' => $data,
-            'id' => $id
-        ]);
-        $getData = $this->blogModel->getByCondition([
-            "id" => $id
-        ]);
-        $countView = (int)$getData[0]["countView"];
-        $this->blogModel->updateById(
-            $id,
-            [
-                "countView" => $countView + 1
-            ]
-        );
+        $data = $this->productModel->getById($id);
+        $userId = $_SESSION['user']['id'];
+        $userImg = $_SESSION['user']['avatarURL'];
+        $username = $_SESSION['user']['username'];
+        $view->render(['url' => $url, 'nav' => 'cmsAddProduct', 'userId' => $userId, 'userImg' => $userImg, 'username'=>$username, 'comment'=>array(), 'data' =>$data]);
     }
 }

@@ -57,9 +57,11 @@
                 <td class="actions-cell">
                   <form form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                     <div class="buttons right nowrap">
+                      <a href="/cmsUpdateProduct/<?php echo($row["id"]); ?>">
                         <button class="button small green --jb-modal"  data-target="sample-modal-2" type="button">
                         <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
                         </button>
+                      </a>
                         <button class="button small red --jb-modal" data-target="sample-modal" type="button" onclick="deleteID('<?php echo($row["id"]); ?>')">
                         <span class="icon"><i class="mdi mdi-trash-can"></i></span>
                         </button>
