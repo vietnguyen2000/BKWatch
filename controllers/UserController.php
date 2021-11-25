@@ -42,6 +42,35 @@ class UserController extends BaseController
       'user' => $_SESSION['user'],
     ]);
   }
+  //get
+  public function changepw($url) 
+  {
+    $userView = new UserView();
+    $userView->renderChangepw([
+      'url' => $url,
+    ]);
+  }
+  public function changepwPost($url) 
+  {
+    // xu li logic
+    // hash oldpass nguoi dung nhap vao
+    // query password cua nguoi do dang luu trong database
+    // So sanh 2 cai do voi nhau
+    // Neu dung, viet sql update hash password moi, roi chuyen huong
+    // New sai thi chay 2 dong code duoi
+
+    // $oldpass = $_POST["old_pass"];
+    // $hash_oldPass = 
+    // $password = ....;
+    // if($password == $hash_oldPass)){
+    //   // update mk
+    // }
+    // else{
+    //   $userView = new UserView();
+    //   $userView->renderChangepw(['url' => $url, 'alert' => ['title' => 'Lỗi!', 'text' => 'Email hoặc tên đăng nhập của bạn đã tồn tại. Xin hãy thử lại!', 'type' => 'danger']]);
+    // }
+    
+  }
 
   // post
   public function register($url)
@@ -57,7 +86,10 @@ class UserController extends BaseController
       $userView->render(['url' => $url, 'alert' => ['title' => 'Lỗi!', 'text' => 'Email hoặc tên đăng nhập của bạn đã tồn tại. Xin hãy thử lại!', 'type' => 'danger']]);
       return;
     };
-
+    // Create Avatar id & file
+    $defaultImage = 'uploads/default.png';
+    $userImage = 'uploads/' . uniqid() . '.png';
+    copy($defaultImage, $userImage) or die("Unable to copy $defaultImage to $userImage.");
     $data = [
       'username' => $_POST['username'],
       'password' => password_hash($_POST['password'], null),
@@ -65,7 +97,8 @@ class UserController extends BaseController
       'email' => $_POST['email'],
       'phoneNumber' => $_POST['phoneNumber'],
       'gender' => intval($_POST['gender']),
-      'role' => 1,
+      'role' => 0,
+      'avatarURL' => $userImage,
     ];
     $user->insert($data);
     print_r("Đăng ký thành công! Xin chào " . $_POST['fullname']);
