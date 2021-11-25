@@ -3,9 +3,11 @@
     <!-- User Profile -->
     <div class="card">        
 
-        <div class="card-header bg-info">            
+        <div class="container py-5 ">            
             <div class="btn-group float-end" role="group" aria-label="">          
-                <a href="/me/edit" class="btn btn-secondary"><i class="fas fa-pen mr-2"></i><span class="d-none d-md-inline"> Cập nhật</span></a>
+                <a href="/me/edit" class="btn btn-white"><i class="fas fa-pen mr-2"></i><span class="d-none d-md-inline"> Cập nhật thông tin</span></a>
+
+                <a href="/changepw" class="btn btn-primary"><i class="fas fa-key mr-2"></i><span class="d-none d-md-inline"> Đổi mật khẩu</span></a>
             </div>
             <h2 class="card-title">Thông tin cá nhân</h2>
         </div>        
@@ -21,13 +23,14 @@
                         <?php require(realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/users/userDetails.php');?>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>    
 
     <!-- Logout button -->
-    <div class="btn-group float-end" role="group" aria-label="">           
-        <a href="/logout" class="btn btn-danger">Đăng xuất</a>
+    <div class="btn-group float-end" aria-label="">           
+        <a href="/logout"  class="btn btn-primary btn-submit">Đăng xuất</a>
     </div>
     <div class="clearfix"></div>
 </div>
