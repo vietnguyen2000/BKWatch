@@ -281,8 +281,7 @@ SELECT
   p.imageURL AS imageURL
 FROM
   cartItem as c
-  left join productPreview as p on c.productId = p.id
-CREATE VIEW userFavoriteItemView AS
+  left join productPreview as p on c.productId = p.id CREATE VIEW userFavoriteItemView AS
 SELECT
   c.*,
   p.productBrandId AS productBrandId,
@@ -312,4 +311,20 @@ SELECT
   p.imageURL AS imageURL
 FROM
   userFavoriteItem as c
-  left join productPreview as p on c.productId = p.id
+  left join productPreview as p on c.productId = p.id;
+CREATE VIEW ordersView AS
+SELECT
+  orders.*,
+  count(*) as count
+FROM
+  orders
+  LEFT JOIN orderItems on orders.id = orderItems.orderId
+GROUP BY
+  orders.id;
+CREATE VIEW orderItemsView AS
+SELECT
+  oi.*,
+  imageURL
+FROM
+  orderitems as oi
+  LEFT JOIN productpreview as pp ON oi.productId = pp.id;
