@@ -43,13 +43,16 @@
             <a class="nav-link" href="/me">Trang cá nhân</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="/payment/history">Lịch sử mua hàng</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="/favorite">Danh sách yêu thích</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/cart">
               Giỏ hàng
               <?php if (isset($_SESSION['user'])) { ?>
-                <span class="badge bg-danger ms-2 cart-badge"><?= $cartQuantity ?></span>
+                <span class="badge bg-danger ms-2 cart-badge" <?= $cartQuantity == 0 ? 'style="display: none;"' : '' ?>><?= $cartQuantity ?></span>
               <?php } ?>
             </a>
           </li>

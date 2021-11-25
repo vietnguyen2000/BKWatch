@@ -48,8 +48,11 @@
     if (isset($_SESSION['user'])) {
       $cartItemModel = new CartItemModel();
       $cartQuantity = $cartItemModel->getCartQuantity($_SESSION['user']['id']);
+      if (!isset($cartQuantity)) {
+        $cartQuantity = 0;
+      }
     ?>
-      <span class="badge rounded-pill badge-notification bg-danger cart-badge"><?= $cartQuantity ?></span>
+      <span class="badge rounded-pill badge-notification bg-danger cart-badge" <?= $cartQuantity == 0 ? 'style="display: none;"' : '' ?>><?= $cartQuantity ?></span>
     <?php } ?>
   </a>
 </div>
