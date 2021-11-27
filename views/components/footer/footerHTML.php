@@ -73,6 +73,7 @@
       addFastLoad()
       removeOverlayLoading()
       initInput()
+      $('html,body').scrollTop(0);
     })
   }
 
