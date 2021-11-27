@@ -8,3 +8,4 @@
   require 'nav/nav.php';
   ?>
 </header>
+<div id="main-body">

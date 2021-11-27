@@ -86,7 +86,7 @@
           search_url += "&" + arr_search_url["page"];
         }
         var strtemp = "/watch?" + search_url.substring(1);
-        window.location.href = strtemp;
+        fastGet(strtemp)
       } else {
         <?php
         if ($menu_id == "category") {
@@ -130,7 +130,7 @@
           search_url += "&" + arr_search_url["page"];
         }
         var strtemp = "/watch?" + search_url.substring(1);
-        window.location.href = strtemp;
+        fastGet(strtemp)
       }
     });
   </script>
