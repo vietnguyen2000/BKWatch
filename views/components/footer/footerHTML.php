@@ -57,7 +57,8 @@
     })
   }
 
-  function fastGet(url) {
+  function fastGet(url, isNewPage = true) {
+    if (url == location.pathname + location.search) return
     addOverlayLoading()
     let correctUrl = url
     if (url.indexOf('?') >= 0) {
@@ -66,15 +67,35 @@
       correctUrl += "?onlyBody=yes";
     }
     $.get(correctUrl, (data) => {
-      $('#main-body *').remove()
-      $('#main-body').append(data)
-      window.history.pushState(document.title, document.title, url)
-      updateNav()
-      addFastLoad()
-      removeOverlayLoading()
-      initInput()
-      $('html,body').scrollTop(0);
+      replaceNewData(data);
+      if (isNewPage) {
+        $('html,body').scrollTop(0);
+        addState(data, url)
+      } else {
+        replaceState(data, url)
+      }
+
     })
+  }
+
+  function addState(data, url) {
+    window.history.pushState({
+      data,
+    }, document.title, url)
+    updateNav()
+  }
+
+  function replaceState(data, url) {
+    window.history.replaceState({
+      data,
+    }, document.title, url)
+  }
+
+  function replaceNewData(data) {
+    $('#main-body').html(data)
+    addFastLoad()
+    removeOverlayLoading()
+    initInput()
   }
 
 
@@ -122,6 +143,22 @@
       new mdb.Input(formOutline).init();
     });
   }
+
+  function handleBack(data) {
+    replaceNewData(data);
+    updateNav()
+  }
+
+  window.onpopstate = function(event) {
+    if (!event.state) return
+    const {
+      data = '',
+    } = event.state || {}
+    handleBack(data)
+  };
+
+  const data = $('#main-body').html()
+  replaceState(data, location.pathname + location.search)
 </script>
 </body>
 
