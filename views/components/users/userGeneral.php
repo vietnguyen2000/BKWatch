@@ -1,37 +1,32 @@
-<style> <?php include 'userGeneral.css'; ?> </style>
-<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
-<div class="card">
-    <!-- User Avatar -->            
-    
-    <div class="avatar mx-auto white profile-pic">
-        <label class="-label" for="file" onClick="openUploadDropzone()">
-            <i class="fas fa-camera"></i>
-            <span>Change Image</span>
-        </label>
-        <input type="text" name="avatar" />
-        <img id="avatar" src="<?php 
-            $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-            $url = $protocol . $_SERVER['HTTP_HOST'] ; 
-            echo $url . '/' . $user['avatarURL']?>" alt="profile picture " class="card-img-top rounded-circle img-fluid" >    
-    </div>  
+<div>
+    <!-- User Avatar -->
+    <img src="<?= $user['avatarURL'] ?>" alt="profile picture " class="card-img-top rounded-circle img-fluid" style="aspect-ratio: 1/1;object-fit: cover;">
+
 
     <!-- Card content -->
     <div class="card-body">
         <!-- Title -->
         <div class="card-title">
-            <p>
+            <p style="text-align: center;">
                 <strong>
                     <!-- Fullname -->
                     <?php echo $user['fullname'] ?>
-                </strong>                                       
+                </strong>
+            </p>
+            <p style="text-align: center;">
+                <!-- Roles -->
+                <?php if ($user['role'] == 1) : ?>
+                    <small class="badge badge-primary">Administrator</small>
+                <?php elseif ($user['role'] == 0) : ?>
+                    <small class="badge badge-info">Member</small>
+                <?php endif ?>
             </p>
         </div>
 
         <!-- User Description -->
         <blockquote class="blockquote">
             <p class="card-text">
-                
+
             </p>
         </blockquote>
     </div>
