@@ -19,7 +19,7 @@
 
 
                 <div class="card col-12 col-md-9">
-                    <div class="card-body">
+                    <div>
                         <?php require(realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/users/userDetails.php'); ?>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 <div class="col-lg-12">
-  <div class="card-body">
+  <div class=" mx-2">
     <div class="row">
       <div class="col-sm-3">
         <p class="mb-0">Họ và tên</p>
@@ -41,17 +41,18 @@
         <p class="mb-0">Địa chỉ</p>
       </div>
       <div class="col-sm-9">
-        <p class="text-muted mb-0"><?php echo $user['address'] ?></p>
+        <p class="text-muted mb-0"><?= $user['address'] ? $user['address'] : 'Chưa có' ?></p>
       </div>
     </div>
+    <hr>
 
     <!-- Logout button -->
     <div class="float-end" aria-label="">
-      <div class="btn-group  me-2">
+      <div class="btn-group  me-2 mb-2">
         <a href="/payment/history" class="btn btn-black btn-submit">Lịch sử mua hàng</a>
       </div>
 
-      <div class="btn-group ">
+      <div class="btn-group mb-2">
         <a href="/logout" class="btn btn-primary btn-submit">Đăng xuất</a>
       </div>
 
