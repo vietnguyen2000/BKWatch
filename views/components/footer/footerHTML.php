@@ -51,7 +51,6 @@
         e.stopPropagation()
         e.preventDefault()
 
-        addOverlayLoading()
         fastGet(url)
 
       })
@@ -59,6 +58,7 @@
   }
 
   function fastGet(url) {
+    addOverlayLoading()
     let correctUrl = url
     if (url.indexOf('?') >= 0) {
       correctUrl += "&onlyBody=yes";
@@ -71,6 +71,8 @@
       window.history.pushState(document.title, document.title, url)
       updateNav()
       addFastLoad()
+      removeOverlayLoading()
+      initInput()
     })
   }
 
@@ -94,21 +96,30 @@
   }
 
   function addOverlayLoading() {
-    $('#main-body').prepend(`<div style="
-    position: absolute;
+    $('body').prepend(`<div id="overlay-loading" style="
+    position: fixed;
     z-index: 100;
     width: 100%;
-    height: ${$('#main-body').height()}px;
+    height: 100%;
     background: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
-"><div class="spinner-border" role="status" style="
-    /* transform: translate(10px, 10px); */
-    /* x: 50%; */
-">
+    left: 0,
+    top: 0,
+"><div class="spinner-border text-primary" role="status">
   <span class="visually-hidden">Loading...</span>
 </div></div>`)
+  }
+
+  function removeOverlayLoading() {
+    $('#overlay-loading').remove()
+  }
+
+  function initInput() {
+    document.querySelectorAll('.form-outline').forEach((formOutline) => {
+      new mdb.Input(formOutline).init();
+    });
   }
 </script>
 </body>

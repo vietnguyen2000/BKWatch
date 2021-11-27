@@ -15,7 +15,7 @@
 
   $isLogged = isset($_SESSION['user']);
   if (!$isLogged) { ?>
-    <a href="<?= ROOT_URL ?>/login" class="ps-2 text-decoration-none">
+    <a href="/login" class="ps-2 text-decoration-none">
       <i class="fas fa-sign-in-alt fa-2x"></i>
     </a>
   <?php } else { ?>
@@ -31,17 +31,17 @@
           <a href="/payment/history" class="dropdown-item" style="color: black">Lịch sử mua hàng</a>
         </li>
         <li>
-          <a href="/logout" class="dropdown-item" style="color: black">Đăng xuất</a>
+          <a href="<?= ROOT_URL ?>/logout" class="dropdown-item" style="color: black">Đăng xuất</a>
         </li>
       </ul>
     </div>
   <?php }
   ?>
-  <a href="<?= ROOT_URL ?>/favorite" class="ps-2 text-decoration-none">
+  <a href="/favorite" class="ps-2 text-decoration-none">
     <i class="fas fa-heart fa-2x"></i>
   </a>
 
-  <a href="<?= ROOT_URL ?>/cart" class="ps-2 text-decoration-none">
+  <a href="/cart" class="ps-2 text-decoration-none">
     <i class="fas fa-shopping-cart fa-2x"></i>
     <?php
     if (isset($_SESSION['user'])) {
