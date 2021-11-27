@@ -281,7 +281,8 @@ SELECT
   p.imageURL AS imageURL
 FROM
   cartItem as c
-  left join productPreview as p on c.productId = p.id CREATE VIEW userFavoriteItemView AS
+  left join productPreview as p on c.productId = p.id;
+CREATE VIEW userFavoriteItemView AS
 SELECT
   c.*,
   p.productBrandId AS productBrandId,

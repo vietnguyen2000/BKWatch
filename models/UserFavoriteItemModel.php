@@ -17,7 +17,7 @@ class UserFavoriteItemModel extends BaseModel
     try {
       $sql = "SELECT * FROM userFavoriteItemView WHERE userId = ?";
       $stmt = $this->db->prepare($sql);
-      $stmt->bind_param('s', $userId);
+      $stmt->bind_param('i', $userId);
       $stmt->execute();
       $result =  $stmt->get_result();
       $products = $result->fetch_all(mode: MYSQLI_ASSOC);

@@ -29,6 +29,23 @@ class UserView extends BaseView
     }
   }
 
+  protected function processRenderChangespw(array $data = [])
+  {
+    if (isset($data['alert'])) {
+      $alert = $data['alert'];
+      $this->renderStaticAlert($alert['title'], $alert['text'], $alert['type']);
+    }
+    require('components/users/changePassword.php');
+  }
+  public function renderChangepw(array $data = [])
+  {
+    $this->processRenderHeaderHTML();
+    $this->processRenderHeader($data);
+    $this->processRenderChangespw($data);
+    $this->processRenderFooter($data);
+    $this->processRenderFooterHTML();
+  }
+
   public function renderProfile(array $data = [])
   {
     $this->processRenderHeaderHTML();
