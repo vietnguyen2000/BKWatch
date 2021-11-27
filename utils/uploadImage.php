@@ -1,27 +1,28 @@
+<?php
+global $upload_image_url;
+?>
 <script>
-  function upload(imageFiles, callBack) {
-    var fd = new FormData();
-    var files = imageFiles;
-    // Check file selected or not
-    if (files.length > 0) {
-      fd.append('image', files[0]);
+  function uploadImageAsync(imageFile) {
+    return new Promise((resolve, reject) => {
+      var fd = new FormData();
+      fd.append('image', imageFile);
       $.ajax({
-        url: <?= $upload_image_url ?>,
+        url: "<?= $upload_image_url ?>",
         type: 'post',
         data: fd,
         contentType: false,
         processData: false,
         success: function(response) {
           if (response.success != 0) {
-            callBack(response.message)
+            resolve(response.message)
           } else {
             // alert('file not uploaded');
-            throw Error('Image not uploaded!')
+            reject('Image not uploaded!')
           }
         },
       });
-    } else {
-      throw Error('Image not found!')
-    }
+      setTimeout(() => reject('Time out error!'), 10000)
+    })
+
   }
 </script>
