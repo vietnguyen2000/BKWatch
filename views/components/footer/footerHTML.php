@@ -1,14 +1,22 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
 
-<?php if (isset($_SESSION['user']) && !$_SESSION['isRemembered']) { ?>
-  <script>
-    setTimeout(() => {
-      alert('Your session is out of time! Please login again!')
-      $.get('session-destroy')
-      location.reload()
-    }, <?= $session_time * 1000 ?>)
-  </script>
-<?php } ?>
+
+<script>
+  function resetTimeOutSession() {
+    <?php if (isset($_SESSION['user']) && !$_SESSION['isRemembered']) { ?>
+      clearTimeout(window.sessionTimeout)
+      window.sessionTimeout = setTimeout(() => {
+        alert('Your session is out of time! Please login again!')
+        $.get('session-destroy')
+        location.reload()
+      }, <?= $session_time * 1000 ?>)
+    <?php } ?>
+  }
+
+  resetTimeOutSession()
+</script>
+
+
 
 <script>
   function addToCart(productId, productTitle) {
@@ -59,6 +67,7 @@
 
   function fastGet(url, isNewPage = true) {
     if (url == location.pathname + location.search) return
+    resetTimeOutSession()
     addOverlayLoading()
     let correctUrl = url
     if (url.indexOf('?') >= 0) {
