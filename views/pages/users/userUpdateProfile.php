@@ -72,7 +72,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-12 col-lg-3">
-                        <div class="card">
+                        <div style="position: relative;">
                             <!-- User Avatar -->
 
                             <div class="avatar mx-auto white profile-pic">
@@ -89,7 +89,7 @@
                                     </div>
                                 </div>
                                 <input id="user-image-input" type="file" name="image-input" hidden />
-                                <input id="avt-url" type="text" name="avatarURL" hidden />
+                                <input id="avt-url" type="text" name="avatarURL" value="<?= $user['avatarURL'] ?>" hidden />
                                 <img id="avatar" src="<?= $user['avatarURL'] ?>" alt="profile picture " class="card-img-top rounded-circle img-fluid">
                             </div>
 
