@@ -83,7 +83,7 @@
                                     </p>
 
                                 </label>
-                                <div class="overlay-loading-image" hidden>
+                                <div class="overlay-loading-image" style="display: none;">
                                     <div class="spinner-border text-primary" role="status">
                                         <span class="visually-hidden">Loading...</span>
                                     </div>
@@ -166,6 +166,7 @@
     $("#user-image-upload").on("dragleave", function(event) {
         event.preventDefault();
         event.stopPropagation();
+        $(this).removeClass('dragging');
     });
 
     $("#user-image-upload").on("drop", function(event) {
@@ -191,8 +192,15 @@
         $('.overlay-loading-image').show()
         try {
             const url = await uploadImageAsync(file)
-            $('.overlay-loading-image').hide()
+            $('#avatar').removeAttr('src')
             $('#avatar').attr('src', url)
+            $('#avatar').one("load", function() {
+                $('.overlay-loading-image').hide()
+            })
+
+            $('#avatar').one("error", function() {
+                $('.overlay-loading-image').hide()
+            })
             $('#avt-url').val(url)
         } catch (error) {
             console.error(error)
