@@ -53,7 +53,7 @@
       </div>
 
       <div class="btn-group mb-2">
-        <a href="/logout" class="btn btn-primary btn-submit">Đăng xuất</a>
+        <a href="<?= ROOT_URL ?>/logout" class="btn btn-primary btn-submit">Đăng xuất</a>
       </div>
 
 

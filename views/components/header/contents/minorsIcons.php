@@ -14,29 +14,28 @@
   use Models\CartItemModel;
 
   $isLogged = isset($_SESSION['user']);
-  if (!$isLogged) {
-    echo
-    '<a href="/login" class="ps-2 text-decoration-none">
-        <i class="fas fa-sign-in-alt fa-2x"></i>
-      </a>';
-  } else {
-    echo
-    '<div class="dropdown d-inline-block dropstart" style=>
-    <a href="/me" class="ps-2 text-decoration-none" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  if (!$isLogged) { ?>
+    <a href="/login" class="ps-2 text-decoration-none">
+      <i class="fas fa-sign-in-alt fa-2x"></i>
+    </a>
+  <?php } else { ?>
+    <div class="dropdown d-inline-block dropstart" style=>
+      <a href="/me" class="ps-2 text-decoration-none" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-user-circle fa-2x"></i>
       </a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton" data-mdb-popper="none">
-    <li>
-      <a href="/me" class="dropdown-item" style="color: black">Trang cá nhân</a>
-    </li>
-    <li>
-      <a href="/payment/history" class="dropdown-item" style="color: black">Lịch sử mua hàng</a>
-    </li>
-    <li>
-      <a href="/logout" class="dropdown-item" style="color: black">Đăng xuất</a>
-    </li>
-    </ul></div>';
-  }
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton" data-mdb-popper="none">
+        <li>
+          <a href="/me" class="dropdown-item" style="color: black">Trang cá nhân</a>
+        </li>
+        <li>
+          <a href="/payment/history" class="dropdown-item" style="color: black">Lịch sử mua hàng</a>
+        </li>
+        <li>
+          <a href="<?= ROOT_URL ?>/logout" class="dropdown-item" style="color: black">Đăng xuất</a>
+        </li>
+      </ul>
+    </div>
+  <?php }
   ?>
   <a href="/favorite" class="ps-2 text-decoration-none">
     <i class="fas fa-heart fa-2x"></i>

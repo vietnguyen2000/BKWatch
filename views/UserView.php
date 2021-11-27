@@ -39,6 +39,9 @@ class UserView extends BaseView
   }
   public function renderChangepw(array $data = [])
   {
+    if (isset($_GET['onlyBody'])) {
+      return $this->processRenderChangespw($data);
+    }
     $this->processRenderHeaderHTML();
     $this->processRenderHeader($data);
     $this->processRenderChangespw($data);
@@ -48,6 +51,9 @@ class UserView extends BaseView
 
   public function renderProfile(array $data = [])
   {
+    if (isset($_GET['onlyBody'])) {
+      return $this->processRenderProfile($data);
+    }
     $this->processRenderHeaderHTML();
     $this->processRenderHeader($data);
     $this->processRenderProfile($data);
@@ -57,6 +63,9 @@ class UserView extends BaseView
 
   public function renderUpdateProfile(array $data = [])
   {
+    if (isset($_GET['onlyBody'])) {
+      return $this->processRenderUpdateProfile($data);
+    }
     $this->processRenderHeaderHTML();
     $this->processRenderHeader($data);
     $this->processRenderUpdateProfile($data);

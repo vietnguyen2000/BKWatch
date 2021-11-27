@@ -23,7 +23,7 @@ class BlogController extends BaseController
         $data = $this->blogModel->getAllBlog();
         $hotBlog = $this->blogModel->getHotBlog();
         $page = 1;
-        if (!empty($_GET)) {
+        if (isset($_GET['page'])) {
             $page = (int)$_GET['page'];
         }
         $view = new BlogView();

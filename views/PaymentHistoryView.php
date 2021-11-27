@@ -12,6 +12,9 @@ class PaymentHistoryView extends BaseView
 
   public function renderDetails(array $data = [])
   {
+    if (isset($_GET['onlyBody'])) {
+      return $this->processRenderDetailsBody($data);
+    }
     $this->processRenderHeaderHTML($data);
     $this->processRenderHeader($data);
     $this->processRenderDetailsBody($data);

@@ -10,6 +10,9 @@ class BlogView extends BaseView
   }
   public function renderBody(array $data = [])
   {
+    if (isset($_GET['onlyBody'])) {
+      return $this->processRenderBody($data);
+    }
     $this->processRenderHeaderHTML($data);
     $this->processRenderHeader($data);
     $this->processRenderBody($data);
@@ -18,6 +21,9 @@ class BlogView extends BaseView
   }
   public function renderDetails(array $data = [])
   {
+    if (isset($_GET['onlyBody'])) {
+      return $this->processRenderDetails($data);
+    }
     $this->processRenderHeaderHTML($data);
     $this->processRenderHeader($data);
     $this->processRenderDetails($data);
