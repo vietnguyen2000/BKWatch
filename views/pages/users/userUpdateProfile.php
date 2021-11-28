@@ -66,7 +66,7 @@
     <form action="/user/<?= $user['id'] ?>/update" id="user-update-form" method="POST">
         <!-- User Profile -->
         <div class="card">
-            <div class="card-title">
+            <div class="card-title m-3">
                 <h2>Thông tin cá nhân</h2>
             </div>
             <div class="card-body">

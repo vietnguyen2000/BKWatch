@@ -1,29 +1,42 @@
 <div>
-	<label class="" for="user-fullname">Họ và tên :</label>
-    <div class="input-group mb-3">                        
-        <input type="text" class="form-control" id="user-fullname" name="fullname" value="<?php echo $user['fullname'] ?>">
+    <div class="form-outline mb-4">
+        <input type="text" id="user-fullname" class="form-control" name="fullname" value="<?= $user['fullname'] ?>" />
+        <label class="form-label" for="loginName">Họ và tên</label>
     </div>
 
-	<label for="user-gender">Giới tính :</label>
-	<div class="input-group mb-3">                        				
-		<select class="form-select" id="user-gender" name="gender">
-			<option value="1" <?php echo $user['gender']? "selected" : "" ?>>Nam</option>
-			<option value="0" <?php echo !$user['gender']? "selected" : "" ?>>Nữ</option>					
-		</select>
-	</div>
-
-    <label class="" for="user-address">Địa chỉ :</label>
-    <div class="input-group mb-3">                        
-        <input type="text" class="form-control" id="user-address" name="address" value="<?php echo $user['address'] ?>">
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+        <input type="text" id="user-address" class="form-control" name="address" value="<?= $user['address'] ?>" />
+        <label class="form-label" for="registerEmail">Địa chỉ</label>
     </div>
 
-    <label class="" for="user-email">Email :</label>
-    <div class="input-group mb-3">                        
-        <input type="text" class="form-control" id="user-email" name="email" value="<?php echo $user['email'] ?>">
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+        <input type="email" id="registerEmail" class="form-control" name="email" value="<?= $user['email'] ?>" />
+        <label class="form-label" for="registerEmail">Email</label>
     </div>
 
-    <label class="" for="user-phone">Số điện thoại :</label>
-    <div class="input-group mb-3">                        
-        <input type="text" class="form-control" id="user-phone" name="phoneNumber" value="<?php echo $user['phoneNumber'] ?>">
+    <div class="mb-4 row align-items-center">
+        <div class="col-6">
+            <div class="form-outline">
+                <input type="text" id="registerPhoneNumber" class="form-control" name="phoneNumber" value="<?= $user['phoneNumber'] ?>" />
+                <label class="form-label" for="registerPhoneNumber">Số điện thoại</label>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="row justify-content-center">
+                <div class="w-auto">
+                    <input class="form-check-input" type="radio" name="gender" value="1" id="registerGenderMale" <?= $user['gender'] == '1' ? 'checked' : '' ?> />
+                    <label class="form-check-label" for="registerGenderMale"> Nam </label>
+                </div>
+
+                <!-- Default checked radio -->
+                <div class="w-auto">
+                    <input class="form-check-input" type="radio" name="gender" value="0" id="registerGenderFemale" <?= $user['gender'] == '0' ? 'checked' : '' ?> />
+                    <label class="form-check-label" for="registerGenderFemale"> Nữ </label>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
