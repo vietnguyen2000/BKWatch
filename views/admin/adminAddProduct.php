@@ -61,7 +61,7 @@
                 <div class="select">
                   <select id="productCategory" name="productCategory">
                     <?php foreach ( $data['categoryList'] as $category) {?>
-                    <option value="<?php echo $category['id']; ?>"><?php echo $category['title']; ?></option>
+                    <option value="<?php echo $category['id']; ?>" <?= (!$data['add']) && $data['data']['productCategoryId'] == $category['id'] ? 'selected' : '' ?>><?php echo $category['title']; ?></option>
                     <?php } ?>
                   </select>
                 </div>
@@ -147,7 +147,7 @@
                 <div class="select">
                   <select id="productBrand" name="productBrand">
                     <?php foreach ( $data['brandList'] as $category) {?>
-                    <option value="<?php echo $category['id']; ?>"><?php echo $category['title']; ?></option>
+                    <option value="<?php echo $category['id']; ?>" <?= (!$data['add']) && $data['data']['productBrandId'] == $category['id'] ? 'selected' : '' ?>><?php echo $category['title']; ?></option>
                     <?php } ?>
                   </select>
                 </div>
