@@ -18,7 +18,10 @@ class UserController extends BaseController
   public function profile($url)
   {
     $userView = new UserView();
-    $userView->renderProfile(['url' => $url]);
+    $userView->renderProfile([
+      'url' => $url, 
+      'user' => $_SESSION['user'],
+    ]);
   }
 
   // get
@@ -28,6 +31,16 @@ class UserController extends BaseController
     setcookie('username', "", path: "/");
     setcookie('userRememberToken', "", path: "/");
     $this->redirect("/");
+  }
+
+  // get
+  public function edit($url) 
+  {
+    $userView = new UserView();
+    $userView->renderUpdateProfile([
+      'url' => $url, 
+      'user' => $_SESSION['user'],
+    ]);
   }
 
   // post
@@ -89,5 +102,42 @@ class UserController extends BaseController
     }
 
     $this->redirect('/', true);
+  }
+
+  public function update($url, $id)
+  {
+    $userView = new UserView();
+
+    // Only support self-update profile
+    if ($id != $_SESSION['user']['id']) {
+      // Permission Deny
+      $userView->render(['url' => $url, 'alert' => ['title' => 'Lỗi!', 'text' => 'Không có quyền', 'type' => 'danger']]);
+    }
+    
+    $userModel = new UserModel();
+    $existUser = $userModel->getByCondition(["id" => $id]);
+    if (count($existUser) == 0) {
+      $userView->render(['url' => $url, 'alert' => ['title' => 'Lỗi!', 'text' => 'Tài khoản không tồn tại', 'type' => 'danger']]);
+      return;
+    }
+    $currentUser = $existUser[0];
+
+    $user = new UserModel();
+    $user->updateById(
+      $id, 
+      [
+        'fullname' => isset($_POST['fullname'])? $_POST['fullname'] : $currentUser["fullname"],
+        'email' => isset($_POST['email'])? $_POST['email'] : $currentUser["email"],
+        'phoneNumber' => isset($_POST['phoneNumber'])? $_POST['phoneNumber'] : $currentUser["phoneNumber"],
+        'gender' => isset($_POST['gender'])? intval($_POST['gender']) : $currentUser["gender"],
+        'address' => isset($_POST['address'])? $_POST['address'] : $currentUser["address"],
+        'avatarURL' => isset($_POST["avatarURL"])? $_POST['avatarURL']: $currentUser["avatarURL"],
+        // sensitive data
+        // 'username' => $_POST['username'], // should not change username
+        'password' => isset($_POST["password"])? password_hash($_POST['password'], null) : $currentUser["password"],
+        'role' => isset($_POST['role'])? intval($_POST['role']) : $currentUser["role"],
+      ]
+    );
+    $this->redirect('/me', true);
   }
 }

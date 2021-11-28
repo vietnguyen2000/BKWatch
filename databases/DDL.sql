@@ -149,6 +149,14 @@ CREATE TABLE CartItem (
   updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
 ) ENGINE = InnoDB;
+CREATE TABLE UserFavoriteItem (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  userId int(10) NOT NULL,
+  productId int(10) NOT NULL,
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (id)
+) ENGINE = InnoDB;
 ALTER TABLE
   Blog
 ADD
@@ -170,7 +178,7 @@ ALTER TABLE
 ADD
   CONSTRAINT FKProduct138202 FOREIGN KEY (productBrandId) REFERENCES ProductBrand (id);
 ALTER TABLE
-  Order
+  Orders
 ADD
   CONSTRAINT FKOrder556775 FOREIGN KEY (userId) REFERENCES User (id);
 ALTER TABLE
@@ -182,13 +190,13 @@ ALTER TABLE
 ADD
   CONSTRAINT FKProductCom696003 FOREIGN KEY (userId) REFERENCES User (id);
 ALTER TABLE
-  OrderItems
+  OrderItem
 ADD
   CONSTRAINT FKOrderDetai559638 FOREIGN KEY (productId) REFERENCES Product (id);
 ALTER TABLE
-  OrderItems
+  OrderItem
 ADD
-  CONSTRAINT FKOrderDetai762072 FOREIGN KEY (orderId) REFERENCES Order (id);
+  CONSTRAINT FKOrderDetai762072 FOREIGN KEY (orderId) REFERENCES Orders (id);
 ALTER TABLE
   CartItem
 ADD
@@ -273,4 +281,35 @@ SELECT
   p.imageURL AS imageURL
 FROM
   cartItem as c
+  left join productPreview as p on c.productId = p.id
+CREATE VIEW userFavoriteItemView AS
+SELECT
+  c.*,
+  p.productBrandId AS productBrandId,
+  p.productCategoryId AS productCategoryId,
+  p.productCode AS productCode,
+  p.title AS title,
+  p.content AS content,
+  p.tag AS tag,
+  p.price AS price,
+  p.discount AS discount,
+  p.currency AS currency,
+  p.warranty AS warranty,
+  p.isHot AS isHot,
+  p.isNew AS isNew,
+  p.isBestSale AS isBestSale,
+  p.quantity AS quantityLeft,
+  p.material AS material,
+  p.glass AS glass,
+  p.back AS back,
+  p.shape AS shape,
+  p.diameter AS diameter,
+  p.height AS height,
+  p.lugWidth AS lugWidth,
+  p.color AS color,
+  p.categoryTitle AS categoryTitle,
+  p.brandTitle AS brandTitle,
+  p.imageURL AS imageURL
+FROM
+  userFavoriteItem as c
   left join productPreview as p on c.productId = p.id

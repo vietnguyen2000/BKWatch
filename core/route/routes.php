@@ -16,17 +16,22 @@ $router->post('/blog/{id}/comment', 'BlogController@addComment');
 $router->get('/blog/{id}/like', 'BlogController@addLike');
 $router->get('/contact', 'ContactController@index');
 $router->get('/me', 'UserController@profile');
+$router->get('/me/edit', 'UserController@edit');
 $router->get('/login', 'UserController@index');
 $router->get('/logout', 'UserController@logout');
 $router->get('/watch/{id}', 'WatchController@detail');
 $router->get('/cart', 'CartController@index');
 $router->post('/watch/{id}/comment', 'WatchController@addComment');
+$router->get('/favorite', 'FavoriteController@index');
 
 $router->post('/register', 'UserController@register');
 $router->post('/login', 'UserController@login');
+$router->post('/user/{id}/update', 'UserController@update');
 $router->post('/cart/add', 'CartController@addToCart');
 $router->post('/cart/set', 'CartController@setQuantity');
 $router->post('/cart/delete', 'CartController@delete');
+$router->post('/favorite/add', 'FavoriteController@add');
+$router->post('/image/upload', 'ImageController@upload');
 
 
 $router->get('/cms', 'cmsController@index');
