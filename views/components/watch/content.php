@@ -35,7 +35,7 @@
         $count += +1;
       }
       ?>
-      <div class="col my-2"> </div>
+      <div class="col-0 col-sm my-2"> </div>
     </div>
   </div>
   <div style="justify-content: center; display: flex; padding: 30px 0 0 0">
