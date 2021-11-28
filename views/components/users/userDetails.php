@@ -48,13 +48,13 @@
 
     <!-- Logout button -->
     <div class="float-end" aria-label="">
-      <div class="btn-group  me-2 mb-2">
-        <a href="/payment/history" class="btn btn-black btn-submit">Lịch sử mua hàng</a>
+      <div class="btn-group me-2 mb-2">
+        <a href="/payment/history" class="btn btn-primary btn-submit">Lịch sử mua hàng</a>
       </div>
 
-      <div class="btn-group mb-2">
-        <a href="<?= ROOT_URL ?>/logout" class="btn btn-primary btn-submit">Đăng xuất</a>
-      </div>
+      <!-- <div class="btn-group mb-2">
+        <a href="<?= ROOT_URL ?>/logout" class="btn btn-danger btn-submit">Đăng xuất</a>
+      </div> -->
 
 
     </div>

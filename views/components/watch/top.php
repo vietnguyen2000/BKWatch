@@ -19,7 +19,7 @@
   </div>
   <div class="col-12 col-sm-6" style="display: flex; align-items: center; justify-content: flex-end;">
     <div style="display: flex; align-items: center;">
-      <div style="padding: 0 10; height: auto;">
+      <div style="padding: 0 10px; height: auto;">
         <div>
           Sắp xếp
         </div>
