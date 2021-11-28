@@ -150,6 +150,22 @@ abstract class BaseModel
     }
   }
 
+  public function deleteListIds($ids = [])
+  {
+    try {
+      if (count($ids) == 0) return 0;
+      $listParam = array_map(fn ($x) => '?', $ids);
+      $paramsString = join(', ', $listParam);
+      $sql = "DELETE FROM `$this->name` WHERE `id` in ($paramsString)";
+      $stmt = $this->db->prepare($sql);
+      $stmt->bind_param(join(array_map(fn ($x) => 's', $ids)), ...$ids);
+      $stmt->execute();
+      return $stmt->affected_rows;
+    } catch (\Exception $e) {
+      return false;
+    }
+  }
+
   protected function getTypeBindParam(array $arrays)
   {
     $mapFunc = function (mixed $value): string {

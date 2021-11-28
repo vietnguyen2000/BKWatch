@@ -1,8 +1,3 @@
-<link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
-<style>
-  <?php include "main.css" ?>
-</style>
-<?php include "utils" ?>
 <div id="app">
 
   <nav id="navbar-main" class="navbar is-fixed-top">

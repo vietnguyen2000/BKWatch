@@ -128,19 +128,6 @@
           <!-- =========================================================================== Right -->
           <div class="flex-item-right">
             <div class="field">
-              <label class="label">File</label>
-              <div class="field-body">
-                <div class="field file">
-                  <label class="upload control">
-                    <a class="button blue">
-                      Upload
-                    </a>
-                    <input type="file">
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div class="field">
               <label class="label">Product Code</label>
               <div class="field-body">
                 <div class="field">
@@ -309,8 +296,13 @@
         <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
         Product's Image
       </p>
-      <a href="#" class="card-header-icon">
-        <span class="icon"><i class="mdi mdi-reload"></i></span>
+      <a class="card-header-icon">
+      <div class="field">
+        <button id="btn-upload-image" class="button blue">
+          Upload
+        </button>
+        <input type="file" accept="image/png, image/gif, image/jpeg" id="input-upload-image" hidden>
+      </div>
       </a>
     </header>
     <div class="card-content">
@@ -322,9 +314,9 @@
           <th>Delete</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="table-images-body">
         <?php  if (!$data['add']) {foreach ($data['imageList'] as $row) {?>
-          <tr>
+          <tr id="product-image-<?= $row['id'] ?>">
               <td data-label="Image">
                 <img src="<?php echo($row['imageURL']); ?>" alt="Image" style="height:70px; wight:auto;">
               </td>
@@ -332,7 +324,7 @@
               <td class="actions-cell" data-label="Delete">
                 <form form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                   <div class="buttons right nowrap">
-                      <button class="button small red --jb-modal" data-target="sample-modal" type="button" onclick="deleteID('<?php echo($row['id']); ?>')">
+                      <button class="button small red --jb-modal" data-target="sample-modal" type="button" onclick="deleteImageRow('<?php echo($row['id']); ?>')">
                       <span class="icon"><i class="mdi mdi-trash-can"></i></span>
                       </button>
                   </div>
@@ -406,12 +398,7 @@
   </div>
 </div>
 
-
-
-
-
-<script>
-  
+<script>  
   var ID = 0;
   var modal = document.getElementById("sample-modal-2");
   var modal3 = document.getElementById("sample-modal-3");
@@ -451,12 +438,13 @@
     var productPrice = document.getElementsByName("productPrice")[0].value;
     var productDiscount = document.getElementsByName("productDiscount")[0].value;
     var productWarranty = document.getElementsByName("productWarranty")[0].value;
-    console.log(productTitle, productTag, productContent, productCategory, isHot,isNew, isBestSale, quantity, material, glass, back, productBrand, Currency,productShape, productDiameter, productHeight, productLugWidth, productColor, code, productPrice);
-    $.post('/cmsAddProduct/add', {
+    console.log({productTitle, productTag, productContent, productCategory, isHot,isNew, isBestSale, quantity, material, glass, back, productBrand, Currency,productShape, productDiameter, productHeight, productLugWidth, productColor, code, productPrice, listNewImages, listRemovedImages});
+    const action = "<?= (!$data['add']) ? '/cmsAddProduct/update/' . $data['data']['id'] : '/cmsAddProduct/add' ?>"
+    $.post(action, {
         productTitle, productTag, productContent, productCategory, isHot,
         isNew, isBestSale, quantity, material, glass, back, productBrand, Currency,
-        productShape, productDiameter, productHeight, productLugWidth, productColor,productPrice, code, productDiscount, productWarranty
-        })
+        productShape, productDiameter, productHeight, productLugWidth, productColor,productPrice, code, productDiscount, productWarranty, listNewImages, listRemovedImages
+        }, (d) => console.log(d))
     $.showNotification({
       type: "primary",
       body: "Bạn đã Thêm vào thành công",
@@ -465,3 +453,56 @@
     })
   }
 </script>
+
+<script>
+  let listNewImages = []
+  let listRemovedImages = []
+  $('#input-upload-image').on('change', e => {
+    if (e.target.files && e.target.files.length > 0) {
+      e.preventDefault();
+      e.stopPropagation();
+      uploadProfileImage(e.target.files[0])
+      $('#input-upload-image').val('')
+    }
+  })
+
+  $('#btn-upload-image').click(() => {
+    $('#input-upload-image').click()
+  })
+
+  function deleteImageRow(id) {
+    $(`tr[id="product-image-${id}"]`).remove()
+    if (listNewImages.indexOf(id) > 0) {
+      listNewImages = listNewImages.filter(x => x != id)
+    } else [
+      listRemovedImages.push(id)
+    ]
+  }
+
+  async function uploadProfileImage(file) {
+    try {
+      const url = await uploadImageAsync(file)
+      listNewImages.push(url)
+      $('#table-images-body').append(`
+      <tr id="product-image-${url}">
+        <td data-label="Image">
+          <img src="${url}" alt="Image" style="height:70px; wight:auto;">
+        </td>
+        <td data-label="imageURLs">${url}</td>
+        <td class="actions-cell" data-label="Delete">
+          <form form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+            <div class="buttons right nowrap">
+                <button class="button small red --jb-modal" data-target="sample-modal" type="button" onclick="deleteImageRow('${url}')">
+                <span class="icon"><i class="mdi mdi-trash-can"></i></span>
+                </button>
+            </div>
+          </form>
+        </td>
+      </tr>`)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+</script>
+
+<?php require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/utils/uploadImage.php') ?>
