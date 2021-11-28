@@ -54,58 +54,73 @@
         </form>
       </div>
       <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
-        <form method="post" action="/register">
+        <form method="post" action="/register" class="row needs-validation" novalidate>
           <!-- Name input -->
-          <div class="form-outline mb-4">
-            <input type="text" id="registerName" class="form-control" name="fullname" />
-            <label class="form-label" for="registerName">Họ và tên</label>
+          <div class="col-12" style="margin-bottom:20px;">
+            <div class="form-outline">
+              <input type="text" id="registerName" class="form-control" name="fullname" required minlength="2" />
+              <label class="form-label" for="registerName">Họ và tên</label>
+              <div class="invalid-feedback">Nhập họ và tên.</div>
+            </div>
           </div>
 
           <!-- Username input -->
-          <div class="form-outline mb-4">
-            <input type="text" id="registerUsername" class="form-control" name="username" />
-            <label class="form-label" for="registerUsername">Tên đăng nhập</label>
+          <div class="col-12" style="margin-bottom:20px;">
+            <div class="form-outline">
+              <input type="text" id="registerUsername" class="form-control" name="username" required minlength="5" maxlength="32" />
+              <label class="form-label" for="registerUsername">Tên đăng nhập</label>
+              <div class="invalid-feedback">Nhập tài khoản (từ 5 đến 32 ký tự).</div>
+            </div>
           </div>
 
           <!-- Email input -->
-          <div class="form-outline mb-4">
-            <input type="email" id="registerEmail" class="form-control" name="email" />
-            <label class="form-label" for="registerEmail">Email</label>
+          <div class="col-12" style="margin-bottom:20px;">
+            <div class="form-outline">
+              <input type="email" id="registerEmail" class="form-control" name="email" required />
+              <label class="form-label" for="registerEmail">Email</label>
+              <div class="invalid-feedback">Nhập email đúng định dạng.</div>
+            </div>
           </div>
 
           <!-- Password input -->
-          <div class="form-outline mb-4">
-            <input type="password" id="registerPassword" class="form-control" name="password" />
-            <label class="form-label" for="registerPassword">Mật khẩu</label>
+          <div class="col-12" style="margin-bottom:20px;">
+            <div class="form-outline">
+              <input type="password" id="registerPassword" class="form-control" name="password" required minlength="5" maxlength="32" />
+              <label class="form-label" for="registerPassword">Mật khẩu</label>
+              <div class="invalid-feedback">Nhập mật khẩu (từ 5 đến 32 ký tự).</div>
+            </div>
           </div>
 
-          <div class="mb-4 row align-items-center">
-            <div class="col-6">
-              <div class="form-outline">
-                <input type="text" id="registerPhoneNumber" class="form-control" name="phoneNumber" />
-                <label class="form-label" for="registerPhoneNumber">Số điện thoại</label>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="row justify-content-center">
-                <div class="w-auto">
-                  <input class="form-check-input" type="radio" name="gender" value="1" id="registerGenderMale" checked />
-                  <label class="form-check-label" for="registerGenderMale"> Nam </label>
-                </div>
-
-                <!-- Default checked radio -->
-                <div class="w-auto">
-                  <input class="form-check-input" type="radio" name="gender" value="0" id="registerGenderFemale" />
-                  <label class="form-check-label" for="registerGenderFemale"> Nữ </label>
+          <div class="col-12">
+            <div class="mb-4 row align-items-center">
+              <div class="col-6">
+                <div class="form-outline">
+                  <input type="text" id="registerPhoneNumber" class="form-control" name="phoneNumber" required minlength="9" maxlength="12" />
+                  <label class="form-label" for="registerPhoneNumber">Số điện thoại</label>
+                  <div class="invalid-feedback">Nhập số điện thoại.</div>
                 </div>
               </div>
+              <div class="col-6">
+                <div class="row justify-content-center">
+                  <div class="w-auto">
+                    <input class="form-check-input" type="radio" name="gender" value="1" id="registerGenderMale" checked />
+                    <label class="form-check-label" for="registerGenderMale"> Nam </label>
+                  </div>
 
+                  <!-- Default checked radio -->
+                  <div class="w-auto">
+                    <input class="form-check-input" type="radio" name="gender" value="0" id="registerGenderFemale" />
+                    <label class="form-check-label" for="registerGenderFemale"> Nữ </label>
+                  </div>
+                </div>
+
+              </div>
             </div>
           </div>
 
           <!-- Checkbox -->
           <div class="form-check d-flex justify-content-center mb-4">
-            <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked aria-describedby="registerCheckHelpText" />
+            <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked aria-describedby="registerCheckHelpText" required />
             <label class="form-check-label" for="registerCheck">
               Tôi đã đọc và đồng ý với điều khoản sử dụng
             </label>
