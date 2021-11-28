@@ -23,7 +23,7 @@ if (!isset($listFavoriteIds)) {
 ?>
 
 <style>
-  <?php include_once 'favorite.css'; ?>
+  <?php include_once 'favorite.css'; ?><?php include_once 'discount.css'; ?>
 </style>
 <!-- <div class="col-6 col-md-4 col-lg-3 col-xl-2 my-2"> -->
 <div class="card cardview-product-watch" style="margin: 0 0 20px 0;">
@@ -35,6 +35,12 @@ if (!isset($listFavoriteIds)) {
     <div class="heart-product-<?= $product['id'] ?> favorite-heart <?= (in_array($product['id'], $listFavoriteIds)) ? 'favorite-heart-active' : '' ?>" onclick="addToFavorite(<?= $product['id'] ?>)">
       <i class="<?= (in_array($product['id'], $listFavoriteIds)) ? 'fas' : 'far' ?> fa-heart"></i>
     </div>
+
+    <?php if ($product['discount']) { ?>
+      <div class="discount-badges">
+        -<?= $product['discount'] ?>%
+      </div>
+    <?php } ?>
   </div>
   <div class="card-body cardview-product-content p-2 pb-3" style="text-align:center;justify-content:center;">
     <div style="display: table;width: 100%;height: 4.5em; overflow: hidden; min-height: 60px;text-align: center;">

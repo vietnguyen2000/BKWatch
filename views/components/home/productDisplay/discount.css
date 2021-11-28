@@ -1,0 +1,11 @@
+.discount-badges {
+  position: absolute;
+  background-color: #c89979;
+  z-index: 20;
+  top: 15px;
+  left: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white;
+  pointer-events: none;
+}

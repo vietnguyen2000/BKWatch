@@ -11,7 +11,7 @@ class HomeController extends BaseController
     {
         $view = new HomeView();
         $productModel = new ProductModel();
-        $products = $productModel->getAll();
+        $products = $productModel->getAll(10, ' ORDER BY createdAt DESC');
         $view->render(['url' => $url, 'nav' => '/', "products" => $products]);
     }
 
