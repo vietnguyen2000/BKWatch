@@ -29,7 +29,7 @@ class cmsProductController extends BaseController
       $this->redirect('/login');
       return;
     };
-    if ($_SESSION['user']['role'] > 0 ) {
+    if ($_SESSION['user']['role'] != 1 ) {
       $this->redirect('/');
       return;
     };
@@ -46,7 +46,7 @@ class cmsProductController extends BaseController
       $this->redirect('/login');
       return;
     };
-    if ($_SESSION['user']['role'] > 0 ) {
+    if ($_SESSION['user']['role'] != 1 ) {
       $this->redirect('/');
       return;
     };
@@ -65,7 +65,7 @@ class cmsProductController extends BaseController
         $this->redirect('/login');
         return;
       };
-      if ($_SESSION['user']['role'] > 0 ) {
+      if ($_SESSION['user']['role'] != 1 ) {
         $this->redirect('/');
         return;
       };
@@ -81,14 +81,14 @@ class cmsProductController extends BaseController
     }
 
     public function updateProduct($url, $id) {
-      // if (!isset($_SESSION['user']) ) {
-      //   $this->redirect('/login');
-      //   return;
-      // };
-      // if ($_SESSION['user']['role'] > 0 ) {
-      //   $this->redirect('/');
-      //   return;
-      // };
+      if (!isset($_SESSION['user']) ) {
+        $this->redirect('/login');
+        return;
+      };
+      if ($_SESSION['user']['role'] != 1 ) {
+        $this->redirect('/');
+        return;
+      };
       
       $productTitle = $_POST['productTitle'];
       $productTag = $_POST['productTag'];
@@ -161,7 +161,7 @@ class cmsProductController extends BaseController
         $this->redirect('/login');
         return;
       };
-      if ($_SESSION['user']['role'] > 0 ) {
+      if ($_SESSION['user']['role'] != 1 ) {
         $this->redirect('/');
         return;
       };
@@ -237,6 +237,7 @@ class cmsProductController extends BaseController
     }
     public function delete($url){
       $id = $_POST['ID'];
-      $this->productModel->delete($id);
+      $row =  $this->productModel->delete($id);
+      return;
     }
 }

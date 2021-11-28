@@ -41,11 +41,11 @@
           </thead>
           <tbody>
           <?php  foreach ($data['data'] as $row) {?>
-            <tr>
+            <tr id ='row-<?php echo($row["id"]); ?>'>
                 
                 <td data-label="Title"><?php echo($row["title"]); ?></td>
                 <td data-label="Code"><?php echo($row["productCode"]); ?></td>
-                <td data-label="Content"><?php echo(substr($row["content"],0,15)); ?></td>
+                <td data-label="Content"><?= strlen($row['content']) > 17 ? mb_substr($row['content'], 0, 17) . "..." : $row['content'] ?></td>
                 <td data-label="Tag"><?php echo($row["tag"]); ?></td>
                 <td data-label="Price"><?php echo($row["price"]); ?></td>
                 <td data-label="Material"><?php echo($row["material"]); ?></td>
@@ -77,11 +77,8 @@
             <div class="buttons">
               <button type="button" class="button"><<</button>
               <button type="button" class="button active">1</button>
-              <button type="button" class="button">2</button>
-              <button type="button" class="button">3</button>
               <button type="button" class="button">>></button>
             </div>
-            <small>Page 1 of 3</small>
           </div>
         </div>
       </div>
@@ -121,10 +118,9 @@
     modal.style.display = "none";
   }
   function deleteProduct(){
-    var nameID = "orderStatus" + ID;
-    var statusOrder = $('input[name='+ nameID+']:checked').val();
     // var statusOrder = document.getElementById("orderStatus" + ID);
-    console.log(statusOrder);
+    $(`tr[id="row-${ID}"]`).remove();
+    console.log(ID);
     $.post('/cmsProduct/delete', {
           ID
         })

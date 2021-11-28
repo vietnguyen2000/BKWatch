@@ -19,7 +19,7 @@ class cmsController extends BaseController
       $this->redirect('/login');
       return;
     };
-    if ($_SESSION['user']['role'] > 0 ) {
+    if ($_SESSION['user']['role'] != 1 ) {
       $this->redirect('/');
       return;
     };
