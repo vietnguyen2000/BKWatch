@@ -29,14 +29,14 @@ foreach ($dataContact as $key => $value) {
     ?>
   </style>
   <div class=".container-xl">
-    <div class="row align-items-start">
-      <div class="col-xl-4">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-6">
         <?php require 'footerInfo.php' ?>
       </div>
-      <div class="col-xl-4">
+      <div class="col-12 col-sm-12 col-md-3">
         <?php require 'footerLink.php' ?>
       </div>
-      <div class="col-xl-4">
+      <div class="col-12 col-sm-12 col-md-3">
         <?php require 'footerSupport.php' ?>
       </div>
     </div>
