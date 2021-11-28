@@ -113,9 +113,8 @@ class UserController extends BaseController
       'avatarURL' => $defaultImage,
     ];
     $user->insert($data);
-    print_r("Đăng ký thành công! Xin chào " . $_POST['fullname']);
 
-    $this->redirect('/', true);
+    $this->login($url);
   }
 
   // post

@@ -11,7 +11,7 @@ abstract class BaseController
 
   public function redirect($url, $permanent = false)
   {
-    header('Location:' . $url, true, $permanent ? 301 : 302);
+    header('Location:' . $url . '?' . http_build_query($_GET), true, $permanent ? 301 : 302);
 
     ob_end_flush();
   }
