@@ -36,6 +36,8 @@ $router->get('/cmsBlog/update/{id}', 'cmsBlogController@update');
 $router->get('/cmsProduct', 'cmsProductController@index');
 $router->get('/cmsAddProduct', 'cmsProductController@add');
 $router->get('/cmsUpdateProduct/{id}', 'cmsProductController@update');
+$router->get('/cmsOrder', 'cmsOrderController@index');
+$router->post('/cmsOrder/update', 'cmsOrderController@update');
 $router->get('/cmsProductComment', 'cmsCommentController@product');
 $router->get('/cmsBlogComment', 'cmsCommentController@blog');
 $router->get('/cmsBlogImage', 'cmsImageController@blog');

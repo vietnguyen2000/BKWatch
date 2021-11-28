@@ -30,7 +30,7 @@
           <div class="is-user-name"><span><?php echo $data['username']; ?></span></div>
         </a>
       </div>
-      <a href="/me" class="navbar-item has-divider desktop-icon-only">
+      <a href="/intro" class="navbar-item has-divider desktop-icon-only">
         <span class="icon"><i class="mdi mdi-help-circle-outline"></i></span>
         <span>About</span>
       </a>
@@ -118,18 +118,12 @@
         </a>
       </li>
     </ul>
-    <p class="menu-label">Comment</p>
+    <p class="menu-label">Order</p>
     <ul class="menu-list">
-      <li <?php if ($data['nav'] == 'cmsBlogComment') {echo "class='active'";} ?>>
-        <a href="/cmsBlogComment" class="has-icon">
+      <li <?php if ($data['nav'] == 'cmsOrder') {echo "class='active'";} ?>>
+        <a href="/cmsOrder" class="has-icon">
           <span class="icon"><i class="mdi mdi-credit-card-outline"></i></span>
-          <span class="menu-item-label">Blog's Comment</span>
-        </a>
-      </li>
-      <li <?php if ($data['nav'] == 'cmsProductComment') {echo "class='active'";} ?>>
-        <a href="/cmsProductComment" class="has-icon">
-          <span class="icon"><i class="mdi mdi-credit-card-outline"></i></span>
-          <span class="menu-item-label">Product's Comment</span>
+          <span class="menu-item-label">Order</span>
         </a>
       </li>
     </ul>
