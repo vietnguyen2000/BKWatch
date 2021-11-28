@@ -33,8 +33,9 @@ class VNPayController extends BaseController
     $prices = 0;
     for ($i = 0; $i < count($listCartItems); $i++) {
       $price = $listCartItems[$i]['price'];
+      $quantity = $listCartItems[$i]['quantity'];
       $discount = $listCartItems[$i]['discount'];
-      $prices += $price * (100 - $discount) / 100;
+      $prices += $price * $quantity * (100 - $discount) / 100;
     };
 
     $total = $prices + $shipFee;
@@ -304,7 +305,7 @@ class VNPayController extends BaseController
           "transactionNo" => strval($_GET['vnp_TransactionNo']),
           "payDate" => DateTime::createFromFormat('YmdHis', strval($_GET['vnp_PayDate']))->format('Y-m-d H:i:s')
         ]);
-        $this->redirect('/');
+        $this->redirect('/payment/orderDetails?orderId=' . $_GET['vnp_TxnRef']);
       } else {
         $_reason = 'Không rõ';
         $_resCode = $_GET['vnp_ResponseCode'];

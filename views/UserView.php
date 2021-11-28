@@ -29,8 +29,34 @@ class UserView extends BaseView
     }
   }
 
+  protected function processRenderChangespw(array $data = [])
+  {
+    if (isset($data['alert'])) {
+      $alert = $data['alert'];
+      $this->renderStaticAlert($alert['title'], $alert['text'], $alert['type']);
+    }
+    if (isset($data['user'])) {
+      $user = $data['user'];
+    }
+    require('components/users/changePassword.php');
+  }
+  public function renderChangepw(array $data = [])
+  {
+    if (isset($_GET['onlyBody'])) {
+      return $this->processRenderChangespw($data);
+    }
+    $this->processRenderHeaderHTML();
+    $this->processRenderHeader($data);
+    $this->processRenderChangespw($data);
+    $this->processRenderFooter($data);
+    $this->processRenderFooterHTML();
+  }
+
   public function renderProfile(array $data = [])
   {
+    if (isset($_GET['onlyBody'])) {
+      return $this->processRenderProfile($data);
+    }
     $this->processRenderHeaderHTML();
     $this->processRenderHeader($data);
     $this->processRenderProfile($data);
@@ -40,6 +66,9 @@ class UserView extends BaseView
 
   public function renderUpdateProfile(array $data = [])
   {
+    if (isset($_GET['onlyBody'])) {
+      return $this->processRenderUpdateProfile($data);
+    }
     $this->processRenderHeaderHTML();
     $this->processRenderHeader($data);
     $this->processRenderUpdateProfile($data);

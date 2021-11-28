@@ -27,7 +27,7 @@
     <?php foreach ($navItems as $key => $item) { ?>
       <div class="col-2">
         <p class="text-center mb-0">
-          <a href="<?= $item[1] ?>" class="header-nav-item <?= array_key_exists("nav", $data) && $data['nav'] == $item[1] ? 'header-nav-item-active' : '' ?>">
+          <a id="<?= 'nav-' . substr($item[1], 1) ?>" href="<?= $item[1] ?>" class="header-nav-item <?= array_key_exists("nav", $data) && $data['nav'] == $item[1] ? 'header-nav-item-active' : '' ?>">
             <?= $item[0] ?>
           </a>
         </p>

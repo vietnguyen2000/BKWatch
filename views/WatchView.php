@@ -11,6 +11,9 @@ class WatchView extends BaseView
 
   public function renderDetails(array $data = [])
   {
+    if (isset($_GET['onlyBody'])) {
+      return $this->processRenderDetails($data);
+    }
     $this->processRenderHeaderHTML();
     $this->processRenderHeader($data);
     $this->processRenderDetails($data);

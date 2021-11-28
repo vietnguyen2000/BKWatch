@@ -19,6 +19,5 @@ require_once 'config.default.php';
 
 $configLocal = 'config.' . ENVIRONMENT . '.php';
 if (file_exists('configs/' . $configLocal)) {
-  echo '<script>console.log("env: ' . ENVIRONMENT . '");</script>';
   require_once $configLocal;
 }
