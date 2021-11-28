@@ -1,5 +1,5 @@
 <style>
-  <?php include 'productDisplay.css'; ?>
+  <?php include_once 'productDisplay.css'; ?>
 </style>
 <div class="selling-products-fragment">
   <ul class="nav nav-tabs mb-3" id="sp-home-tab" role="tablist">

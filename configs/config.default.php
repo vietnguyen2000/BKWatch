@@ -12,7 +12,7 @@ $database_password = "web";
 // $database_password = "password";
 $database_name = "bkwatch";
 $session_time = 600;
-$upload_image_url = 'vietnguyen2000.ddns.net:5000/upload.php';
+$upload_image_url = 'http://vietnguyen2000.ddns.net:5000/upload.php';
 
 // VNPAY
 $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";

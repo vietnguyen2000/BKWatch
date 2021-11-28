@@ -17,7 +17,7 @@
         echo mb_substr($blog_block_content, 0, 320) . "..."
         ?>
       </p>
-      <button type="button" class="btn btn-primary">Read more</button>
+      <a href="/blog/<?= $blog_block_id ?>" type="button" class="btn btn-primary">Đọc thêm</a>
     </div>
   </div>
 </section>

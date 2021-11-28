@@ -16,13 +16,13 @@ class FavoriteController extends BaseController
     public function index($url)
     {
         if (!isset($_SESSION['user'])) {
-        $this->redirect('/login');
-        return;
+            $this->redirect('/login');
+            return;
         };
 
         $userId = $_SESSION['user']['id'];
         $favoriteItems = (new UserFavoriteItemModel())->getProductViewByUserId($userId);
-        
+
         $page = 1;
         $sort = "";
         if (isset($_GET['page'])) {
@@ -31,17 +31,18 @@ class FavoriteController extends BaseController
 
         $view = new FavoriteView();
         $view->render([
-            'url' => $url, 
+            'url' => $url,
             'nav' => '/favorite',
             'products' => $favoriteItems,
             'page' => $page,
             'length' => 10,
-            'sort' => $sort,         
+            'sort' => $sort,
         ]);
     }
- 
-    public function add($url) 
+
+    public function add($url)
     {
+        header('Content-Type: application/json; charset=utf-8');
         if (!isset($_SESSION['user'])) {
             $this->redirect('/login');
             return;
@@ -54,9 +55,27 @@ class FavoriteController extends BaseController
         }
         $userId = $_SESSION['user']['id'];
         $productId = $_POST['productId'];
-        (new UserFavoriteItemModel())->insert([
-            'userId' => $userId,
-            'productId' => $productId,
-        ]);
+
+        $userFavoriteItemModel = new UserFavoriteItemModel();
+        $isExists = $userFavoriteItemModel->getByCondition(['userId' => $userId, 'productId' => $productId]);
+        $data = [
+            'success' => false
+        ];
+        if (count($isExists) > 0) {
+            $userFavoriteItemModel->delete($isExists[0]['id']);
+            $data = [
+                'success' => false
+            ];
+        } else {
+            $userFavoriteItemModel->insert([
+                'userId' => $userId,
+                'productId' => $productId,
+            ]);
+            $data = [
+                'success' => true
+            ];
+        }
+        echo json_encode($data);
+        flush();
     }
 }

@@ -7,14 +7,34 @@ if (!function_exists('currency_format')) {
     }
   }
 }
+
+use Models\UserFavoriteItemModel;
+
+if (!isset($listFavoriteIds)) {
+
+  if (isset($_SESSION['user'])) {
+    $favoriteItemModel = new UserFavoriteItemModel();
+    $listFavoriteIds = $favoriteItemModel->getFavoriteIds($_SESSION['user']['id']);
+  } else {
+    $listFavoriteIds = [];
+  }
+}
+
 ?>
+
+<style>
+  <?php include_once 'favorite.css'; ?>
+</style>
 <!-- <div class="col-6 col-md-4 col-lg-3 col-xl-2 my-2"> -->
 <div class="card cardview-product-watch" style="margin: 0 0 20px 0;">
-  <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+  <div class="bg-image hover-overlay ripple w-100" style="aspect-ratio: 7/8" data-mdb-ripple-color="light">
     <img src="<?= $product['imageURLs'][0] ?>" class="img-fluid" style="object-fit: contain; aspect-ratio: 7/8" alt="preview item id <?= $product['id'] ?>" />
     <a href="/watch/<?= $product['id'] ?>">
       <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
     </a>
+    <div class="heart-product-<?= $product['id'] ?> favorite-heart <?= (in_array($product['id'], $listFavoriteIds)) ? 'favorite-heart-active' : '' ?>" onclick="addToFavorite(<?= $product['id'] ?>)">
+      <i class="<?= (in_array($product['id'], $listFavoriteIds)) ? 'fas' : 'far' ?> fa-heart"></i>
+    </div>
   </div>
   <div class="card-body cardview-product-content p-2 pb-3" style="text-align:center;justify-content:center;">
     <div style="display: table;width: 100%;height: 4.5em; overflow: hidden; min-height: 60px;text-align: center;">

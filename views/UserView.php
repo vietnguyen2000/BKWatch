@@ -35,6 +35,9 @@ class UserView extends BaseView
       $alert = $data['alert'];
       $this->renderStaticAlert($alert['title'], $alert['text'], $alert['type']);
     }
+    if (isset($data['user'])) {
+      $user = $data['user'];
+    }
     require('components/users/changePassword.php');
   }
   public function renderChangepw(array $data = [])

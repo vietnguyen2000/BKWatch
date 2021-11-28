@@ -141,9 +141,8 @@ abstract class BaseModel
   {
     try {
       $sql = "DELETE FROM `$this->name` WHERE `id` = ?";
-      echo $sql;
       $stmt = $this->db->prepare($sql);
-      $stmt->bind_param('i', $id);
+      $stmt->bind_param('s', $id);
       $stmt->execute();
       return $stmt->affected_rows;
     } catch (\Exception $e) {
