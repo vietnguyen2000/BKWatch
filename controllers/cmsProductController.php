@@ -235,6 +235,7 @@ class cmsProductController extends BaseController
     }
     public function delete($url){
       $id = $_POST['ID'];
-      $this->productModel->delete($id);
+      $row =  $this->productModel->delete($id);
+      return;
     }
 }
