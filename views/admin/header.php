@@ -2,7 +2,7 @@
 <style>
   <?php include "main.css" ?>
 </style>
-
+<?php include "utils" ?>
 <div id="app">
 
   <nav id="navbar-main" class="navbar is-fixed-top">
@@ -62,12 +62,6 @@
       </ul>
       <p class="menu-label">Contents</p>
       <ul class="menu-list">
-        <li class="--set-active-profile-html">
-          <a href="profile.html">
-            <span class="icon"><i class="mdi mdi-account-circle"></i></span>
-            <span class="menu-item-label">Introduction</span>
-          </a>
-        </li>
         <li <?php if ($data['nav'] == 'cmsBlog') {
               echo "class='active'";
             } ?>>
@@ -87,14 +81,6 @@
             <span class="menu-item-label">Product</span>
           </a>
         </li>
-        <li <?php if ($data['nav'] == 'cmsAddProduct') {
-              echo "class='active'";
-            } ?>>
-          <a href="/cmsAddProduct" class="has-icon">
-            <span class="icon"><i class="mdi mdi-help-circle"></i></span>
-            <span class="menu-item-label">Add Product</span>
-          </a>
-        </li>
       </ul>
       <p class="menu-label">User</p>
       <ul class="menu-list">
@@ -108,21 +94,6 @@
           <a href="#" class="has-icon">
             <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
             <span class="menu-item-label">Customer</span>
-          </a>
-        </li>
-      </ul>
-      <p class="menu-label">Media</p>
-      <ul class="menu-list">
-        <li>
-          <a href="#" class="has-icon">
-            <span class="icon"><i class="mdi mdi-credit-card-outline"></i></span>
-            <span class="menu-item-label">Blog's Image</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" class="has-icon">
-            <span class="icon"><i class="mdi mdi-credit-card-outline"></i></span>
-            <span class="menu-item-label">Product's Image</span>
           </a>
         </li>
       </ul>
