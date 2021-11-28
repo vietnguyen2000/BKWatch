@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Admin Blog</title>
 
-  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="/views/admin/main.css">
   <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
   <style>
     .inRow{

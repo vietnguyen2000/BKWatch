@@ -151,9 +151,61 @@
         </div>
       </div>
     </div>
+  </section>
+<!-- ===================================================== -->
+<section class="section main-section">
+  <div class="card has-table">
+    <header class="card-header">
+      <p class="card-header-title">
+        <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
+        Blog's Image
+      </p>
+      <a href="#" class="card-header-icon">
+        <span class="icon"><i class="mdi mdi-reload"></i></span>
+      </a>
+    </header>
+    <div class="card-content">
+      <table>
+        <thead>
+        <tr>
+          <th>Image</th>
+          <th>Url</th>
+          <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php  if (!$data['add']) {foreach ($data['imageList'] as $row) {?>
+          <tr>
+              <td data-label="Image">
+                <img src="<?php echo($row['imageURL']); ?>" alt="Image" style="height:70px; wight:auto;">
+              </td>
+              <td data-label="imageURLs"><?php echo($row['imageURL']); ?></td>
+              <td class="actions-cell" data-label="Delete">
+                <form form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+                  <div class="buttons right nowrap">
+                      <button class="button small red --jb-modal" data-target="sample-modal" type="button" onclick="deleteID('<?php echo($row['id']); ?>')">
+                      <span class="icon"><i class="mdi mdi-trash-can"></i></span>
+                      </button>
+                  </div>
+                </form>
+              </td>
+          </tr>
+        <?php }}?>
+        </tbody>
+      </table>
+      <div class="table-pagination">
+        <div class="flex items-center justify-between">
+          <div class="buttons">
+            <button type="button" class="button"><<</button>
+            <button type="button" class="button active">1</button>
+            <button type="button" class="button">>></button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
-
+<!-- ===================================================== -->
 <section class="section main-section">
   <div class="card mb-6">
     <div class="card-content">
