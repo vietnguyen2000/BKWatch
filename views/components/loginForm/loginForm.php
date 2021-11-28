@@ -13,32 +13,39 @@
     <!-- Pills content -->
     <div class="tab-content">
       <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-        <form method="post" action="/login">
-          <div class="form-outline mb-4">
-            <input type="text" id="loginName" class="form-control" name="username" />
-            <label class="form-label" for="loginName">Tên đăng nhập</label>
+        <form method="post" action="/login" class="row needs-validation" novalidate>
+          <div class="col-12" style="margin-bottom:20px;">
+            <div class="form-outline">
+              <input type="text" id="loginName" class="form-control" name="username" required minlength="5" maxlength="32" />
+              <label class="form-label" for="loginName">Tên đăng nhập</label>
+              <div class="invalid-feedback">Nhập tài khoản (từ 5 đến 32 ký tự).</div>
+            </div>
           </div>
 
           <!-- Password input -->
-          <div class="form-outline mb-4">
-            <input type="password" id="loginPassword" class="form-control" name="password" />
-            <label class="form-label" for="loginPassword">Mật khẩu</label>
+          <div class="col-12" style="margin-bottom:20px;">
+            <div class="form-outline">
+              <input type="password" id="loginPassword" class="form-control" name="password" required minlength="5" maxlength="32" />
+              <label class="form-label" for="loginPassword">Mật khẩu</label>
+              <div class="invalid-feedback">Nhập mật khẩu (từ 5 đến 32 ký tự).</div>
+            </div>
           </div>
 
           <!-- 2 column grid layout -->
-          <div class="row mb-4">
-            <div class="col-md-6 d-flex justify-content-center">
-              <!-- Checkbox -->
-              <div class="form-check mb-3 mb-md-0">
-                <input class="form-check-input" type="checkbox" value="1" id="loginCheck" checked name="rememberMe" />
-                <label class="form-check-label" for="loginCheck"> Tự động đăng nhập </label>
-              </div>
+          <div class="col-12" style="margin-bottom:20px;">
+            <!-- <div class="row">
+              <div class="col-md-6 d-flex justify-content-center"> -->
+            <!-- Checkbox -->
+            <div class="form-check mb-3 mb-md-0">
+              <input class="form-check-input" type="checkbox" value="1" id="loginCheck" checked name="rememberMe" readonly />
+              <label class="form-check-label" for="loginCheck"> Tự động đăng nhập </label>
             </div>
+            <!-- </div> -->
+            <!-- </div> -->
 
-            <div class="col-md-6 d-flex justify-content-center">
-              <!-- Simple link -->
+            <!-- <div class="col-md-6 d-flex justify-content-center">
               <a href="#!">Quên mật khẩu?</a>
-            </div>
+            </div> -->
           </div>
 
           <!-- Submit button -->
@@ -109,3 +116,23 @@
     </div>
   </div>
 </div>
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (() => {
+    'use strict';
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = document.querySelectorAll('.needs-validation');
+
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms).forEach((form) => {
+      form.addEventListener('submit', (event) => {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  })();
+</script>
