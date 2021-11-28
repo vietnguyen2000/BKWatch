@@ -41,12 +41,11 @@
   <a href="/favorite" class="ps-2 text-decoration-none">
     <i class="fas fa-heart fa-2x"></i>
     <?php
+    global $listFavoriteIds;
     if (isset($_SESSION['user'])) {
       $favoriteItemModel = new UserFavoriteItemModel();
-      $favoriteQuantity = $favoriteItemModel->getFavoriteQuantity($_SESSION['user']['id']);
-      if (!isset($favoriteQuantity)) {
-        $favoriteQuantity = 0;
-      }
+      $listFavoriteIds = $favoriteItemModel->getFavoriteIds($_SESSION['user']['id']);
+      $favoriteQuantity = count($listFavoriteIds);
     ?>
       <span class="badge rounded-pill badge-notification bg-danger wishlist-badge" <?= $favoriteQuantity == 0 ? 'style="display: none;"' : '' ?>><?= $favoriteQuantity ?></span>
     <?php } ?>

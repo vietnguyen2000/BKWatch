@@ -58,7 +58,11 @@ class FavoriteController extends BaseController
 
         $userFavoriteItemModel = new UserFavoriteItemModel();
         $isExists = $userFavoriteItemModel->getByCondition(['userId' => $userId, 'productId' => $productId]);
+        $data = [
+            'success' => false
+        ];
         if (count($isExists) > 0) {
+            $userFavoriteItemModel->delete($isExists[0]['id']);
             $data = [
                 'success' => false
             ];

@@ -7,7 +7,23 @@ if (!function_exists('currency_format')) {
     }
   }
 }
+
+use Models\UserFavoriteItemModel;
+
+if (!isset($listFavoriteIds)) {
+
+  if (isset($_SESSION['user'])) {
+    $favoriteItemModel = new UserFavoriteItemModel();
+    $listFavoriteIds = $favoriteItemModel->getFavoriteIds($_SESSION['user']['id']);
+  } else {
+    $listFavoriteIds = [];
+  }
+}
+
 ?>
+<style>
+  <?php include_once 'favorite.css'; ?>
+</style>
 <div>
   <div class="row">
     <h5>
@@ -65,13 +81,17 @@ if (!function_exists('currency_format')) {
   <div class="row mt-lg-5">
     <div class="col-lg-6">
       <button class="btn btn-black w-100 me-lg-2 mb-2 mb-lg-0" type="button" onClick="addToFavorite(<?= $product['id'] ?>, '<?= $product['title'] ?>')">
-        <h6 class="mb-0"> Add to favorite <i class="far fa-heart"></i></h6>
+        <h6 class="mb-0"> Yêu thích
+          <span class="heart-product-<?= $product['id'] ?> <?= (in_array($product['id'], $listFavoriteIds)) ? 'favorite-heart-active' : '' ?>">
+            <i class="<?= (in_array($product['id'], $listFavoriteIds)) ? 'fas' : 'far' ?> fa-heart"></i>
+          </span>
+        </h6>
       </button>
     </div>
 
     <div class="col-lg-6">
       <button class="btn btn-primary w-100" type="button" onClick="addToCart(<?= $product['id'] ?>, '<?= $product['title'] ?>')">
-        <h6 class="mb-0"> Add to cart <i class="fas fa-cart-plus"></i></h6>
+        <h6 class="mb-0"> Thêm vào giỏ <i class="fas fa-cart-plus"></i></h6>
       </button>
     </div>
   </div>

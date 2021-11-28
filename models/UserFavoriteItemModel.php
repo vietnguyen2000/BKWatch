@@ -30,15 +30,19 @@ class UserFavoriteItemModel extends BaseModel
     }
   }
 
-  public function getFavoriteQuantity($userId)
+  public function getFavoriteIds($userId)
   {
     try {
-      $sql = "SELECT COUNT(*) FROM $this->name WHERE (userId = ?)";
+      $sql = "SELECT productId FROM $this->name WHERE (userId = ?)";
       $stmt = $this->db->prepare($sql);
       $stmt->bind_param('s', $userId);
       $stmt->execute();
       $result =  $stmt->get_result();
-      return $result->fetch_row()[0];
+      $res = array();
+      foreach ($result->fetch_all(mode: MYSQLI_ASSOC) as $row) {
+        $res[] = $row['productId'];
+      }
+      return $res;
     } catch (\Exception $e) {
       return 0;
     }

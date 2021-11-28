@@ -1,0 +1,15 @@
+.favorite-heart {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  top: 0px;
+  right: 0px;
+  font-size: 20px;
+  color: #262626;
+  cursor: pointer;
+}
+
+.favorite-heart-active {
+  color: #f93154;
+}
