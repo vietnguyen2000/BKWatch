@@ -101,9 +101,7 @@ class UserController extends BaseController
       return;
     };
     // Create Avatar id & file
-    $defaultImage = 'uploads/default.png';
-    $userImage = 'uploads/' . uniqid() . '.png';
-    copy($defaultImage, $userImage) or die("Unable to copy $defaultImage to $userImage.");
+    $defaultImage = '/assets/images/default-avatar.jpg';
     $data = [
       'username' => $_POST['username'],
       'password' => password_hash($_POST['password'], null),
@@ -112,12 +110,11 @@ class UserController extends BaseController
       'phoneNumber' => $_POST['phoneNumber'],
       'gender' => intval($_POST['gender']),
       'role' => 0,
-      'avatarURL' => $userImage,
+      'avatarURL' => $defaultImage,
     ];
     $user->insert($data);
-    print_r("Đăng ký thành công! Xin chào " . $_POST['fullname']);
 
-    $this->redirect('/', true);
+    $this->login($url);
   }
 
   // post

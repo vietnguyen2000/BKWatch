@@ -2,12 +2,8 @@
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Product</li>
+      <li>Comment</li>
     </ul>
-    <a href="/cmsAddProduct" class="button blue">
-      <span class="icon"><i class="mdi mdi-credit-card-outline"></i></span>
-      <span>Add Product</span>
-    </a>
   </div>
 </section>
 
@@ -17,7 +13,7 @@
       <header class="card-header">
         <p class="card-header-title">
           <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
-          Products
+          Product's Comment
         </p>
         <a href="#" class="card-header-icon">
           <span class="icon"><i class="mdi mdi-reload"></i></span>
@@ -27,15 +23,11 @@
         <table>
           <thead>
           <tr>
-            <th>Title</th>
-            <th>Product code</th>
+            <th>Product Code</th>
+            <th>User's Name</th>
             <th>Content</th>
-            <th>Tag</th>
-            <th>Price</th>
-            <th>Material</th>
-            <th>Glass</th>
-            <th>Color</th>
-            <th>Create at</th>
+            <th>Rating</th>
+            <th>Update at</th>
             <th></th>
           </tr>
           </thead>
@@ -43,25 +35,18 @@
           <?php  foreach ($data['data'] as $row) {?>
             <tr>
                 
-                <td data-label="Title"><?php echo($row["title"]); ?></td>
-                <td data-label="Code"><?php echo($row["productCode"]); ?></td>
-                <td data-label="Content"><?php echo(substr($row["content"],0,15)); ?></td>
-                <td data-label="Tag"><?php echo($row["tag"]); ?></td>
-                <td data-label="Price"><?php echo($row["price"]); ?></td>
-                <td data-label="Material"><?php echo($row["material"]); ?></td>
-                <td data-label="Glass"><?php echo($row["glass"]); ?></td>
-                <td data-label="Color"><?php echo($row["color"]); ?></td>
-                <td data-label="Created">
-                <small class="text-gray-500"><?php echo($row["createdAt"]); ?></small>
+                <td data-label="productCode"><?php echo($row["productCode"]); ?></td>
+                <td data-label="userCmtFullname"><?php echo($row["userCmtFullname"]); ?></td>
+                <td data-label="userCmtContent"><?php echo($row["userCmtContent"]); ?></td>
+                <td data-label="userCmtRating" class="progress-cell">
+                  <progress max="5" value="<?php echo($row["userCmtRating"]); ?>"><?php echo($row["userCmtRating"]); ?></progress>
+                </td>               
+                <td data-label="userCmtTime">
+                <small class="text-gray-500"><?php echo($row["userCmtTime"]); ?></small>
                 </td>
                 <td class="actions-cell">
                   <form form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                     <div class="buttons right nowrap">
-                      <a href="/cmsUpdateProduct/<?php echo($row["id"]); ?>">
-                        <button class="button small green --jb-modal"  data-target="sample-modal-2" type="button">
-                        <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
-                        </button>
-                      </a>
                         <button class="button small red --jb-modal" data-target="sample-modal" type="button" onclick="deleteID('<?php echo($row["id"]); ?>')">
                         <span class="icon"><i class="mdi mdi-trash-can"></i></span>
                         </button>
@@ -89,6 +74,7 @@
   </section>
 
 
+
 <div id="sample-modal-2" class="modal">
   <div class="modal-background --jb-modal-close" onclick="cancel()"></div>
   <div class="modal-card" style="margin-top: 40px;">
@@ -108,6 +94,7 @@
 
 
 
+
 <script>
   
   var ID = 0;
@@ -122,4 +109,5 @@
   }
   
 </script>
+
 

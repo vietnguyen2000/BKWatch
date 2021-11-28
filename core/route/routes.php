@@ -40,8 +40,15 @@ $router->get('/cmsBlog/add/', 'cmsBlogController@add');
 $router->get('/cmsBlog/update/{id}', 'cmsBlogController@update');
 $router->get('/cmsProduct', 'cmsProductController@index');
 $router->get('/cmsAddProduct', 'cmsProductController@add');
-$router->get('/cmsUpdateProduct/{id}', 'cmsAddProductController@update');
+$router->get('/cmsUpdateProduct/{id}', 'cmsProductController@update');
+$router->get('/cmsOrder', 'cmsOrderController@index');
+$router->post('/cmsOrder/update', 'cmsOrderController@update');
+$router->get('/cmsProductComment', 'cmsCommentController@product');
+$router->get('/cmsBlogComment', 'cmsCommentController@blog');
+$router->get('/cmsBlogImage', 'cmsImageController@blog');
+$router->get('/cmsProductImage', 'cmsImageController@product');
 $router->post('/payment/VNPay/payment', 'VNPayController@payment');
+$router->get('/payment/VNPay/payment/{id}', 'VNPayController@VNPaymentOrderId');
 $router->get('/payment/VNPay/ipn', 'VNPayController@VNPayIPN');
 $router->get('/payment/VNPay/result', 'VNPayController@VNPayReturn');
 

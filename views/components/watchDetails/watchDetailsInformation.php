@@ -32,7 +32,10 @@
           </div>
           <h3><?= $product['title'] ?></h3>
           <h6><?php require 'watchRating.php' ?></h6>
-          <h4><?= currency_format($product['price']) ?></h4>
+          <?php if ($product['discount']) { ?>
+            <span style="text-decoration: line-through;"><?= currency_format($product['price']) ?></span>
+          <?php } ?>
+          <h4><?= currency_format($product['price'] * (100 - $product['discount']) / 100) ?></h4>
           <p>
             <?= $product['content'] ?>
           </p>

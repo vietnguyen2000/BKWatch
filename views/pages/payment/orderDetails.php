@@ -8,11 +8,12 @@ if (!function_exists('currency_format')) {
   }
 }
 
-function mapStatus($status)
+function mapStatus($status, $id)
 {
+  $__payment_url = ROOT_URL . "/payment/VNPay/payment/" . $id;
   switch ($status) {
     case 0:
-      return '<button class="btn btn-primary">Thanh toán ngay</button>';
+      return '<a style="z-index: 100; pointer-events: all;" href="' . $__payment_url . '"class="btn btn-primary">Thanh toán ngay</a>';
     case 1:
       return 'Đã thanh toán';
     case 2:
@@ -34,7 +35,7 @@ function mapStatus($status)
         <div class="card-body p-4">
           <div class="d-flex justify-content-between align-items-center mb-4">
             <p class="lead fw-normal mb-0 text-primary">Mã đơn <?= $order['id'] ?></p>
-            <p class="lead fw-normal mb-0 text-primary"><?= mapStatus($order['status']) ?></p>
+            <p class="lead fw-normal mb-0 text-primary"><?= mapStatus($order['status'], $order['id']) ?></p>
           </div>
           <div class="card shadow-0 border mb-4">
             <?php foreach ($order['listItems'] as $item) { ?>
@@ -112,7 +113,7 @@ function mapStatus($status)
 
           <div class="my-3">
             <div class="progress" style="height: 6px; border-radius: 16px;">
-              <div class="progress-bar" role="progressbar" style="width: <?= ($order['status']) * 100 / 3 ?>%; border-radius: 16px; background-color: #c89979;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar" role="progressbar" style="width: <?= max(($order['status']) * 100 / 3, 5) ?>%; border-radius: 16px; background-color: #c89979;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
             <div class="d-flex justify-content-between mb-1">
               <p class="text-muted mt-1 mb-0 small">Khởi tạo</p>

@@ -15,8 +15,12 @@ class cmsController extends BaseController
 {
   public function index($url)
   {
-    if (!isset($_SESSION['user']) || $_SESSION['user']['role'] > 0 ) {
+    if (!isset($_SESSION['user']) ) {
       $this->redirect('/login');
+      return;
+    };
+    if ($_SESSION['user']['role'] > 0 ) {
+      $this->redirect('/');
       return;
     };
     $view = new cmsAdminView();

@@ -24,8 +24,12 @@ class cmsProductController extends BaseController
   }
   public function index($url)
   {
-    if (!isset($_SESSION['user'])) {
+    if (!isset($_SESSION['user']) ) {
       $this->redirect('/login');
+      return;
+    };
+    if ($_SESSION['user']['role'] > 0 ) {
+      $this->redirect('/');
       return;
     };
     $data = $this->productModel->getAll();
@@ -37,35 +41,35 @@ class cmsProductController extends BaseController
   }
   public function add($url)
   {
-    if (!isset($_SESSION['user'])) {
+    if (!isset($_SESSION['user']) ) {
       $this->redirect('/login');
+      return;
+    };
+    if ($_SESSION['user']['role'] > 0 ) {
+      $this->redirect('/');
       return;
     };
     $view = new cmsAddProductView();
     $userId = $_SESSION['user']['id'];
     $userImg = $_SESSION['user']['avatarURL'];
     $username = $_SESSION['user']['username'];
-    $view->render(['url' => $url, 'nav' => 'cmsAddProduct', 'userId' => $userId, 'userImg' => $userImg, 'username'=>$username]);
+    $view->render(['url' => $url, 'nav' => 'cmsAddProduct', 'userId' => $userId, 'userImg' => $userImg, 'username'=>$username, 'comment'=>array(), 'data' =>'']);
   }
     public function update($url, $id)
     {
+      if (!isset($_SESSION['user']) ) {
+        $this->redirect('/login');
+        return;
+      };
+      if ($_SESSION['user']['role'] > 0 ) {
+        $this->redirect('/');
+        return;
+      };
         $view = new cmsAddProductView();
-        $data = $this->blogModel->getBlogById($id);
-        $view->renderDetails([
-            'url' => $url,
-            'nav' => '/cmsAddProduct',
-            'data' => $data,
-            'id' => $id
-        ]);
-        $getData = $this->blogModel->getByCondition([
-            "id" => $id
-        ]);
-        $countView = (int)$getData[0]["countView"];
-        $this->blogModel->updateById(
-            $id,
-            [
-                "countView" => $countView + 1
-            ]
-        );
+        $data = $this->productModel->getById($id);
+        $userId = $_SESSION['user']['id'];
+        $userImg = $_SESSION['user']['avatarURL'];
+        $username = $_SESSION['user']['username'];
+        $view->render(['url' => $url, 'nav' => 'cmsAddProduct', 'userId' => $userId, 'userImg' => $userImg, 'username'=>$username, 'comment'=>array(), 'data' =>$data]);
     }
 }
