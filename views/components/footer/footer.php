@@ -7,18 +7,32 @@ $dataContact = $contactModel->getContact();
 $addressData = [];
 $phoneData = [];
 $emailData = [];
-$fbData = "";
-$skypeData = "";
-$twitterData = "";
-$instagramData = "";
+$fbData = [];
+$skypeData = [];
+$twitterData = [];
+$instagramData = [];
 foreach ($dataContact as $key => $value) {
-  array_push($addressData, $value["address"]);
-  array_push($phoneData, $value["phone"]);
-  array_push($emailData, $value["email"]);
-  $fbData .= $value["facebook"];
-  $skypeData .= $value["skype"];
-  $twitterData .= $value["twitter"];
-  $instagramData .= $value["instagram"];
+  if (!empty($value["address"])) {
+    array_push($addressData, $value["address"]);
+  }
+  if (!empty($value["phone"])) {
+    array_push($phoneData, $value["phone"]);
+  }
+  if (!empty($value["email"])) {
+    array_push($emailData, $value["email"]);
+  }
+  if (!empty($value["facebook"])) {
+    array_push($fbData, $value["facebook"]);
+  }
+  if (!empty($value["skype"])) {
+    array_push($skypeData, $value["skype"]);
+  }
+  if (!empty($value["twitter"])) {
+    array_push($twitterData, $value["twitter"]);
+  }
+  if (!empty($value["instagram"])) {
+    array_push($instagramData, $value["instagram"]);
+  }
 }
 ?>
 </div>

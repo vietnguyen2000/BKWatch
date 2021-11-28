@@ -18,10 +18,6 @@
         'Blogs',
         '/blog'
       ],
-      [
-        'Liên hệ',
-        '/contact'
-      ],
     ];
     ?>
     <?php foreach ($navItems as $key => $item) { ?>
