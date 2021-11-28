@@ -3,7 +3,7 @@
 </style>
 <?php
 $title = [
-  "CỔ ĐIỂN",
+  "ROLEX",
   "SMART WATCH"
 ];
 $content = [
@@ -11,8 +11,12 @@ $content = [
   "Đa dạng về phong cách, kiểu dáng, màu sắc, kích cỡ..."
 ];
 $bg = [
-  "https://images4.alphacoders.com/573/thumb-1920-573096.jpg",
+  "https://wallpaper.dog/large/10796489.jpg",
   "https://wallpaperaccess.com/full/2067364.jpg"
+];
+$categoryURL = [
+  "/watch?brand%5B0%5D=rolex",
+  "/watch?brand%5B0%5D=apple"
 ];
 ?>
 <div class="row category-fragment">
@@ -22,6 +26,7 @@ $bg = [
     $title_item_category = $title[$i];
     $content_item_category = $content[$i];
     $bg_item_category = $bg[$i];
+    $url_item_category = $categoryURL[$i];
     require 'itemCategory.php';
   }
   ?>
