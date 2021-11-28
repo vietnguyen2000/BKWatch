@@ -63,7 +63,7 @@
   }
 </style>
 <div class="container mt-5 mb-5">
-  <form action="/user/<?= $user['id'] ?>/update" id="user-update-form" method="POST">
+  <form action="/user/<?= $user['id'] ?>/update" id="user-update-form" method="POST" class="row needs-validation" novalidate>
     <!-- User Profile -->
     <!-- <div class="card"> -->
     <div class="card-title m-3">
@@ -130,7 +130,7 @@
 
             <div class="float-end">
               <div class="btn-group" role="group">
-                <a href="#" class="btn btn-primary btn-submit" onClick="document.getElementById('user-update-form').submit()">Lưu</a>
+                <div class="btn btn-primary" onclick="ClickButtonSave()">Lưu</div>
                 <a href="/me" class="btn btn-black">Huỷ</a>
               </div>
             </div>
@@ -145,6 +145,16 @@
 </div>
 
 <script>
+  function ClickButtonSave() {
+    const formNeedCheck = document.querySelectorAll('.needs-validation');
+    formNeedCheck[0].classList.add('was-validated');
+    console.log(formNeedCheck[0]);
+    if (!formNeedCheck[0].checkValidity()) {
+      return;
+    } else {
+      document.getElementById('user-update-form').submit();
+    }
+  }
   $('#user-image-input').on('change', e => {
     if (e.target.files && e.target.files.length > 0) {
       e.preventDefault();
