@@ -49,7 +49,7 @@
             <div class="field">
               <label class="label">Content</label>
               <div class="control">
-                <textarea class="textarea" placeholder="Content of product" name="productContent" required value="<?php if (!$data['add']) {echo $data['data']['content'];}?>"></textarea>
+                <textarea class="textarea" placeholder="Content of product" name="productContent" required> <?php if (!$data['add']) {echo $data['data']['content'];}?></textarea>
               </div>
               <p class="help">
                 This field is required
