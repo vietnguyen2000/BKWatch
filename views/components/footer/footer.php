@@ -1,3 +1,22 @@
+<?php
+
+use Models\ContactModel;
+
+$contactModel = new ContactModel();
+$dataContact = $contactModel->getContact();
+$addressData = [];
+$phoneData = [];
+$emailData = [];
+$fbData = [];
+$skypeData = [];
+foreach ($dataContact as $key => $value) {
+  array_push($addressData, $value["address"]);
+  array_push($phoneData, $value["phone"]);
+  array_push($emailData, $value["email"]);
+  array_push($fbData, $value["facebook"]);
+  array_push($skypeData, $value["skype"]);
+}
+?>
 </div>
 <footer>
   <style>
