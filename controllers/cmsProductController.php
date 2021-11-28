@@ -132,7 +132,8 @@ class cmsProductController extends BaseController
         "diameter" => $productDiameter,
         "height" => $productHeight,
         "lugWidth" => $productLugWidth,
-        "color" => $productColor
+        "color" => $productColor,
+        "tag" => $productTag
       ]);
 
       if (isset($_POST['listNewImages'])) {
@@ -207,7 +208,8 @@ class cmsProductController extends BaseController
         "diameter" => $productDiameter,
         "height" => $productHeight,
         "lugWidth" => $productLugWidth,
-        "color" => $productColor
+        "color" => $productColor,
+        "tag" => $productTag
       ]);
         $this->redirect("/cmsProduct");
 
