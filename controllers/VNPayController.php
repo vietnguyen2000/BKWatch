@@ -81,6 +81,25 @@ class VNPayController extends BaseController
     ]);
   }
 
+  public function VNPaymentOrderId($url, $id)
+  {
+    $orderModel = new OrdersModel();
+    $orders = $orderModel->getByCondition(['id' => $id]);
+    if (count($orders) == 0) {
+      $this->showError('404', 'Đơn hàng của bạn không tồn tại.', 'Đơn hàng bạn muốn thanh toán không tồn tại, hãy thử lại');
+      return;
+    }
+    $order = $orders[0];
+    $totalFormat = currency_format($order['totle']);
+
+    $this->VNPayPayment([
+      'order_id' => $id,
+      'order_desc' => "Thanh toan don hang $id. So tien $totalFormat",
+      'order_type' => 2,
+      'amount' => 10000
+    ]);
+  }
+
   public function VNPayPayment($config)
   {
     global $vnp_TmnCode;

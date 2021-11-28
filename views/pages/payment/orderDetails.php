@@ -8,11 +8,12 @@ if (!function_exists('currency_format')) {
   }
 }
 
-function mapStatus($status)
+function mapStatus($status, $id)
 {
+  $__payment_url = ROOT_URL . "/payment/VNPay/payment/" . $id;
   switch ($status) {
     case 0:
-      return '<button class="btn btn-primary">Thanh toán ngay</button>';
+      return '<a style="z-index: 100; pointer-events: all;" href="' . $__payment_url . '"class="btn btn-primary">Thanh toán ngay</a>';
     case 1:
       return 'Đã thanh toán';
     case 2:
@@ -34,7 +35,7 @@ function mapStatus($status)
         <div class="card-body p-4">
           <div class="d-flex justify-content-between align-items-center mb-4">
             <p class="lead fw-normal mb-0 text-primary">Mã đơn <?= $order['id'] ?></p>
-            <p class="lead fw-normal mb-0 text-primary"><?= mapStatus($order['status']) ?></p>
+            <p class="lead fw-normal mb-0 text-primary"><?= mapStatus($order['status'], $order['id']) ?></p>
           </div>
           <div class="card shadow-0 border mb-4">
             <?php foreach ($order['listItems'] as $item) { ?>

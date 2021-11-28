@@ -12,7 +12,7 @@ function mapStatus($status)
 {
   switch ($status) {
     case 0:
-      return '<button class="btn btn-primary">Thanh toán ngay</button>';
+      return 'Chưa thanh toán';
     case 1:
       return 'Đã thanh toán, chờ giao hàng';
     case 2:
@@ -126,5 +126,6 @@ function mapStatus($status)
         })
       }
     </script>
+  <?php } ?>
+
 </div>
-<?php } ?>
