@@ -12,6 +12,7 @@
   <?php
 
   use Models\CartItemModel;
+  use Models\UserFavoriteItemModel;
 
   $isLogged = isset($_SESSION['user']);
   if (!$isLogged) { ?>
@@ -39,6 +40,16 @@
   ?>
   <a href="/favorite" class="ps-2 text-decoration-none">
     <i class="fas fa-heart fa-2x"></i>
+    <?php
+    if (isset($_SESSION['user'])) {
+      $favoriteItemModel = new UserFavoriteItemModel();
+      $favoriteQuantity = $favoriteItemModel->getFavoriteQuantity($_SESSION['user']['id']);
+      if (!isset($favoriteQuantity)) {
+        $favoriteQuantity = 0;
+      }
+    ?>
+      <span class="badge rounded-pill badge-notification bg-danger wishlist-badge" <?= $favoriteQuantity == 0 ? 'style="display: none;"' : '' ?>><?= $favoriteQuantity ?></span>
+    <?php } ?>
   </a>
 
   <a href="/cart" class="ps-2 text-decoration-none">

@@ -26,17 +26,52 @@
     <?php } else { ?>
       $.post('/cart/add', {
         productId
+      }, () => {
+        $.showNotification({
+          type: "primary",
+          body: "Bạn đã thêm \"" + productTitle + "\" vào giỏ hàng thành công",
+          duration: 3000,
+          direction: 'append'
+        })
+        $('.cart-badge').each((index, e) => {
+          e.innerHTML = parseInt(e.innerHTML) + 1
+        })
+        $('.cart-badge').show()
       })
-      $.showNotification({
-        type: "primary",
-        body: "Bạn đã thêm \"" + productTitle + "\" vào giỏ hàng thành công",
-        duration: 3000,
-        direction: 'append'
+    <?php } ?>
+  }
+
+  function addToFavorite(productId, productTitle) {
+    <?php if (!isset($_SESSION['user'])) { ?>
+      window.location.href = "<?= ROOT_URL . '/login' ?>"
+      return
+    <?php } else { ?>
+      $.post('/favorite/add', {
+        productId
+      }, (data) => {
+        if (data.success) {
+          $.showNotification({
+            type: "primary",
+            body: "Bạn đã thêm \"" + productTitle + "\" vào wish list thành công",
+            duration: 3000,
+            direction: 'append'
+          })
+          $('.wishlist-badge').each((index, e) => {
+            e.innerHTML = parseInt(e.innerHTML) + 1
+          })
+          $('.wishlist-badge').show()
+        } else {
+          console.log('123123')
+          $.showNotification({
+            type: "danger",
+            body: productTitle + "\" đã nằm trong wish list của bạn!",
+            duration: 3000,
+            direction: 'append'
+          })
+        }
+
       })
-      $('.cart-badge').each((index, e) => {
-        e.innerHTML = parseInt(e.innerHTML) + 1
-      })
-      $('.cart-badge').show()
+
     <?php } ?>
   }
 </script>

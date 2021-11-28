@@ -1,17 +1,26 @@
 <main class="my-2">
-  <div class="tab-pane fade show active" id="ldp-home-tabs-1" role="tabpanel" aria-labelledby="ldp-home-tab-1">
-    <ul class="list-group">
+  <div class="tab-pane fade show active mb-3" id="ldp-home-tabs-1" role="tabpanel" aria-labelledby="ldp-home-tab-1">
+    <div class="row justify-content-around">
       <?php
       $page = $data['page'];
       $len = $data['length'];
       $start = $len * $page - $len;
       $end = $len * $page;
       $count = 0;
-      $watchPageURL = '/favorite?';
-      if ($data['sort'] != "") {
-        $watchPageURL = $watchPageURL . "sort=" . $data['sort'] . "&";
+      $watchPageURL = '/watch?';
+      if (!empty($data['search_normal'])) {
+        $watchPageURL .= "search=" . $data['search_normal'] . "&";
       }
-      $watchPageURL = $watchPageURL . "page=";
+      if (!empty($data['search_category'])) {
+        $watchPageURL .=  http_build_query(["category" => $data['search_category']]) . "&";
+      }
+      if (!empty($data['search_brand'])) {
+        $watchPageURL .=  http_build_query(["brand" => $data['search_brand']]) . "&";
+      }
+      if (!empty($data['sort'])) {
+        $watchPageURL .= "sort=" . $data['sort'] . "&";
+      }
+      $watchPageURL .= "page=";
       foreach ($data['products'] as $product) {
         if ($count < $start) {
           $count += +1;
@@ -19,13 +28,16 @@
         }
         if ($count >= $end) {
           break;
-        }           
-        require(realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/home/productDisplay/cardviewFavoriteProduct.php');        
+        }
+        $product['id'] = $product['productId'];
+        echo '<div class="col-6 col-md-4 col-lg-3 col-xl-2 my-2">';
+        require(realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/home/productDisplay/cardviewProduct.php');
+        echo '</div>';
         $count += +1;
       }
       ?>
       <div class="col my-2"> </div>
-    </ul>
+    </div>
   </div>
   <div style="justify-content: center; display: flex; padding: 30 0 0 0">
     <nav aria-label="...">
