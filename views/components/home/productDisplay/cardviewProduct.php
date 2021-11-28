@@ -49,7 +49,7 @@ if (!isset($listFavoriteIds)) {
       vertical-align: middle;"><?= $product['title'] ?></h6>
     </div>
     <div>
-      <p class="text-primary"><?= currency_format($product['price']) ?></p>
+      <p class="text-primary"><?= currency_format($product['price'] * (100 - $product['discount']) / 100) ?></p>
     </div>
     <div>
       <button class="btn btn-primary" onclick="addToCart(<?= $product['id'] ?>, '<?= $product['title'] ?>')">Thêm vào giỏ</button>
