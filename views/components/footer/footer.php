@@ -12,9 +12,15 @@ $skypeData = "";
 $twitterData = "";
 $instagramData = "";
 foreach ($dataContact as $key => $value) {
-  array_push($addressData, $value["address"]);
-  array_push($phoneData, $value["phone"]);
-  array_push($emailData, $value["email"]);
+  if (!empty($value["address"])) {
+    array_push($addressData, $value["address"]);
+  }
+  if (!empty($value["phone"])) {
+    array_push($phoneData, $value["phone"]);
+  }
+  if (!empty($value["email"])) {
+    array_push($emailData, $value["email"]);
+  }
   $fbData .= $value["facebook"];
   $skypeData .= $value["skype"];
   $twitterData .= $value["twitter"];
