@@ -97,7 +97,7 @@
                             <div class="card-body">
                                 <!-- Title -->
                                 <div class="card-title">
-                                    <p>
+                                    <p style="text-align: center;">
                                         <strong>
                                             <!-- Fullname -->
                                             <?php echo $user['fullname'] ?>
