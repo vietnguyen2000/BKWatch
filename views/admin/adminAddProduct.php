@@ -80,17 +80,17 @@
                 <div class="field-body">
                     <div class="field" >
                     <label class="switch inRow">
-                        <input type="checkbox" value="<?php  if (!$data['add'] && $data['data']['isHot']) {echo 'true';} else {echo 'false';} ?>" name="isHot" required>
+                        <input type="checkbox" <?php  if (!$data['add'] && $data['data']['isHot']) {echo 'checked';} ?> name="isHot" required>
                         <span class="check"></span>
                         <span class="control-label">Hot</span>
                     </label>
                     <label class="switch inRow">
-                        <input type="checkbox" value="<?php  if (!$data['add'] && $data['data']['isNew']) {echo 'true';} else {echo 'false';} ?>" name="isNew" required>
+                        <input type="checkbox" <?php  if (!$data['add'] && $data['data']['isNew']) {echo 'checked';} ?> name="isNew" required>
                         <span class="check"></span>
                         <span class="control-label">New</span>
                     </label>
                     <label class="switch">
-                        <input type="checkbox" value="<?php  if (!$data['add'] && $data['data']['isBestSale']) {echo 'true';} else {echo 'false';} ?>" name="isBestSale" required>
+                        <input type="checkbox" <?php  if (!$data['add'] && $data['data']['isBestSale']) {echo 'checked';} ?> name="isBestSale" required>
                         <span class="check"></span>
                         <span class="control-label">Best Sale</span>
                     </label>
@@ -357,9 +357,11 @@
           </button>
         </div>
         <div class="control">
+          <a href="\cmsProduct">
           <button type="cancel" class="button red">
           Cancel
           </button>
+        </a>
         </div>  
       </div>
     </div>
