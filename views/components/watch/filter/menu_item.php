@@ -1,4 +1,4 @@
-<div style="padding: 0 0 10 0; margin: 0 0 20 0; border-bottom: 1px solid rgba(128, 128, 128, 0.25);">
+<div style="padding: 0 0 10px 0; margin: 0 0 20px 0; border-bottom: 1px solid rgba(128, 128, 128, 0.25);">
   <div class=" row">
     <div class="col-9" id="<?php echo "collapse_title" . $menu_id ?>" style="display: flex; align-items: center; justify-content: flex-start;" data-mdb-toggle="collapse" data-mdb-target="#collapse<?php echo $menu_id ?>" aria-expanded="false" aria-controls="collapse<?php echo $menu_id ?>">
       <h6><?php echo $menu_title ?></h6>

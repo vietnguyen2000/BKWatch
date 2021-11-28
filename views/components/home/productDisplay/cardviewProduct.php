@@ -9,7 +9,7 @@ if (!function_exists('currency_format')) {
 }
 ?>
 <!-- <div class="col-6 col-md-4 col-lg-3 col-xl-2 my-2"> -->
-<div class="card cardview-product-watch" style="margin: 0 0 20 0;">
+<div class="card cardview-product-watch" style="margin: 0 0 20px 0;">
   <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
     <img src="<?= $product['imageURLs'][0] ?>" class="img-fluid" style="object-fit: contain; aspect-ratio: 7/8" alt="preview item id <?= $product['id'] ?>" />
     <a href="/watch/<?= $product['id'] ?>">

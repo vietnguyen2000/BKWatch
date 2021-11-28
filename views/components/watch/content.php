@@ -29,7 +29,7 @@
         if ($count >= $end) {
           break;
         }
-        echo '<div class="col-8 col-sm-6 col-md-4 col-lg-4 col-xl-3">';
+        echo '<div class="col-10 col-sm-6 col-md-4 col-lg-4 col-xl-3">';
         require(realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/home/productDisplay/cardviewProduct.php');
         echo '</div>';
         $count += +1;
@@ -38,7 +38,7 @@
       <div class="col my-2"> </div>
     </div>
   </div>
-  <div style="justify-content: center; display: flex; padding: 30 0 0 0">
+  <div style="justify-content: center; display: flex; padding: 30px 0 0 0">
     <nav aria-label="...">
       <ul class="pagination pagination-circle">
         <li class="page-item">
