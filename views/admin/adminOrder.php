@@ -159,8 +159,9 @@
   }
   function updateOrder(){
     var nameID = "orderStatus" + ID;
-    var statusOrder = $('input[name='+ nameID+']:radio').click(function() {var value = $(this).val();});
+    var statusOrder = $('input[name='+ nameID+']:checked').val();
     // var statusOrder = document.getElementById("orderStatus" + ID);
+    console.log(statusOrder);
     $.post('/cmsOrder/update', {
           ID, statusOrder
         })
