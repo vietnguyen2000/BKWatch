@@ -3,7 +3,7 @@
     <div>
       <img src=<?php echo $bg_item_category ?> class="w-100 item-img-category" />
     </div>
-    <a href="#">
+    <a href="<?php echo $url_item_category; ?>">
       <div class="mask item-zoom-color">
         <div class="d-flex justify-content-center align-items-center h-100">
           <div>

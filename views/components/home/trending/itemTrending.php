@@ -3,7 +3,7 @@
     <div>
       <img src=<?php echo $bg_item_trending ?> class="w-100 item-img-trending" />
     </div>
-    <a href="#">
+    <a href="<?php echo $url_item_trending; ?>">
       <div class="mask item-zoom-color">
         <div class="d-flex justify-content-center align-items-center h-100">
           <div>
