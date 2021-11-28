@@ -45,7 +45,7 @@
                 
                 <td data-label="Title"><?php echo($row["title"]); ?></td>
                 <td data-label="Code"><?php echo($row["productCode"]); ?></td>
-                <td data-label="Content"><?php echo(substr($row["content"],0,15)); ?></td>
+                <td data-label="Content"><?= strlen($row['content']) > 17 ? mb_substr($row['content'], 0, 17) . "..." : $row['content'] ?></td>
                 <td data-label="Tag"><?php echo($row["tag"]); ?></td>
                 <td data-label="Price"><?php echo($row["price"]); ?></td>
                 <td data-label="Material"><?php echo($row["material"]); ?></td>
