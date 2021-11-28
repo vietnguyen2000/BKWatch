@@ -46,7 +46,11 @@
             <a class="nav-link" href="/payment/history">Lịch sử mua hàng</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/favorite">Danh sách yêu thích</a>
+            <a class="nav-link" href="/favorite">Danh sách yêu thích
+              <?php if (isset($_SESSION['user'])) { ?>
+                <span class="badge bg-danger ms-2 wishlist-badge" <?= $favoriteQuantity == 0 ? 'style="display: none;"' : '' ?>><?= $favoriteQuantity ?></span>
+              <?php } ?>
+            </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/cart">

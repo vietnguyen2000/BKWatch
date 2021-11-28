@@ -7,7 +7,23 @@ if (!function_exists('currency_format')) {
     }
   }
 }
+
+use Models\UserFavoriteItemModel;
+
+if (!isset($listFavoriteIds)) {
+
+  if (isset($_SESSION['user'])) {
+    $favoriteItemModel = new UserFavoriteItemModel();
+    $listFavoriteIds = $favoriteItemModel->getFavoriteIds($_SESSION['user']['id']);
+  } else {
+    $listFavoriteIds = [];
+  }
+}
 ?>
+
+<style>
+  <?php include_once 'favorite.css'; ?>
+</style>
 <div class="row g-0" id='cart-item-<?= $cartItem['id'] ?>'>
   <div class="col-4 hover-overlay ripple ripple-surface ripple-surface-light" style="aspect-ratio: 8/6">
     <a href="watch/<?= $cartItem['productId'] ?>">
@@ -46,11 +62,13 @@ if (!function_exists('currency_format')) {
       <div>
         <a href="#!" type="button" class="card-link-secondary small text-uppercase me-3" data-mdb-toggle="modal" data-mdb-target="#cart-modal-<?= $cartItem['id'] ?>">
           <i class="fas fa-trash-alt mr-1"></i>
-          <span class="d-none d-sm-inline-block">REMOVE</span>
+          <span class="d-none d-sm-inline-block">XÓA</span>
         </a>
-        <a href="#!" type="button" class="card-link-secondary small text-uppercase">
-          <i class="fas fa-heart mr-1"></i>
-          <span class="d-none d-sm-inline-block">WISH LIST</span>
+        <a href="#!" type="button" class="card-link-secondary small text-uppercase" onclick="addToFavorite(<?= $cartItem['productId'] ?>)">
+          <span class="heart-product-<?= $cartItem['productId'] ?> <?= (in_array($cartItem['productId'], $listFavoriteIds)) ? 'favorite-heart-active' : '' ?>">
+            <i class="<?= (in_array($cartItem['productId'], $listFavoriteIds)) ? 'fas' : 'far' ?> fa-heart"></i>
+          </span>
+          <span class="d-none d-sm-inline-block">YÊU THÍCH</span>
         </a>
       </div>
       <div class="col-auto">

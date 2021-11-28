@@ -7,7 +7,6 @@
   echo $file_content
   ?>
 </style>
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <div class="container">
   <div class="top-body">
     <div class="row justify-content-between">

@@ -2,6 +2,8 @@
 
 namespace Controllers;
 
+use Error;
+
 function uploadImage($file)
 {
     $message = '';
@@ -71,7 +73,7 @@ class ImageController
     {
         // hack to returrn JSON
         ob_clean();
-        header('Content-Type: application/json; charset=utf-8');        
+        header('Content-Type: application/json; charset=utf-8');
         $data = uploadImage($_FILES['image']);
         echo json_encode($data);
         flush();

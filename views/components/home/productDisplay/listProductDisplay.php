@@ -1,5 +1,5 @@
 <style>
-  <?php include 'productDisplay.css'; ?>
+  <?php include_once 'productDisplay.css'; ?>
 </style>
 <div class="selling-products-fragment">
   <!-- Tabs navs -->

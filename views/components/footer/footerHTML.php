@@ -1,14 +1,22 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
 
-<?php if (isset($_SESSION['user']) && !$_SESSION['isRemembered']) { ?>
-  <script>
-    setTimeout(() => {
-      alert('Your session is out of time! Please login again!')
-      $.get('session-destroy')
-      location.reload()
-    }, <?= $session_time * 1000 ?>)
-  </script>
-<?php } ?>
+
+<script>
+  function resetTimeOutSession() {
+    <?php if (isset($_SESSION['user']) && !$_SESSION['isRemembered']) { ?>
+      clearTimeout(window.sessionTimeout)
+      window.sessionTimeout = setTimeout(() => {
+        alert('Your session is out of time! Please login again!')
+        $.get('session-destroy')
+        location.reload()
+      }, <?= $session_time * 1000 ?>)
+    <?php } ?>
+  }
+
+  resetTimeOutSession()
+</script>
+
+
 
 <script>
   function addToCart(productId, productTitle) {
@@ -18,17 +26,53 @@
     <?php } else { ?>
       $.post('/cart/add', {
         productId
+      }, () => {
+        $.showNotification({
+          type: "primary",
+          body: "Bạn đã thêm \"" + productTitle + "\" vào giỏ hàng thành công",
+          duration: 3000,
+          direction: 'append'
+        })
+        $('.cart-badge').each((index, e) => {
+          e.innerHTML = parseInt(e.innerHTML) + 1
+        })
+        $('.cart-badge').show()
       })
-      $.showNotification({
-        type: "primary",
-        body: "Bạn đã thêm \"" + productTitle + "\" vào giỏ hàng thành công",
-        duration: 3000,
-        direction: 'append'
+    <?php } ?>
+  }
+
+  function addToFavorite(productId) {
+    <?php if (!isset($_SESSION['user'])) { ?>
+      window.location.href = "<?= ROOT_URL . '/login' ?>"
+      return
+    <?php } else { ?>
+      $.post('/favorite/add', {
+        productId
+      }, (data) => {
+        if (data.success) {
+          $('.wishlist-badge').each((index, e) => {
+            e.innerHTML = parseInt(e.innerHTML) + 1
+          })
+          $('.wishlist-badge').show()
+
+          $(`.heart-product-${productId}`).addClass('favorite-heart-active')
+          $(`.heart-product-${productId} > i`).removeClass('far')
+          $(`.heart-product-${productId} > i`).addClass('fas')
+        } else {
+          $('.wishlist-badge').each((index, e) => {
+            e.innerHTML = parseInt(e.innerHTML) - 1
+            if (e.innerHTML == '0') {
+              $(e).hide()
+            }
+          })
+
+          $(`.heart-product-${productId}`).removeClass('favorite-heart-active')
+          $(`.heart-product-${productId} > i`).addClass('far')
+          $(`.heart-product-${productId} > i`).removeClass('fas')
+        }
+
       })
-      $('.cart-badge').each((index, e) => {
-        e.innerHTML = parseInt(e.innerHTML) + 1
-      })
-      $('.cart-badge').show()
+
     <?php } ?>
   }
 </script>
@@ -57,7 +101,9 @@
     })
   }
 
-  function fastGet(url) {
+  function fastGet(url, isNewPage = true) {
+    if (url == location.pathname + location.search) return
+    resetTimeOutSession()
     addOverlayLoading()
     let correctUrl = url
     if (url.indexOf('?') >= 0) {
@@ -66,15 +112,35 @@
       correctUrl += "?onlyBody=yes";
     }
     $.get(correctUrl, (data) => {
-      $('#main-body *').remove()
-      $('#main-body').append(data)
-      window.history.pushState(document.title, document.title, url)
-      updateNav()
-      addFastLoad()
-      removeOverlayLoading()
-      initInput()
-      $('html,body').scrollTop(0);
+      replaceNewData(data);
+      if (isNewPage) {
+        $('html,body').scrollTop(0);
+        addState(data, url)
+      } else {
+        replaceState(data, url)
+      }
+
     })
+  }
+
+  function addState(data, url) {
+    window.history.pushState({
+      data,
+    }, document.title, url)
+    updateNav()
+  }
+
+  function replaceState(data, url) {
+    window.history.replaceState({
+      data,
+    }, document.title, url)
+  }
+
+  function replaceNewData(data) {
+    $('#main-body').html(data)
+    addFastLoad()
+    removeOverlayLoading()
+    initInput()
   }
 
 
@@ -122,6 +188,22 @@
       new mdb.Input(formOutline).init();
     });
   }
+
+  function handleBack(data) {
+    replaceNewData(data);
+    updateNav()
+  }
+
+  window.onpopstate = function(event) {
+    if (!event.state) return
+    const {
+      data = '',
+    } = event.state || {}
+    handleBack(data)
+  };
+
+  const data = $('#main-body').html()
+  replaceState(data, location.pathname + location.search)
 </script>
 </body>
 
