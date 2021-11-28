@@ -25,96 +25,106 @@ function mapStatus($status)
 }
 ?>
 <div class="container my-5" style="max-width: 960px;">
-  <h2>Lịch sử mua hàng của bạn</h2>
-  <?php
-  $_countOrders = count($listOrders);
-  for ($i = 0; $i < $_countOrders; $i++) {
-    $order = $listOrders[$i];
-  ?>
-    <div class="card mb-3 hover-overlay ripple ripple-surface ripple-surface-dark" style="cursor: pointer;" onclick="showOrderDetails(<?= $order['id'] ?>)" data-mdb-toggle="modal" data-mdb-target="#orderDetails">
-      <div class="card-body">
-        <div class="row g-0">
-          <div class="row g-0">
-            <div class="col-6">
-              <h5>Mã đơn hàng: <?= $order['id'] ?></h5>
-            </div>
-            <div class="col-6" style="text-align: right;">
-              <span class="text-primary"> <?= mapStatus($order['status']) ?></span>
-            </div>
-          </div>
-          <div>
-            <span>Ngày tạo đơn hàng: <?= $order['createdAt'] ?></span>
-          </div>
-          <div>
-            <span>Địa chỉ nhận hàng: <?= $order['address'] ?></span>
-          </div>
-          <div class="my-3">
-            <div class="progress" style="height: 6px; border-radius: 16px;">
-              <div class="progress-bar" role="progressbar" style="width: <?= ($order['status']) * 100 / 3 ?>%; border-radius: 16px; background-color: #c89979;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <div class="d-flex justify-content-between mb-1">
-              <p class="text-muted mt-1 mb-0 small">Khởi tạo</p>
-              <p class="text-muted mt-1 mb-0 small">Đã thanh toán</p>
-              <p class="text-muted mt-1 mb-0 small">Đang giao hàng</p>
-              <p class="text-muted mt-1 mb-0 small">Hoàn thành</p>
-            </div>
-          </div>
-          <div class="row g-0">
-            <div class="col-6">
-              <span><?= $order['count'] ?> sản phẩm</span>
-            </div>
-            <div class="col-6" style="text-align: right;">
-              <span class="text-primary"><?= currency_format($order['total']) ?></span>
-            </div>
-          </div>
-        </div>
 
+  <?php $_countOrders = count($listOrders);
+  if ($_countOrders == 0) { ?>
+    <div class="card mb-3">
+      <div class="card-body">
+        <h4>Bạn chưa có đơn hàng nào.</h4>
+        <a href="/watch">Click vào đây</a> để chọn sản phẩm để mua.
       </div>
     </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="orderDetails" tabindex="-1" aria-labelledby="orderDetails" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="orderDetailsTitle">Chi tiết đơn hàng</h5>
-            <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="d-flex justify-content-center">
-              <div class="spinner-border" role="status" id="orderDetailsLoading">
-                <span class="visually-hidden">Loading...</span>
+  <?php } else {  ?>
+    <h2>Lịch sử mua hàng của bạn</h2>
+    <?php
+    for ($i = 0; $i < $_countOrders; $i++) {
+      $order = $listOrders[$i];
+    ?>
+      <div class="card mb-3 hover-overlay ripple ripple-surface ripple-surface-dark" style="cursor: pointer;" onclick="showOrderDetails(<?= $order['id'] ?>)" data-mdb-toggle="modal" data-mdb-target="#orderDetails">
+        <div class="card-body">
+          <div class="row g-0">
+            <div class="row g-0">
+              <div class="col-6">
+                <h5>Mã đơn hàng: <?= $order['id'] ?></h5>
+              </div>
+              <div class="col-6" style="text-align: right;">
+                <span class="text-primary"> <?= mapStatus($order['status']) ?></span>
               </div>
             </div>
-            <div id="orderDetailsBody">
-
+            <div>
+              <span>Ngày tạo đơn hàng: <?= $order['createdAt'] ?></span>
+            </div>
+            <div>
+              <span>Địa chỉ nhận hàng: <?= $order['address'] ?></span>
+            </div>
+            <div class="my-3">
+              <div class="progress" style="height: 6px; border-radius: 16px;">
+                <div class="progress-bar" role="progressbar" style="width: <?= ($order['status']) * 100 / 3 ?>%; border-radius: 16px; background-color: #c89979;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="d-flex justify-content-between mb-1">
+                <p class="text-muted mt-1 mb-0 small">Khởi tạo</p>
+                <p class="text-muted mt-1 mb-0 small">Đã thanh toán</p>
+                <p class="text-muted mt-1 mb-0 small">Đang giao hàng</p>
+                <p class="text-muted mt-1 mb-0 small">Hoàn thành</p>
+              </div>
+            </div>
+            <div class="row g-0">
+              <div class="col-6">
+                <span><?= $order['count'] ?> sản phẩm</span>
+              </div>
+              <div class="col-6" style="text-align: right;">
+                <span class="text-primary"><?= currency_format($order['total']) ?></span>
+              </div>
             </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-mdb-dismiss="modal">
-              Đóng
-            </button>
+
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="orderDetails" tabindex="-1" aria-labelledby="orderDetails" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="orderDetailsTitle">Chi tiết đơn hàng</h5>
+              <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="d-flex justify-content-center">
+                <div class="spinner-border" role="status" id="orderDetailsLoading">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+              <div id="orderDetailsBody">
+
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-mdb-dismiss="modal">
+                Đóng
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  <?php }
-  ?>
-  <script>
-    function showOrderDetails(id) {
-      $('#orderDetailsTitle').html('Chi tiết đơn hàng ' + id);
-      $('#orderDetailsLoading').show();
-      $.ajax({
-        type: "POST",
-        url: '/payment/orderDetails',
-        data: {
-          orderId: id
-        },
-        success: (data) => {
-          $('#orderDetailsLoading').hide();
-          $('#orderDetailsBody').html(data)
-        }
-      })
-    }
-  </script>
+    <?php }
+    ?>
+    <script>
+      function showOrderDetails(id) {
+        $('#orderDetailsTitle').html('Chi tiết đơn hàng ' + id);
+        $('#orderDetailsLoading').show();
+        $.ajax({
+          type: "POST",
+          url: '/payment/orderDetails',
+          data: {
+            orderId: id
+          },
+          success: (data) => {
+            $('#orderDetailsLoading').hide();
+            $('#orderDetailsBody').html(data)
+          }
+        })
+      }
+    </script>
 </div>
+<?php } ?>
