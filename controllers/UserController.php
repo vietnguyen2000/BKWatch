@@ -19,7 +19,7 @@ class UserController extends BaseController
   {
     $userView = new UserView();
     $userView->renderProfile([
-      'url' => $url, 
+      'url' => $url,
       'user' => $_SESSION['user'],
     ]);
   }
@@ -34,13 +34,56 @@ class UserController extends BaseController
   }
 
   // get
-  public function edit($url) 
+  public function edit($url)
   {
     $userView = new UserView();
     $userView->renderUpdateProfile([
-      'url' => $url, 
+      'url' => $url,
       'user' => $_SESSION['user'],
     ]);
+  }
+  //get
+  public function changepw($url)
+  {
+    $userView = new UserView();
+    $userView->renderChangepw([
+      'url' => $url,
+      'user' => $_SESSION['user'],
+    ]);
+  }
+  public function changepwPost($url)
+  {
+    header('Content-Type: application/json; charset=utf-8');
+    $oldPassword = $_POST['oldPassword'];
+    $password = $_POST['password'];
+    $repeatPassword = $_POST['repeatPassword'];
+
+    if ($password != $repeatPassword) {
+      echo json_encode(['success' => false, 'message' => "Mật khẩu mới không khớp với nhau."]);
+      flush();
+      return;
+    }
+
+    if ($password == $oldPassword) {
+      echo json_encode(['success' => false, 'message' => "Mật khẩu mới phải khác với mật khẩu cũ"]);
+      flush();
+      return;
+    }
+
+    $userModel = new UserModel();
+    $userId = $_SESSION['user']['id'];
+    $user = $userModel->getByCondition(['id' => $userId])[0];
+    if (!password_verify($oldPassword, $user['password'])) {
+      echo json_encode(['success' => false, 'message' => "Mật khẩu cũ không chính xác!"]);
+      flush();
+      return;
+    }
+
+    $userModel->update(["password" => password_hash($password, null)], ["id" => $userId]);
+
+    echo json_encode(['success' => true, 'message' => "Thay đổi mật khẩu thành công!"]);
+    flush();
+    return;
   }
 
   // post
@@ -57,7 +100,8 @@ class UserController extends BaseController
       $userView->render(['url' => $url, 'alert' => ['title' => 'Lỗi!', 'text' => 'Email hoặc tên đăng nhập của bạn đã tồn tại. Xin hãy thử lại!', 'type' => 'danger']]);
       return;
     };
-
+    // Create Avatar id & file
+    $defaultImage = '/assets/images/default-avatar.jpg';
     $data = [
       'username' => $_POST['username'],
       'password' => password_hash($_POST['password'], null),
@@ -65,12 +109,12 @@ class UserController extends BaseController
       'email' => $_POST['email'],
       'phoneNumber' => $_POST['phoneNumber'],
       'gender' => intval($_POST['gender']),
-      'role' => 1,
+      'role' => 0,
+      'avatarURL' => $defaultImage,
     ];
     $user->insert($data);
-    print_r("Đăng ký thành công! Xin chào " . $_POST['fullname']);
 
-    $this->redirect('/', true);
+    $this->login($url);
   }
 
   // post
@@ -113,7 +157,7 @@ class UserController extends BaseController
       // Permission Deny
       $userView->render(['url' => $url, 'alert' => ['title' => 'Lỗi!', 'text' => 'Không có quyền', 'type' => 'danger']]);
     }
-    
+
     $userModel = new UserModel();
     $existUser = $userModel->getByCondition(["id" => $id]);
     if (count($existUser) == 0) {
@@ -124,18 +168,18 @@ class UserController extends BaseController
 
     $user = new UserModel();
     $user->updateById(
-      $id, 
+      $id,
       [
-        'fullname' => isset($_POST['fullname'])? $_POST['fullname'] : $currentUser["fullname"],
-        'email' => isset($_POST['email'])? $_POST['email'] : $currentUser["email"],
-        'phoneNumber' => isset($_POST['phoneNumber'])? $_POST['phoneNumber'] : $currentUser["phoneNumber"],
-        'gender' => isset($_POST['gender'])? intval($_POST['gender']) : $currentUser["gender"],
-        'address' => isset($_POST['address'])? $_POST['address'] : $currentUser["address"],
-        'avatarURL' => isset($_POST["avatarURL"])? $_POST['avatarURL']: $currentUser["avatarURL"],
+        'fullname' => isset($_POST['fullname']) ? $_POST['fullname'] : $currentUser["fullname"],
+        'email' => isset($_POST['email']) ? $_POST['email'] : $currentUser["email"],
+        'phoneNumber' => isset($_POST['phoneNumber']) ? $_POST['phoneNumber'] : $currentUser["phoneNumber"],
+        'gender' => isset($_POST['gender']) ? intval($_POST['gender']) : $currentUser["gender"],
+        'address' => isset($_POST['address']) ? $_POST['address'] : $currentUser["address"],
+        'avatarURL' => isset($_POST["avatarURL"]) ? $_POST['avatarURL'] : $currentUser["avatarURL"],
         // sensitive data
         // 'username' => $_POST['username'], // should not change username
-        'password' => isset($_POST["password"])? password_hash($_POST['password'], null) : $currentUser["password"],
-        'role' => isset($_POST['role'])? intval($_POST['role']) : $currentUser["role"],
+        'password' => isset($_POST["password"]) ? password_hash($_POST['password'], null) : $currentUser["password"],
+        'role' => isset($_POST['role']) ? intval($_POST['role']) : $currentUser["role"],
       ]
     );
     $this->redirect('/me', true);

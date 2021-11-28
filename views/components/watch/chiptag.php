@@ -63,9 +63,9 @@ if ($href_value == "") {
   $href_value = "/watch?" . $href_value;
 }
 ?>
-<div style="padding: 0 5 10 5">
-  <a style="padding: 3 10;" type="button" class="btn btn-outline-primary chips-watchPage" data-mdb-ripple-color="dark" href="<?php echo $href_value; ?>">
+<div style="padding: 0 5px 10px 5px">
+  <a style="padding: 3px 10px;" type="button" class="btn btn-outline-primary chips-watchPage" data-mdb-ripple-color="dark" href="<?php echo $href_value; ?>">
     <?php echo $data_chiptag; ?>
-    <i class="fas fa-times" style="padding-left: 2;"></i>
+    <i class="fas fa-times" style="padding-left: 2px;"></i>
   </a>
 </div>

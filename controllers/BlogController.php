@@ -23,7 +23,7 @@ class BlogController extends BaseController
         $data = $this->blogModel->getAllBlog();
         $hotBlog = $this->blogModel->getHotBlog();
         $page = 1;
-        if (!empty($_GET)) {
+        if (isset($_GET['page'])) {
             $page = (int)$_GET['page'];
         }
         $view = new BlogView();
@@ -73,6 +73,7 @@ class BlogController extends BaseController
     }
     public function addLike($url, $id)
     {
+        header('Content-Type: application/json; charset=utf-8');
         $getData = $this->blogModel->getByCondition([
             "id" => $id
         ]);
@@ -83,6 +84,7 @@ class BlogController extends BaseController
                 "countLike" => $like + 1
             ]
         );
-        $this->redirect("/blog");
+        echo json_encode(['success' => true]);
+        flush();
     }
 }

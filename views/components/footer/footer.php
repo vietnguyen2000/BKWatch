@@ -1,3 +1,27 @@
+<?php
+
+use Models\ContactModel;
+
+$contactModel = new ContactModel();
+$dataContact = $contactModel->getContact();
+$addressData = [];
+$phoneData = [];
+$emailData = [];
+$fbData = "";
+$skypeData = "";
+$twitterData = "";
+$instagramData = "";
+foreach ($dataContact as $key => $value) {
+  array_push($addressData, $value["address"]);
+  array_push($phoneData, $value["phone"]);
+  array_push($emailData, $value["email"]);
+  $fbData .= $value["facebook"];
+  $skypeData .= $value["skype"];
+  $twitterData .= $value["twitter"];
+  $instagramData .= $value["instagram"];
+}
+?>
+</div>
 <footer>
   <style>
     <?php
@@ -9,14 +33,14 @@
     ?>
   </style>
   <div class=".container-xl">
-    <div class="row align-items-start">
-      <div class="col-xl-4">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-6">
         <?php require 'footerInfo.php' ?>
       </div>
-      <div class="col-xl-4">
+      <div class="col-12 col-sm-12 col-md-3">
         <?php require 'footerLink.php' ?>
       </div>
-      <div class="col-xl-4">
+      <div class="col-12 col-sm-12 col-md-3">
         <?php require 'footerSupport.php' ?>
       </div>
     </div>

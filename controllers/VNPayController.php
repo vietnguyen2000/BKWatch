@@ -33,8 +33,9 @@ class VNPayController extends BaseController
     $prices = 0;
     for ($i = 0; $i < count($listCartItems); $i++) {
       $price = $listCartItems[$i]['price'];
+      $quantity = $listCartItems[$i]['quantity'];
       $discount = $listCartItems[$i]['discount'];
-      $prices += $price * (100 - $discount) / 100;
+      $prices += $price * $quantity * (100 - $discount) / 100;
     };
 
     $total = $prices + $shipFee;
@@ -75,6 +76,25 @@ class VNPayController extends BaseController
     $this->VNPayPayment([
       'order_id' => $orderId,
       'order_desc' => "Thanh toan don hang $orderId. So tien $totalFormat",
+      'order_type' => 2,
+      'amount' => 10000
+    ]);
+  }
+
+  public function VNPaymentOrderId($url, $id)
+  {
+    $orderModel = new OrdersModel();
+    $orders = $orderModel->getByCondition(['id' => $id]);
+    if (count($orders) == 0) {
+      $this->showError('404', 'Đơn hàng của bạn không tồn tại.', 'Đơn hàng bạn muốn thanh toán không tồn tại, hãy thử lại');
+      return;
+    }
+    $order = $orders[0];
+    $totalFormat = currency_format($order['totle']);
+
+    $this->VNPayPayment([
+      'order_id' => $id,
+      'order_desc' => "Thanh toan don hang $id. So tien $totalFormat",
       'order_type' => 2,
       'amount' => 10000
     ]);
@@ -304,10 +324,16 @@ class VNPayController extends BaseController
           "transactionNo" => strval($_GET['vnp_TransactionNo']),
           "payDate" => DateTime::createFromFormat('YmdHis', strval($_GET['vnp_PayDate']))->format('Y-m-d H:i:s')
         ]);
-        $this->redirect('/');
+        $this->redirect('/payment/orderDetails?orderId=' . $_GET['vnp_TxnRef']);
       } else {
         $_reason = 'Không rõ';
         $_resCode = $_GET['vnp_ResponseCode'];
+
+        if ($_resCode == '24') {
+          $this->redirect('/payment/orderDetails?orderId=' . $_GET['vnp_TxnRef']);
+          return;
+        }
+
         if ($_resCode == '01') {
           $_reason = 'Không tìm thấy mã order';
         } else if ($_resCode == '02') {

@@ -26,7 +26,7 @@
           <?php } ?>
         </ul>
       </div>
-      <span class="small text-muted mb-2"><?= $comment['date'] ?></span>
+      <span class="small text-muted mb-2 momentFromNow"><?= $comment['date'] ?></span>
       <p class="mb-0"><?= $comment['content'] ?></p>
     </div>
   </div>

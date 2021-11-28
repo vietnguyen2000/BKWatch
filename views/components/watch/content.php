@@ -1,6 +1,6 @@
 <main class="my-2">
   <div class="tab-pane fade show active" id="ldp-home-tabs-1" role="tabpanel" aria-labelledby="ldp-home-tab-1">
-    <div class="row justify-content-around">
+    <div class="row justify-content-between">
       <?php
       $page = $data['page'];
       $len = $data['length'];
@@ -29,16 +29,16 @@
         if ($count >= $end) {
           break;
         }
-        echo '<div class="col-8 col-sm-6 col-md-4 col-lg-4 col-xl-3">';
+        echo '<div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3">';
         require(realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/home/productDisplay/cardviewProduct.php');
         echo '</div>';
         $count += +1;
       }
       ?>
-      <div class="col my-2"> </div>
+      <div class="col-0 col-sm my-2"> </div>
     </div>
   </div>
-  <div style="justify-content: center; display: flex; padding: 30 0 0 0">
+  <div style="justify-content: center; display: flex; padding: 30px 0 0 0">
     <nav aria-label="...">
       <ul class="pagination pagination-circle">
         <li class="page-item">
@@ -46,7 +46,7 @@
                                       echo $watchPageURL . $data['page'] - 1;
                                     } else {
                                       echo "#";
-                                    } ?> tabindex="-1" aria-disabled="true">Previous</a>
+                                    } ?> tabindex="-1" aria-disabled="true">Trước</a>
         </li>
         <?php
         $len = $data['length'];
@@ -75,7 +75,7 @@
                                       echo  $watchPageURL . $data['page'] + 1;
                                     } else {
                                       echo "#";
-                                    } ?>>Next</a>
+                                    } ?>>Sau</a>
         </li>
       </ul>
     </nav>

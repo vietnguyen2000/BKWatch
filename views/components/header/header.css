@@ -1,3 +1,7 @@
+header {
+  overflow: hidden;
+}
+
 .header-bg {
   background-color: #333333;
   color: white;

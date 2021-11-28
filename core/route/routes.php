@@ -50,7 +50,13 @@ $router->get('/cmsBlogComment', 'cmsCommentController@blog');
 $router->get('/cmsBlogImage', 'cmsImageController@blog');
 $router->get('/cmsProductImage', 'cmsImageController@product');
 $router->post('/payment/VNPay/payment', 'VNPayController@payment');
+$router->get('/payment/VNPay/payment/{id}', 'VNPayController@VNPaymentOrderId');
 $router->get('/payment/VNPay/ipn', 'VNPayController@VNPayIPN');
 $router->get('/payment/VNPay/result', 'VNPayController@VNPayReturn');
 
 $router->get('/payment/history', 'PaymentHistoryController@index');
+$router->get('/payment/orderDetails', 'PaymentHistoryController@details');
+$router->post('/payment/orderDetails', 'PaymentHistoryController@detailsPost');
+
+$router->get('/me/password', 'UserController@changepw');
+$router->post('/me/password', 'UserController@changepwPost');

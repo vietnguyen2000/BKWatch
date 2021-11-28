@@ -34,9 +34,9 @@
       }
       ?>
       <div class="col-3 text-center">
-        <a href=<?php echo  $blog_url . "/" . $blog_block_id . "/like" ?>>
-          <i class="fas fa-heart"></i><br />
-          <p><?php echo $blog_block_countLike ?></p>
+        <a style="cursor:pointer" class="like" blogId="<?= $blog_block_id ?>" onclick="like(this)">
+          <i class="fas fa-heart" style="pointer-events:none"></i><br />
+          <p style="pointer-events:none"><?php echo $blog_block_countLike ?></p>
         </a>
       </div>
       <div class="col-3 text-center">
@@ -55,3 +55,7 @@
     </div>
   </div>
 </div>
+
+<?php
+require_once 'likeBlog.php';
+?>

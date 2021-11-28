@@ -1,29 +1,21 @@
 <h5 class="title-footer">HỖ TRỢ</h5>
-<table class="table-footer">
-    <tr class="tr-footer">
-        <td class="td-footer">
-            <a class="alink-footer" href="https://www.w3schools.com/tags/tag_a.asp">Hướng dẫn mua hàng
-            </a>
-        </td>
-    </tr>
-    <tr class="tr-footer">
-        <td class="td-footer">
-            <a class="alink-footer" href="link2.html">Hướng dẫn thanh toán </a>
-        </td>
-    </tr>
-    <tr class="tr-footer">
-        <td class="td-footer">
-            <a class="alink-footer" href="link3.html">Chính sách bảo hành </a>
-        </td>
-    </tr>
-    <tr class="tr-footer">
-        <td class="td-footer">
-            <a class="alink-footer" href="link4.html">Chính sách đổi trả </a>
-        </td>
-    </tr>
-    <tr class="tr-footer">
-        <td class="td-footer">
-            <a class="alink-footer" href="link5.html">Tư vấn khách hàng </a>
-        </td>
-    </tr>
-</table>
+<div class="row justify-content-start">
+  <div class="d-flex flex-row mb-3 flex-wrap">
+    <div class="p-2">
+      <a class="btn btn-primary btn-lg btn-floating" style="background-color: #3b5998;" href="<?php print_r($fbData); ?>" role="button" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-facebook-f"></i></a>
+    </div>
+    <div class="p-2">
+      <a class="btn btn-primary btn-lg btn-floating" style="background-color: #55acee;" href="<?php print_r($skypeData); ?>" role="button" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-skype"></i></a>
+    </div>
+    <div class="p-2">
+      <a class="btn btn-primary btn-lg btn-floating" style="background-color: #ac2bac;" href="<?php print_r($instagramData); ?>" role="button" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-instagram"></i></a>
+    </div>
+    <div class="p-2">
+      <a class="btn btn-primary btn-lg btn-floating" style="background-color: #55acee;" href="<?php print_r($twitterData); ?>" role="button" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-twitter"></i></a>
+    </div>
+  </div>
+</div>
