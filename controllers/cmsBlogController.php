@@ -55,12 +55,14 @@ class cmsBlogController extends BaseController
         $userId = $_SESSION['user']['id'];
         $userImg = $_SESSION['user']['avatarURL'];
         $username = $_SESSION['user']['username'];
+        $imageList = $this->blogModel->getImageHelpById($id);
         $view->render([
             'url' => $url,
             'nav' => 'cmsBlog',
             'comment' => $comment,
             'data' => $data,
-            'userId' => $userId, 'userImg' => $userImg, 'username'=>$username
+            'userId' => $userId, 'userImg' => $userImg, 'username'=>$username, 'add'=>false,
+            'imageList'=> $imageList
         ]);
     }
   public function add($url)
@@ -77,6 +79,6 @@ class cmsBlogController extends BaseController
     $userId = $_SESSION['user']['id'];
     $userImg = $_SESSION['user']['avatarURL'];
     $username = $_SESSION['user']['username'];
-    $view->render(['url' => $url, 'nav' => 'cmsBlog', 'userId' => $userId, 'userImg' => $userImg, 'username'=>$username, 'comment' => array(), 'data' => '']);
+    $view->render(['url' => $url, 'nav' => 'cmsBlog', 'userId' => $userId, 'userImg' => $userImg, 'username'=>$username, 'comment' => array(), 'data' => '', 'add'=>true]);
   }
 }

@@ -459,8 +459,8 @@
         })
     $.showNotification({
       type: "primary",
-      body: "Bạn đã cập nhật thành công",
-      duration: 1000,
+      body: "Bạn đã Thêm vào thành công",
+      duration: 10,
       direction: 'append'
     })
   }

@@ -39,6 +39,7 @@ $router->get('/cmsBlog', 'cmsBlogController@index');
 $router->get('/cmsBlog/add/', 'cmsBlogController@add');
 $router->get('/cmsBlog/update/{id}', 'cmsBlogController@update');
 $router->get('/cmsProduct', 'cmsProductController@index');
+$router->post('/cmsProduct/delete', 'cmsProductController@delete');
 $router->get('/cmsAddProduct', 'cmsProductController@add');
 $router->post('/cmsAddProduct/add', 'cmsProductController@addProduct');
 $router->get('/cmsUpdateProduct/{id}', 'cmsProductController@update');

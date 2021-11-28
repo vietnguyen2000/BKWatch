@@ -100,7 +100,7 @@
     </section>
     <footer class="modal-card-foot">
       <button class="button --jb-modal-close" onclick="cancel()">Cancel</button>
-      <button class="button blue --jb-modal-close">Confirm</button>
+      <button class="button blue --jb-modal-close" onclick="deleteProduct()">Confirm</button>
     </footer>
   </div>
 </div>
@@ -120,6 +120,22 @@
   function cancel(){
     modal.style.display = "none";
   }
-  
+  function deleteProduct(){
+    var nameID = "orderStatus" + ID;
+    var statusOrder = $('input[name='+ nameID+']:checked').val();
+    // var statusOrder = document.getElementById("orderStatus" + ID);
+    console.log(statusOrder);
+    $.post('/cmsProduct/delete', {
+          ID
+        })
+    $.showNotification({
+      type: "primary",
+      body: "Bạn đã xóa thành công",
+      duration: 10,
+      direction: 'append'
+    })
+    cancel();
+    return true;
+  }
 </script>
 

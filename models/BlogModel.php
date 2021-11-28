@@ -216,4 +216,15 @@ class BlogModel extends BaseModel
       return [];
     }
   }
+  public function getImageHelpById(int $id)
+  {
+    try {
+      $sql = "SELECT bkwatch.blogimage.id AS id, bkwatch.blogimage.imageURL AS imageURL FROM bkwatch.blogimage WHERE bkwatch.blogimage.blogId = $id";
+      $result = $this->db->query($sql);
+      $data = $result->fetch_all(mode: MYSQLI_ASSOC);
+      return $data;
+    } catch (\Exception $e) {
+      return [];
+    }
+  }
 }

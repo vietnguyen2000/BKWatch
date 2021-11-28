@@ -207,27 +207,4 @@ class ProductModel extends BaseModel
       return [];
     }
   }
-  public function insertProduct(array $payload)
-  {
-    try {
-      $keysList = array_keys($payload);
-      $valuesList = array_values($payload);
-      $keys = join("`,`", $keysList);
-      $valuesNeed = join(",", array_map(fn ($v) => '?', $valuesList));
-      $types = $this->getTypeBindParam($valuesList);
-
-      $sql = "INSERT INTO `$this->name` (`$keys`) VALUES ($valuesNeed);";
-      $stmt = $this->db->prepare($sql);
-      $stmt->bind_param($types, ...$valuesList);
-      $stmt->execute();
-
-      $stmt = $this->db->query("SELECT LAST_INSERT_ID()");
-      $lastId = $stmt->fetch_row();
-
-      // return $lastId[0];
-      return $sql;
-    } catch (\Exception $e) {
-      return false;
-    }
-  }
 }

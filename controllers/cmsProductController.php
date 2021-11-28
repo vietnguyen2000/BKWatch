@@ -135,4 +135,8 @@ class cmsProductController extends BaseController
         $this->redirect("/cmsProduct");
         return;
     }
+    public function delete($url){
+      $id = $_POST['ID'];
+      $this->productModel->delete($id);
+    }
 }
