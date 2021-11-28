@@ -7,7 +7,7 @@
             <div class="btn-group float-end" role="group" aria-label="">
                 <a href="/me/edit" class="btn btn-white"><i class="fas fa-pen mr-2"></i><span class="d-none d-md-inline"> Cập nhật thông tin</span></a>
 
-                <a href="/changepw" class="btn btn-primary"><i class="fas fa-key mr-2"></i><span class="d-none d-md-inline"> Đổi mật khẩu</span></a>
+                <a href="/me/password" class="btn btn-primary"><i class="fas fa-key mr-2"></i><span class="d-none d-md-inline"> Đổi mật khẩu</span></a>
             </div>
             <h2 class="card-title">Thông tin cá nhân</h2>
         </div>

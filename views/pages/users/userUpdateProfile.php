@@ -125,13 +125,14 @@
 
 
                     <div class="card col-12 col-lg-9">
-                        <div class="card-body">
+                        <div class="my-3">
                             <?php require(realpath($_SERVER["DOCUMENT_ROOT"]) . '/views/components/users/userUpdate.php'); ?>
-                        </div>
-                        <div class="card-footer">
-                            <div class="btn-group" role="group">
-                                <a href="#" class="btn btn-primary btn-submit" onClick="document.getElementById('user-update-form').submit()">Lưu</a>
-                                <a href="/me" class="btn btn-black">Huỷ</a>
+
+                            <div class="float-end">
+                                <div class="btn-group" role="group">
+                                    <a href="#" class="btn btn-primary btn-submit" onClick="document.getElementById('user-update-form').submit()">Lưu</a>
+                                    <a href="/me" class="btn btn-black">Huỷ</a>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -1,13 +1,13 @@
 <div>
     <div class="form-outline mb-4">
         <input type="text" id="user-fullname" class="form-control" name="fullname" value="<?= $user['fullname'] ?>" />
-        <label class="form-label" for="loginName">Họ và tên</label>
+        <label class="form-label" for="user-fullname">Họ và tên</label>
     </div>
 
     <!-- Email input -->
     <div class="form-outline mb-4">
         <input type="text" id="user-address" class="form-control" name="address" value="<?= $user['address'] ?>" />
-        <label class="form-label" for="registerEmail">Địa chỉ</label>
+        <label class="form-label" for="user-address">Địa chỉ</label>
     </div>
 
     <!-- Email input -->
@@ -16,14 +16,14 @@
         <label class="form-label" for="registerEmail">Email</label>
     </div>
 
-    <div class="mb-4 row align-items-center">
-        <div class="col-6">
+    <div class="row align-items-center">
+        <div class="col-12 col-sm-6 mb-4">
             <div class="form-outline">
                 <input type="text" id="registerPhoneNumber" class="form-control" name="phoneNumber" value="<?= $user['phoneNumber'] ?>" />
                 <label class="form-label" for="registerPhoneNumber">Số điện thoại</label>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-12 col-sm-6 mb-4">
             <div class="row justify-content-center">
                 <div class="w-auto">
                     <input class="form-check-input" type="radio" name="gender" value="1" id="registerGenderMale" <?= $user['gender'] == '1' ? 'checked' : '' ?> />
