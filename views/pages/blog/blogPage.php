@@ -77,7 +77,7 @@
                                       echo $blog_url . "?page=" . $data['page'] - 1;
                                     } else {
                                       echo "#!";
-                                    } ?> tabindex="-1" aria-disabled="true">Previous</a>
+                                    } ?> tabindex="-1" aria-disabled="true">Trước</a>
         </li>
         <?php
         $len = $data['length'];
@@ -106,7 +106,7 @@
                                       echo  $blog_url . "?page=" . $data['page'] + 1;
                                     } else {
                                       echo "#!";
-                                    } ?>>Next</a>
+                                    } ?>>Sau</a>
         </li>
       </ul>
     </nav>
