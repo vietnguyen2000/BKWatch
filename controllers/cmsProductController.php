@@ -78,4 +78,61 @@ class cmsProductController extends BaseController
       $username = $_SESSION['user']['username'];
       $view->render(['url' => $url, 'nav' => 'cmsAddProduct', 'userId' => $userId, 'userImg' => $userImg, 'username'=>$username, 'add'=>false, 'data' =>$data, 'categoryList' => $categoryList, 'brandList' => $brandList, 'imageList'=> $imageList]);
     }
+    public function addProduct(){
+      if (!isset($_SESSION['user']) ) {
+        $this->redirect('/login');
+        return;
+      };
+      if ($_SESSION['user']['role'] > 0 ) {
+        $this->redirect('/');
+        return;
+      };
+      
+      $productTitle = $_POST['productTitle'];
+      $productTag = $_POST['productTag'];
+      $productContent = $_POST['productContent'];
+      $productCategory = $_POST['productCategory'];
+      $isHot = $_POST['isHot'];
+      $isNew = $_POST['isNew'];
+      $isBestSale = $_POST['isBestSale'];
+      $quantity = $_POST['quantity'];
+      $material = $_POST['material'];
+      $glass = $_POST['glass'];
+      $back = $_POST['back'];
+      $productBrand = $_POST['productBrand'];
+      $Currency = $_POST['Currency'];
+      $productShape = $_POST['productShape'];
+      $productDiameter = $_POST['productDiameter'];
+      $productHeight = $_POST['productHeight'];
+      $productLugWidth = $_POST['productLugWidth'];
+      $productColor = $_POST['productColor'];
+      $productPrice = $_POST['productPrice'];
+      $code = $_POST['code'];
+      $productDiscount = $_POST['productDiscount'];
+      $productWarranty = $_POST['productWarranty'];
+      $id = $this->productModel->insert([
+        "productBrandId" => $productBrand,
+        "productCategoryId" => $productCategory,
+        "productCode" => $code,
+        "title" => $productTitle,
+        "content" => $productContent,
+        "price" => $productPrice,
+        "discount" => $productDiscount,
+        "warranty" => $productWarranty,
+        "isHot" => ($isHot) ? 1 : 0,
+        "isNew" => ($isNew) ? 1 : 0,
+        "isBestSale" => ($isBestSale) ? 1 : 0,
+        "quantity" => $quantity,
+        "material" => $material,
+        "glass" => $glass,
+        "back" => $back,
+        "shape" => $productShape,
+        "diameter" => $productDiameter,
+        "height" => $productHeight,
+        "lugWidth" => $productLugWidth,
+        "color" => $productColor
+      ]);
+        $this->redirect("/cmsProduct");
+        return;
+    }
 }

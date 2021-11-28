@@ -11,7 +11,7 @@ $database_password = "web";
 // $database_username = "username";
 // $database_password = "password";
 $database_name = "bkwatch";
-$session_time = 600;
+$session_time = 90000;
 $upload_image_url = 'vietnguyen2000.ddns.net:5000/upload.php';
 
 // VNPAY

@@ -49,7 +49,7 @@
             <div class="field">
               <label class="label">Content</label>
               <div class="control">
-                <textarea class="textarea" placeholder="Content of blog" name="productContent" required value="<?php if (!$data['add']) {echo $data['data']['content'];}?>"></textarea>
+                <textarea class="textarea" placeholder="Content of product" name="productContent" required value="<?php if (!$data['add']) {echo $data['data']['content'];}?>"></textarea>
               </div>
               <p class="help">
                 This field is required
@@ -173,6 +173,18 @@
               </div>
             </div>
             <div class="field">
+              <label class="label">Discount</label>
+              <div class="control">
+                <input class="input" type="number" placeholder="5" name="productDiscount" required value="<?php if (!$data['add']) {echo $data['data']['discount'];}?>">
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Warranty</label>
+              <div class="control">
+                <input class="input" type="number" placeholder="3" name="productWarranty" required value="<?php if (!$data['add']) {echo $data['data']['warranty'];}?>">
+              </div>
+            </div>
+            <div class="field">
               <label class="label">Currency</label>
               <div class="field-body">
                 <div class="field grouped multiline">
@@ -220,7 +232,7 @@
             <div class="field">
               <label class="label">Color</label>
               <div class="control">
-                <input class="input" type="text" placeholder="9999999" name="productColor" required value="<?php if (!$data['add']) {echo $data['data']['color'];}?>">
+                <input class="input" type="text" placeholder="White" name="productColor" required value="<?php if (!$data['add']) {echo $data['data']['color'];}?>">
               </div>
             </div>
           </div>
@@ -258,7 +270,7 @@
               <td data-label="userCmtFullname"><?php echo($row["fullname"]); ?></td>
               <td data-label="userCmtContent"><?php echo($row["content"]); ?></td>
               <td data-label="userCmtRating" class="progress-cell">
-                <progress max="5" value="<?php echo($row["rating"]); ?>"><?php echo($row["userCmtRating"]); ?></progress>
+                <progress max="5" value="<?php echo($row["rating"]); ?>"><?php echo($row["rating"]); ?></progress>
               </td>               
               <td data-label="userCmtTime">
               <small class="text-gray-500"><?php echo($row["updatedAt"]); ?></small>
@@ -362,8 +374,8 @@
   </div>
 </section>
 
-<div id="sample-modal-2" class="modal">
-  <div class="modal-background --jb-modal-close" onclick="cancel()"></div>
+<div id="sample-modal-3" class="modal">
+  <div class="modal-background --jb-modal-close" onclick="cancel3()"></div>
   <div class="modal-card" style="margin-top: 40px;">
     <header class="modal-card-head">
       <p class="modal-card-title">DELETE IT?</p>
@@ -372,7 +384,7 @@
       <p>PLEASE CONFIRM AGAIN TO <b>DELETE</b> IT.</p>
     </section>
     <footer class="modal-card-foot">
-      <button class="button --jb-modal-close" onclick="cancel()">Cancel</button>
+      <button class="button --jb-modal-close" onclick="cancel3()">Cancel</button>
       <button class="button blue --jb-modal-close">Confirm</button>
     </footer>
   </div>
@@ -402,6 +414,7 @@
   
   var ID = 0;
   var modal = document.getElementById("sample-modal-2");
+  var modal3 = document.getElementById("sample-modal-3");
   // When the user clicks the button, open the modal 
   function deleteID(id){
     modal.style.display = "block";
@@ -410,5 +423,45 @@
   function cancel(){
     modal.style.display = "none";
   }
-  
+  function cancel3(){
+    modal3.style.display = "none";
+  }
+  function add(){
+    var productTitle = document.getElementsByName("productTitle")[0].value;
+    var productTag = document.getElementsByName("productTag")[0].value;
+    var productContent = document.getElementsByName("productContent")[0].value;
+    var productCategory = document.getElementsByName("productCategory")[0];
+    productCategory = productCategory.options[productCategory.selectedIndex].value;
+    var isHot = document.getElementsByName("isHot")[0].checked;
+    var isNew = document.getElementsByName("isNew")[0].checked;
+    var isBestSale = document.getElementsByName("isBestSale")[0].checked;
+    var quantity = document.getElementsByName("productQuantity")[0].value;
+    var material = document.getElementsByName("productMaterial")[0].value;
+    var glass = document.getElementsByName("productGlass")[0].value;
+    var back = document.getElementsByName("productBack")[0].value;
+    var code = document.getElementsByName("productCode")[0].value;
+    var productBrand = document.getElementsByName("productBrand")[0];
+    productBrand = productBrand.options[productBrand.selectedIndex].value;
+    var Currency = 'VND';
+    var productShape = document.getElementsByName("productShape")[0].value;
+    var productDiameter = document.getElementsByName("productDiameter")[0].value;
+    var productHeight = document.getElementsByName("productHeight")[0].value;
+    var productLugWidth = document.getElementsByName("productLugWidth")[0].value;
+    var productColor = document.getElementsByName("productColor")[0].value;
+    var productPrice = document.getElementsByName("productPrice")[0].value;
+    var productDiscount = document.getElementsByName("productDiscount")[0].value;
+    var productWarranty = document.getElementsByName("productWarranty")[0].value;
+    console.log(productTitle, productTag, productContent, productCategory, isHot,isNew, isBestSale, quantity, material, glass, back, productBrand, Currency,productShape, productDiameter, productHeight, productLugWidth, productColor, code, productPrice);
+    $.post('/cmsAddProduct/add', {
+        productTitle, productTag, productContent, productCategory, isHot,
+        isNew, isBestSale, quantity, material, glass, back, productBrand, Currency,
+        productShape, productDiameter, productHeight, productLugWidth, productColor,productPrice, code, productDiscount, productWarranty
+        })
+    $.showNotification({
+      type: "primary",
+      body: "Bạn đã cập nhật thành công",
+      duration: 1000,
+      direction: 'append'
+    })
+  }
 </script>
