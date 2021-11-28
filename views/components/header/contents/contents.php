@@ -61,14 +61,15 @@
             </a>
           </li>
 
+          <li class="nav-item">
+            <a class="nav-link" href="<?= ROOT_URL ?>/logout" class="dropdown-item">Đăng xuất</a>
+          </li>
+
         <?php } else { ?>
           <li class="nav-item">
             <a class="nav-link" href="/login">Đăng nhập</a>
           </li>
         <?php } ?>
-        <li class="nav-item">
-          <a class="nav-link" href="/contact">Liên hệ</a>
-        </li>
       </ul>
     </div>
   </div>
