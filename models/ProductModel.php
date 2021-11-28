@@ -174,4 +174,37 @@ class ProductModel extends BaseModel
       return [];
     }
   }
+  public function getAllCategoryHelp()
+  {
+    try {
+      $sql = "SELECT bkwatch.productcategory.id AS id, bkwatch.productcategory.title AS title FROM bkwatch.productcategory";
+      $result = $this->db->query($sql);
+      $data = $result->fetch_all(mode: MYSQLI_ASSOC);
+      return $data;
+    } catch (\Exception $e) {
+      return [];
+    }
+  }
+  public function getAllBrandHelp()
+  {
+    try {
+      $sql = "SELECT bkwatch.productbrand.id AS id, bkwatch.productbrand.title AS title FROM bkwatch.productbrand";
+      $result = $this->db->query($sql);
+      $data = $result->fetch_all(mode: MYSQLI_ASSOC);
+      return $data;
+    } catch (\Exception $e) {
+      return [];
+    }
+  }
+  public function getImageHelpById(int $id)
+  {
+    try {
+      $sql = "SELECT bkwatch.productImage.id AS id, bkwatch.productImage.imageURL AS imageURL FROM bkwatch.productImage WHERE bkwatch.productImage.productId = $id";
+      $result = $this->db->query($sql);
+      $data = $result->fetch_all(mode: MYSQLI_ASSOC);
+      return $data;
+    } catch (\Exception $e) {
+      return [];
+    }
+  }
 }

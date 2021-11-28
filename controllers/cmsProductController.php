@@ -49,11 +49,14 @@ class cmsProductController extends BaseController
       $this->redirect('/');
       return;
     };
+    $categoryList = $this->productModel->getAllCategory();
+    $brandList = $this->productModel->getAllBrand();
+    $imageList = array();
     $view = new cmsAddProductView();
     $userId = $_SESSION['user']['id'];
     $userImg = $_SESSION['user']['avatarURL'];
     $username = $_SESSION['user']['username'];
-    $view->render(['url' => $url, 'nav' => 'cmsAddProduct', 'userId' => $userId, 'userImg' => $userImg, 'username'=>$username, 'comment'=>array(), 'data' =>'']);
+    $view->render(['url' => $url, 'nav' => 'cmsAddProduct', 'userId' => $userId, 'userImg' => $userImg, 'username'=>$username, 'add'=>true, 'data' =>'', 'categoryList' => $categoryList, 'brandList' => $brandList]);
   }
     public function update($url, $id)
     {
@@ -65,11 +68,14 @@ class cmsProductController extends BaseController
         $this->redirect('/');
         return;
       };
-        $view = new cmsAddProductView();
-        $data = $this->productModel->getById($id);
-        $userId = $_SESSION['user']['id'];
-        $userImg = $_SESSION['user']['avatarURL'];
-        $username = $_SESSION['user']['username'];
-        $view->render(['url' => $url, 'nav' => 'cmsAddProduct', 'userId' => $userId, 'userImg' => $userImg, 'username'=>$username, 'comment'=>array(), 'data' =>$data]);
+      $categoryList = $this->productModel->getAllCategoryHelp();
+      $brandList = $this->productModel->getAllBrandHelp();
+      $imageList = $this->productModel->getImageHelpById($id);
+      $view = new cmsAddProductView();
+      $data = $this->productModel->getById($id);
+      $userId = $_SESSION['user']['id'];
+      $userImg = $_SESSION['user']['avatarURL'];
+      $username = $_SESSION['user']['username'];
+      $view->render(['url' => $url, 'nav' => 'cmsAddProduct', 'userId' => $userId, 'userImg' => $userImg, 'username'=>$username, 'add'=>false, 'data' =>$data, 'categoryList' => $categoryList, 'brandList' => $brandList, 'imageList'=> $imageList]);
     }
 }

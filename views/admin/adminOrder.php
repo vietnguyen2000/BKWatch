@@ -67,6 +67,13 @@
                           <span class="control-label">2</span>
                         </label>
                       </div>
+                      <div class="control">
+                        <label class="radio">
+                          <input type="radio" name="orderStatus<?php echo($row["id"]); ?>" value="3" <?php if ($row["orderStatus"] == 3) {echo 'checked';}?>>
+                          <span class="check"></span>
+                          <span class="control-label">3</span>
+                        </label>
+                      </div>
                     </div>
                   </div>
                 </td>
@@ -115,37 +122,6 @@
   </div>
 </div>
 
-
-
-
-
-<!-- <script>
-  
-  var ID = 0;
-  var modal = document.getElementById("sample-modal-2");
-  // When the user clicks the button, open the modal 
-  function updateID(id){
-    modal.style.display = "block";
-    ID = id;
-  }
-  function cancel(){
-    modal.style.display = "none";
-  }
-  function updateOrder(){
-    var nameID = "orderStatus" + ID;
-    var statusOrder $('input[name='+ nameID+']:radio').click(function() {var value = $(this).val();});
-    // var statusOrder = document.getElementById("orderStatus" + ID);
-    $.post('/cmsOrder/update', {
-          ID, statusOrder
-        })
-    $.showNotification({
-      type: "primary",
-      body: "Bạn đã cập nhật thành công",
-      duration: 3000,
-      direction: 'append'
-    })
-  }
-</script> -->
 <script>
   
   var ID = 0;
@@ -168,7 +144,7 @@
     $.showNotification({
       type: "primary",
       body: "Bạn đã cập nhật thành công",
-      duration: 3000,
+      duration: 1000,
       direction: 'append'
     })
     cancel();
