@@ -28,7 +28,7 @@
           <div class="field-body">
             <div class="field">
               <div class="control icons-left icons-right">
-                <input class="input" type="name" name="blogTitle" required>
+                <input class="input" type="name" name="blogTitle" required value="<?= (isset($data['data'])) ? $data['data']['title'] : '' ?>">
                 <span class="icon left"><i class="mdi mdi-mail"></i></span>
               </div>
             </div>
@@ -38,17 +38,11 @@
           </p>
         </div>
         <hr>
-        <div class="field">
-          <label class="label">Tag</label>
-          <div class="control">
-            <input class="input" type="text" placeholder="e.g. new, engine" name="blogTag" required>
-          </div>
-        </div>
 
         <div class="field">
           <label class="label">Content</label>
           <div class="control">
-            <textarea id="content"></textarea>
+            <textarea id="content"><?= (isset($data['data'])) ? $data['data']['content'] : '' ?></textarea>
           </div>
           <p class="help">
             This field is required
@@ -116,7 +110,7 @@
               <td class="actions-cell">
                 <form form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                   <div class="buttons right nowrap">
-                    <button class="button small red --jb-modal" data-target="sample-modal" type="button" onclick="deleteID('<?php echo ($row["cmtId"]); ?>')">
+                    <button class="button small red --jb-modal" data-target="sample-modal" type="button" onclick="deleteID('<?php echo ($row['cmtId']); ?>')">
                       <span class="icon"><i class="mdi mdi-trash-can"></i></span>
                     </button>
                   </div>
@@ -130,7 +124,7 @@
         <div class="flex items-center justify-between">
           <div class="buttons">
             <button type="button" class="button">
-              <<< /button>
+              << </button>
                 <button type="button" class="button active">1</button>
                 <button type="button" class="button">>></button>
           </div>
@@ -138,7 +132,7 @@
         </div>
       </div>
     </div>
-  </section>
+</section>
 <!-- ===================================================== -->
 <section class="section main-section">
   <div class="card has-table">
@@ -159,38 +153,41 @@
     <div class="card-content">
       <table>
         <thead>
-        <tr>
-          <th>Image</th>
-          <th>Url</th>
-          <th>Delete</th>
-        </tr>
+          <tr>
+            <th>Image</th>
+            <th>Url</th>
+            <th>Delete</th>
+          </tr>
         </thead>
         <tbody>
-        <?php  if (!$data['add']) {foreach ($data['imageList'] as $row) {?>
-          <tr>
-              <td data-label="Image">
-                <img src="<?php echo($row['imageURL']); ?>" alt="Image" style="height:70px; wight:auto;">
-              </td>
-              <td data-label="imageURLs"><?php echo($row['imageURL']); ?></td>
-              <td class="actions-cell" data-label="Delete">
-                <form form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-                  <div class="buttons right nowrap">
-                      <button class="button small red --jb-modal" data-target="sample-modal" type="button" onclick="deleteID('<?php echo($row['id']); ?>')">
-                      <span class="icon"><i class="mdi mdi-trash-can"></i></span>
+          <?php if (!$data['add']) {
+            foreach ($data['imageList'] as $row) { ?>
+              <tr>
+                <td data-label="Image">
+                  <img src="<?php echo ($row['imageURL']); ?>" alt="Image" style="height:70px; wight:auto;">
+                </td>
+                <td data-label="imageURLs"><?php echo ($row['imageURL']); ?></td>
+                <td class="actions-cell" data-label="Delete">
+                  <form form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                    <div class="buttons right nowrap">
+                      <button class="button small red --jb-modal" data-target="sample-modal" type="button" onclick="deleteID('<?php echo ($row['id']); ?>')">
+                        <span class="icon"><i class="mdi mdi-trash-can"></i></span>
                       </button>
-                  </div>
-                </form>
-              </td>
-          </tr>
-        <?php }}?>
+                    </div>
+                  </form>
+                </td>
+              </tr>
+          <?php }
+          } ?>
         </tbody>
       </table>
       <div class="table-pagination">
         <div class="flex items-center justify-between">
           <div class="buttons">
-            <button type="button" class="button"><<</button>
-            <button type="button" class="button active">1</button>
-            <button type="button" class="button">>></button>
+            <button type="button" class="button">
+              <<</button>
+                <button type="button" class="button active">1</button>
+                <button type="button" class="button">>></button>
           </div>
         </div>
       </div>
@@ -266,7 +263,7 @@
       ['link', 'image'],
       ['fullScreen', 'showBlocks', 'codeView'],
       ['preview'],
-    ]
+    ],
   });
 </script>
 
