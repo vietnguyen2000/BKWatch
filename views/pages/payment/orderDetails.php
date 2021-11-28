@@ -113,7 +113,7 @@ function mapStatus($status, $id)
 
           <div class="my-3">
             <div class="progress" style="height: 6px; border-radius: 16px;">
-              <div class="progress-bar" role="progressbar" style="width: <?= ($order['status']) * 100 / 3 ?>%; border-radius: 16px; background-color: #c89979;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar" role="progressbar" style="width: <?= max(($order['status']) * 100 / 3, 5) ?>%; border-radius: 16px; background-color: #c89979;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
             <div class="d-flex justify-content-between mb-1">
               <p class="text-muted mt-1 mb-0 small">Khởi tạo</p>

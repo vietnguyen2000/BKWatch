@@ -328,6 +328,12 @@ class VNPayController extends BaseController
       } else {
         $_reason = 'Không rõ';
         $_resCode = $_GET['vnp_ResponseCode'];
+
+        if ($_resCode == '24') {
+          $this->redirect('/payment/orderDetails?orderId=' . $_GET['vnp_TxnRef']);
+          return;
+        }
+
         if ($_resCode == '01') {
           $_reason = 'Không tìm thấy mã order';
         } else if ($_resCode == '02') {
