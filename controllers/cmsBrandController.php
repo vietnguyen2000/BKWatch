@@ -28,6 +28,14 @@ class cmsBrandController extends BaseController
 
   public function add($url)
   {
+    if (!isset($_SESSION['user'])) {
+      $this->redirect('/login');
+      return;
+    };
+    if ($_SESSION['user']['role'] != 1) {
+      $this->redirect('/');
+      return;
+    };
     $title = $_POST['title'];
     $productBrandModel = new ProductBrandModel();
     $productBrandModel->insert(
@@ -39,6 +47,14 @@ class cmsBrandController extends BaseController
 
   public function update($url, $id)
   {
+    if (!isset($_SESSION['user'])) {
+      $this->redirect('/login');
+      return;
+    };
+    if ($_SESSION['user']['role'] != 1) {
+      $this->redirect('/');
+      return;
+    };
     $title = $_POST['title'];
     $productBrandModel = new ProductBrandModel();
     $productBrandModel->updateById(
@@ -51,6 +67,14 @@ class cmsBrandController extends BaseController
 
   public function delete($url, $id)
   {
+    if (!isset($_SESSION['user'])) {
+      $this->redirect('/login');
+      return;
+    };
+    if ($_SESSION['user']['role'] != 1) {
+      $this->redirect('/');
+      return;
+    };
     $productBrandModel = new ProductBrandModel();
     $productBrandModel->delete(
       $id,

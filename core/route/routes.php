@@ -52,7 +52,8 @@ $router->post('/cms/product/update/{id}', 'cmsProductController@updateProduct');
 $router->get('/cms/product/{id}', 'cmsProductController@update');
 
 $router->get('/cms/order', 'cmsOrderController@index');
-$router->post('/cms/order/update', 'cmsOrderController@update');
+$router->get('/cms/order/details/{id}', 'cmsOrderController@details');
+$router->post('/cms/order/update/{id}', 'cmsOrderController@update');
 
 $router->get('/cms/brand', 'cmsBrandController@index');
 $router->post('/cms/brand/update/{id}', 'cmsBrandController@update');
