@@ -15,8 +15,9 @@
   use Models\UserFavoriteItemModel;
 
   $isLogged = isset($_SESSION['user']);
-  $user = $_SESSION['user'];
-  if (!$isLogged) { ?>
+  if (!$isLogged) {
+    $user = $_SESSION['user'];
+  ?>
     <a href="/login" class="ps-2 text-decoration-none">
       <i class="fas fa-sign-in-alt fa-2x"></i>
     </a>
