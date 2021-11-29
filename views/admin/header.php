@@ -46,7 +46,7 @@
         <li <?php if ($data['nav'] == 'cms') {
               echo "class='active'";
             } ?>>
-          <a href="/cms">
+          <a id='cms' href="/cms">
             <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
             <span class="menu-item-label">Dashboard</span>
           </a>
@@ -57,7 +57,7 @@
         <li <?php if ($data['nav'] == 'cmsBlog') {
               echo "class='active'";
             } ?>>
-          <a href="/cmsBlog">
+          <a id='cmsBlog' href="/cmsBlog">
             <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
             <span class="menu-item-label">Blog</span>
           </a>
@@ -65,9 +65,9 @@
       </ul>
       <p class="menu-label">Product</p>
       <ul class="menu-list">
-        <li <?php if ($data['nav'] == 'cmsProduct') {
-              echo "class='active'";
-            } ?>>
+        <li id='cmsProduct' <?php if ($data['nav'] == 'cmsProduct') {
+                              echo "class='active'";
+                            } ?>>
           <a href="/cmsProduct" class="has-icon">
             <span class="icon"><i class="mdi mdi-credit-card-outline"></i></span>
             <span class="menu-item-label">Product</span>
@@ -76,9 +76,9 @@
       </ul>
       <p class="menu-label">Order</p>
       <ul class="menu-list">
-        <li <?php if ($data['nav'] == 'cmsOrder') {
-              echo "class='active'";
-            } ?>>
+        <li id='cmsOrder' <?php if ($data['nav'] == 'cmsOrder') {
+                            echo "class='active'";
+                          } ?>>
           <a href="/cmsOrder" class="has-icon">
             <span class="icon"><i class="mdi mdi-credit-card-outline"></i></span>
             <span class="menu-item-label">Order</span>
@@ -124,3 +124,5 @@
       });
     });
   </script>
+
+  <div id="main-body">

@@ -1,7 +1,3 @@
-<link href="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/css/suneditor.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/suneditor.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/suneditor@latest/src/lang/ko.js"></script>
-
 <section class="is-title-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
@@ -247,7 +243,7 @@
     modal.style.display = "none";
   }
 
-  const editor = SUNEDITOR.create((document.getElementById('content')), {
+  var editor = SUNEDITOR.create((document.getElementById('content')), {
     lang: SUNEDITOR_LANG['en'],
     width: '100%',
     height: 500,
@@ -313,6 +309,7 @@
         message: "Bạn đã cập nhật thành công",
         duration: 3000,
       });
+      fastGet('/cmsBlog')
     })
 
 
