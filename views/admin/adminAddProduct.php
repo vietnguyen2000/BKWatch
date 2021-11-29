@@ -4,6 +4,7 @@
     <ul>
       <li>Admin</li>
       <li>Products</li>
+      <li><?= (!$data['add']) ? $data['data']['id'] : 'new' ?></li>
     </ul>
   </div>
 </section>
@@ -11,9 +12,7 @@
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-      <?php if (!$data['add']) {
-        echo 'Add';
-      } else echo 'Update' ?> Product
+      <?= !$data['add'] ? 'Update' : 'Add' ?> Product
     </h1>
   </div>
 </section>
@@ -164,10 +163,6 @@
             <div class="field">
               <label class="label">Product Brand</label>
               <div class="control">
-                <input class="input" type="text" placeholder="New product Brand" name="NewproductBrand" style="width:50%;  margin-right: 20px;">
-                <button class="button blue" onclick="addproductBrand()">
-                  Add Brand
-                </button>
                 <div class="select" style="margin-top: 20px;">
                   <select id="productBrand" name="productBrand">
                     <?php foreach ($data['brandList'] as $category) { ?>
@@ -180,10 +175,6 @@
             <div class="field">
               <label class="label">Product category</label>
               <div class="control">
-                <input class="input" type="text" placeholder="New product Category" name="NewproductCategory" style="width:50%;  margin-right: 20px;">
-                <button class="button blue" onclick="addproductCategory()">
-                  Add Category
-                </button>
                 <div class="select" style="margin-top: 20px;">
                   <select id="productCategory" name="productCategory">
                     <?php foreach ($data['categoryList'] as $category) { ?>
@@ -509,7 +500,7 @@
       listNewImages,
       listRemovedImages
     });
-    const action = "<?= (!$data['add']) ? '/cmsProduct/update/' . $data['data']['id'] : '/cmsProduct/add' ?>"
+    const action = "<?= (!$data['add']) ? '/cms/product/update/' . $data['data']['id'] : '/cms/product/add' ?>"
     $.post(action, {
       productTitle,
       productTag,
@@ -543,7 +534,7 @@
         duration: 3000,
       });
 
-      fastGet('/cmsProduct')
+      fastGet('/cms/product')
     })
   }
 </script>
@@ -608,25 +599,25 @@
 </script>
 
 <script>
-  function addproductCategory(){
+  function addproductCategory() {
     var NewproductCategory = document.getElementsByName("NewproductCategory")[0].value;
     $.get('/cmsAddProduct/addCategory', {
       NewproductCategory
     }, (d) => {
       newCategoryID = parseInt(d);
-      $('#productCategory').append(`<option value="${newCategoryID}">${NewproductCategory}</option>`)}
-      )
+      $('#productCategory').append(`<option value="${newCategoryID}">${NewproductCategory}</option>`)
+    })
     return
   }
 
-  function addproductBrand(){
+  function addproductBrand() {
     var NewproductBrand = document.getElementsByName("NewproductBrand")[0].value;
     $.get('/cmsAddProduct/addBrand', {
       NewproductBrand
     }, (d) => {
       newBrandID = parseInt(d);
-      $('#productBrand').append(`<option value="${newBrandID}">${NewproductBrand}</option>`)}
-    )
+      $('#productBrand').append(`<option value="${newBrandID}">${NewproductBrand}</option>`)
+    })
     return
   }
 </script>

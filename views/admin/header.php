@@ -14,18 +14,13 @@
     <div class="navbar-menu" id="navbar-menu" style="padding-top: 0px;">
       <div class="navbar-end">
         <div class="navbar-item dropdown has-divider has-user-avatar">
-          <a class="navbar-link">
+          <a href="<?= ROOT_URL . '/me' ?>" class="navbar-link">
             <div class="user-avatar">
               <img src="<?php echo $data['userImg']; ?>" alt="Bach Khoa" class="rounded-full">
             </div>
             <div class="is-user-name"><span><?php echo $data['username']; ?></span></div>
-            <span class="icon"><i class="mdi mdi-chevron-down"></i></span>
           </a>
         </div>
-        <a href="/me" class="navbar-item has-divider desktop-icon-only">
-          <span class="icon"><i class="mdi mdi-help-circle-outline"></i></span>
-          <span>About</span>
-        </a>
         <a href="<?= ROOT_URL ?>/logout" title="Log out" class="navbar-item desktop-icon-only">
           <span class="icon"><i class="mdi mdi-logout"></i></span>
           <span>Log out</span>
@@ -57,9 +52,9 @@
         <li id='cmsBlog' <?php if ($data['nav'] == 'cmsBlog') {
                             echo "class='active'";
                           } ?>>
-          <a href="/cmsBlog">
+          <a href="/cms/blog">
             <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
-            <span class="menu-item-label">Blog</span>
+            <span class="menu-item-label">Blogs</span>
           </a>
         </li>
       </ul>
@@ -68,9 +63,27 @@
         <li id='cmsProduct' <?php if ($data['nav'] == 'cmsProduct') {
                               echo "class='active'";
                             } ?>>
-          <a href="/cmsProduct" class="has-icon">
+          <a href="/cms/product" class="has-icon">
             <span class="icon"><i class="mdi mdi-credit-card-outline"></i></span>
-            <span class="menu-item-label">Product</span>
+            <span class="menu-item-label">Products</span>
+          </a>
+        </li>
+
+        <li id='cmsCategory' <?php if ($data['nav'] == 'cmsCategory') {
+                                echo "class='active'";
+                              } ?>>
+          <a href="/cms/category" class="has-icon">
+            <span class="icon"><i class="mdi mdi-credit-card-outline"></i></span>
+            <span class="menu-item-label">Categories</span>
+          </a>
+        </li>
+
+        <li id='cmsBrand' <?php if ($data['nav'] == 'cmsBrand') {
+                            echo "class='active'";
+                          } ?>>
+          <a href="/cms/brand" class="has-icon">
+            <span class="icon"><i class="mdi mdi-credit-card-outline"></i></span>
+            <span class="menu-item-label">Brands</span>
           </a>
         </li>
       </ul>
@@ -79,9 +92,9 @@
         <li id='cmsOrder' <?php if ($data['nav'] == 'cmsOrder') {
                             echo "class='active'";
                           } ?>>
-          <a href="/cmsOrder" class="has-icon">
+          <a href="/cms/order" class="has-icon">
             <span class="icon"><i class="mdi mdi-credit-card-outline"></i></span>
-            <span class="menu-item-label">Order</span>
+            <span class="menu-item-label">Orders</span>
           </a>
         </li>
       </ul>

@@ -1,3 +1,20 @@
+<?php
+function mapStatus($status)
+{
+  switch ($status) {
+    case 0:
+      return 'Chưa thanh toán';
+    case 1:
+      return 'Đã thanh toán, chờ giao hàng';
+    case 2:
+      return 'Đang giao hàng';
+    case 3:
+      return 'Hoàn thành';
+    default:
+      return 'Đơn hàng lỗi';
+  }
+} ?>
+
 <section class="is-title-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
@@ -26,11 +43,10 @@
             <th>ID</th>
             <th>User Full Name</th>
             <th>Total</th>
-            <!-- <th>Order Status</th> -->
-            <th>Updated At</th>
             <th>Order Status</th>
-            <th>Transaction No</th>
-            <th></th>
+            <th>Created At</th>
+            <th>Updated At</th>
+            <th>Details</th>
           </tr>
         </thead>
         <tbody>
@@ -40,58 +56,20 @@
               <td data-label="ID"><?php echo ($row["id"]); ?></td>
               <td data-label="User Full name"><?php echo ($row["userFullname"]); ?></td>
               <td data-label="Total"><?php echo ($row["total"]); ?></td>
+
+              <td data-label="Status">
+                <?= mapStatus($row['orderStatus']) ?>
+              </td>
+              <td data-label="Created At"><small class="text-gray-500"><?php echo ($row["createdAt"]); ?></small></td>
               <td data-label="Updated At">
                 <small class="text-gray-500"><?php echo ($row["updatedAt"]); ?></small>
               </td>
-              <td data-label="Status">
-                <div class="field-body">
-                  <div class="field grouped multiline">
-                    <div class="control">
-                      <label class="radio">
-                        <input type="radio" name="orderStatus<?php echo ($row["id"]); ?>" value="0" <?php if ($row["orderStatus"] == 0) {
-                                                                                                      echo 'checked';
-                                                                                                    } ?>>
-                        <span class="check"></span>
-                        <span class="control-label">0</span>
-                      </label>
-                    </div>
-                    <div class="control">
-                      <label class="radio">
-                        <input type="radio" name="orderStatus<?php echo ($row["id"]); ?>" value="1" <?php if ($row["orderStatus"] == 1) {
-                                                                                                      echo 'checked';
-                                                                                                    } ?>>
-                        <span class="check"></span>
-                        <span class="control-label">1</span>
-                      </label>
-                    </div>
-                    <div class="control">
-                      <label class="radio">
-                        <input type="radio" name="orderStatus<?php echo ($row["id"]); ?>" value="2" <?php if ($row["orderStatus"] == 2) {
-                                                                                                      echo 'checked';
-                                                                                                    } ?>>
-                        <span class="check"></span>
-                        <span class="control-label">2</span>
-                      </label>
-                    </div>
-                    <div class="control">
-                      <label class="radio">
-                        <input type="radio" name="orderStatus<?php echo ($row["id"]); ?>" value="3" <?php if ($row["orderStatus"] == 3) {
-                                                                                                      echo 'checked';
-                                                                                                    } ?>>
-                        <span class="check"></span>
-                        <span class="control-label">3</span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td data-label="Transaction No"><?php echo ($row["transactionNo"]); ?></td>
               <td class="actions-cell">
                 <form form action="" method="post">
                   <div class="buttons right nowrap">
-                    <button class="button small green --jb-modal" data-target="sample-modal" type="button" onclick="updateID('<?php echo ($row["id"]); ?>')">
+                    <a href="/cms/order/details/<?= $row['id'] ?>" class="button small green --jb-modal" data-target="sample-modal" type="button">
                       <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
-                    </button>
+                    </a>
                   </div>
                 </form>
               </td>
@@ -137,7 +115,7 @@
     var statusOrder = $('input[name=' + nameID + ']:checked').val();
     // var statusOrder = document.getElementById("orderStatus" + ID);
     console.log(statusOrder);
-    $.post('/cmsOrder/update', {
+    $.post('/cms/order/update', {
       ID,
       statusOrder
     }, () => {
