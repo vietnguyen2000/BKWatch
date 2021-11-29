@@ -251,18 +251,27 @@ class cmsProductController extends BaseController
     $row =  $this->productModel->delete($id);
     return;
   }
-  public function addCategory($url){
+  public function addCategory($url)
+  {
     $productCategoryModel = new ProductCategoryModel();
     $NewproductCategory = $_GET['NewproductCategory'];
     $newId =  $productCategoryModel->insert(['title' => $NewproductCategory, 'level' => 1]);
     echo $newId;
     return $newId;
   }
-  public function addBrand($url){
+  public function addBrand($url)
+  {
     $productBrandModel = new ProductBrandModel();
     $NewproductBrand = $_GET['NewproductBrand'];
     $newId =  $productBrandModel->insert(['title' => $NewproductBrand]);
     echo $newId;
     return $newId;
+  }
+  public function deleteCmt($url)
+  {
+    $id = $_POST['ID'];
+    $productComment = new ProductCommentModel();
+    $row =  $productComment->delete($id);
+    return;
   }
 }

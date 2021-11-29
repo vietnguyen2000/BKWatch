@@ -48,6 +48,7 @@ $router->get('/cms/product', 'cmsProductController@index');
 $router->post('/cms/product/delete', 'cmsProductController@delete');
 $router->get('/cms/product/add', 'cmsProductController@add');
 $router->post('/cms/product/add', 'cmsProductController@addProduct');
+$router->post('/cms/product/deleteCmt', 'cmsProductController@deleteCmt');
 $router->post('/cms/product/update/{id}', 'cmsProductController@updateProduct');
 $router->get('/cms/product/{id}', 'cmsProductController@update');
 

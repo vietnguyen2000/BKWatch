@@ -301,7 +301,7 @@
         <tbody>
           <?php if (!$data['add']) {
             foreach ($data['data']['comments'] as $row) { ?>
-              <tr>
+              <tr id="comment-<?php echo ($row["id"]); ?>">
                 <td data-label="userCmtFullname"><?php echo ($row["fullname"]); ?></td>
                 <td data-label="userCmtContent"><?php echo ($row["content"]); ?></td>
                 <td data-label="userCmtRating" class="progress-cell">
@@ -428,7 +428,7 @@
     </section>
     <footer class="modal-card-foot">
       <button class="button --jb-modal-close" onclick="cancel()">Cancel</button>
-      <button class="button blue --jb-modal-close">Confirm</button>
+      <button class="button blue --jb-modal-close" onclick="DeleteCmt()">Confirm</button>
     </footer>
   </div>
 </div>
@@ -554,6 +554,22 @@
   $('#btn-upload-image').click(() => {
     $('#input-upload-image').click()
   })
+
+  function DeleteCmt() {
+    $(`tr[id="comment-${ID}"]`).remove();
+    $.post('/cms/product/deleteCmt', {
+      ID
+    }, () => {
+      toastsHandler.createToast({
+        type: "success",
+        icon: "check-circle",
+        message: "Bạn đã xóa comment thành công",
+        duration: 3000,
+      });
+    })
+    cancel();
+    return true;
+  }
 
   function deleteImageRow(id) {
     $(`tr[id="product-image-${id}"]`).remove()

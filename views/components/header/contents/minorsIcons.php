@@ -16,12 +16,13 @@
 
   $isLogged = isset($_SESSION['user']);
   if (!$isLogged) {
-    $user = $_SESSION['user'];
   ?>
     <a href="/login" class="ps-2 text-decoration-none">
       <i class="fas fa-sign-in-alt fa-2x"></i>
     </a>
-  <?php } else { ?>
+  <?php } else {
+    $user = $_SESSION['user'];
+  ?>
     <div class="dropdown d-inline-block dropstart">
       <a href="/me" class="ps-2 text-decoration-none" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-user-circle fa-2x"></i>
