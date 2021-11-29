@@ -527,12 +527,13 @@
       productWarranty,
       listNewImages,
       listRemovedImages
-    }, (d) => console.log(d))
-    $.showNotification({
-      type: "primary",
-      body: "Bạn đã Thêm vào thành công",
-      duration: 10,
-      direction: 'append'
+    }, () => {
+      toastsHandler.createToast({
+        type: "success",
+        icon: "check-circle",
+        message: "Bạn đã thêm thành công",
+        duration: 3000,
+      });
     })
   }
 </script>
