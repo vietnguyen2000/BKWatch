@@ -3,6 +3,8 @@
 namespace Controllers;
 
 use Models\BlogModel;
+use Models\OrderItemsModel;
+use Models\OrdersModel;
 use Models\ProductCommentModel;
 use Models\ProductModel;
 use Models\UserModel;
@@ -15,11 +17,11 @@ class cmsController extends BaseController
 {
   public function index($url)
   {
-    if (!isset($_SESSION['user']) ) {
+    if (!isset($_SESSION['user'])) {
       $this->redirect('/login');
       return;
     };
-    if ($_SESSION['user']['role'] != 1 ) {
+    if ($_SESSION['user']['role'] != 1) {
       $this->redirect('/');
       return;
     };
@@ -27,6 +29,10 @@ class cmsController extends BaseController
     $userId = $_SESSION['user']['id'];
     $userImg = $_SESSION['user']['avatarURL'];
     $username = $_SESSION['user']['username'];
-    $view->render(['url' => $url, 'nav' => 'cms', 'userId' => $userId, 'userImg' => $userImg, 'username'=>$username]);
+
+    $totalUsers = (new UserModel())->getTotalUser();
+    $totalOrders = (new OrdersModel())->getTotalOrder();
+    $totalProductSales = (new OrderItemsModel())->getTotalProductSales();
+    $view->render(['url' => $url, 'nav' => 'cms', 'userId' => $userId, 'userImg' => $userImg, 'username' => $username, 'totalUsers' => $totalUsers, 'totalOrders' => $totalOrders, 'totalProductSales' => $totalProductSales]);
   }
 }

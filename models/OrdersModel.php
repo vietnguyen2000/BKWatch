@@ -68,4 +68,16 @@ class OrdersModel extends BaseModel
       return [];
     }
   }
+
+  public function getTotalOrder()
+  {
+    try {
+      $sql = "SELECT COUNT(*) AS total FROM Orders";
+      $result = $this->db->query($sql);
+      $data = $result->fetch_all(mode: MYSQLI_ASSOC);
+      return $data[0]['total'];
+    } catch (\Exception $e) {
+      return 0;
+    }
+  }
 }

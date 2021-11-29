@@ -30,4 +30,16 @@ class UserModel extends BaseModel
       return [];
     }
   }
+
+  public function getTotalUser()
+  {
+    try {
+      $sql = "SELECT COUNT(*) AS total FROM User WHERE role != 1";
+      $result = $this->db->query($sql);
+      $data = $result->fetch_all(mode: MYSQLI_ASSOC);
+      return $data[0]['total'];
+    } catch (\Exception $e) {
+      return 0;
+    }
+  }
 }

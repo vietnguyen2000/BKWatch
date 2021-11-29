@@ -48,4 +48,16 @@ class OrderItemsModel extends BaseModel
       return [];
     }
   }
+
+  public function getTotalProductSales()
+  {
+    try {
+      $sql = "SELECT SUM(quantity) AS total FROM OrderItems";
+      $result = $this->db->query($sql);
+      $data = $result->fetch_all(mode: MYSQLI_ASSOC);
+      return $data[0]['total'];
+    } catch (\Exception $e) {
+      return 0;
+    }
+  }
 }
