@@ -18,17 +18,17 @@ class cmsBlogController extends BaseController
   var $blogModel;
   public function __construct()
   {
-      $this->blogModel = new BlogModel();
-      $this->ItemPerPage = 10;
-      $this->data = [];
+    $this->blogModel = new BlogModel();
+    $this->ItemPerPage = 10;
+    $this->data = [];
   }
   public function index($url)
   {
-    if (!isset($_SESSION['user']) ) {
+    if (!isset($_SESSION['user'])) {
       $this->redirect('/login');
       return;
     };
-    if ($_SESSION['user']['role'] != 1 ) {
+    if ($_SESSION['user']['role'] != 1) {
       $this->redirect('/');
       return;
     };
@@ -42,41 +42,41 @@ class cmsBlogController extends BaseController
     if (count($data) > 0) {
       $fullCount = $data[0]['fullCount'];
     }
-    $view->render(['url' => $url, 'nav' => 'cmsBlog', 'userId' => $userId, 'userImg' => $userImg, 'username'=>$username, 'data' => $data, 'fullCount' => $fullCount]);
+    $view->render(['url' => $url, 'nav' => 'cmsBlog', 'userId' => $userId, 'userImg' => $userImg, 'username' => $username, 'data' => $data, 'fullCount' => $fullCount]);
   }
   public function update($url, $id)
-    {
-      if (!isset($_SESSION['user']) ) {
-        $this->redirect('/login');
-        return;
-      };
-      if ($_SESSION['user']['role'] != 1 ) {
-        $this->redirect('/');
-        return;
-      };
-        $view = new cmsAddBlogView();
-        $data = $this->blogModel->getBlogById($id);
-        $comment = $this->blogModel->getCmtsByBlogId($id);
-        $userId = $_SESSION['user']['id'];
-        $userImg = $_SESSION['user']['avatarURL'];
-        $username = $_SESSION['user']['username'];
-        $imageList = $this->blogModel->getImageHelpById($id);
-        $view->render([
-            'url' => $url,
-            'nav' => 'cmsBlog',
-            'comment' => $comment,
-            'data' => $data,
-            'userId' => $userId, 'userImg' => $userImg, 'username'=>$username, 'add'=>false,
-            'imageList'=> $imageList, 'id' => $id
-        ]);
-    }
-  public function add($url)
   {
-    if (!isset($_SESSION['user']) ) {
+    if (!isset($_SESSION['user'])) {
       $this->redirect('/login');
       return;
     };
-    if ($_SESSION['user']['role'] != 1 ) {
+    if ($_SESSION['user']['role'] != 1) {
+      $this->redirect('/');
+      return;
+    };
+    $view = new cmsAddBlogView();
+    $data = $this->blogModel->getBlogById($id);
+    $comment = $this->blogModel->getCmtsByBlogId($id);
+    $userId = $_SESSION['user']['id'];
+    $userImg = $_SESSION['user']['avatarURL'];
+    $username = $_SESSION['user']['username'];
+    $imageList = $this->blogModel->getImageHelpById($id);
+    $view->render([
+      'url' => $url,
+      'nav' => 'cmsBlog',
+      'comment' => $comment,
+      'data' => $data,
+      'userId' => $userId, 'userImg' => $userImg, 'username' => $username, 'add' => false,
+      'imageList' => $imageList, 'id' => $id
+    ]);
+  }
+  public function add($url)
+  {
+    if (!isset($_SESSION['user'])) {
+      $this->redirect('/login');
+      return;
+    };
+    if ($_SESSION['user']['role'] != 1) {
       $this->redirect('/');
       return;
     };
@@ -84,7 +84,7 @@ class cmsBlogController extends BaseController
     $userId = $_SESSION['user']['id'];
     $userImg = $_SESSION['user']['avatarURL'];
     $username = $_SESSION['user']['username'];
-    $view->render(['url' => $url, 'nav' => 'cmsBlog', 'userId' => $userId, 'userImg' => $userImg, 'username'=>$username, 'comment' => array(), 'data' => [], 'add'=>true]);
+    $view->render(['url' => $url, 'nav' => 'cmsBlog', 'userId' => $userId, 'userImg' => $userImg, 'username' => $username, 'comment' => array(), 'data' => [], 'add' => true]);
   }
   public function deleteCmt($url)
   {
@@ -94,12 +94,13 @@ class cmsBlogController extends BaseController
     return;
   }
 
-  public function updateBlog($url, $id) {
-    if (!isset($_SESSION['user']) ) {
+  public function updateBlog($url, $id)
+  {
+    if (!isset($_SESSION['user'])) {
       $this->redirect('/login');
       return;
     };
-    if ($_SESSION['user']['role'] != 1 ) {
+    if ($_SESSION['user']['role'] != 1) {
       $this->redirect('/');
       return;
     };
@@ -107,7 +108,7 @@ class cmsBlogController extends BaseController
     $content = $_POST['content'];
     $isHot = $_POST['isHot'];
     $userId = $_SESSION['user']['id'];
-    $id = $this->blogModel->updateById( $id, [
+    $id = $this->blogModel->updateById($id, [
       "title" => $blogTitle,
       "isHot" => ($isHot) ? 1 : 0,
       "content" => $content,
@@ -118,31 +119,31 @@ class cmsBlogController extends BaseController
     } else {
       $listNewImages = [];
     }
-    
+
     if (isset($_POST['listRemovedImages'])) {
       $listRemovedImages = $_POST['listRemovedImages'];
     } else {
       $listRemovedImages = [];
     }
-    
+
 
     $blogImageModel = new BlogImageModel();
 
-    foreach($listNewImages as $image) {
+    foreach ($listNewImages as $image) {
       $blogImageModel->insert(['blogId' => $id, 'imageURL' => $image]);
     }
 
     $blogImageModel->deleteListIds($listRemovedImages);
-      return;
-
+    return;
   }
 
-  public function addBlog(){
-    if (!isset($_SESSION['user']) ) {
+  public function addBlog()
+  {
+    if (!isset($_SESSION['user'])) {
       $this->redirect('/login');
       return;
     };
-    if ($_SESSION['user']['role'] != 1 ) {
+    if ($_SESSION['user']['role'] != 1) {
       $this->redirect('/');
       return;
     };
@@ -163,25 +164,26 @@ class cmsBlogController extends BaseController
     } else {
       $listNewImages = [];
     }
-    
+
     if (isset($_POST['listRemovedImages'])) {
       $listRemovedImages = $_POST['listRemovedImages'];
     } else {
       $listRemovedImages = [];
     }
-    
+
 
     $blogImageModel = new BlogImageModel();
 
-    foreach($listNewImages as $image) {
+    foreach ($listNewImages as $image) {
       $blogImageModel->insert(['blogId' => $id, 'imageURL' => $image]);
     }
 
     $blogImageModel->deleteListIds($listRemovedImages);
-      return;
+    return;
   }
 
-  public function delete($url){
+  public function delete($url)
+  {
     $id = $_POST['ID'];
     $blogModel = new BlogModel();
     $blogModel->delete($id);

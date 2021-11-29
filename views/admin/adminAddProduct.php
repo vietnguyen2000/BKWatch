@@ -4,6 +4,7 @@
     <ul>
       <li>Admin</li>
       <li>Products</li>
+      <li><?= (!$data['add']) ? $data['data']['id'] : 'new' ?></li>
     </ul>
   </div>
 </section>
