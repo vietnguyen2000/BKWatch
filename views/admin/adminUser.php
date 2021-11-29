@@ -136,7 +136,7 @@
   function Update() {
     var role = document.getElementsByName("userRole" + ID)[0].value;
     console.log(ID, role);
-    $.post('/cmsUser/update', {
+    $.post('/cms/user/update', {
       ID,
       role
     }, () => {
@@ -153,7 +153,7 @@
 
   function Delete() {
     $(`tr[id="user-${ID}"]`).remove();
-    $.post('/cmsUser/delete', {
+    $.post('/cms/user/delete', {
       ID
     }, () => {
       toastsHandler.createToast({

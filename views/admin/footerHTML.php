@@ -74,9 +74,9 @@
       $('#cmsBrand').addClass(classActive)
     } else if (location.pathname.indexOf('/cms/category') >= 0) {
       $('#cmsCategory').addClass(classActive)
+    } else if (location.pathname.indexOf('/cms/user') >= 0) {
+      $('#cmsUser').addClass(classActive)
     }
-
-
   }
 
   function addOverlayLoading() {

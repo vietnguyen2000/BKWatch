@@ -74,9 +74,9 @@ $router->get('/payment/history', 'PaymentHistoryController@index');
 $router->get('/payment/orderDetails', 'PaymentHistoryController@details');
 $router->post('/payment/orderDetails', 'PaymentHistoryController@detailsPost');
 
-$router->get('/cmsUser', 'cmsUserController@index');
-$router->post('/cmsUser/update', 'cmsUserController@update');
-$router->post('/cmsUser/delete', 'cmsUserController@delete');
+$router->get('/cms/user', 'cmsUserController@index');
+$router->post('/cms/user/update', 'cmsUserController@update');
+$router->post('/cms/user/delete', 'cmsUserController@delete');
 
 $router->get('/me/password', 'UserController@changepw');
 $router->post('/me/password', 'UserController@changepwPost');
