@@ -509,7 +509,7 @@
       listNewImages,
       listRemovedImages
     });
-    const action = "<?= (!$data['add']) ? '/cmsAddProduct/update/' . $data['data']['id'] : '/cmsAddProduct/add' ?>"
+    const action = "<?= (!$data['add']) ? '/cmsProduct/update/' . $data['data']['id'] : '/cmsProduct/add' ?>"
     $.post(action, {
       productTitle,
       productTag,
@@ -535,12 +535,15 @@
       productWarranty,
       listNewImages,
       listRemovedImages
-    }, (d) => console.log(d))
-    $.showNotification({
-      type: "primary",
-      body: "Bạn đã Thêm vào thành công",
-      duration: 10,
-      direction: 'append'
+    }, () => {
+      toastsHandler.createToast({
+        type: "success",
+        icon: "check-circle",
+        message: "Bạn đã <?= (!$data['add']) ? 'cập nhật' : 'thêm' ?> thành công",
+        duration: 3000,
+      });
+
+      fastGet('/cmsProduct')
     })
   }
 </script>

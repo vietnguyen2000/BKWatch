@@ -4,7 +4,7 @@
       <li>Admin</li>
       <li>Product</li>
     </ul>
-    <a href="/cmsAddProduct" class="button blue">
+    <a href="/cmsProduct/add" class="button blue">
       <span class="icon"><i class="mdi mdi-credit-card-outline"></i></span>
       <span>Add Product</span>
     </a>
@@ -12,20 +12,20 @@
 </section>
 
 
-  <section class="section main-section">
-    <div class="card has-table">
-      <header class="card-header">
-        <p class="card-header-title">
-          <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
-          Products
-        </p>
-        <a href="#" class="card-header-icon">
-          <span class="icon"><i class="mdi mdi-reload"></i></span>
-        </a>
-      </header>
-      <div class="card-content">
-        <table id="table">
-          <thead>
+<section class="section main-section">
+  <div class="card has-table">
+    <header class="card-header">
+      <p class="card-header-title">
+        <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
+        Products
+      </p>
+      <a href="#" class="card-header-icon">
+        <span class="icon"><i class="mdi mdi-reload"></i></span>
+      </a>
+    </header>
+    <div class="card-content">
+      <table id="table">
+        <thead>
           <tr>
             <th>Title</th>
             <th>Product code</th>
@@ -38,43 +38,43 @@
             <th>Create at</th>
             <th></th>
           </tr>
-          </thead>
-          <tbody>
-          <?php  foreach ($data['data'] as $row) {?>
-            <tr id ='row-<?php echo($row["id"]); ?>'>
-                
-                <td data-label="Title"><?php echo($row["title"]); ?></td>
-                <td data-label="Code"><?php echo($row["productCode"]); ?></td>
-                <td data-label="Content"><?= strlen($row['content']) > 17 ? mb_substr($row['content'], 0, 17) . "..." : $row['content'] ?></td>
-                <td data-label="Tag"><?php echo($row["tag"]); ?></td>
-                <td data-label="Price"><?php echo($row["price"]); ?></td>
-                <td data-label="Material"><?php echo($row["material"]); ?></td>
-                <td data-label="Glass"><?php echo($row["glass"]); ?></td>
-                <td data-label="Color"><?php echo($row["color"]); ?></td>
-                <td data-label="Created">
-                <small class="text-gray-500"><?php echo($row["createdAt"]); ?></small>
-                </td>
-                <td class="actions-cell">
-                  <form form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-                    <div class="buttons right nowrap">
-                      <a href="/cmsUpdateProduct/<?php echo($row["id"]); ?>">
-                        <button class="button small green --jb-modal"  data-target="sample-modal-2" type="button">
+        </thead>
+        <tbody>
+          <?php foreach ($data['data'] as $row) { ?>
+            <tr id='row-<?php echo ($row["id"]); ?>'>
+
+              <td data-label="Title"><?php echo ($row["title"]); ?></td>
+              <td data-label="Code"><?php echo ($row["productCode"]); ?></td>
+              <td data-label="Content"><?= strlen($row['content']) > 17 ? mb_substr($row['content'], 0, 17) . "..." : $row['content'] ?></td>
+              <td data-label="Tag"><?php echo ($row["tag"]); ?></td>
+              <td data-label="Price"><?php echo ($row["price"]); ?></td>
+              <td data-label="Material"><?php echo ($row["material"]); ?></td>
+              <td data-label="Glass"><?php echo ($row["glass"]); ?></td>
+              <td data-label="Color"><?php echo ($row["color"]); ?></td>
+              <td data-label="Created">
+                <small class="text-gray-500"><?php echo ($row["createdAt"]); ?></small>
+              </td>
+              <td class="actions-cell">
+                <form form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                  <div class="buttons right nowrap">
+                    <a href="/cmsProduct/<?php echo ($row["id"]); ?>">
+                      <button class="button small green --jb-modal" data-target="sample-modal-2" type="button">
                         <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
-                        </button>
-                      </a>
-                        <button class="button small red --jb-modal" data-target="sample-modal" type="button" onclick="deleteID('<?php echo($row["id"]); ?>')">
-                        <span class="icon"><i class="mdi mdi-trash-can"></i></span>
-                        </button>
-                    </div>
-                  </form>
-                </td>
+                      </button>
+                    </a>
+                    <button class="button small red --jb-modal" data-target="sample-modal" type="button" onclick="deleteID('<?php echo ($row["id"]); ?>')">
+                      <span class="icon"><i class="mdi mdi-trash-can"></i></span>
+                    </button>
+                  </div>
+                </form>
+              </td>
             </tr>
-          <?php }?>
-          </tbody>
-        </table>
-      </div>
+          <?php } ?>
+        </tbody>
+      </table>
     </div>
-  </section>
+  </div>
+</section>
 
 
 <div id="sample-modal-2" class="modal">
@@ -97,37 +97,40 @@
 
 
 <script>
-  
   var ID = 0;
   var modal = document.getElementById("sample-modal-2");
   // When the user clicks the button, open the modal 
-  function deleteID(id){
+  function deleteID(id) {
     modal.style.display = "block";
     ID = id;
   }
-  function cancel(){
+
+  function cancel() {
     modal.style.display = "none";
   }
-  function deleteProduct(){
+
+  function deleteProduct() {
     // var statusOrder = document.getElementById("orderStatus" + ID);
     $(`tr[id="row-${ID}"]`).remove();
     console.log(ID);
     $.post('/cmsProduct/delete', {
-          ID
-        })
-    $.showNotification({
-      type: "primary",
-      body: "Bạn đã xóa thành công",
-      duration: 10,
-      direction: 'append'
+      ID
+    }, () => {
+      toastsHandler.createToast({
+        type: "success",
+        icon: "check-circle",
+        message: "Bạn đã xóa thành công",
+        duration: 3000,
+      });
     })
+
     cancel();
     return true;
   }
 </script>
 
 <script>
-  $(document).ready(function () {
-      $('#table').DataTable();
+  $(document).ready(function() {
+    $('#table').DataTable();
   });
 </script>

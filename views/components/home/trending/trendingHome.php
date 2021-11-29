@@ -11,8 +11,8 @@ $bg = [
   "https://images8.alphacoders.com/492/thumb-1920-492436.jpg"
 ];
 $trendingURL = [
-  "/watch?search=luxury",
-  "/watch?search=dress"
+  "/watch?category%5B0%5D=luxury",
+  "/watch?category%5B0%5D=dress"
 ];
 ?>
 <div class="row trending-fragment">

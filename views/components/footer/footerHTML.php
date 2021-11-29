@@ -165,7 +165,6 @@
   function addOverlayLoading() {
     $('body').prepend(`<div id="overlay-loading" style="
     position: fixed;
-    z-index: 100;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);

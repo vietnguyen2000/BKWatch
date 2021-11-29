@@ -6,6 +6,9 @@ abstract class cmsBaseView
 {
   public function render(array $data = [])
   {
+    if (isset($_GET['onlyBody'])) {
+      return $this->processRenderBody($data);
+    }
     $this->processRenderHeaderHTML($data);
     $this->processRenderHeader($data);
     $this->processRenderBody($data);
