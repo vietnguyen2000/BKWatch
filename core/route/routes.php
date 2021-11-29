@@ -35,10 +35,15 @@ $router->post('/image/upload', 'ImageController@upload');
 
 
 $router->get('/cms', 'cmsController@index');
-$router->get('/cmsBlog', 'cmsBlogController@index');
-$router->get('/cmsBlog/add/', 'cmsBlogController@add');
-$router->get('/cmsBlog/update/{id}', 'cmsBlogController@update');
-$router->post('/cmsBlog/delete', 'cmsBlogController@delete');
+
+$router->get('/cms/blog', 'cmsBlogController@index');
+$router->get('/cms/blog/add/', 'cmsBlogController@add');
+$router->get('/cms/blog/update/{id}', 'cmsBlogController@update');
+$router->post('/cms/blog/deleteCmt', 'cmsBlogController@deleteCmt');
+$router->post('/cms/blog/add', 'cmsBlogController@addBlog');
+$router->post('/cms/blog/update/{id}', 'cmsBlogController@updateBlog');
+
+$router->post('/cms/blog/delete', 'cmsBlogController@delete');
 $router->get('/cmsProduct', 'cmsProductController@index');
 $router->post('/cmsProduct/delete', 'cmsProductController@delete');
 $router->get('/cmsProduct/add', 'cmsProductController@add');
@@ -49,9 +54,7 @@ $router->get('/cmsOrder', 'cmsOrderController@index');
 $router->post('/cmsOrder/update', 'cmsOrderController@update');
 $router->get('/cmsProductComment', 'cmsCommentController@product');
 $router->get('/cmsBlogComment', 'cmsCommentController@blog');
-$router->post('/cmsAddBlog/deleteCmt', 'cmsBlogController@deleteCmt');
-$router->post('/cmsAddBlog/add', 'cmsBlogController@addBlog');
-$router->post('/cmsAddBlog/update/{id}', 'cmsBlogController@updateBlog');
+
 $router->get('/cmsBlogImage', 'cmsImageController@blog');
 $router->get('/cmsProductImage', 'cmsImageController@product');
 $router->post('/payment/VNPay/payment', 'VNPayController@payment');

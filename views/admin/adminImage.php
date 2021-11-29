@@ -4,7 +4,7 @@
       <li>Admin</li>
       <li>Image</li>
     </ul>
-    <a href="/cmsBlog/add/" class="button blue">
+    <a href="/cms/blog/add/" class="button blue">
       <span class="icon"><i class="mdi mdi-credit-card-outline"></i></span>
       <span>Add Image</span>
     </a>
@@ -14,19 +14,15 @@
   <div class="row justify-content-around">
     <div class="col-md-4 col-lg-3">
       <!-- ====================================== -->
-      <?php  foreach ($data['data'] as $row) {?>
-      <div class="card">
-        <img
-          src="<?php echo($row['imageURL']); ?>"
-          class="w-100 shadow-1-strong rounded mb-4"
-          alt=""
-        />
-        <div class="card-body">
-          <a href="#!" class="button red">Delete</a>
+      <?php foreach ($data['data'] as $row) { ?>
+        <div class="card">
+          <img src="<?php echo ($row['imageURL']); ?>" class="w-100 shadow-1-strong rounded mb-4" alt="" />
+          <div class="card-body">
+            <a href="#!" class="button red">Delete</a>
+          </div>
         </div>
-      </div>
-      <?php }?>
-<!-- ======================================== -->
+      <?php } ?>
+      <!-- ======================================== -->
     </div>
   </div>
 </section>
@@ -52,16 +48,15 @@
 
 
 <script>
-  
   var ID = 0;
   var modal = document.getElementById("sample-modal-2");
   // When the user clicks the button, open the modal 
-  function deleteID(id){
+  function deleteID(id) {
     modal.style.display = "block";
     ID = id;
   }
-  function cancel(){
+
+  function cancel() {
     modal.style.display = "none";
   }
-  
 </script>

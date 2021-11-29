@@ -4,7 +4,7 @@
       <li>Admin</li>
       <li>Blogs</li>
     </ul>
-    <a href="/cmsBlog/add/" class="button blue">
+    <a href="/cms/blog/add/" class="button blue">
       <span class="icon"><i class="mdi mdi-credit-card-outline"></i></span>
       <span>Add Blog</span>
     </a>
@@ -55,7 +55,7 @@
               <td class="actions-cell">
                 <form form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                   <div class="buttons right nowrap">
-                    <a href="/cmsBlog/update/<?php echo ($row['id']); ?>">
+                    <a href="/cms/blog/update/<?php echo ($row['id']); ?>">
                       <button class="button small green --jb-modal" data-target="sample-modal-2" type="button">
                         <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
                       </button>
@@ -109,7 +109,7 @@
     // var statusOrder = document.getElementById("orderStatus" + ID);
     $(`tr[id="row-${ID}"]`).remove();
     console.log(ID);
-    $.post('/cmsBlog/delete', {
+    $.post('/cms/blog/delete', {
       ID
     }, () => {
       toastsHandler.createToast({

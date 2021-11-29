@@ -57,7 +57,7 @@
         <li id='cmsBlog' <?php if ($data['nav'] == 'cmsBlog') {
                             echo "class='active'";
                           } ?>>
-          <a href="/cmsBlog">
+          <a href="/cms/blog">
             <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
             <span class="menu-item-label">Blog</span>
           </a>

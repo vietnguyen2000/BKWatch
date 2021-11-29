@@ -64,7 +64,7 @@
 
     if (location.pathname == '/cms') {
       $('#cms').addClass(classActive)
-    } else if (location.pathname.indexOf('/cmsBlog') >= 0) {
+    } else if (location.pathname.indexOf('/cms/blog') >= 0) {
       $('#cmsBlog').addClass(classActive)
     } else if (location.pathname.indexOf('/cmsProduct') >= 0) {
       $('#cmsProduct').addClass(classActive)
