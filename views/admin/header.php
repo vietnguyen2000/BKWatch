@@ -14,18 +14,13 @@
     <div class="navbar-menu" id="navbar-menu" style="padding-top: 0px;">
       <div class="navbar-end">
         <div class="navbar-item dropdown has-divider has-user-avatar">
-          <a class="navbar-link">
+          <a href="<?= ROOT_URL . '/me' ?>" class="navbar-link">
             <div class="user-avatar">
               <img src="<?php echo $data['userImg']; ?>" alt="Bach Khoa" class="rounded-full">
             </div>
             <div class="is-user-name"><span><?php echo $data['username']; ?></span></div>
-            <span class="icon"><i class="mdi mdi-chevron-down"></i></span>
           </a>
         </div>
-        <a href="/me" class="navbar-item has-divider desktop-icon-only">
-          <span class="icon"><i class="mdi mdi-help-circle-outline"></i></span>
-          <span>About</span>
-        </a>
         <a href="<?= ROOT_URL ?>/logout" title="Log out" class="navbar-item desktop-icon-only">
           <span class="icon"><i class="mdi mdi-logout"></i></span>
           <span>Log out</span>
