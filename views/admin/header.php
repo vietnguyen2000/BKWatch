@@ -100,16 +100,12 @@
       </ul>
       <p class="menu-label">User</p>
       <ul class="menu-list">
-        <li>
-          <a href="#" class="has-icon">
+        <li <?php if ($data['nav'] == 'cmsUser') {
+              echo "class='active'";
+            } ?>>
+          <a href="/cmsUser" class="has-icon">
             <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
-            <span class="menu-item-label">Admin</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" class="has-icon">
-            <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
-            <span class="menu-item-label">Customer</span>
+            <span class="menu-item-label">User</span>
           </a>
         </li>
       </ul>
