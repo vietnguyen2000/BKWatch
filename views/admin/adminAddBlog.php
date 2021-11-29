@@ -3,6 +3,7 @@
     <ul>
       <li>Admin</li>
       <li>Blogs</li>
+      <li><?= (!$data['add']) ? $data['id'] : 'new' ?></li>
     </ul>
   </div>
 </section>

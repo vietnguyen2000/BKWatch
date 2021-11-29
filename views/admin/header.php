@@ -59,7 +59,7 @@
                           } ?>>
           <a href="/cms/blog">
             <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
-            <span class="menu-item-label">Blog</span>
+            <span class="menu-item-label">Blogs</span>
           </a>
         </li>
       </ul>
@@ -70,7 +70,7 @@
                             } ?>>
           <a href="/cms/product" class="has-icon">
             <span class="icon"><i class="mdi mdi-credit-card-outline"></i></span>
-            <span class="menu-item-label">Product</span>
+            <span class="menu-item-label">Products</span>
           </a>
         </li>
       </ul>
@@ -81,7 +81,7 @@
                           } ?>>
           <a href="/cms/order" class="has-icon">
             <span class="icon"><i class="mdi mdi-credit-card-outline"></i></span>
-            <span class="menu-item-label">Order</span>
+            <span class="menu-item-label">Orders</span>
           </a>
         </li>
       </ul>
