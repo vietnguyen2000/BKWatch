@@ -1,7 +1,7 @@
 <div class="col-12 col-sm-12 col-md-6 col-xl-4 mb-2">
   <div>
     <!-- Featured image -->
-    <div class="bg-image hover-overlay shadow-1-strong ripple rounded-5 mb-4" data-mdb-ripple-color="light">
+    <div class="bg-image hover-overlay shadow-1-strong ripple rounded-5 mb-4" data-mdb-ripple-color="light" style="width:100%">
       <img src="<?php echo $blog_block_img ?>" class="img-fluid" style="width: 100%; aspect-ratio:16/9; object-fit: cover;" />
       <a href="<?php echo  $blog_url . "/" . $blog_block_id ?>">
         <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
