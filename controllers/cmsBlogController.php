@@ -33,11 +33,7 @@ class cmsBlogController extends BaseController
       return;
     };
 
-    $page = 1;
-    if (isset($_GET['page'])) {
-      $page = intval($_GET['page']);
-    }
-    $data = $this->blogModel->getAll(10, ($page-1)*10, 'ORDER BY createdAt DESC');
+    $data = $this->blogModel->getAll(null, null, 'ORDER BY createdAt DESC');
     $view = new cmsBlogView();
     $userId = $_SESSION['user']['id'];
     $userImg = $_SESSION['user']['avatarURL'];
@@ -46,7 +42,7 @@ class cmsBlogController extends BaseController
     if (count($data) > 0) {
       $fullCount = $data[0]['fullCount'];
     }
-    $view->render(['url' => $url, 'nav' => 'cmsBlog', 'userId' => $userId, 'userImg' => $userImg, 'username'=>$username, 'data' => $data, 'page' => $page, 'fullCount' => $fullCount]);
+    $view->render(['url' => $url, 'nav' => 'cmsBlog', 'userId' => $userId, 'userImg' => $userImg, 'username'=>$username, 'data' => $data, 'fullCount' => $fullCount]);
   }
   public function update($url, $id)
     {
