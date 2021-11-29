@@ -12,7 +12,7 @@ class ProductModel extends BaseModel
     $this->name = 'product';
   }
 
-  public function getAll(int $limit = null, int $offset = 0, $sort = null)
+  public function getAll(int $limit = null, int $offset = null, $sort = null)
   {
     try {
       $sql = "SELECT * , count(*) OVER() AS fullCount FROM ProductPreview ";
@@ -25,8 +25,10 @@ class ProductModel extends BaseModel
         $sql .= 'LIMIT ' . $limit . ' ';
       };
 
-      $sql .= 'OFFSET '. $offset . ' ';
-      
+      if ($offset != null) {
+        $sql .= 'OFFSET ' . $offset . ' ';
+      }
+
       $result = $this->db->query($sql);
       $data = $result->fetch_all(mode: MYSQLI_ASSOC);
       $data = array_map(function ($r) {

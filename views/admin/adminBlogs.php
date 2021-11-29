@@ -1,8 +1,15 @@
+<?php 
+  $page = $data['page'];
+  $fullCount = $data['fullCount'];
+  $minPage = 1;
+  $maxPage = ceil($fullCount / 10);
+?>
 <section class="is-title-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
       <li>Blogs</li>
+      <li>Pages <?= $page ?></li>
     </ul>
     <a href="/cmsBlog/add/" class="button blue">
       <span class="icon"><i class="mdi mdi-credit-card-outline"></i></span>
@@ -17,7 +24,7 @@
       <header class="card-header">
         <p class="card-header-title">
           <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
-          Blog
+          Blog (<?= ($page-1)*10 + 1 ?> - <?= min(($page)*10,$fullCount) ?> of <?= $fullCount ?> items)
         </p>
         <a href="#" class="card-header-icon">
           <span class="icon"><i class="mdi mdi-reload"></i></span>
@@ -73,11 +80,27 @@
         <div class="table-pagination">
           <div class="flex items-center justify-between">
             <div class="buttons">
-              <button type="button" class="button"><<</button>
-              <button type="button" class="button active">1</button>
-              <button type="button" class="button">2</button>
-              <button type="button" class="button">3</button>
-              <button type="button" class="button">>></button>
+            <?php if ($page > $minPage) {
+                $_queryMin = http_build_query(["page"=> $minPage]);
+                $_query = http_build_query(["page"=> $page - 1]);
+              ?>
+                <a href="/cmsBlog?<?= $_queryMin?>" type="button" class="button"><<</a>
+                <a href="/cmsBlog?<?= $_query?>" type="button" class="button"><</a>
+              <?php } ?>
+
+              <?php for($i = max($minPage, $page-5); $i <= min($maxPage, $page + 5); $i++) { 
+                $_query = http_build_query(["page"=> $i]);
+              ?>
+                <a href="/cmsBlog?<?= $_query?>" type="button" class="button <?= $i == $page ? 'active' : '' ?>"><?=$i?></a>
+              <?php } ?>
+              
+              <?php if ($page < $maxPage) {
+                $_queryMax = http_build_query(["page"=> $maxPage]);
+                $_query = http_build_query(["page"=> $page + 1]);
+              ?>
+                <a href="/cmsBlog?<?= $_query?>" type="button" class="button">></a>
+                <a href="/cmsBlog?<?= $_queryMax?>" type="button" class="button">>></a>
+              <?php } ?>
             </div>
             <small>Page 1 of 3</small>
           </div>
