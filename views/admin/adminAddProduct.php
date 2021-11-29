@@ -501,7 +501,7 @@
       listNewImages,
       listRemovedImages
     });
-    const action = "<?= (!$data['add']) ? '/cmsProduct/update/' . $data['data']['id'] : '/cmsProduct/add' ?>"
+    const action = "<?= (!$data['add']) ? '/cms/product/update/' . $data['data']['id'] : '/cms/product/add' ?>"
     $.post(action, {
       productTitle,
       productTag,
@@ -535,7 +535,7 @@
         duration: 3000,
       });
 
-      fastGet('/cmsProduct')
+      fastGet('/cms/product')
     })
   }
 </script>

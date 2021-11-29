@@ -68,7 +68,7 @@
         <li id='cmsProduct' <?php if ($data['nav'] == 'cmsProduct') {
                               echo "class='active'";
                             } ?>>
-          <a href="/cmsProduct" class="has-icon">
+          <a href="/cms/product" class="has-icon">
             <span class="icon"><i class="mdi mdi-credit-card-outline"></i></span>
             <span class="menu-item-label">Product</span>
           </a>
