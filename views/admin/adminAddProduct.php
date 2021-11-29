@@ -531,9 +531,11 @@
       toastsHandler.createToast({
         type: "success",
         icon: "check-circle",
-        message: "Bạn đã thêm thành công",
+        message: "Bạn đã <?= (!$data['add']) ? 'cập nhật' : 'thêm' ?> thành công",
         duration: 3000,
       });
+
+      fastGet('/cmsProduct')
     })
   }
 </script>

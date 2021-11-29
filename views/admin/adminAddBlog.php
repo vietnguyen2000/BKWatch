@@ -306,7 +306,7 @@
       toastsHandler.createToast({
         type: "success",
         icon: "check-circle",
-        message: "Bạn đã cập nhật thành công",
+        message: "Bạn đã <?= !$data['add'] ? 'cập nhật' : 'thêm' ?> thành công",
         duration: 3000,
       });
       fastGet('/cmsBlog')
