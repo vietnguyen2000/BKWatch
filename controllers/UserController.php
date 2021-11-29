@@ -145,7 +145,11 @@ class UserController extends BaseController
       setcookie('username', $user['username'], path: "/");
     }
 
-    $this->redirect('/', true);
+    if ($user['role'] == 1) {
+      $this->redirect('/cms', true);
+    } else {
+      $this->redirect('/', true);
+    }
   }
 
   public function update($url, $id)

@@ -38,7 +38,7 @@
       </div>
 
       <div class="form-outline mb-4">
-        <input type="text" id="phoneNumber" class="form-control" name="phone" value="<?= $_SESSION['user']['phoneNumber'] ?>" />
+        <input type="text" id="phoneNumber" class="form-control" name="phoneNumber" value="<?= $_SESSION['user']['phoneNumber'] ?>" />
         <label class="form-label" for="phoneNumber">Số điện thoại nhận hàng</label>
       </div>
 
