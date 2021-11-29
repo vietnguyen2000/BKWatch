@@ -4,7 +4,7 @@
       <li>Admin</li>
       <li>Product</li>
     </ul>
-    <a href="/cmsAddProduct" class="button blue">
+    <a href="/cmsProduct/add" class="button blue">
       <span class="icon"><i class="mdi mdi-credit-card-outline"></i></span>
       <span>Add Product</span>
     </a>
@@ -57,7 +57,7 @@
               <td class="actions-cell">
                 <form form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                   <div class="buttons right nowrap">
-                    <a href="/cmsUpdateProduct/<?php echo ($row["id"]); ?>">
+                    <a href="/cmsProduct/<?php echo ($row["id"]); ?>">
                       <button class="button small green --jb-modal" data-target="sample-modal-2" type="button">
                         <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
                       </button>

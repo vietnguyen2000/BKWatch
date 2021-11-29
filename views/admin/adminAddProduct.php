@@ -501,7 +501,7 @@
       listNewImages,
       listRemovedImages
     });
-    const action = "<?= (!$data['add']) ? '/cmsAddProduct/update/' . $data['data']['id'] : '/cmsAddProduct/add' ?>"
+    const action = "<?= (!$data['add']) ? '/cmsProduct/update/' . $data['data']['id'] : '/cmsProduct/add' ?>"
     $.post(action, {
       productTitle,
       productTag,

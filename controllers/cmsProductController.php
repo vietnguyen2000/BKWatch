@@ -83,7 +83,7 @@ class cmsProductController extends BaseController
     $userId = $_SESSION['user']['id'];
     $userImg = $_SESSION['user']['avatarURL'];
     $username = $_SESSION['user']['username'];
-    $view->render(['url' => $url, 'nav' => 'cmsAddProduct', 'userId' => $userId, 'userImg' => $userImg, 'username' => $username, 'add' => false, 'data' => $data, 'categoryList' => $categoryList, 'brandList' => $brandList, 'imageList' => $imageList]);
+    $view->render(['url' => $url, 'nav' => 'cmsProduct', 'userId' => $userId, 'userImg' => $userImg, 'username' => $username, 'add' => false, 'data' => $data, 'categoryList' => $categoryList, 'brandList' => $brandList, 'imageList' => $imageList]);
   }
 
   public function updateProduct($url, $id)

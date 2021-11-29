@@ -54,10 +54,10 @@
       </ul>
       <p class="menu-label">Contents</p>
       <ul class="menu-list">
-        <li <?php if ($data['nav'] == 'cmsBlog') {
-              echo "class='active'";
-            } ?>>
-          <a id='cmsBlog' href="/cmsBlog">
+        <li id='cmsBlog' <?php if ($data['nav'] == 'cmsBlog') {
+                            echo "class='active'";
+                          } ?>>
+          <a href="/cmsBlog">
             <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
             <span class="menu-item-label">Blog</span>
           </a>
