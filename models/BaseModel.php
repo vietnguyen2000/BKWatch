@@ -15,13 +15,23 @@ abstract class BaseModel
     $this->name = ' '; // change it in children
   }
 
-  public function getAll(int $limit = null)
+  public function getAll(int $limit = null, int $offset = null, $sort = null)
   {
     try {
-      $sql = "SELECT * FROM $this->name";
+      $sql = "SELECT *, count(*) OVER() AS fullCount  FROM $this->name ";
+      if ($sort != null) {
+        $sql .= $sort . ' ';
+      }
+
       if ($limit != null) {
-        $sql += 'LIMIT' . $limit;
+        $sql .= 'LIMIT ' . $limit . ' ';
       };
+
+      if ($offset != null) {
+        $sql .= 'OFFSET ' . $offset . ' ';
+      }
+
+
       $result = $this->db->query($sql);
       return $result->fetch_all(mode: MYSQLI_ASSOC);
     } catch (\Exception $e) {

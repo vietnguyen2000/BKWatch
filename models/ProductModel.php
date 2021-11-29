@@ -12,16 +12,23 @@ class ProductModel extends BaseModel
     $this->name = 'product';
   }
 
-  public function getAll(int $limit = null, $sort = null)
+  public function getAll(int $limit = null, int $offset = null, $sort = null)
   {
     try {
-      $sql = "SELECT * FROM ProductPreview ";
-      if ($limit != null) {
-        $sql .= 'LIMIT' . $limit;
-      };
+      $sql = "SELECT * , count(*) OVER() AS fullCount FROM ProductPreview ";
+
       if ($sort != null) {
-        $sql .= $sort;
+        $sql .= $sort . ' ';
       }
+
+      if ($limit != null) {
+        $sql .= 'LIMIT ' . $limit . ' ';
+      };
+
+      if ($offset != null) {
+        $sql .= 'OFFSET ' . $offset . ' ';
+      }
+
       $result = $this->db->query($sql);
       $data = $result->fetch_all(mode: MYSQLI_ASSOC);
       $data = array_map(function ($r) {

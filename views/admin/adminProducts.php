@@ -24,7 +24,7 @@
         </a>
       </header>
       <div class="card-content">
-        <table>
+        <table id="table">
           <thead>
           <tr>
             <th>Title</th>
@@ -45,7 +45,7 @@
                 
                 <td data-label="Title"><?php echo($row["title"]); ?></td>
                 <td data-label="Code"><?php echo($row["productCode"]); ?></td>
-                <td data-label="Content"><?php echo(substr($row["content"],0,15)); ?></td>
+                <td data-label="Content"><?= strlen($row['content']) > 17 ? mb_substr($row['content'], 0, 17) . "..." : $row['content'] ?></td>
                 <td data-label="Tag"><?php echo($row["tag"]); ?></td>
                 <td data-label="Price"><?php echo($row["price"]); ?></td>
                 <td data-label="Material"><?php echo($row["material"]); ?></td>
@@ -72,15 +72,6 @@
           <?php }?>
           </tbody>
         </table>
-        <div class="table-pagination">
-          <div class="flex items-center justify-between">
-            <div class="buttons">
-              <button type="button" class="button"><<</button>
-              <button type="button" class="button active">1</button>
-              <button type="button" class="button">>></button>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -135,3 +126,8 @@
   }
 </script>
 
+<script>
+  $(document).ready(function () {
+      $('#table').DataTable();
+  });
+</script>
