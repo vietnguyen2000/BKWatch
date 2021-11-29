@@ -7,6 +7,8 @@ use Models\ProductCommentModel;
 use Models\ProductImageModel;
 use Models\ProductModel;
 use Models\UserModel;
+use Models\ProductCategoryModel;
+use Models\ProductBrandModel;
 
 use Views\ErrorView;
 use Views\UserView;
@@ -245,5 +247,19 @@ class cmsProductController extends BaseController
       $id = $_POST['ID'];
       $row =  $this->productModel->delete($id);
       return;
+    }
+    public function addCategory($url){
+      $productCategoryModel = new ProductCategoryModel();
+      $NewproductCategory = $_GET['NewproductCategory'];
+      $newId =  $productCategoryModel->insert(['title' => $NewproductCategory, 'level' => 1]);
+      echo $newId;
+      return $newId;
+    }
+    public function addBrand($url){
+      $productBrandModel = new ProductBrandModel();
+      $NewproductBrand = $_GET['NewproductBrand'];
+      $newId =  $productBrandModel->insert(['title' => $NewproductBrand]);
+      echo $newId;
+      return $newId;
     }
 }
