@@ -35,25 +35,36 @@ $router->post('/image/upload', 'ImageController@upload');
 
 
 $router->get('/cms', 'cmsController@index');
-$router->get('/cmsBlog', 'cmsBlogController@index');
-$router->get('/cmsBlog/add/', 'cmsBlogController@add');
-$router->get('/cmsBlog/update/{id}', 'cmsBlogController@update');
-$router->post('/cmsBlog/delete', 'cmsBlogController@delete');
-$router->get('/cmsProduct', 'cmsProductController@index');
-$router->post('/cmsProduct/delete', 'cmsProductController@delete');
-$router->get('/cmsProduct/add', 'cmsProductController@add');
-$router->post('/cmsProduct/add', 'cmsProductController@addProduct');
-$router->post('/cmsProduct/update/{id}', 'cmsProductController@updateProduct');
-$router->get('/cmsProduct/{id}', 'cmsProductController@update');
-$router->get('/cmsOrder', 'cmsOrderController@index');
-$router->post('/cmsOrder/update', 'cmsOrderController@update');
-$router->get('/cmsProductComment', 'cmsCommentController@product');
-$router->get('/cmsBlogComment', 'cmsCommentController@blog');
-$router->post('/cmsAddBlog/deleteCmt', 'cmsBlogController@deleteCmt');
-$router->post('/cmsAddBlog/add', 'cmsBlogController@addBlog');
-$router->post('/cmsAddBlog/update/{id}', 'cmsBlogController@updateBlog');
-$router->get('/cmsBlogImage', 'cmsImageController@blog');
-$router->get('/cmsProductImage', 'cmsImageController@product');
+
+$router->get('/cms/blog', 'cmsBlogController@index');
+$router->get('/cms/blog/add/', 'cmsBlogController@add');
+$router->get('/cms/blog/update/{id}', 'cmsBlogController@update');
+$router->post('/cms/blog/deleteCmt', 'cmsBlogController@deleteCmt');
+$router->post('/cms/blog/add', 'cmsBlogController@addBlog');
+$router->post('/cms/blog/update/{id}', 'cmsBlogController@updateBlog');
+$router->post('/cms/blog/delete', 'cmsBlogController@delete');
+
+$router->get('/cms/product', 'cmsProductController@index');
+$router->post('/cms/product/delete', 'cmsProductController@delete');
+$router->get('/cms/product/add', 'cmsProductController@add');
+$router->post('/cms/product/add', 'cmsProductController@addProduct');
+$router->post('/cms/product/update/{id}', 'cmsProductController@updateProduct');
+$router->get('/cms/product/{id}', 'cmsProductController@update');
+
+$router->get('/cms/order', 'cmsOrderController@index');
+$router->get('/cms/order/details/{id}', 'cmsOrderController@details');
+$router->post('/cms/order/update/{id}', 'cmsOrderController@update');
+
+$router->get('/cms/brand', 'cmsBrandController@index');
+$router->post('/cms/brand/update/{id}', 'cmsBrandController@update');
+$router->post('/cms/brand/add', 'cmsBrandController@add');
+$router->post('/cms/brand/delete/{id}', 'cmsBrandController@delete');
+
+$router->get('/cms/category', 'cmsCategoryController@index');
+$router->post('/cms/category/update/{id}', 'cmsCategoryController@update');
+$router->post('/cms/category/add', 'cmsCategoryController@add');
+$router->post('/cms/category/delete/{id}', 'cmsCategoryController@delete');
+
 $router->post('/payment/VNPay/payment', 'VNPayController@payment');
 $router->get('/payment/VNPay/payment/{id}', 'VNPayController@VNPaymentOrderId');
 $router->get('/payment/VNPay/ipn', 'VNPayController@VNPayIPN');

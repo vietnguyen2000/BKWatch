@@ -15,12 +15,13 @@
   use Models\UserFavoriteItemModel;
 
   $isLogged = isset($_SESSION['user']);
+  $user = $_SESSION['user'];
   if (!$isLogged) { ?>
     <a href="/login" class="ps-2 text-decoration-none">
       <i class="fas fa-sign-in-alt fa-2x"></i>
     </a>
   <?php } else { ?>
-    <div class="dropdown d-inline-block dropstart" style=>
+    <div class="dropdown d-inline-block dropstart">
       <a href="/me" class="ps-2 text-decoration-none" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-user-circle fa-2x"></i>
       </a>
@@ -31,6 +32,13 @@
         <li>
           <a href="/payment/history" class="dropdown-item" style="color: black">Lịch sử mua hàng</a>
         </li>
+        <?php
+        if ($user['role'] == 1) { ?>
+          <li>
+            <a href="<?= ROOT_URL . '/cms' ?>" class="dropdown-item" style="color: black">Trang admin</a>
+          </li>
+        <?php }
+        ?>
         <li>
           <a href="<?= ROOT_URL ?>/logout" class="dropdown-item" style="color: black">Đăng xuất</a>
         </li>

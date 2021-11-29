@@ -219,7 +219,7 @@ class cmsProductController extends BaseController
       "color" => $productColor,
       "tag" => $productTag
     ]);
-    $this->redirect("/cmsProduct");
+    $this->redirect("/cms/product");
 
     if (isset($_POST['listNewImages'])) {
       $listNewImages = $_POST['listNewImages'];

@@ -50,6 +50,10 @@
         transform: rotate(360deg);
       }
     }
+
+    .dataTables_wrapper {
+      padding: 1rem;
+    }
   </style>
 </head>
 

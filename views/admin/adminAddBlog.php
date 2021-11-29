@@ -3,6 +3,7 @@
     <ul>
       <li>Admin</li>
       <li>Blogs</li>
+      <li><?= (!$data['add']) ? $data['id'] : 'new' ?></li>
     </ul>
   </div>
 </section>
@@ -202,7 +203,7 @@
           </button>
         </div>
         <div class="control">
-          <a href="/cmsBlog">
+          <a href="/cms/blog">
             <button type="cancel" class="button red">
               Cancel
             </button>
@@ -264,7 +265,7 @@
 
   function DeleteCmt() {
     $(`tr[id="comment-${ID}"]`).remove();
-    $.post('/cmsAddBlog/deleteCmt', {
+    $.post('/cms/blog/deleteCmt', {
       ID
     }, () => {
       toastsHandler.createToast({
@@ -292,9 +293,9 @@
       listRemovedImages
     });
     const action = "<?php if (!$data['add']) {
-                      echo '/cmsAddBlog/update/' . $data['id'];
+                      echo '/cms/blog/update/' . $data['id'];
                     } else {
-                      echo '/cmsAddBlog/add';
+                      echo '/cms/blog/add';
                     } ?>";
     $.post(action, {
       blogTitle,
@@ -309,7 +310,7 @@
         message: "Bạn đã <?= !$data['add'] ? 'cập nhật' : 'thêm' ?> thành công",
         duration: 3000,
       });
-      fastGet('/cmsBlog')
+      fastGet('/cms/blog')
     })
 
 

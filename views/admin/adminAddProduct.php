@@ -4,6 +4,7 @@
     <ul>
       <li>Admin</li>
       <li>Products</li>
+      <li><?= (!$data['add']) ? $data['data']['id'] : 'new' ?></li>
     </ul>
   </div>
 </section>
@@ -11,9 +12,7 @@
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-      <?php if (!$data['add']) {
-        echo 'Add';
-      } else echo 'Update' ?> Product
+      <?= !$data['add'] ? 'Update' : 'Add' ?> Product
     </h1>
   </div>
 </section>
@@ -501,7 +500,7 @@
       listNewImages,
       listRemovedImages
     });
-    const action = "<?= (!$data['add']) ? '/cmsProduct/update/' . $data['data']['id'] : '/cmsProduct/add' ?>"
+    const action = "<?= (!$data['add']) ? '/cms/product/update/' . $data['data']['id'] : '/cms/product/add' ?>"
     $.post(action, {
       productTitle,
       productTag,
@@ -535,7 +534,7 @@
         duration: 3000,
       });
 
-      fastGet('/cmsProduct')
+      fastGet('/cms/product')
     })
   }
 </script>
