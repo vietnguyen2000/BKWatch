@@ -36,7 +36,6 @@ class cmsCategoryController extends BaseController
         "level" => 1
       ]
     );
-    print_r($title);
   }
 
   public function update($url, $id)

@@ -79,7 +79,7 @@
                               } ?>>
           <a href="/cms/category" class="has-icon">
             <span class="icon"><i class="mdi mdi-credit-card-outline"></i></span>
-            <span class="menu-item-label">Category</span>
+            <span class="menu-item-label">Categories</span>
           </a>
         </li>
 
