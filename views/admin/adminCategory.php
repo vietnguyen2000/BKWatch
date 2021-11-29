@@ -2,7 +2,7 @@
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Brand</li>
+      <li>Category</li>
     </ul>
   </div>
 </section>
@@ -13,7 +13,7 @@
     <header class="card-header">
       <p class="card-header-title">
         <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
-        Brand
+        Category
       </p>
       <a href="#" class="card-header-icon">
         <span class="icon"><i class="mdi mdi-reload"></i></span>
@@ -138,7 +138,7 @@
 
   function updateBrand() {
     var title = $(`input[id="title-${ID}"]`).val();
-    $.post(`/cms/brand/update/${ID}`, {
+    $.post(`/cms/category/update/${ID}`, {
       ID,
       title
     }, () => {
@@ -156,7 +156,7 @@
 
   function deleteBrand() {
     var title = $(`input[id="title-${ID}"]`).val();
-    $.post(`/cms/brand/delete/${ID}`, {}, () => {
+    $.post(`/cms/category/delete/${ID}`, {}, () => {
       toastsHandler.createToast({
         type: "success",
         icon: "check-circle",
@@ -173,7 +173,8 @@
 
   function addNew() {
     var title = $(`input[id="title-new"]`).val();
-    $.post(`/cms/brand/add`, {
+    console.log(title);
+    $.post(`/cms/category/add`, {
       title
     }, () => {
       toastsHandler.createToast({
@@ -182,7 +183,7 @@
         message: "Bạn đã thêm thành công",
         duration: 3000,
       });
-      fastGet('/cms/brand', false, true)
+      fastGet('/cms/category', false, true)
     })
     return true;
   }

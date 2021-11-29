@@ -74,6 +74,15 @@
           </a>
         </li>
 
+        <li id='cmsCategory' <?php if ($data['nav'] == 'cmsCategory') {
+                                echo "class='active'";
+                              } ?>>
+          <a href="/cms/category" class="has-icon">
+            <span class="icon"><i class="mdi mdi-credit-card-outline"></i></span>
+            <span class="menu-item-label">Category</span>
+          </a>
+        </li>
+
         <li id='cmsBrand' <?php if ($data['nav'] == 'cmsBrand') {
                             echo "class='active'";
                           } ?>>

@@ -72,7 +72,10 @@
       $('#cmsOrder').addClass(classActive)
     } else if (location.pathname.indexOf('/cms/brand') >= 0) {
       $('#cmsBrand').addClass(classActive)
+    } else if (location.pathname.indexOf('/cms/category') >= 0) {
+      $('#cmsCategory').addClass(classActive)
     }
+
 
   }
 
