@@ -137,7 +137,7 @@
     var statusOrder = $('input[name=' + nameID + ']:checked').val();
     // var statusOrder = document.getElementById("orderStatus" + ID);
     console.log(statusOrder);
-    $.post('/cmsOrder/update', {
+    $.post('/cms/order/update', {
       ID,
       statusOrder
     }, () => {

@@ -68,7 +68,7 @@
       $('#cmsBlog').addClass(classActive)
     } else if (location.pathname.indexOf('/cms/product') >= 0) {
       $('#cmsProduct').addClass(classActive)
-    } else if (location.pathname.indexOf('/cmsOrder') >= 0) {
+    } else if (location.pathname.indexOf('/cms/order') >= 0) {
       $('#cmsOrder').addClass(classActive)
     } else if (location.pathname.indexOf('/contact') >= 0) {
       $('#nav-contact').addClass(classActive)

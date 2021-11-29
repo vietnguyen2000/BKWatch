@@ -50,13 +50,10 @@ $router->get('/cms/product/add', 'cmsProductController@add');
 $router->post('/cms/product/add', 'cmsProductController@addProduct');
 $router->post('/cms/product/update/{id}', 'cmsProductController@updateProduct');
 $router->get('/cms/product/{id}', 'cmsProductController@update');
-$router->get('/cmsOrder', 'cmsOrderController@index');
-$router->post('/cmsOrder/update', 'cmsOrderController@update');
-$router->get('/cms/productComment', 'cmsCommentController@product');
-$router->get('/cmsBlogComment', 'cmsCommentController@blog');
 
-$router->get('/cmsBlogImage', 'cmsImageController@blog');
-$router->get('/cms/productImage', 'cmsImageController@product');
+$router->get('/cms/order', 'cmsOrderController@index');
+$router->post('/cms/order/update', 'cmsOrderController@update');
+
 $router->post('/payment/VNPay/payment', 'VNPayController@payment');
 $router->get('/payment/VNPay/payment/{id}', 'VNPayController@VNPaymentOrderId');
 $router->get('/payment/VNPay/ipn', 'VNPayController@VNPayIPN');

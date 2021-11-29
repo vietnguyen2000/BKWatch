@@ -79,7 +79,7 @@
         <li id='cmsOrder' <?php if ($data['nav'] == 'cmsOrder') {
                             echo "class='active'";
                           } ?>>
-          <a href="/cmsOrder" class="has-icon">
+          <a href="/cms/order" class="has-icon">
             <span class="icon"><i class="mdi mdi-credit-card-outline"></i></span>
             <span class="menu-item-label">Order</span>
           </a>
