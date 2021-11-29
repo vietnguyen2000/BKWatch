@@ -33,12 +33,18 @@ class cmsProductController extends BaseController
       $this->redirect('/');
       return;
     };
-    $data = $this->productModel->getAll();
+
+    $data = $this->productModel->getAll(null, null, 'ORDER BY createdAt DESC');
     $view = new cmsProductView();
     $userId = $_SESSION['user']['id'];
     $userImg = $_SESSION['user']['avatarURL'];
     $username = $_SESSION['user']['username'];
-    $view->render(['url' => $url, 'nav' => 'cmsProduct', 'userId' => $userId, 'userImg' => $userImg, 'username'=>$username, 'data' => $data]);
+    
+    $fullCount = 0;
+    if (count($data) > 0) {
+      $fullCount = $data[0]['fullCount'];
+    }
+    $view->render(['url' => $url, 'nav' => 'cmsProduct', 'userId' => $userId, 'userImg' => $userImg, 'username'=>$username, 'data' => $data, 'fullCount' => $fullCount]);
   }
   public function add($url)
   {

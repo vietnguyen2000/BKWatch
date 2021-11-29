@@ -32,12 +32,17 @@ class cmsBlogController extends BaseController
       $this->redirect('/');
       return;
     };
-    $data = $this->blogModel->getAll();
+
+    $data = $this->blogModel->getAll(null, null, 'ORDER BY createdAt DESC');
     $view = new cmsBlogView();
     $userId = $_SESSION['user']['id'];
     $userImg = $_SESSION['user']['avatarURL'];
     $username = $_SESSION['user']['username'];
-    $view->render(['url' => $url, 'nav' => 'cmsBlog', 'userId' => $userId, 'userImg' => $userImg, 'username'=>$username, 'data' => $data]);
+    $fullCount = 0;
+    if (count($data) > 0) {
+      $fullCount = $data[0]['fullCount'];
+    }
+    $view->render(['url' => $url, 'nav' => 'cmsBlog', 'userId' => $userId, 'userImg' => $userImg, 'username'=>$username, 'data' => $data, 'fullCount' => $fullCount]);
   }
   public function update($url, $id)
     {
@@ -174,5 +179,12 @@ class cmsBlogController extends BaseController
 
     $blogImageModel->deleteListIds($listRemovedImages);
       return;
+  }
+
+  public function delete($url){
+    $id = $_POST['ID'];
+    $blogModel = new BlogModel();
+    $blogModel->delete($id);
+    return;
   }
 }

@@ -86,7 +86,7 @@
       </a>
     </header>
     <div class="card-content">
-      <table>
+      <table class="data-table">
         <thead>
           <tr>
             <th>User's Name</th>
@@ -120,17 +120,6 @@
           <?php } ?>
         </tbody>
       </table>
-      <div class="table-pagination">
-        <div class="flex items-center justify-between">
-          <div class="buttons">
-            <button type="button" class="button">
-              << </button>
-                <button type="button" class="button active">1</button>
-                <button type="button" class="button">>></button>
-          </div>
-          <small>Page 1 of 1</small>
-        </div>
-      </div>
     </div>
 </section>
 <!-- ===================================================== -->
@@ -151,7 +140,7 @@
       </a>
     </header>
     <div class="card-content">
-      <table>
+      <table class="data-table">
         <thead>
         <tr>
           <th>Image</th>
@@ -179,15 +168,6 @@
         <?php }}?>
         </tbody>
       </table>
-      <div class="table-pagination">
-        <div class="flex items-center justify-between">
-          <div class="buttons">
-            <button type="button" class="button"><<</button>
-            <button type="button" class="button active">1</button>
-            <button type="button" class="button">>></button>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -348,3 +328,9 @@
 </script>
 
 <?php require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/utils/uploadImage.php') ?>
+
+<script>
+  $(document).ready(function () {
+      $('.data-table').DataTable();
+  });
+</script>

@@ -20,7 +20,7 @@
         </a>
       </header>
       <div class="card-content">
-        <table>
+        <table id="table">
           <thead>
           <tr>
             <th>ID</th>
@@ -91,15 +91,6 @@
           <?php }?>
           </tbody>
         </table>
-        <div class="table-pagination">
-          <div class="flex items-center justify-between">
-            <div class="buttons">
-              <button type="button" class="button"><<</button>
-              <button type="button" class="button active">1</button>
-              <button type="button" class="button">>></button>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -157,3 +148,8 @@
   
 </script>
 
+<script>
+  $(document).ready(function () {
+      $('#table').DataTable();
+  });
+</script>

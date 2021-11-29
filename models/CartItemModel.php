@@ -10,7 +10,7 @@ class CartItemModel extends BaseModel
     $this->name = 'cartItem';
   }
 
-  public function getAll(int $limit = null)
+  public function getAll(int $limit = null, int $offset = null, $sort = null)
   {
     $name = 'cartView';
     try {
