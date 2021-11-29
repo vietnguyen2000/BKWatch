@@ -54,6 +54,11 @@ $router->get('/cms/product/{id}', 'cmsProductController@update');
 $router->get('/cms/order', 'cmsOrderController@index');
 $router->post('/cms/order/update', 'cmsOrderController@update');
 
+$router->get('/cms/brand', 'cmsBrandController@index');
+$router->post('/cms/brand/update/{id}', 'cmsBrandController@update');
+$router->post('/cms/brand/add', 'cmsBrandController@add');
+$router->post('/cms/brand/delete/{id}', 'cmsBrandController@delete');
+
 $router->post('/payment/VNPay/payment', 'VNPayController@payment');
 $router->get('/payment/VNPay/payment/{id}', 'VNPayController@VNPaymentOrderId');
 $router->get('/payment/VNPay/ipn', 'VNPayController@VNPayIPN');

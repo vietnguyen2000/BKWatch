@@ -12,9 +12,7 @@
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-      <?php if (!$data['add']) {
-        echo 'Add';
-      } else echo 'Update' ?> Product
+      <?= !$data['add'] ? 'Update' : 'Add' ?> Product
     </h1>
   </div>
 </section>

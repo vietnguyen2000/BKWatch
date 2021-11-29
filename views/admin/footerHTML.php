@@ -17,8 +17,8 @@
     })
   }
 
-  function fastGet(url, isNewPage = true) {
-    if (url == location.pathname + location.search) return
+  function fastGet(url, isNewPage = true, force = false) {
+    if (!force && url == location.pathname + location.search) return
     addOverlayLoading()
     let correctUrl = url
     if (url.indexOf('?') >= 0) {
@@ -70,8 +70,8 @@
       $('#cmsProduct').addClass(classActive)
     } else if (location.pathname.indexOf('/cms/order') >= 0) {
       $('#cmsOrder').addClass(classActive)
-    } else if (location.pathname.indexOf('/contact') >= 0) {
-      $('#nav-contact').addClass(classActive)
+    } else if (location.pathname.indexOf('/cms/brand') >= 0) {
+      $('#cmsBrand').addClass(classActive)
     }
 
   }
