@@ -180,4 +180,11 @@ class cmsBlogController extends BaseController
     $blogImageModel->deleteListIds($listRemovedImages);
       return;
   }
+
+  public function delete($url){
+    $id = $_POST['ID'];
+    $blogModel = new BlogModel();
+    $blogModel->delete($id);
+    return;
+  }
 }

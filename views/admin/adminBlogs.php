@@ -39,7 +39,7 @@
           </thead>
           <tbody>
           <?php  foreach ($data['data'] as $row) {?>
-            <tr>
+            <tr id="row-<?php echo($row["id"]); ?>">
                 
                 <td data-label="ID"><?php echo($row["id"]); ?></td>
                 <td data-label="Title"><?php echo($row["title"]); ?></td>
@@ -87,7 +87,7 @@
     </section>
     <footer class="modal-card-foot">
       <button class="button --jb-modal-close" onclick="cancel()">Cancel</button>
-      <button class="button blue --jb-modal-close">Confirm</button>
+      <button class="button blue --jb-modal-close" onclick="confirmDelete()">Confirm</button>
     </footer>
   </div>
 </div>
@@ -104,6 +104,22 @@
   function deleteID(id){
     modal.style.display = "block";
     ID = id;
+  }
+  function confirmDelete() {
+    // var statusOrder = document.getElementById("orderStatus" + ID);
+    $(`tr[id="row-${ID}"]`).remove();
+    console.log(ID);
+    $.post('/cmsBlog/delete', {
+          ID
+        })
+    $.showNotification({
+      type: "primary",
+      body: "Bạn đã xóa thành công",
+      duration: 10,
+      direction: 'append'
+    })
+    cancel();
+    return true;
   }
   function cancel(){
     modal.style.display = "none";
