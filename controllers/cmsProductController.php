@@ -106,6 +106,7 @@ class cmsProductController extends BaseController
     $isHot = $_POST['isHot'];
     $isNew = $_POST['isNew'];
     $isBestSale = $_POST['isBestSale'];
+    print_r($isHot);
     $quantity = $_POST['quantity'];
     $material = $_POST['material'];
     $glass = $_POST['glass'];
@@ -130,9 +131,9 @@ class cmsProductController extends BaseController
       "price" => $productPrice,
       "discount" => $productDiscount,
       "warranty" => $productWarranty,
-      "isHot" => ($isHot) ? 1 : 0,
-      "isNew" => ($isNew) ? 1 : 0,
-      "isBestSale" => ($isBestSale) ? 1 : 0,
+      "isHot" => ($isHot == 'true') ? 1 : 0,
+      "isNew" => ($isNew  == 'true') ? 1 : 0,
+      "isBestSale" => ($isBestSale  == 'true') ? 1 : 0,
       "quantity" => $quantity,
       "material" => $material,
       "glass" => $glass,

@@ -540,8 +540,8 @@
 </script>
 
 <script>
-  let listNewImages = []
-  let listRemovedImages = []
+  var listNewImages = []
+  var listRemovedImages = []
   $('#input-upload-image').on('change', e => {
     if (e.target.files && e.target.files.length > 0) {
       e.preventDefault();
