@@ -390,7 +390,7 @@
           </button>
         </div>
         <div class="control">
-          <a href="\cmsProduct">
+          <a href="/cms/product">
             <button type="cancel" class="button red">
               Cancel
             </button>
