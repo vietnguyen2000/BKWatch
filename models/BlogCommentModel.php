@@ -13,16 +13,16 @@ class BlogCommentModel extends BaseModel
   {
     try {
       $sql = "SELECT
-      bkwatch.blogcomment.id AS id, 
-      bkwatch.blog.title AS blogTitle,
-      bkwatch.user.fullname AS userCmtFullname,
-      bkwatch.blogcomment.content AS userCmtContent,
-      bkwatch.blogcomment.rating AS userCmtRating,
-      bkwatch.blogcomment.updatedAt AS userCmtTime
-      FROM bkwatch.blogcomment
-      LEFT JOIN bkwatch.blog ON bkwatch.blog.id = bkwatch.blogcomment.blogId
-      LEFT JOIN bkwatch.user ON bkwatch.user.id = bkwatch.blogcomment.userId
-      ORDER BY bkwatch.blog.id
+      blogcomment.id AS id, 
+      blog.title AS blogTitle,
+      user.fullname AS userCmtFullname,
+      blogcomment.content AS userCmtContent,
+      blogcomment.rating AS userCmtRating,
+      blogcomment.updatedAt AS userCmtTime
+      FROM blogcomment
+      LEFT JOIN blog ON blog.id = blogcomment.blogId
+      LEFT JOIN user ON user.id = blogcomment.userId
+      ORDER BY blog.id
       ";
       $result = $this->db->query($sql);
       $data = $result->fetch_all(mode: MYSQLI_ASSOC);

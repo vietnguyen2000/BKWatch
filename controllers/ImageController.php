@@ -34,10 +34,10 @@ function uploadImage($file)
     }
 
     // Check file size
-    if ($file["size"] > 500000) {
-        $message = "Sorry, your file is too large.";
-        $uploadOk = 0;
-    }
+    // if ($file["size"] > 500000) {
+    //     $message = "Sorry, your file is too large.";
+    //     $uploadOk = 0;
+    // }
 
     // Allow certain file formats
     if (
@@ -52,7 +52,7 @@ function uploadImage($file)
     if ($uploadOk == 0) {
     } else {
         if (move_uploaded_file($file["tmp_name"], $target_file)) {
-            $message = 'http://' . $_SERVER['HTTP_HOST'] . '/' . $target_file;
+            $message = '/' . $target_file;
             $uploadOk = 1;
         } else {
             $message = "Sorry, there was an error uploading your file.";

@@ -13,25 +13,25 @@ class BlogModel extends BaseModel
   {
     try {
       $sql = "SELECT 
-      bkwatch.blog.id AS blogId,
-      bkwatch.blog.userId AS userId,
-      bkwatch.user.fullname AS userFullname,
-      bkwatch.blog.title AS title,
-      bkwatch.blog.content AS content,
-      bkwatch.blog.isHot AS isHot,
-      bkwatch.blog.countLike AS countLike,
-      bkwatch.blog.countView AS countView,
-      bkwatch.blog.createdAt AS createdAt,
-      bkwatch.blog.updatedAt AS updatedAt,
-      bkwatch.blogimage.imageURL AS blogImgURL,
-      bkwatch.blogcomment.userId AS userCmtId,
-      bkwatch.blogcomment.content AS userCmtContent,
-      bkwatch.blogcomment.rating AS userCmtRating,
-      bkwatch.blogcomment.updatedAt AS userCmtTime
-      FROM bkwatch.blog
-      LEFT JOIN bkwatch.user ON bkwatch.blog.userId = bkwatch.user.id
-      LEFT JOIN bkwatch.blogimage ON bkwatch.blog.id = bkwatch.blogimage.blogId
-      LEFT JOIN bkwatch.blogcomment ON bkwatch.blog.id = bkwatch.blogcomment.blogId
+      blog.id AS blogId,
+      blog.userId AS userId,
+      user.fullname AS userFullname,
+      blog.title AS title,
+      blog.content AS content,
+      blog.isHot AS isHot,
+      blog.countLike AS countLike,
+      blog.countView AS countView,
+      blog.createdAt AS createdAt,
+      blog.updatedAt AS updatedAt,
+      blogimage.imageURL AS blogImgURL,
+      blogcomment.userId AS userCmtId,
+      blogcomment.content AS userCmtContent,
+      blogcomment.rating AS userCmtRating,
+      blogcomment.updatedAt AS userCmtTime
+      FROM blog
+      LEFT JOIN user ON blog.userId = user.id
+      LEFT JOIN blogimage ON blog.id = blogimage.blogId
+      LEFT JOIN blogcomment ON blog.id = blogcomment.blogId
       ";
       $result = $this->db->query($sql);
       $data = $result->fetch_all(mode: MYSQLI_ASSOC);
@@ -44,19 +44,19 @@ class BlogModel extends BaseModel
   {
     try {
       $sql = "SELECT 
-      bkwatch.blog.id AS blogId,
-      bkwatch.blog.userId AS userId,
-      bkwatch.user.fullname AS userFullname,
-      bkwatch.blog.title AS title,
-      bkwatch.blog.content AS content,
-      bkwatch.blog.isHot AS isHot,
-      bkwatch.blog.countLike AS countLike,
-      bkwatch.blog.countView AS countView,
-      bkwatch.blog.createdAt AS createdAt,
-      bkwatch.blog.updatedAt AS updatedAt
-      FROM bkwatch.blog
-      LEFT JOIN bkwatch.user ON bkwatch.blog.userId = bkwatch.user.id
-      WHERE bkwatch.blog.id > 1
+      blog.id AS blogId,
+      blog.userId AS userId,
+      user.fullname AS userFullname,
+      blog.title AS title,
+      blog.content AS content,
+      blog.isHot AS isHot,
+      blog.countLike AS countLike,
+      blog.countView AS countView,
+      blog.createdAt AS createdAt,
+      blog.updatedAt AS updatedAt
+      FROM blog
+      LEFT JOIN user ON blog.userId = user.id
+      WHERE blog.id > 1
       ";
       $result = $this->db->query($sql);
       $data = $result->fetch_all(mode: MYSQLI_ASSOC);
@@ -83,19 +83,19 @@ class BlogModel extends BaseModel
   {
     try {
       $sql = "SELECT 
-      bkwatch.blog.id AS blogId,
-      bkwatch.blog.userId AS userId,
-      bkwatch.user.fullname AS userFullname,
-      bkwatch.blog.title AS title,
-      bkwatch.blog.content AS content,
-      bkwatch.blog.isHot AS isHot,
-      bkwatch.blog.countLike AS countLike,
-      bkwatch.blog.countView AS countView,
-      bkwatch.blog.createdAt AS createdAt,
-      bkwatch.blog.updatedAt AS updatedAt
-      FROM bkwatch.blog
-      LEFT JOIN bkwatch.user ON bkwatch.blog.userId = bkwatch.user.id
-      WHERE bkwatch.blog.id = $id
+      blog.id AS blogId,
+      blog.userId AS userId,
+      user.fullname AS userFullname,
+      blog.title AS title,
+      blog.content AS content,
+      blog.isHot AS isHot,
+      blog.countLike AS countLike,
+      blog.countView AS countView,
+      blog.createdAt AS createdAt,
+      blog.updatedAt AS updatedAt
+      FROM blog
+      LEFT JOIN user ON blog.userId = user.id
+      WHERE blog.id = $id
       ";
       $result = $this->db->query($sql);
       $data = $result->fetch_all(mode: MYSQLI_ASSOC);
@@ -122,18 +122,18 @@ class BlogModel extends BaseModel
   {
     try {
       $sql = "SELECT 
-      bkwatch.blog.id AS blogId,
-      bkwatch.blogcomment.userId AS userCmtId,
-      bkwatch.user.fullname AS userCmtFullname,
-      bkwatch.user.avatarURL AS userCmtAvt,
-      bkwatch.blogcomment.content AS userCmtContent,
-      bkwatch.blogcomment.rating AS userCmtRating,
-      bkwatch.blogcomment.updatedAt AS userCmtTime,
-      bkwatch.blogcomment.id AS cmtId
-      FROM bkwatch.blogcomment
-      LEFT JOIN bkwatch.blog ON bkwatch.blog.id = bkwatch.blogcomment.blogId
-      LEFT JOIN bkwatch.user ON bkwatch.user.id = bkwatch.blogcomment.userId
-      WHERE bkwatch.blog.id = $id
+      blog.id AS blogId,
+      blogcomment.userId AS userCmtId,
+      user.fullname AS userCmtFullname,
+      user.avatarURL AS userCmtAvt,
+      blogcomment.content AS userCmtContent,
+      blogcomment.rating AS userCmtRating,
+      blogcomment.updatedAt AS userCmtTime,
+      blogcomment.id AS cmtId
+      FROM blogcomment
+      LEFT JOIN blog ON blog.id = blogcomment.blogId
+      LEFT JOIN user ON user.id = blogcomment.userId
+      WHERE blog.id = $id
       ";
       $result = $this->db->query($sql);
       $data = $result->fetch_all(mode: MYSQLI_ASSOC);
@@ -146,11 +146,11 @@ class BlogModel extends BaseModel
   {
     try {
       $sql = "SELECT 
-      bkwatch.blog.id AS blogId,
-      bkwatch.blogimage.imageURL AS blogImgURL
-      FROM bkwatch.blog
-      LEFT JOIN bkwatch.blogimage ON bkwatch.blog.id = bkwatch.blogimage.blogId
-      WHERE bkwatch.blog.id = $id
+      blog.id AS blogId,
+      blogimage.imageURL AS blogImgURL
+      FROM blog
+      LEFT JOIN blogimage ON blog.id = blogimage.blogId
+      WHERE blog.id = $id
       ";
       $result = $this->db->query($sql);
       $data = $result->fetch_all(mode: MYSQLI_ASSOC);
@@ -163,22 +163,22 @@ class BlogModel extends BaseModel
   {
     try {
       $sql = "SELECT 
-      bkwatch.blog.id AS blogId,
-      bkwatch.blog.userId AS userId,
-      bkwatch.user.fullname AS userFullname,
-      bkwatch.blog.title AS title,
-      bkwatch.blog.content AS content,
-      bkwatch.blog.isHot AS isHot,
-      bkwatch.blog.countLike AS countLike,
-      bkwatch.blog.countView AS countView,
-      bkwatch.blog.createdAt AS createdAt,
-      bkwatch.blog.updatedAt AS updatedAt
-      FROM bkwatch.blog
-      LEFT JOIN bkwatch.user ON bkwatch.blog.userId = bkwatch.user.id
-      WHERE bkwatch.blog.updatedAt > date_sub(now(), interval 1 week) 
-      AND bkwatch.blog.isHot = 1 
-      AND bkwatch.blog.id > 1
-      AND bkwatch.blog.countLike = (SELECT MAX(bkwatch.blog.countLike) FROM bkwatch.blog)
+      blog.id AS blogId,
+      blog.userId AS userId,
+      user.fullname AS userFullname,
+      blog.title AS title,
+      blog.content AS content,
+      blog.isHot AS isHot,
+      blog.countLike AS countLike,
+      blog.countView AS countView,
+      blog.createdAt AS createdAt,
+      blog.updatedAt AS updatedAt
+      FROM blog
+      LEFT JOIN user ON blog.userId = user.id
+      WHERE blog.updatedAt > date_sub(now(), interval 1 week) 
+      AND blog.isHot = 1 
+      AND blog.id > 1
+      AND blog.countLike = (SELECT MAX(blog.countLike) FROM blog)
       ";
       $result = $this->db->query($sql);
       $data = $result->fetch_all(mode: MYSQLI_ASSOC);
@@ -207,7 +207,7 @@ class BlogModel extends BaseModel
     try {
       $sql = "SELECT blog.title AS title, blogimage.imageURl AS img
       FROM blogimage  
-      INNER JOIN bkwatch.blog ON blogimage.blogId = blog.id
+      INNER JOIN blog ON blogimage.blogId = blog.id
       WHERE blogimage.blogID = 1";
       $result = $this->db->query($sql);
       $data = $result->fetch_all(mode: MYSQLI_ASSOC);
@@ -219,7 +219,7 @@ class BlogModel extends BaseModel
   public function getImageHelpById(int $id)
   {
     try {
-      $sql = "SELECT bkwatch.blogimage.id AS id, bkwatch.blogimage.imageURL AS imageURL FROM bkwatch.blogimage WHERE bkwatch.blogimage.blogId = $id";
+      $sql = "SELECT blogimage.id AS id, blogimage.imageURL AS imageURL FROM blogimage WHERE blogimage.blogId = $id";
       $result = $this->db->query($sql);
       $data = $result->fetch_all(mode: MYSQLI_ASSOC);
       return $data;

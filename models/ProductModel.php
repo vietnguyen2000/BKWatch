@@ -109,7 +109,7 @@ class ProductModel extends BaseModel
         $queryAll = substr($queryAll, 3);
         $searchAllQuery = "WHERE $queryAll";
       }
-      $sql = "SELECT * FROM bkwatch.productpreview $searchAllQuery $sortQuery";
+      $sql = "SELECT * FROM productpreview $searchAllQuery $sortQuery";
       // print_r($sql);
       $result = $this->db->query($sql);
       $data = $result->fetch_all(mode: MYSQLI_ASSOC);
@@ -156,7 +156,7 @@ class ProductModel extends BaseModel
   public function getAllCategory()
   {
     try {
-      $sql = "SELECT bkwatch.productcategory.id AS id, bkwatch.productcategory.title AS title FROM bkwatch.productcategory";
+      $sql = "SELECT productcategory.id AS id, productcategory.title AS title FROM productcategory";
       $result = $this->db->query($sql);
       $data = $result->fetch_all(mode: MYSQLI_ASSOC);
       foreach ($data as $key_data => $value_data) {
@@ -170,7 +170,7 @@ class ProductModel extends BaseModel
   public function getAllBrand()
   {
     try {
-      $sql = "SELECT bkwatch.productbrand.id AS id, bkwatch.productbrand.title AS title FROM bkwatch.productbrand";
+      $sql = "SELECT productbrand.id AS id, productbrand.title AS title FROM productbrand";
       $result = $this->db->query($sql);
       $data = $result->fetch_all(mode: MYSQLI_ASSOC);
       foreach ($data as $key_data => $value_data) {
@@ -184,7 +184,7 @@ class ProductModel extends BaseModel
   public function getAllCategoryHelp()
   {
     try {
-      $sql = "SELECT bkwatch.productcategory.id AS id, bkwatch.productcategory.title AS title FROM bkwatch.productcategory";
+      $sql = "SELECT productcategory.id AS id, productcategory.title AS title FROM productcategory";
       $result = $this->db->query($sql);
       $data = $result->fetch_all(mode: MYSQLI_ASSOC);
       return $data;
@@ -195,7 +195,7 @@ class ProductModel extends BaseModel
   public function getAllBrandHelp()
   {
     try {
-      $sql = "SELECT bkwatch.productbrand.id AS id, bkwatch.productbrand.title AS title FROM bkwatch.productbrand";
+      $sql = "SELECT productbrand.id AS id, productbrand.title AS title FROM productbrand";
       $result = $this->db->query($sql);
       $data = $result->fetch_all(mode: MYSQLI_ASSOC);
       return $data;
@@ -206,7 +206,7 @@ class ProductModel extends BaseModel
   public function getImageHelpById(int $id)
   {
     try {
-      $sql = "SELECT bkwatch.productImage.id AS id, bkwatch.productImage.imageURL AS imageURL FROM bkwatch.productImage WHERE bkwatch.productImage.productId = $id";
+      $sql = "SELECT productImage.id AS id, productImage.imageURL AS imageURL FROM productImage WHERE productImage.productId = $id";
       $result = $this->db->query($sql);
       $data = $result->fetch_all(mode: MYSQLI_ASSOC);
       return $data;

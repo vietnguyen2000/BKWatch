@@ -13,20 +13,20 @@ class OrdersModel extends BaseModel
   {
     try {
       $sql = "SELECT
-      bkwatch.orders.id AS id, 
-      bkwatch.orders.paymentMethod AS paymentMethod,
-      bkwatch.orders.transactionNo AS transactionNo,
-      bkwatch.user.fullname AS userFullname,
-      bkwatch.user.username AS username,
-      bkwatch.orders.total AS total,
-      bkwatch.orders.address AS address,
-      bkwatch.orders.shippingFee AS shippingFee,
-      bkwatch.orders.status AS orderStatus,
-      bkwatch.orders.updatedAt AS updatedAt,
-      bkwatch.orders.createdAt AS createdAt
-      FROM bkwatch.orders
-      LEFT JOIN bkwatch.user ON bkwatch.user.id = bkwatch.orders.userId
-      ORDER BY bkwatch.orders.id
+      orders.id AS id, 
+      orders.paymentMethod AS paymentMethod,
+      orders.transactionNo AS transactionNo,
+      user.fullname AS userFullname,
+      user.username AS username,
+      orders.total AS total,
+      orders.address AS address,
+      orders.shippingFee AS shippingFee,
+      orders.status AS orderStatus,
+      orders.updatedAt AS updatedAt,
+      orders.createdAt AS createdAt
+      FROM orders
+      LEFT JOIN user ON user.id = orders.userId
+      ORDER BY orders.id
       ";
       $result = $this->db->query($sql);
       $data = $result->fetch_all(mode: MYSQLI_ASSOC);

@@ -12,7 +12,7 @@ class ContactModel extends BaseModel
   public function getContact()
   {
     try {
-      $sql = "SELECT * FROM bkwatch.contact";
+      $sql = "SELECT * FROM contact";
       $result = $this->db->query($sql);
       $data = $result->fetch_all(mode: MYSQLI_ASSOC);
       return $data;
