@@ -2,9 +2,9 @@
 Make sure you have installed php:
 https://www.php.net/manual/en/install.php
 
-Install database with your selected schema: ```database/export.sql```
+Install database with your selected schema: ```databases/export.sql```
 
-You can add `config.development.php` and `config.production.php` for config in running two mode development and production.
+You can add `configs/config.development.php` and `configs/config.production.php` for config in running two mode development and production.
 
 Config your database in `config.development.php` or `config.production.php`:
 ```
